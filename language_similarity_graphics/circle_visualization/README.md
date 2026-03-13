@@ -1,33 +1,40 @@
-# NLLB-200 Geographic Chord Diagrams
+# NLLB Geographic Language Clusters
 
-This project generates two chord diagrams for NLLB / FLORES-200 languages grouped by language family:
+This project builds chord-diagram visualizations for languages in FLORES / NLLB using geographic similarity derived from `lang2vec`.
 
-- 3 nearest geographic neighbors per language
-- 3 furthest geographic neighbors per language
+The script:
 
-Edge weights are computed as:
+- loads FLORES language codes
+- maps them to readable language names from a local CSV
+- gets language family information from `lang2vec`
+- computes pairwise geographic distances from `lang2vec` `geo` features
+- converts distance to similarity with:
 
-similarity = 1 - normalized_distance
+  `similarity = 1 - normalized_distance`
 
-The script uses:
-
-- FLORES-200 language names and codes from the official FLORES README
-- `lang2vec` family features for grouping
-- `lang2vec` geographic distance for pairwise language distances
-- `pycirclize` for chord diagram plotting
+- clusters the languages automatically
+- generates one chord diagram per cluster
+- saves cluster membership and edge tables as CSV files
 
 ## Files
 
 - `nllb_geo_chord.py` — main Python script
+- `flores_language_names.csv` — mapping from FLORES codes to human-readable language names
 - `requirements.txt` — Python dependencies
 
 ## Recommended Python version
 
-Python 3.10 or 3.11 is recommended.
+Python 3.11 or 3.12 is recommended.
 
 ## Setup
 
 ### 1. Create and activate a virtual environment
+
+#### macOS / Linux
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
 
 #### macOS / Linux
 
