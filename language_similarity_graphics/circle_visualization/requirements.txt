@@ -1,0 +1,6 @@
+numpy>=1.26,<3
+pandas>=2.2,<4
+matplotlib>=3.8,<4
+requests>=2.32,<3
+pycirclize>=1.10,<2
+lang2vec==1.1.2
