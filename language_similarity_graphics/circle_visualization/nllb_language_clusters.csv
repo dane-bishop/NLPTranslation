@@ -1,0 +1,177 @@
+cluster,iso3,language_name,family
+1,ace,Acehnese (Arabic script),F Aceh-Chamic
+1,asm,Assamese,F Kamta
+1,awa,Awadhi,F Indo-Aryan
+1,ban,Balinese,F Austronesian
+1,bjn,Banjar (Arabic script),F Malayic
+1,ben,Bengali,F Indo-Aryan
+1,bho,Bhojpuri,F Bihari
+1,bug,Buginese,F Bugis
+1,mya,Burmese,F Burmish
+1,ceb,Cebuano,F Bisayan
+1,prs,Dari,F Farsic
+1,pan,Eastern Panjabi,F Indo-Aryan
+1,guj,Gujarati,F Gujaratic
+1,khk,Halh Mongolian,F Mongolic
+1,hin,Hindi,F Indo-Aryan
+1,ilo,Ilocano,F Austronesian
+1,ind,Indonesian,F Malayic
+1,jpn,Japanese,F Japonic
+1,jav,Javanese,F Javanesic
+1,kac,Jingpho,F Jingpho
+1,kan,Kannada,F Kannada
+1,kas,Kashmiri (Arabic script),F Indo-Aryan
+1,kaz,Kazakh,F Oghuz
+1,khm,Khmer,F Khmeric
+1,kor,Korean,F Koreanic
+1,kir,Kyrgyz,F Oghuz
+1,lao,Lao,F Daic
+1,mag,Magahi,F Bihari
+1,mai,Maithili,F Bihari
+1,mal,Malayalam,F Dravidian
+1,mar,Marathi,F Marathic
+1,mni,Meitei (Bengali script),F Naga
+1,min,Minangkabau (Arabic script),F Malayic
+1,lus,Mizo,F Mizoic
+1,uzn,Northern Uzbek,F Oghuz
+1,pag,Pangasinan,F Austronesian
+1,san,Sanskrit,F Indo-Aryan
+1,sat,Santali,F Mundaic
+1,shn,Shan,F Daic
+1,snd,Sindhi,F Sindhic
+1,sin,Sinhala,F Sinhalaic
+1,zsm,Standard Malay,F Malayic
+1,bod,Standard Tibetan,F Bodic
+1,sun,Sundanese,F Austronesian
+1,tgl,Tagalog,F Tagalogic
+1,tgk,Tajik,F Farsic
+1,tam,Tamil,F Tamiloid
+1,tel,Telugu,F Teluguic
+1,tha,Thai,F Daic
+1,tuk,Turkmen,F Oghuz
+1,urd,Urdu,F Indo-Aryan
+1,uig,Uyghur,F Turkic
+1,vie,Vietnamese,F Vietic
+1,war,Waray,F Bisayan
+1,yue,Yue Chinese,F Sinitic
+2,afr,Afrikaans,F Germanic
+2,aka,Akan,F Nyo
+2,amh,Amharic,F Semitic
+2,bam,Bambara,F Mande
+2,bem,Bemba,F Sabi
+2,knc,Central Kanuri (Arabic script),F Kanuri
+2,cjk,Chokwe,F Njila
+2,dyu,Dyula,F Mande
+2,ewe,Ewe,F Gbe
+2,fon,Fon,F Gbe
+2,lug,Ganda,F Bantoid
+2,hau,Hausa,F Chadic
+2,ibo,Igbo,F Igbo
+2,kbp,Kabiyè,F Gur
+2,kam,Kamba,F Bantoid
+2,kik,Kikuyu,F Bantoid
+2,kin,Kinyarwanda,F Kivu
+2,lin,Lingala,F Ngiri
+2,lua,Luba-Kasai,F Luban
+2,luo,Luo,F Nilotic
+2,mos,Mossi,F Gur
+2,fuv,Nigerian Fulfulde,F Fula
+2,nso,Northern Sotho,F Sotho
+2,nus,Nuer,F Nilotic
+2,nya,Nyanja,F Bantoid
+2,plt,Plateau Malagasy,F Malagasic
+2,run,Rundi,F Kivu
+2,sag,Sango,F Ubangi
+2,sna,Shona,F Bantoid
+2,som,Somali,F Cushitic
+2,sot,Southern Sotho,F Sotho
+2,dik,Southwestern Dinka,F Dinka
+2,swh,Swahili,F Bantoid
+2,ssw,Swati,F Bantoid
+2,taq,Tamasheq (Latin script),F Berber
+2,acq,Ta’izzi-Adeni Arabic,F Arabic
+2,tir,Tigrinya,F Semitic
+2,tso,Tsonga,F Bantoid
+2,tsn,Tswana,F Bantoid
+2,twi,Twi,Unknown
+2,umb,Umbundu,F Njila
+2,gaz,West Central Oromo,F Oromoid
+2,wol,Wolof,F Wolof
+2,xho,Xhosa,F Bantoid
+2,yor,Yoruba,F Ede
+2,zul,Zulu,F Bantoid
+3,quy,Ayacucho Quechua,F Quechuan
+3,ayr,Central Aymara,F Aymara
+3,hat,Haitian Creole,F Oil
+3,pap,Papiamento,F Italic
+4,fij,Fijian,F Oceanic
+4,mri,Maori,F Oceanic
+4,smo,Samoan,F Oceanic
+4,tpi,Tok Pisin,F Anglian
+5,hye,Armenian,F Armenian
+5,ast,Asturian,F Italic
+5,bak,Bashkir,F Oghuz
+5,eus,Basque,Unknown
+5,bel,Belarusian,F Slavic
+5,bos,Bosnian,F Slavic
+5,bul,Bulgarian,F Slavic
+5,cat,Catalan,F Italic
+5,tzm,Central Atlas Tamazight,F Berber
+5,ckb,Central Kurdish,F Iranian
+5,crh,Crimean Tatar,F Oghuz
+5,hrv,Croatian,F Slavic
+5,ces,Czech,F Slavic
+5,dan,Danish,F Danic
+5,nld,Dutch,F Germanic
+5,ydd,Eastern Yiddish,F Yiddish
+5,arz,Egyptian Arabic,F Arabic
+5,eng,English,F Anglian
+5,est,Estonian,F Uralic
+5,fao,Faroese,F Germanic
+5,fin,Finnish,F Uralic
+5,fra,French,F Oil
+5,glg,Galician,F Italic
+5,kat,Georgian,F Georgic
+5,deu,German,F Germanic
+5,ell,Greek,F Greek
+5,heb,Hebrew,F Semitic
+5,hun,Hungarian,F Uralic
+5,isl,Icelandic,F Germanic
+5,gle,Irish,F Celtic
+5,ita,Italian,F Italic
+5,kab,Kabyle,F Berber
+5,lij,Ligurian,F Italic
+5,lit,Lithuanian,F Balto-Slavic
+5,ltz,Luxembourgish,F Germanic
+5,mkd,Macedonian,F Slavic
+5,mlt,Maltese,F Arabic
+5,acm,Mesopotamian Arabic,F Arabic
+5,arb,Modern Standard Arabic,F Arabic
+5,ary,Moroccan Arabic,F Arabic
+5,ars,Najdi Arabic,F Arabic
+5,azj,North Azerbaijani,F Oghuz
+5,apc,North Levantine Arabic,F Arabic
+5,kmr,Northern Kurdish,F Iranian
+5,nob,Norwegian Bokmål,Unknown
+5,oci,Occitan,F Italic
+5,pol,Polish,F Slavic
+5,por,Portuguese,F Italic
+5,ron,Romanian,F Italic
+5,rus,Russian,F Slavic
+5,gla,Scottish Gaelic,F Celtic
+5,srp,Serbian,F Slavic
+5,scn,Sicilian,F Italic
+5,slk,Slovak,F Slavic
+5,slv,Slovenian,F Slavic
+5,azb,South Azerbaijani,F Oghuz
+5,ajp,South Levantine Arabic,F Arabic
+5,spa,Spanish,F Italic
+5,swe,Swedish,F Germanic
+5,tat,Tatar,F Oghuz
+5,als,Tosk Albanian,F Albanian
+5,aeb,Tunisian Arabic,F Arabic
+5,tur,Turkish,F Oghuz
+5,ukr,Ukrainian,F Slavic
+5,vec,Venetian,F Italic
+5,cym,Welsh,F Celtic
+5,pes,Western Persian,F Farsic
