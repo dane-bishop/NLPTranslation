@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <title>pydeck</title>
+        <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v1.13.0/mapbox-gl.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" />
+    <script src='https://cdn.jsdelivr.net/npm/@deck.gl/jupyter-widget@~9.0.*/dist/index.js'></script>
+    <style>
+    body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+#deck-container {
+  width: 100vw;
+  height: 100vh;
+}
+
+#deck-container canvas {
+  z-index: 1;
+  background: none;
+}
+    </style>
+  </head>
+  <body>
+    <div id="deck-container">
+    </div>
+  </body>
+  <script>
+    const container = document.getElementById('deck-container');
+    const jsonInput = {
+  "initialViewState": {
+    "latitude": 20,
+    "longitude": 0,
+    "pitch": 0,
+    "zoom": 0.8
+  },
+  "layers": [
+    {
+      "@@type": "ArcLayer",
+      "autoHighlight": true,
+      "data": [
+        {
+          "color": [
+            255,
+            80,
+            80
+          ],
+          "source_lat": 40.7128,
+          "source_lon": -74.006,
+          "target_lat": 51.5074,
+          "target_lon": -0.1278,
+          "weight": 2
+        },
+        {
+          "color": [
+            80,
+            255,
+            120
+          ],
+          "source_lat": 51.5074,
+          "source_lon": -0.1278,
+          "target_lat": 35.6762,
+          "target_lon": 139.6503,
+          "weight": 5
+        },
+        {
+          "color": [
+            180,
+            120,
+            255
+          ],
+          "source_lat": 40.7128,
+          "source_lon": -74.006,
+          "target_lat": 35.6762,
+          "target_lon": 139.6503,
+          "weight": 3
+        }
+      ],
+      "getSourceColor": "@@=color",
+      "getSourcePosition": "@@=[source_lon, source_lat]",
+      "getTargetColor": "@@=color",
+      "getTargetPosition": "@@=[target_lon, target_lat]",
+      "getWidth": "@@=weight",
+      "id": "a285127b-ac46-4d73-8c68-02fe5bffea9d",
+      "pickable": true
+    },
+    {
+      "@@type": "ScatterplotLayer",
+      "autoHighlight": true,
+      "data": [
+        {
+          "color": [
+            255,
+            100,
+            100
+          ],
+          "lat": 40.7128,
+          "lon": -74.006,
+          "name": "New York",
+          "size": 20000
+        },
+        {
+          "color": [
+            100,
+            200,
+            255
+          ],
+          "lat": 51.5074,
+          "lon": -0.1278,
+          "name": "London",
+          "size": 18000
+        },
+        {
+          "color": [
+            255,
+            220,
+            100
+          ],
+          "lat": 35.6762,
+          "lon": 139.6503,
+          "name": "Tokyo",
+          "size": 22000
+        }
+      ],
+      "getFillColor": "@@=color",
+      "getPosition": "@@=[lon, lat]",
+      "getRadius": "@@=size",
+      "id": "32047a1d-b087-4312-9480-def32ddb88ac",
+      "pickable": true
+    }
+  ],
+  "mapProvider": "carto",
+  "mapStyle": "https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json",
+  "views": [
+    {
+      "@@type": "_GlobeView"
+    }
+  ]
+};
+    const tooltip = {'text': '{name}'};
+    const customLibraries = null;
+    const configuration = null;
+
+    const deckInstance = createDeck({
+                  container,
+      jsonInput,
+      tooltip,
+      customLibraries,
+      configuration
+    });
+
+  </script>
+</html>
