@@ -14,6 +14,7 @@ from tqdm import tqdm
 from sae import SAE, GatedSparseAutoEncoder
 from backbone import MLLMBackbone
 from dataset import BalancedNLLBDataset
+from activations import TopK, BatchTopK
 
 @dataclass
 class TrainingConf:
@@ -34,6 +35,8 @@ class TrainingConf:
     sparsity_weight: float
     print_every: int
     weight_path: str
+    activation: str = "gelu"
+    topk: int = None
 
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
@@ -55,11 +58,12 @@ def update_sae(autoencoder: SAE | GatedSparseAutoEncoder, embeddings, optim, con
     return outputs
 
 def train(conf: TrainingConf):
+    activation_lookup = {"relu": torch.nn.ReLU, "gelu": torch.nn.GELU, "tk_relu": lambda : torch.nn.Sequential(*[torch.nn.ReLU(), TopK(conf.topk)]) ,"btk_relu": lambda : torch.nn.Sequential(*[torch.nn.ReLU(), BatchTopK(conf.topk)])} 
     backbone_name = conf.backbone_name #"facebook/nllb-200-distilled-600M"
     backbone = MLLMBackbone(device, backbone_name)
     model_constructor = sae_constructors[conf.sae_type]
 
-    autoencoder = model_constructor(conf.model_hidden_size,conf.sae_hidden_size).to(device)
+    autoencoder = model_constructor(conf.model_hidden_size,conf.sae_hidden_size,activation=activation_lookup[conf.activation]()).to(device)
 
     pair_configs = conf.pairs
     langs = conf.langs
@@ -101,7 +105,7 @@ def train(conf: TrainingConf):
         if step % conf.print_every == 0:
             pbar.set_description(f"loss is {updates["loss"].item()}")
         pbar.update(1)
-
+    os.makedirs(os.path.split(conf.weight_path)[0],exist_ok=True)
     torch.save(autoencoder.state_dict(), conf.weight_path)
 
 def main():

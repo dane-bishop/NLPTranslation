@@ -136,6 +136,7 @@ def collect_analysis_rows(
     layer_idx: int,
     max_length: int,
     num_batches: int,
+    conf: TrainingConf
 ):
     """
     Collects token-level rows with:
@@ -158,7 +159,7 @@ def collect_analysis_rows(
             texts=texts,
             layer_idx=layer_idx,
             max_length=max_length,
-            encoder_only=True
+            encoder_only=conf.encoder_only
         )
 
         x = acts["token_activations"]  # (N, 768)
@@ -462,6 +463,7 @@ def main():
         layer_idx=LAYER_IDX,
         max_length=MAX_LENGTH,
         num_batches=NUM_BATCHES_TO_ANALYZE,
+        conf=conf
     )
 
     print_global_stats(rows, latent_dim=conf.sae_hidden_size)

@@ -41,7 +41,7 @@ class MLLMBackbone:
         # -------------------------
         # Extract hidden states from specified layer_idx
         # -------------------------
-        x = hidden_states[layer_idx]  # (B, T, H)
+        x = hidden_states[layer_idx].float()  # (B, T, H)
 
         # -------------------------
         # Mask out special tokens / attention mask

@@ -11,7 +11,7 @@ class SAE(nn.Module):
     - Encodes the activations into a higher-dimensional latent space
     - Decodes that spare represntation back into the original activation space
     """
-    def __init__(self, in_dim: int, latent_dim: int):
+    def __init__(self, in_dim: int, latent_dim: int, **kwargs):
         super().__init__()
         self.in_dim = in_dim
         self.latent_dim = latent_dim
