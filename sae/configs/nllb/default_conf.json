@@ -32,6 +32,6 @@
 	"reduction": "mean",
 	"sparsity_weight": 1e-4,
 	"print_every": 20,
-	"weight_path": "weights/gsae_default_setting.pt",
+	"weight_path": "weights/nllb/gsae_default_setting.pt",
 	"encoder_only": true
 }
