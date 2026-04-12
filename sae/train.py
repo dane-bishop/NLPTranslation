@@ -106,7 +106,7 @@ def train(conf: TrainingConf):
         updates = update_sae(autoencoder, x, optimizer, conf)
         
         if step % conf.print_every == 0:
-            pbar.set_description(f"loss is {updates["loss"].item()}")
+            pbar.set_description(f"loss is {updates['loss'].item()}")
         pbar.update(1)
     os.makedirs(os.path.split(conf.weight_path)[0],exist_ok=True)
     torch.save(autoencoder.state_dict(), conf.weight_path)

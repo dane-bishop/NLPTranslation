@@ -15,7 +15,6 @@ from sklearn.cluster import AgglomerativeClustering
 from sklearn.metrics import silhouette_score
 import lang2vec.lang2vec as l2v
 
-
 def fetch_flores200_codes():
     """
     Get FLORES-200 codes from Hugging Face dataset configs,
@@ -95,26 +94,38 @@ def pick_family_labels(iso3_codes):
 
     return family_of
 
+def build_distance_df_from_embedding_csv(csv_path):
+    df = pd.read_csv(csv_path)
 
-def build_distance_df(iso3_codes):
-    """
-    Build pairwise distance matrix from lang2vec geo features using Euclidean distance.
-    """
-    feat_dict = l2v.get_features(iso3_codes, "geo")
-    X = np.array([feat_dict[code] for code in iso3_codes], dtype=float)
+    required_cols = {"iso3", "num_examples"}
+    missing_cols = required_cols - set(df.columns)
+    if missing_cols:
+        raise ValueError(
+            f"{csv_path} is missing required columns: {missing_cols}. "
+            f"Found columns: {list(df.columns)}"
+        )
 
-    n = len(iso3_codes)
-    mat = np.zeros((n, n), dtype=float)
+    dim_cols = [c for c in df.columns if c.startswith("dim")]
+    if not dim_cols:
+        raise ValueError(
+            f"No embedding columns starting with 'dim' were found in {csv_path}."
+        )
 
-    for i in range(n):
-        for j in range(i + 1, n):
-            d = np.linalg.norm(X[i] - X[j])
-            mat[i, j] = d
-            mat[j, i] = d
+    # Your exported CSV uses full NLLB/FLORES codes in the iso3 column,
+    # e.g. deu_Latn, fra_Latn, hin_Deva. Collapse them to base ISO3.
+    codes = df["iso3"].astype(str).str.split("_").str[0].tolist()
 
-    return pd.DataFrame(mat, index=iso3_codes, columns=iso3_codes)
+    X = df[dim_cols].to_numpy(dtype=float)
 
+    norms = np.linalg.norm(X, axis=1, keepdims=True)
+    X = X / (norms + 1e-12)
 
+    sim = X @ X.T
+    dist = 1.0 - sim
+    np.fill_diagonal(dist, 0.0)
+
+    df["iso3_base"] = codes
+    return df, pd.DataFrame(dist, index=codes, columns=codes)
 def compute_similarity_from_distances(distance_df):
     """
     similarity = 1 - normalized_distance
@@ -211,52 +222,53 @@ def shorten_label(name, max_len=22):
 
 
 def choose_cluster_count(distance_df, min_clusters=5, max_clusters=20):
-    """
-    Choose an 'appropriate' number of clusters automatically using silhouette score
-    on a precomputed distance matrix, constrained to [min_clusters, max_clusters].
+    return 1
+    # """
+    # Choose an 'appropriate' number of clusters automatically using silhouette score
+    # on a precomputed distance matrix, constrained to [min_clusters, max_clusters].
 
-    If there are too few languages to support the requested minimum, the minimum is
-    reduced to a feasible value.
-    """
-    n = len(distance_df)
+    # If there are too few languages to support the requested minimum, the minimum is
+    # reduced to a feasible value.
+    # """
+    # n = len(distance_df)
 
-    if n <= 1:
-        return 1
+    # if n <= 1:
+    #     return 1
 
-    feasible_max = min(max_clusters, n - 1)
-    feasible_min = min(min_clusters, feasible_max)
+    # feasible_max = min(max_clusters, n - 1)
+    # feasible_min = min(min_clusters, feasible_max)
 
-    if feasible_max < 2:
-        return 1
+    # if feasible_max < 2:
+    #     return 1
 
-    # If there are fewer languages than the requested minimum, fall back gracefully.
-    if feasible_min < 2:
-        feasible_min = 2
+    # # If there are fewer languages than the requested minimum, fall back gracefully.
+    # if feasible_min < 2:
+    #     feasible_min = 2
 
-    best_k = feasible_min
-    best_score = -1.0
+    # best_k = feasible_min
+    # best_score = -1.0
 
-    for k in range(feasible_min, feasible_max + 1):
-        try:
-            model = AgglomerativeClustering(
-                n_clusters=k,
-                metric="precomputed",
-                linkage="average",
-            )
-            labels = model.fit_predict(distance_df.values)
+    # for k in range(feasible_min, feasible_max + 1):
+    #     try:
+    #         model = AgglomerativeClustering(
+    #             n_clusters=k,
+    #             metric="precomputed",
+    #             linkage="average",
+    #         )
+    #         labels = model.fit_predict(distance_df.values)
 
-            # silhouette_score requires at least 2 distinct labels and fewer than n labels
-            if len(set(labels)) < 2 or len(set(labels)) >= n:
-                continue
+    #         # silhouette_score requires at least 2 distinct labels and fewer than n labels
+    #         if len(set(labels)) < 2 or len(set(labels)) >= n:
+    #             continue
 
-            score = silhouette_score(distance_df.values, labels, metric="precomputed")
-            if score > best_score:
-                best_score = score
-                best_k = k
-        except Exception:
-            continue
+    #         score = silhouette_score(distance_df.values, labels, metric="precomputed")
+    #         if score > best_score:
+    #             best_score = score
+    #             best_k = k
+    #     except Exception:
+    #         continue
 
-    return best_k
+    # return best_k
 
 
 def cluster_languages(distance_df, n_clusters):
@@ -430,7 +442,23 @@ def main():
     label_map.update(name_map)
 
     family_of = pick_family_labels(usable_iso3)
-    distance_df = build_distance_df(usable_iso3)
+
+    embedding_csv_path = Path(__file__).parent / "language_embeddings.csv"
+    embedding_df, distance_df = build_distance_df_from_embedding_csv(embedding_csv_path)
+
+    print(f"\nLoaded embedding CSV: {embedding_csv_path}")
+    print(f"Embedding rows: {len(embedding_df)}")
+    print(f"Embedding languages: {embedding_df['iso3_base'].tolist()}")
+
+    # Keep only languages that exist in both the embedding CSV and lang2vec/FLORES mapping
+    available_ids = [x for x in distance_df.index if x in usable_iso3]
+    distance_df = distance_df.loc[available_ids, available_ids]
+
+    if distance_df.empty:
+        raise ValueError(
+            "No overlap between embedding CSV language IDs and usable ISO3 codes."
+        )
+
     similarity_df = compute_similarity_from_distances(distance_df)
 
     n_clusters = choose_cluster_count(distance_df, min_clusters=5, max_clusters=20)
@@ -501,7 +529,7 @@ def main():
             family_sizes,
             title=(
                 f"Cluster {cluster_num}: Closest Languages\n"
-                f"Nearest Geographic Neighbors\n"
+                f"Nearest Embedding Neighbors\n"
                 f"{cluster_title}"
             ),
             out_path=f"cluster_{cluster_num:02d}_nearest.png",
