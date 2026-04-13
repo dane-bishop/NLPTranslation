@@ -1,4 +1,7 @@
 cluster,iso3,language_name,family
+1,eng,English,F Anglian
 1,fra,French,F Oil
 1,deu,German,F Germanic
-1,hin,Hindi,F Indo-Aryan
+1,jpn,Japanese,F Japonic
+1,spa,Spanish,F Italic
+1,vie,Vietnamese,F Vietic

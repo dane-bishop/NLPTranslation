@@ -1,14 +1,22 @@
 {
   "backbone_name": "facebook/nllb-200-distilled-600M",
   "pairs": [
+  "deu_Latn-spa_Latn",
+  "eng_Latn-fra_Latn",
   "deu_Latn-eng_Latn",
   "eng_Latn-fra_Latn",
-  "eng_Latn-hin_Deva"
+  "deu_Latn-jpn_Jpan",
+  "deu_Latn-zho_Hans",
+  "deu_Latn-vie_Latn"
 ],
 "langs": [
-  "deu_Latn",
+  "spa_Latn",
   "fra_Latn",
-  "hin_Deva"
+  "deu_Latn",
+  "eng_Latn",
+  "jpn_Jpan",
+  "zho_Hans",
+  "vie_Latn"
 ],
   "batch_size": 16,
   "max_steps": 500,

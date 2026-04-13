@@ -111,8 +111,8 @@ def build_distance_df_from_embedding_csv(csv_path):
             f"No embedding columns starting with 'dim' were found in {csv_path}."
         )
 
-    # Your exported CSV uses full NLLB/FLORES codes in the iso3 column,
-    # e.g. deu_Latn, fra_Latn, hin_Deva. Collapse them to base ISO3.
+    # Your exported file uses full language codes like deu_Latn, fra_Latn, hin_Deva
+    # even though the column is called "iso3". Collapse them to base ISO3.
     codes = df["iso3"].astype(str).str.split("_").str[0].tolist()
 
     X = df[dim_cols].to_numpy(dtype=float)
@@ -450,7 +450,6 @@ def main():
     print(f"Embedding rows: {len(embedding_df)}")
     print(f"Embedding languages: {embedding_df['iso3_base'].tolist()}")
 
-    # Keep only languages that exist in both the embedding CSV and lang2vec/FLORES mapping
     available_ids = [x for x in distance_df.index if x in usable_iso3]
     distance_df = distance_df.loc[available_ids, available_ids]
 
@@ -543,7 +542,6 @@ def main():
         if len(cluster_iso3) >= 2:
             print(f"  cluster_{cluster_num:02d}_nearest.png")
             print(f"  cluster_{cluster_num:02d}_nearest_edges.csv")
-
 
 if __name__ == "__main__":
     main()
