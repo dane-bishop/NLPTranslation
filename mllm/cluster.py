@@ -43,9 +43,11 @@ LANGS = [
 BATCH_SIZE = 32
 MAX_LENGTH = 128
 NUM_BATCHES = 320
-LAYER_IDX = 12   # final transformer layer output for mDeBERTa-v3-base
+LAYER_IDX = 8   # final transformer layer output for mDeBERTa-v3-base
 POINTS_PER_LANG_CAP = 1000
-RANDOM_SEED = 42
+SHUFFLE_BUFFER_SIZE = 10_000
+STREAM_SHUFFLE_SEED = None
+RANDOM_SEED = 18
 
 
 def collate_records(batch):
@@ -226,6 +228,8 @@ def main():
     dataset = BalancedNLLBDataset(
         pair_configs=PAIR_CONFIGS,
         langs=LANGS,
+        shuffle_buffer_size=SHUFFLE_BUFFER_SIZE,
+        seed=STREAM_SHUFFLE_SEED,
     )
 
     loader = DataLoader(
