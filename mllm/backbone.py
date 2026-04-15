@@ -3,18 +3,18 @@ from transformers import AutoModel, AutoTokenizer
 
 
 class MLLMBackbone:
-    def __init__(self, device: torch.device):
+    def __init__(self, device: torch.device, model_name: str):
         self.device = device
 
         self.model = AutoModel.from_pretrained(
-            "microsoft/mdeberta-v3-base", use_safetensors=True, dtype=torch.float32
+            model_name, 
         ).to(device)
         self.model.eval()
-        self.tokenizer = AutoTokenizer.from_pretrained("microsoft/mdeberta-v3-base")
+        self.tokenizer = AutoTokenizer.from_pretrained(model_name)
 
     @torch.no_grad()
     def extract_layer_activations(
-        self, texts: list[str], layer_idx: int, max_length: int = 128
+        self, texts: list[str], layer_idx: int, max_length: int = 128, encoder_only = False
     ) -> dict[str, torch.Tensor]:
         """ """
         # -------------------------
@@ -32,13 +32,16 @@ class MLLMBackbone:
         # -------------------------
         # Pass batch through model
         # -------------------------
-        outputs = self.model(**batch, output_hidden_states=True, return_dict=True)
+        if encoder_only:
+            outputs = self.model.encoder(**batch, output_hidden_states=True, return_dict=True)
+        else:
+            outputs = self.model(**batch, output_hidden_states=True, return_dict=True)
         hidden_states = outputs.hidden_states
 
         # -------------------------
         # Extract hidden states from specified layer_idx
         # -------------------------
-        x = hidden_states[layer_idx]  # (B, T, H)
+        x = hidden_states[layer_idx].float()  # (B, T, H)
 
         # -------------------------
         # Mask out special tokens / attention mask

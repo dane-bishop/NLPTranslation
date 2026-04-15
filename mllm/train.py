@@ -1,10 +1,46 @@
+import os
+import math
+from dataclasses import dataclass
+
 import torch
 from torch.utils.data import DataLoader
+from transformers import AutoTokenizer, AutoModel
+from datasets import load_dataset
+from einops import reduce
+
+import numpy as np
 from tqdm import tqdm
 
-from dataset import BalancedNLLBDataset
+from sae import SAE, GatedSparseAutoEncoder
 from backbone import MLLMBackbone
-from sae import SAE
+from dataset import BalancedNLLBDataset
+from activations import TopK, BatchTopK
+
+@dataclass
+class TrainingConf:
+    backbone_name: str
+    model_hidden_size: int
+    sae_type: int
+    sae_hidden_size: int
+    pairs: list[str]
+    langs: list[str]
+    batch_size: int
+    lr: float
+    weight_decay: float
+    max_steps: int
+    layer_idx: int
+    encoder_only: bool
+    pool_features: bool
+    reduction: str
+    sparsity_weight: float
+    print_every: int
+    weight_path: str
+    activation: str = "gelu"
+    topk: int = None
+
+
+device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+sae_constructors = {"vanilla": SAE, "gated": GatedSparseAutoEncoder}
 
 
 def collate_records(batch):
@@ -14,99 +50,79 @@ def collate_records(batch):
         "pairs": [item["pair"] for item in batch],
     }
 
+def update_sae(autoencoder: SAE | GatedSparseAutoEncoder, embeddings, optim, conf):
+    optim.zero_grad()
+    outputs = autoencoder.loss(embeddings, conf.sparsity_weight)
+    outputs["loss"].backward()
+    optim.step()
+    return outputs
 
-def main():
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+def train(conf: TrainingConf):
+    torch.manual_seed(37)
+    #activation_lookup = {"relu": torch.nn.functional.relu, "gelu": torch.nn.functional.gelu, "tk_relu": torch.nn.Sequential(*[torch.nn.ReLU(), TopK(conf.topk)]) ,"btk_relu": torch.nn.Sequential(*[torch.nn.ReLU(), BatchTopK(conf.topk)])} 
+    backbone_name = conf.backbone_name #"facebook/nllb-200-distilled-600M"
+    backbone = MLLMBackbone(device, backbone_name)
+    model_constructor = sae_constructors[conf.sae_type]
 
-    pair_configs = [
-        "eng_Latn-fra_Latn",
-        "eng_Latn-fra_Latn",
-        "deu_Latn-eng_Latn",
-        "eng_Latn-nld_Latn",
-        "eng_Latn-swe_Latn",
-        "eng_Latn-spa_Latn",
-        "eng_Latn-ita_Latn",
-        "eng_Latn-por_Latn",
-        "eng_Latn-pol_Latn",
-        "ces_Latn-eng_Latn",
-    ]
+    #autoencoder = model_constructor(conf.model_hidden_size,conf.sae_hidden_size,activation=activation_lookup[conf.activation]).to(device)
+    autoencoder = model_constructor(conf.model_hidden_size,conf.sae_hidden_size).to(device)
 
-    langs = [
-        "eng_Latn",
-        "fra_Latn",
-        "deu_Latn",
-        "nld_Latn",
-        "swe_Latn",
-        "spa_Latn",
-        "ita_Latn",
-        "por_Latn",
-        "pol_Latn",
-        "ces_Latn",
-    ]
+
+    pair_configs = conf.pairs
+    langs = conf.langs
 
     dataset = BalancedNLLBDataset(pair_configs, langs)
 
-    loader = DataLoader(
-        dataset,
-        batch_size=32,
-        collate_fn=collate_records,
-        num_workers=0,
-    )
+    loader = DataLoader(dataset, conf.batch_size, collate_fn=collate_records)
 
-    backbone = MLLMBackbone(device)
-    sae = SAE(in_dim=768, latent_dim=4096).to(device)
+    optimizer = torch.optim.AdamW(autoencoder.parameters(), lr=conf.lr, weight_decay=conf.weight_decay)
+    max_steps = conf.max_steps
 
-    optimizer = torch.optim.AdamW(sae.parameters(), lr=1e-3, weight_decay=1e-4)
-
-    layer_idx = 6
-    l1_coef = 2.0
-    max_steps = 1000
-
-    sae.train()
-
-    for step, batch in tqdm(enumerate(loader), total=max_steps):
-        if step >= max_steps:
+    pbar = tqdm(total=max_steps)
+    for step, batch in enumerate(loader):
+        if step > max_steps:
             break
 
         texts = batch["texts"]
 
         acts = backbone.extract_layer_activations(
             texts=texts,
-            layer_idx=layer_idx,
+            layer_idx=conf.layer_idx,
             max_length=128,
+            encoder_only=conf.encoder_only            
         )
 
-        x = acts["token_activations"]   # (N, 768)
+        if conf.pool_features:
+            with torch.no_grad():
+                x = reduce(acts["layer_tensor"], "b s f -> b f", conf.reduction)
+        else:
+            x = acts["token_activations"]
 
         if x.numel() == 0:
             continue
 
         x = x - x.mean(dim=0, keepdim=True)
 
-        optimizer.zero_grad()
-        out = sae.loss(x, l1_coef=l1_coef)
-        out["loss"].backward()
-        optimizer.step()
+        updates = update_sae(autoencoder, x, optimizer, conf)
+        
+        if step % conf.print_every == 0:
+            pbar.set_description(f"loss is {updates['loss'].item()}")
+        pbar.update(1)
+    os.makedirs(os.path.split(conf.weight_path)[0],exist_ok=True)
+    torch.save(autoencoder.state_dict(), conf.weight_path)
 
-        with torch.no_grad():
-            active_frac = (out["z"] > 0).float().mean().item()
-            feature_firing = (out["z"] > 0).float().mean(dim=0)
-            dead_features = (feature_firing < 1e-6).sum().item()
+def main():
+    import argparse
+    import json
+    parser = argparse.ArgumentParser("Train GSA",description="Train gated sparse autoencoder on NLLB")
+    parser.add_argument("config_path",help="path to training config. Required.")
+    
+    args = parser.parse_args()
 
+    with open(args.config_path, 'r') as stream:
+        conf = TrainingConf(**json.load(stream))
 
-        if step % 20 == 0:
-            print(
-                f"step={step} "
-                f"loss={out['loss'].item():.6f} "
-                f"recon={out['recon_loss'].item():.6f} "
-                f"l1={out['l1_loss'].item():.6f} "
-                f"active_frac={active_frac:.6f} "
-                f"dead_features={dead_features}"
-            )
-
-    torch.save(sae.state_dict(), "sae_layer6.pt")
-    print("Saved SAE weights to sae_layer6.pt")
-
-
+    train(conf)
+    
 if __name__ == "__main__":
     main()
