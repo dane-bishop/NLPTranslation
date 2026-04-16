@@ -1,7 +1,8 @@
-# cluster.py
-
+import argparse
+import json
 import random
 from collections import defaultdict
+from dataclasses import dataclass
 
 import numpy as np
 import torch
@@ -14,40 +15,20 @@ from dataset import BalancedNLLBDataset
 from backbone import MLLMBackbone
 
 
-PAIR_CONFIGS = [
-    "eng_Latn-fra_Latn",
-    "eng_Latn-fra_Latn",
-    "deu_Latn-eng_Latn",
-    "eng_Latn-nld_Latn",
-    "eng_Latn-swe_Latn",
-    "eng_Latn-spa_Latn",
-    "eng_Latn-ita_Latn",
-    "eng_Latn-por_Latn",
-    "eng_Latn-pol_Latn",
-    "ces_Latn-eng_Latn",
-]
-
-LANGS = [
-    "eng_Latn",
-    "fra_Latn",
-    "deu_Latn",
-    "nld_Latn",
-    "swe_Latn",
-    "spa_Latn",
-    "ita_Latn",
-    "por_Latn",
-    "pol_Latn",
-    "ces_Latn",
-]
-
-BATCH_SIZE = 32
-MAX_LENGTH = 128
-NUM_BATCHES = 320
-LAYER_IDX = 8   # final transformer layer output for mDeBERTa-v3-base
-POINTS_PER_LANG_CAP = 1000
-SHUFFLE_BUFFER_SIZE = 10_000
-STREAM_SHUFFLE_SEED = None
-RANDOM_SEED = 18
+@dataclass
+class ClusterConf:
+    backbone_name: str
+    langs: list[str]
+    pairs: list[str]
+    batch_size: int
+    max_length: int
+    num_batches: int
+    layer_idx: int
+    points_per_lang_cap: int | None
+    shuffle_buffer_size: int | None
+    stream_shuffle_seed: int | None
+    random_seed: int
+    output_path: str = "tsne_languages.png"
 
 
 def collate_records(batch):
@@ -100,6 +81,7 @@ def extract_sentence_embeddings_last_layer(
 def collect_embeddings(
     backbone: MLLMBackbone,
     loader: DataLoader,
+    langs_to_collect: list[str],
     num_batches: int,
     max_length: int,
     layer_idx: int,
@@ -146,7 +128,7 @@ def collect_embeddings(
 
         # stop early if all languages hit cap
         if cap_per_lang is not None:
-            if all(counts_by_lang[lang] >= cap_per_lang for lang in LANGS):
+            if all(counts_by_lang[lang] >= cap_per_lang for lang in langs_to_collect):
                 break
 
     embeddings = np.stack(embeddings, axis=0)
@@ -218,47 +200,59 @@ def print_centroid_distances(coords: np.ndarray, langs: list[str]):
 
 
 def main():
-    random.seed(RANDOM_SEED)
-    np.random.seed(RANDOM_SEED)
-    torch.manual_seed(RANDOM_SEED)
+    parser = argparse.ArgumentParser(
+        "Cluster",
+        description="Run multilingual sentence embedding clustering",
+    )
+    parser.add_argument("config_path", help="path to clustering config. Required.")
+
+    args = parser.parse_args()
+
+    with open(args.config_path, "r") as stream:
+        conf = ClusterConf(**json.load(stream))
+
+    random.seed(conf.random_seed)
+    np.random.seed(conf.random_seed)
+    torch.manual_seed(conf.random_seed)
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     print(f"Using device: {device}")
 
     dataset = BalancedNLLBDataset(
-        pair_configs=PAIR_CONFIGS,
-        langs=LANGS,
-        shuffle_buffer_size=SHUFFLE_BUFFER_SIZE,
-        seed=STREAM_SHUFFLE_SEED,
+        pair_configs=conf.pairs,
+        langs=conf.langs,
+        shuffle_buffer_size=conf.shuffle_buffer_size,
+        seed=conf.stream_shuffle_seed,
     )
 
     loader = DataLoader(
         dataset,
-        batch_size=BATCH_SIZE,
+        batch_size=conf.batch_size,
         collate_fn=collate_records,
         num_workers=0,
     )
 
-    backbone = MLLMBackbone(device)
+    backbone = MLLMBackbone(device, conf.backbone_name)
 
     embeddings, langs, texts, counts_by_lang = collect_embeddings(
         backbone=backbone,
         loader=loader,
-        num_batches=NUM_BATCHES,
-        max_length=MAX_LENGTH,
-        layer_idx=LAYER_IDX,
-        cap_per_lang=POINTS_PER_LANG_CAP,
+        langs_to_collect=conf.langs,
+        num_batches=conf.num_batches,
+        max_length=conf.max_length,
+        layer_idx=conf.layer_idx,
+        cap_per_lang=conf.points_per_lang_cap,
     )
 
     print("\nCollected sentence counts by language:")
-    for lang in LANGS:
+    for lang in conf.langs:
         print(f"{lang}: {counts_by_lang[lang]}")
 
     print(f"\nEmbeddings shape: {embeddings.shape}")
 
-    coords = run_tsne(embeddings, random_state=RANDOM_SEED)
+    coords = run_tsne(embeddings, random_state=conf.random_seed)
 
-    plot_tsne(coords, langs, output_path=f"tsne_languages_layer{LAYER_IDX}.png")
+    plot_tsne(coords, langs, output_path=conf.output_path)
     print_centroid_distances(coords, langs)
 
     # Print a few example sentences per language for sanity

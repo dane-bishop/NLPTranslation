@@ -1,0 +1,10 @@
+{
+    "weight_path": "weights/nllb/gsae_pool/model.pt",
+    "batch_size": 32,
+    "num_batches": 100,
+    "top_k_features": 20,
+    "top_k_examples": 20,
+    "output_dir": "results/nllb/gsae_pool",
+	"langs": null,
+	"pairs": null
+}

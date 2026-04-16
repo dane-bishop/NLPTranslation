@@ -11,13 +11,17 @@ class SAE(nn.Module):
     - Encodes the activations into a higher-dimensional latent space
     - Decodes that spare represntation back into the original activation space
     """
-    def __init__(self, in_dim: int, latent_dim: int):
+    def __init__(
+        self, 
+        d_act: int, 
+        d_hidden: int
+    ):
         super().__init__()
-        self.in_dim = in_dim
-        self.latent_dim = latent_dim
+        self.d_act = d_act
+        self.d_hidden = d_hidden
 
-        self.encoder = nn.Linear(in_dim, latent_dim, bias=True)
-        self.decoder = nn.Linear(latent_dim, in_dim, bias=True)
+        self.encoder = nn.Linear(d_act, d_hidden, bias=True)
+        self.decoder = nn.Linear(d_hidden, d_act, bias=True)
 
     def encode(self, x: torch.Tensor) -> tuple[torch.Tensor, torch.Tensor]:
         """
@@ -47,14 +51,14 @@ class SAE(nn.Module):
             "z_pre": z_pre,     # pre-activation latent
         }
     
-    def loss(self, x: torch.Tensor, l1_coef: float = 1e-4) -> dict[str, torch.Tensor]:
+    def loss(self, x: torch.Tensor, sparsity_weight: float = 1e-4) -> dict[str, torch.Tensor]:
         """
         
         """
         out = self.forward(x)
         recon_loss = F.mse_loss(out["x_hat"], x)
         l1_loss = out["z"].abs().mean()
-        loss = recon_loss + l1_coef * l1_loss
+        loss = recon_loss + sparsity_weight * l1_loss
         
         return {
             "loss": loss,
@@ -70,9 +74,9 @@ class GatedSparseAutoEncoder(nn.Module):
     Encoder returns both post-gate latents and pre-gate latents for aux term computation.
     """
     def __init__(self,
-                 d_act: int,
-                 d_hidden: int,
-                 activation: Callable = nn.GELU()):
+        d_act: int,
+        d_hidden: int,
+    ):
         super().__init__()
         self.decoder_bias = nn.Parameter(torch.zeros(d_act))
         self.encoder = nn.Linear(d_act,d_hidden,bias=False)
@@ -82,8 +86,7 @@ class GatedSparseAutoEncoder(nn.Module):
         self.gate_bias = nn.Parameter(torch.zeros(d_hidden))
         self.scale_bias = nn.Parameter(torch.zeros(d_hidden))
 
-
-        self.activation = activation
+        self.activation = nn.GELU()
 
     def encode(self, x):
         x = F.linear(x-self.decoder_bias, self.encoder.weight, self.hidden_bias)

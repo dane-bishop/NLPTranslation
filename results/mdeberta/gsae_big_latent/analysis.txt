@@ -1,0 +1,981 @@
+Loaded SAE checkpoint from weights/mdeberta/gsae_big_latent/model.pt
+Saving analysis output to results/mdeberta/gsae_big_latent/analysis.txt
+[collect] processed batch 0
+[collect] processed batch 10
+[collect] processed batch 20
+[collect] processed batch 30
+[collect] processed batch 40
+[collect] processed batch 50
+[collect] processed batch 60
+[collect] processed batch 70
+[collect] processed batch 80
+[collect] processed batch 90
+
+=== GLOBAL STATS ===
+num token rows: 67501
+latent dim: 6140
+mean recon loss per token: 0.130240
+std recon loss per token:  0.014249
+top 10 feature max z:      [0.000251, 0.000231, 0.000222, 0.00022, 0.000216, 0.000216, 0.000216, 0.000213, 0.000213, 0.000213]
+top 10 feature mean z:     [8.2e-05, 8.1e-05, 8.1e-05, 8e-05, 8e-05, 7.7e-05, 7.5e-05, 7.4e-05, 7.4e-05, 7.3e-05]
+top 10 feature mean |z|:   [8.2e-05, 8.1e-05, 8.1e-05, 8e-05, 8e-05, 7.7e-05, 7.5e-05, 7.4e-05, 7.4e-05, 7.3e-05]
+
+=== PER-LANGUAGE SUMMARY ===
+eng_Latn: num_tokens=5872 mean_recon=0.129643
+fra_Latn: num_tokens=7625 mean_recon=0.132064
+deu_Latn: num_tokens=6461 mean_recon=0.131829
+nld_Latn: num_tokens=6474 mean_recon=0.130395
+swe_Latn: num_tokens=6974 mean_recon=0.130065
+spa_Latn: num_tokens=6764 mean_recon=0.128155
+ita_Latn: num_tokens=6424 mean_recon=0.129020
+por_Latn: num_tokens=6511 mean_recon=0.128658
+pol_Latn: num_tokens=7227 mean_recon=0.130914
+ces_Latn: num_tokens=7169 mean_recon=0.131206
+
+=== TOP FEATURES BY MAX Z ===
+feature= 139 max_z=0.000251 mean_z=0.000052 mean_abs_z=0.000052 max_abs_z=0.000251
+feature=1843 max_z=0.000231 mean_z=0.000053 mean_abs_z=0.000053 max_abs_z=0.000231
+feature=4396 max_z=0.000222 mean_z=0.000055 mean_abs_z=0.000055 max_abs_z=0.000222
+feature=1523 max_z=0.000220 mean_z=0.000041 mean_abs_z=0.000041 max_abs_z=0.000220
+feature=5524 max_z=0.000216 mean_z=0.000067 mean_abs_z=0.000067 max_abs_z=0.000216
+feature=5681 max_z=0.000216 mean_z=0.000051 mean_abs_z=0.000051 max_abs_z=0.000216
+feature=  62 max_z=0.000216 mean_z=0.000059 mean_abs_z=0.000059 max_abs_z=0.000216
+feature=3627 max_z=0.000213 mean_z=0.000046 mean_abs_z=0.000046 max_abs_z=0.000213
+feature=2605 max_z=0.000213 mean_z=0.000057 mean_abs_z=0.000057 max_abs_z=0.000213
+feature=2038 max_z=0.000213 mean_z=0.000059 mean_abs_z=0.000059 max_abs_z=0.000213
+feature=1197 max_z=0.000212 mean_z=0.000048 mean_abs_z=0.000048 max_abs_z=0.000212
+feature=2839 max_z=0.000211 mean_z=0.000046 mean_abs_z=0.000046 max_abs_z=0.000211
+feature=2562 max_z=0.000208 mean_z=0.000051 mean_abs_z=0.000051 max_abs_z=0.000208
+feature= 121 max_z=0.000208 mean_z=0.000057 mean_abs_z=0.000057 max_abs_z=0.000208
+feature=2477 max_z=0.000207 mean_z=0.000080 mean_abs_z=0.000080 max_abs_z=0.000207
+feature=2102 max_z=0.000206 mean_z=0.000052 mean_abs_z=0.000052 max_abs_z=0.000206
+feature=2595 max_z=0.000206 mean_z=0.000051 mean_abs_z=0.000051 max_abs_z=0.000206
+feature=4504 max_z=0.000206 mean_z=0.000056 mean_abs_z=0.000056 max_abs_z=0.000206
+feature=5532 max_z=0.000205 mean_z=0.000080 mean_abs_z=0.000080 max_abs_z=0.000205
+feature= 608 max_z=0.000205 mean_z=0.000053 mean_abs_z=0.000053 max_abs_z=0.000205
+
+=== TOP FEATURES BY MEAN Z ===
+feature=3022 mean_z=0.000082 max_z=0.000190 mean_abs_z=0.000082 max_abs_z=0.000190
+feature=2508 mean_z=0.000081 max_z=0.000191 mean_abs_z=0.000081 max_abs_z=0.000191
+feature=4170 mean_z=0.000081 max_z=0.000189 mean_abs_z=0.000081 max_abs_z=0.000189
+feature=5532 mean_z=0.000080 max_z=0.000205 mean_abs_z=0.000080 max_abs_z=0.000205
+feature=2477 mean_z=0.000080 max_z=0.000207 mean_abs_z=0.000080 max_abs_z=0.000207
+feature=5870 mean_z=0.000077 max_z=0.000192 mean_abs_z=0.000077 max_abs_z=0.000192
+feature=5295 mean_z=0.000075 max_z=0.000176 mean_abs_z=0.000075 max_abs_z=0.000176
+feature= 267 mean_z=0.000074 max_z=0.000202 mean_abs_z=0.000074 max_abs_z=0.000202
+feature=2418 mean_z=0.000074 max_z=0.000191 mean_abs_z=0.000074 max_abs_z=0.000191
+feature=3605 mean_z=0.000073 max_z=0.000174 mean_abs_z=0.000073 max_abs_z=0.000174
+feature=5712 mean_z=0.000072 max_z=0.000176 mean_abs_z=0.000072 max_abs_z=0.000176
+feature=4172 mean_z=0.000072 max_z=0.000168 mean_abs_z=0.000072 max_abs_z=0.000168
+feature=1674 mean_z=0.000071 max_z=0.000178 mean_abs_z=0.000071 max_abs_z=0.000178
+feature=3792 mean_z=0.000071 max_z=0.000185 mean_abs_z=0.000071 max_abs_z=0.000185
+feature=1965 mean_z=0.000071 max_z=0.000186 mean_abs_z=0.000071 max_abs_z=0.000186
+feature= 914 mean_z=0.000069 max_z=0.000163 mean_abs_z=0.000069 max_abs_z=0.000163
+feature=3659 mean_z=0.000067 max_z=0.000185 mean_abs_z=0.000067 max_abs_z=0.000185
+feature=5524 mean_z=0.000067 max_z=0.000216 mean_abs_z=0.000067 max_abs_z=0.000216
+feature=4397 mean_z=0.000067 max_z=0.000173 mean_abs_z=0.000067 max_abs_z=0.000173
+feature=5588 mean_z=0.000066 max_z=0.000195 mean_abs_z=0.000066 max_abs_z=0.000195
+
+=== TOP FEATURES BY MEAN |Z| ===
+feature=3022 mean_abs_z=0.000082 max_abs_z=0.000190 mean_z=0.000082 max_z=0.000190
+feature=2508 mean_abs_z=0.000081 max_abs_z=0.000191 mean_z=0.000081 max_z=0.000191
+feature=4170 mean_abs_z=0.000081 max_abs_z=0.000189 mean_z=0.000081 max_z=0.000189
+feature=5532 mean_abs_z=0.000080 max_abs_z=0.000205 mean_z=0.000080 max_z=0.000205
+feature=2477 mean_abs_z=0.000080 max_abs_z=0.000207 mean_z=0.000080 max_z=0.000207
+feature=5870 mean_abs_z=0.000077 max_abs_z=0.000192 mean_z=0.000077 max_z=0.000192
+feature=5295 mean_abs_z=0.000075 max_abs_z=0.000176 mean_z=0.000075 max_z=0.000176
+feature= 267 mean_abs_z=0.000074 max_abs_z=0.000202 mean_z=0.000074 max_z=0.000202
+feature=2418 mean_abs_z=0.000074 max_abs_z=0.000191 mean_z=0.000074 max_z=0.000191
+feature=5255 mean_abs_z=0.000073 max_abs_z=0.000149 mean_z=-0.000073 max_z=-0.000000
+feature=3605 mean_abs_z=0.000073 max_abs_z=0.000174 mean_z=0.000073 max_z=0.000174
+feature=5712 mean_abs_z=0.000072 max_abs_z=0.000176 mean_z=0.000072 max_z=0.000176
+feature=4172 mean_abs_z=0.000072 max_abs_z=0.000168 mean_z=0.000072 max_z=0.000168
+feature=5608 mean_abs_z=0.000071 max_abs_z=0.000152 mean_z=-0.000071 max_z=-0.000000
+feature=1674 mean_abs_z=0.000071 max_abs_z=0.000178 mean_z=0.000071 max_z=0.000178
+feature=3792 mean_abs_z=0.000071 max_abs_z=0.000185 mean_z=0.000071 max_z=0.000185
+feature=1965 mean_abs_z=0.000071 max_abs_z=0.000186 mean_z=0.000071 max_z=0.000186
+feature=4287 mean_abs_z=0.000069 max_abs_z=0.000153 mean_z=-0.000069 max_z=-0.000000
+feature= 914 mean_abs_z=0.000069 max_abs_z=0.000163 mean_z=0.000069 max_z=0.000163
+feature=3659 mean_abs_z=0.000067 max_abs_z=0.000185 mean_z=0.000067 max_z=0.000185
+
+=== TOP ACTIVATING EXAMPLES ===
+
+--- Feature 139 ---
+Top by z:
+[01] score=0.000251 abs_score=0.000251 lang=pol_Latn token=▁dla pos=4 sentence=Zabiłeś go dla uciechy”.
+[02] score=0.000240 abs_score=0.000240 lang=ces_Latn token=▁pro pos=4 sentence=To je dobré pro diktátory v takových místech, jako je Venezuela.
+[03] score=0.000239 abs_score=0.000239 lang=pol_Latn token=▁go pos=3 sentence=Zabiłeś go dla uciechy”.
+[04] score=0.000237 abs_score=0.000237 lang=pol_Latn token=”. pos=7 sentence=Zabiłeś go dla uciechy”.
+[05] score=0.000235 abs_score=0.000235 lang=por_Latn token=▁diferente pos=3 sentence=Mas quão diferente no estado da Sua exaltação!
+[06] score=0.000233 abs_score=0.000233 lang=swe_Latn token=▁än pos=16 sentence=Vi vill bara våra hundar ska sluta med det (vad det nu än är).
+[07] score=0.000232 abs_score=0.000232 lang=pol_Latn token=▁ucie pos=5 sentence=Zabiłeś go dla uciechy”.
+[08] score=0.000231 abs_score=0.000231 lang=eng_Latn token=▁to pos=14 sentence=Every mercy that comes from the heart brings you closer to my Son.”
+[09] score=0.000231 abs_score=0.000231 lang=ita_Latn token=porta pos=3 sentence=7- ma sopporta con pazienza per il tuo Signore!
+[10] score=0.000230 abs_score=0.000230 lang=deu_Latn token=ungen pos=7 sentence="14% innerhalb aller Begrenzungen für Mellifera".
+[11] score=0.000230 abs_score=0.000230 lang=pol_Latn token=chy pos=6 sentence=Zabiłeś go dla uciechy”.
+[12] score=0.000230 abs_score=0.000230 lang=ita_Latn token=▁sop pos=2 sentence=7- ma sopporta con pazienza per il tuo Signore!
+[13] score=0.000230 abs_score=0.000230 lang=spa_Latn token=▁del pos=7 sentence=¡Juro por la belleza del Bienamado!
+[14] score=0.000228 abs_score=0.000228 lang=spa_Latn token=▁Dios pos=8 sentence=Pero sabía que el propósito de Dios era bueno.
+[15] score=0.000227 abs_score=0.000227 lang=spa_Latn token=isericordi pos=6 sentence=Él es Clemente, Misericordioso".
+[16] score=0.000227 abs_score=0.000227 lang=swe_Latn token=▁nu pos=15 sentence=Vi vill bara våra hundar ska sluta med det (vad det nu än är).
+[17] score=0.000227 abs_score=0.000227 lang=ita_Latn token=▁ma pos=1 sentence=7- ma sopporta con pazienza per il tuo Signore!
+[18] score=0.000227 abs_score=0.000227 lang=ces_Latn token=▁dikt pos=5 sentence=To je dobré pro diktátory v takových místech, jako je Venezuela.
+[19] score=0.000227 abs_score=0.000227 lang=deu_Latn token=▁inner pos=2 sentence="14% innerhalb aller Begrenzungen für Mellifera".
+[20] score=0.000227 abs_score=0.000227 lang=eng_Latn token=▁of pos=16 sentence=I did not see you fasting in any month as you do in the month of Shaban”.
+Top by |z|:
+[01] score=0.000251 abs_score=0.000251 lang=pol_Latn token=▁dla pos=4 sentence=Zabiłeś go dla uciechy”.
+[02] score=0.000240 abs_score=0.000240 lang=ces_Latn token=▁pro pos=4 sentence=To je dobré pro diktátory v takových místech, jako je Venezuela.
+[03] score=0.000239 abs_score=0.000239 lang=pol_Latn token=▁go pos=3 sentence=Zabiłeś go dla uciechy”.
+[04] score=0.000237 abs_score=0.000237 lang=pol_Latn token=”. pos=7 sentence=Zabiłeś go dla uciechy”.
+[05] score=0.000235 abs_score=0.000235 lang=por_Latn token=▁diferente pos=3 sentence=Mas quão diferente no estado da Sua exaltação!
+[06] score=0.000233 abs_score=0.000233 lang=swe_Latn token=▁än pos=16 sentence=Vi vill bara våra hundar ska sluta med det (vad det nu än är).
+[07] score=0.000232 abs_score=0.000232 lang=pol_Latn token=▁ucie pos=5 sentence=Zabiłeś go dla uciechy”.
+[08] score=0.000231 abs_score=0.000231 lang=eng_Latn token=▁to pos=14 sentence=Every mercy that comes from the heart brings you closer to my Son.”
+[09] score=0.000231 abs_score=0.000231 lang=ita_Latn token=porta pos=3 sentence=7- ma sopporta con pazienza per il tuo Signore!
+[10] score=0.000230 abs_score=0.000230 lang=deu_Latn token=ungen pos=7 sentence="14% innerhalb aller Begrenzungen für Mellifera".
+[11] score=0.000230 abs_score=0.000230 lang=pol_Latn token=chy pos=6 sentence=Zabiłeś go dla uciechy”.
+[12] score=0.000230 abs_score=0.000230 lang=ita_Latn token=▁sop pos=2 sentence=7- ma sopporta con pazienza per il tuo Signore!
+[13] score=0.000230 abs_score=0.000230 lang=spa_Latn token=▁del pos=7 sentence=¡Juro por la belleza del Bienamado!
+[14] score=0.000228 abs_score=0.000228 lang=spa_Latn token=▁Dios pos=8 sentence=Pero sabía que el propósito de Dios era bueno.
+[15] score=0.000227 abs_score=0.000227 lang=spa_Latn token=isericordi pos=6 sentence=Él es Clemente, Misericordioso".
+[16] score=0.000227 abs_score=0.000227 lang=swe_Latn token=▁nu pos=15 sentence=Vi vill bara våra hundar ska sluta med det (vad det nu än är).
+[17] score=0.000227 abs_score=0.000227 lang=ita_Latn token=▁ma pos=1 sentence=7- ma sopporta con pazienza per il tuo Signore!
+[18] score=0.000227 abs_score=0.000227 lang=ces_Latn token=▁dikt pos=5 sentence=To je dobré pro diktátory v takových místech, jako je Venezuela.
+[19] score=0.000227 abs_score=0.000227 lang=deu_Latn token=▁inner pos=2 sentence="14% innerhalb aller Begrenzungen für Mellifera".
+[20] score=0.000227 abs_score=0.000227 lang=eng_Latn token=▁of pos=16 sentence=I did not see you fasting in any month as you do in the month of Shaban”.
+
+--- Feature 1843 ---
+Top by z:
+[01] score=0.000231 abs_score=0.000231 lang=pol_Latn token=▁dla pos=4 sentence=Zabiłeś go dla uciechy”.
+[02] score=0.000229 abs_score=0.000229 lang=swe_Latn token=▁än pos=16 sentence=Vi vill bara våra hundar ska sluta med det (vad det nu än är).
+[03] score=0.000229 abs_score=0.000229 lang=spa_Latn token=isericordi pos=6 sentence=Él es Clemente, Misericordioso".
+[04] score=0.000228 abs_score=0.000228 lang=eng_Latn token=▁also pos=8 sentence=The other one I did this year was also popular: Are Avocados Good for You?
+[05] score=0.000228 abs_score=0.000228 lang=spa_Latn token=▁M pos=5 sentence=Él es Clemente, Misericordioso".
+[06] score=0.000227 abs_score=0.000227 lang=eng_Latn token=▁save pos=9 sentence=Therefore, he sacrificed his son to save the friend."
+[07] score=0.000226 abs_score=0.000226 lang=eng_Latn token=▁everything pos=4 sentence="We will do everything to welcome the 113 countries that will participate.
+[08] score=0.000225 abs_score=0.000225 lang=spa_Latn token=▁del pos=7 sentence=¡Juro por la belleza del Bienamado!
+[09] score=0.000224 abs_score=0.000224 lang=eng_Latn token=▁we pos=1 sentence=So we complied with this, as with the other formalities.”
+[10] score=0.000223 abs_score=0.000223 lang=spa_Latn token=amado pos=9 sentence=¡Juro por la belleza del Bienamado!
+[11] score=0.000222 abs_score=0.000222 lang=spa_Latn token=". pos=8 sentence=Él es Clemente, Misericordioso".
+[12] score=0.000221 abs_score=0.000221 lang=eng_Latn token=▁the pos=10 sentence=Therefore, he sacrificed his son to save the friend."
+[13] score=0.000221 abs_score=0.000221 lang=spa_Latn token=▁belle pos=5 sentence=¡Juro por la belleza del Bienamado!
+[14] score=0.000221 abs_score=0.000221 lang=eng_Latn token=▁can pos=13 sentence=“The future is open for Tokio Hotel in every way we can imagine!
+[15] score=0.000221 abs_score=0.000221 lang=ita_Latn token=▁dai pos=7 sentence=ciò che non imparerete mai dai maestri.”
+[16] score=0.000220 abs_score=0.000220 lang=eng_Latn token=▁will pos=5 sentence=Thus, you men will continue to fight, unafraid".
+[17] score=0.000220 abs_score=0.000220 lang=spa_Latn token=▁la pos=4 sentence=¡Juro por la belleza del Bienamado!
+[18] score=0.000220 abs_score=0.000220 lang=eng_Latn token=▁in pos=12 sentence=Or, just plan your meals around the food that is in season.”
+[19] score=0.000220 abs_score=0.000220 lang=fra_Latn token=▁le pos=5 sentence=et un code moral qui le glorifie. »
+[20] score=0.000219 abs_score=0.000219 lang=fra_Latn token=▁un pos=1 sentence=et un code moral qui le glorifie. »
+Top by |z|:
+[01] score=0.000231 abs_score=0.000231 lang=pol_Latn token=▁dla pos=4 sentence=Zabiłeś go dla uciechy”.
+[02] score=0.000229 abs_score=0.000229 lang=swe_Latn token=▁än pos=16 sentence=Vi vill bara våra hundar ska sluta med det (vad det nu än är).
+[03] score=0.000229 abs_score=0.000229 lang=spa_Latn token=isericordi pos=6 sentence=Él es Clemente, Misericordioso".
+[04] score=0.000228 abs_score=0.000228 lang=eng_Latn token=▁also pos=8 sentence=The other one I did this year was also popular: Are Avocados Good for You?
+[05] score=0.000228 abs_score=0.000228 lang=spa_Latn token=▁M pos=5 sentence=Él es Clemente, Misericordioso".
+[06] score=0.000227 abs_score=0.000227 lang=eng_Latn token=▁save pos=9 sentence=Therefore, he sacrificed his son to save the friend."
+[07] score=0.000226 abs_score=0.000226 lang=eng_Latn token=▁everything pos=4 sentence="We will do everything to welcome the 113 countries that will participate.
+[08] score=0.000225 abs_score=0.000225 lang=spa_Latn token=▁del pos=7 sentence=¡Juro por la belleza del Bienamado!
+[09] score=0.000224 abs_score=0.000224 lang=eng_Latn token=▁we pos=1 sentence=So we complied with this, as with the other formalities.”
+[10] score=0.000223 abs_score=0.000223 lang=spa_Latn token=amado pos=9 sentence=¡Juro por la belleza del Bienamado!
+[11] score=0.000222 abs_score=0.000222 lang=spa_Latn token=". pos=8 sentence=Él es Clemente, Misericordioso".
+[12] score=0.000221 abs_score=0.000221 lang=eng_Latn token=▁the pos=10 sentence=Therefore, he sacrificed his son to save the friend."
+[13] score=0.000221 abs_score=0.000221 lang=spa_Latn token=▁belle pos=5 sentence=¡Juro por la belleza del Bienamado!
+[14] score=0.000221 abs_score=0.000221 lang=eng_Latn token=▁can pos=13 sentence=“The future is open for Tokio Hotel in every way we can imagine!
+[15] score=0.000221 abs_score=0.000221 lang=ita_Latn token=▁dai pos=7 sentence=ciò che non imparerete mai dai maestri.”
+[16] score=0.000220 abs_score=0.000220 lang=eng_Latn token=▁will pos=5 sentence=Thus, you men will continue to fight, unafraid".
+[17] score=0.000220 abs_score=0.000220 lang=spa_Latn token=▁la pos=4 sentence=¡Juro por la belleza del Bienamado!
+[18] score=0.000220 abs_score=0.000220 lang=eng_Latn token=▁in pos=12 sentence=Or, just plan your meals around the food that is in season.”
+[19] score=0.000220 abs_score=0.000220 lang=fra_Latn token=▁le pos=5 sentence=et un code moral qui le glorifie. »
+[20] score=0.000219 abs_score=0.000219 lang=fra_Latn token=▁un pos=1 sentence=et un code moral qui le glorifie. »
+
+--- Feature 4396 ---
+Top by z:
+[01] score=0.000222 abs_score=0.000222 lang=pol_Latn token=liście pos=2 sentence=Zerwaliście przymierze Lewiego".
+[02] score=0.000220 abs_score=0.000220 lang=pol_Latn token=▁dla pos=4 sentence=Zabiłeś go dla uciechy”.
+[03] score=0.000218 abs_score=0.000218 lang=pol_Latn token=”. pos=7 sentence=Zabiłeś go dla uciechy”.
+[04] score=0.000216 abs_score=0.000216 lang=swe_Latn token=▁nu pos=15 sentence=Vi vill bara våra hundar ska sluta med det (vad det nu än är).
+[05] score=0.000216 abs_score=0.000216 lang=spa_Latn token=▁la pos=4 sentence=¡Juro por la belleza del Bienamado!
+[06] score=0.000214 abs_score=0.000214 lang=pol_Latn token=wa pos=1 sentence=Zerwaliście przymierze Lewiego".
+[07] score=0.000214 abs_score=0.000214 lang=swe_Latn token=▁det pos=14 sentence=Vi vill bara våra hundar ska sluta med det (vad det nu än är).
+[08] score=0.000214 abs_score=0.000214 lang=por_Latn token=▁qu pos=1 sentence=Mas quão diferente no estado da Sua exaltação!
+[09] score=0.000213 abs_score=0.000213 lang=pol_Latn token=▁ucie pos=5 sentence=Zabiłeś go dla uciechy”.
+[10] score=0.000213 abs_score=0.000213 lang=por_Latn token=ão pos=2 sentence=Mas quão diferente no estado da Sua exaltação!
+[11] score=0.000213 abs_score=0.000213 lang=por_Latn token=ção pos=10 sentence=Mas quão diferente no estado da Sua exaltação!
+[12] score=0.000211 abs_score=0.000211 lang=eng_Latn token=▁will pos=7 sentence=I heard the new Emma 28 will be different?
+[13] score=0.000211 abs_score=0.000211 lang=por_Latn token=alta pos=9 sentence=Mas quão diferente no estado da Sua exaltação!
+[14] score=0.000211 abs_score=0.000211 lang=eng_Latn token=▁also pos=8 sentence=The other one I did this year was also popular: Are Avocados Good for You?
+[15] score=0.000211 abs_score=0.000211 lang=pol_Latn token=iego pos=7 sentence=Zerwaliście przymierze Lewiego".
+[16] score=0.000210 abs_score=0.000210 lang=pol_Latn token=chy pos=6 sentence=Zabiłeś go dla uciechy”.
+[17] score=0.000209 abs_score=0.000209 lang=deu_Latn token=▁Abraham pos=13 sentence=Einige der Brüder wurden geprüft wie der alte Abraham.“
+[18] score=0.000209 abs_score=0.000209 lang=eng_Latn token=▁every pos=10 sentence=“The future is open for Tokio Hotel in every way we can imagine!
+[19] score=0.000209 abs_score=0.000209 lang=pol_Latn token=▁przy pos=3 sentence=Zerwaliście przymierze Lewiego".
+[20] score=0.000209 abs_score=0.000209 lang=fra_Latn token=▁vos pos=15 sentence=[Plus] que dix heures au travers de vos livres, sur vos genoux? »
+Top by |z|:
+[01] score=0.000222 abs_score=0.000222 lang=pol_Latn token=liście pos=2 sentence=Zerwaliście przymierze Lewiego".
+[02] score=0.000220 abs_score=0.000220 lang=pol_Latn token=▁dla pos=4 sentence=Zabiłeś go dla uciechy”.
+[03] score=0.000218 abs_score=0.000218 lang=pol_Latn token=”. pos=7 sentence=Zabiłeś go dla uciechy”.
+[04] score=0.000216 abs_score=0.000216 lang=swe_Latn token=▁nu pos=15 sentence=Vi vill bara våra hundar ska sluta med det (vad det nu än är).
+[05] score=0.000216 abs_score=0.000216 lang=spa_Latn token=▁la pos=4 sentence=¡Juro por la belleza del Bienamado!
+[06] score=0.000214 abs_score=0.000214 lang=pol_Latn token=wa pos=1 sentence=Zerwaliście przymierze Lewiego".
+[07] score=0.000214 abs_score=0.000214 lang=swe_Latn token=▁det pos=14 sentence=Vi vill bara våra hundar ska sluta med det (vad det nu än är).
+[08] score=0.000214 abs_score=0.000214 lang=por_Latn token=▁qu pos=1 sentence=Mas quão diferente no estado da Sua exaltação!
+[09] score=0.000213 abs_score=0.000213 lang=pol_Latn token=▁ucie pos=5 sentence=Zabiłeś go dla uciechy”.
+[10] score=0.000213 abs_score=0.000213 lang=por_Latn token=ão pos=2 sentence=Mas quão diferente no estado da Sua exaltação!
+[11] score=0.000213 abs_score=0.000213 lang=por_Latn token=ção pos=10 sentence=Mas quão diferente no estado da Sua exaltação!
+[12] score=0.000211 abs_score=0.000211 lang=eng_Latn token=▁will pos=7 sentence=I heard the new Emma 28 will be different?
+[13] score=0.000211 abs_score=0.000211 lang=por_Latn token=alta pos=9 sentence=Mas quão diferente no estado da Sua exaltação!
+[14] score=0.000211 abs_score=0.000211 lang=eng_Latn token=▁also pos=8 sentence=The other one I did this year was also popular: Are Avocados Good for You?
+[15] score=0.000211 abs_score=0.000211 lang=pol_Latn token=iego pos=7 sentence=Zerwaliście przymierze Lewiego".
+[16] score=0.000210 abs_score=0.000210 lang=pol_Latn token=chy pos=6 sentence=Zabiłeś go dla uciechy”.
+[17] score=0.000209 abs_score=0.000209 lang=deu_Latn token=▁Abraham pos=13 sentence=Einige der Brüder wurden geprüft wie der alte Abraham.“
+[18] score=0.000209 abs_score=0.000209 lang=eng_Latn token=▁every pos=10 sentence=“The future is open for Tokio Hotel in every way we can imagine!
+[19] score=0.000209 abs_score=0.000209 lang=pol_Latn token=▁przy pos=3 sentence=Zerwaliście przymierze Lewiego".
+[20] score=0.000209 abs_score=0.000209 lang=fra_Latn token=▁vos pos=15 sentence=[Plus] que dix heures au travers de vos livres, sur vos genoux? »
+
+--- Feature 1523 ---
+Top by z:
+[01] score=0.000220 abs_score=0.000220 lang=ces_Latn token=▁je pos=2 sentence=Leč je to od Pána lidstva seslání!
+[02] score=0.000216 abs_score=0.000216 lang=pol_Latn token=▁dla pos=4 sentence=Zabiłeś go dla uciechy”.
+[03] score=0.000208 abs_score=0.000208 lang=pol_Latn token=liście pos=2 sentence=Zerwaliście przymierze Lewiego".
+[04] score=0.000206 abs_score=0.000206 lang=pol_Latn token=▁go pos=3 sentence=Zabiłeś go dla uciechy”.
+[05] score=0.000205 abs_score=0.000205 lang=pol_Latn token=▁ucie pos=5 sentence=Zabiłeś go dla uciechy”.
+[06] score=0.000203 abs_score=0.000203 lang=ces_Latn token=hy pos=13 sentence=179a pozoruj je, však oni také záhy zpozorují!
+[07] score=0.000203 abs_score=0.000203 lang=swe_Latn token=▁nu pos=15 sentence=Vi vill bara våra hundar ska sluta med det (vad det nu än är).
+[08] score=0.000202 abs_score=0.000202 lang=spa_Latn token=▁de pos=5 sentence=Dios tiene un corazón de papá“.
+[09] score=0.000202 abs_score=0.000202 lang=spa_Latn token=▁tiene pos=1 sentence=Dios tiene un corazón de papá“.
+[10] score=0.000202 abs_score=0.000202 lang=swe_Latn token=▁än pos=16 sentence=Vi vill bara våra hundar ska sluta med det (vad det nu än är).
+[11] score=0.000202 abs_score=0.000202 lang=ces_Latn token=▁to pos=3 sentence=Leč je to od Pána lidstva seslání!
+[12] score=0.000201 abs_score=0.000201 lang=pol_Latn token=”. pos=7 sentence=Zabiłeś go dla uciechy”.
+[13] score=0.000201 abs_score=0.000201 lang=pol_Latn token=▁Zab pos=0 sentence=Zabiłeś go dla uciechy”.
+[14] score=0.000201 abs_score=0.000201 lang=pol_Latn token=wa pos=1 sentence=Zerwaliście przymierze Lewiego".
+[15] score=0.000200 abs_score=0.000200 lang=deu_Latn token=der pos=4 sentence=Einige der Brüder wurden geprüft wie der alte Abraham.“
+[16] score=0.000200 abs_score=0.000200 lang=pol_Latn token=łeś pos=2 sentence=Zabiłeś go dla uciechy”.
+[17] score=0.000199 abs_score=0.000199 lang=deu_Latn token=▁Abraham pos=13 sentence=Einige der Brüder wurden geprüft wie der alte Abraham.“
+[18] score=0.000199 abs_score=0.000199 lang=ces_Latn token=č pos=1 sentence=Leč je to od Pána lidstva seslání!
+[19] score=0.000199 abs_score=0.000199 lang=spa_Latn token=á pos=7 sentence=Dios tiene un corazón de papá“.
+[20] score=0.000198 abs_score=0.000198 lang=ces_Latn token=▁zá pos=12 sentence=179a pozoruj je, však oni také záhy zpozorují!
+Top by |z|:
+[01] score=0.000220 abs_score=0.000220 lang=ces_Latn token=▁je pos=2 sentence=Leč je to od Pána lidstva seslání!
+[02] score=0.000216 abs_score=0.000216 lang=pol_Latn token=▁dla pos=4 sentence=Zabiłeś go dla uciechy”.
+[03] score=0.000208 abs_score=0.000208 lang=pol_Latn token=liście pos=2 sentence=Zerwaliście przymierze Lewiego".
+[04] score=0.000206 abs_score=0.000206 lang=pol_Latn token=▁go pos=3 sentence=Zabiłeś go dla uciechy”.
+[05] score=0.000205 abs_score=0.000205 lang=pol_Latn token=▁ucie pos=5 sentence=Zabiłeś go dla uciechy”.
+[06] score=0.000203 abs_score=0.000203 lang=ces_Latn token=hy pos=13 sentence=179a pozoruj je, však oni také záhy zpozorují!
+[07] score=0.000203 abs_score=0.000203 lang=swe_Latn token=▁nu pos=15 sentence=Vi vill bara våra hundar ska sluta med det (vad det nu än är).
+[08] score=0.000202 abs_score=0.000202 lang=spa_Latn token=▁de pos=5 sentence=Dios tiene un corazón de papá“.
+[09] score=0.000202 abs_score=0.000202 lang=spa_Latn token=▁tiene pos=1 sentence=Dios tiene un corazón de papá“.
+[10] score=0.000202 abs_score=0.000202 lang=swe_Latn token=▁än pos=16 sentence=Vi vill bara våra hundar ska sluta med det (vad det nu än är).
+[11] score=0.000202 abs_score=0.000202 lang=ces_Latn token=▁to pos=3 sentence=Leč je to od Pána lidstva seslání!
+[12] score=0.000201 abs_score=0.000201 lang=pol_Latn token=”. pos=7 sentence=Zabiłeś go dla uciechy”.
+[13] score=0.000201 abs_score=0.000201 lang=pol_Latn token=▁Zab pos=0 sentence=Zabiłeś go dla uciechy”.
+[14] score=0.000201 abs_score=0.000201 lang=pol_Latn token=wa pos=1 sentence=Zerwaliście przymierze Lewiego".
+[15] score=0.000200 abs_score=0.000200 lang=deu_Latn token=der pos=4 sentence=Einige der Brüder wurden geprüft wie der alte Abraham.“
+[16] score=0.000200 abs_score=0.000200 lang=pol_Latn token=łeś pos=2 sentence=Zabiłeś go dla uciechy”.
+[17] score=0.000199 abs_score=0.000199 lang=deu_Latn token=▁Abraham pos=13 sentence=Einige der Brüder wurden geprüft wie der alte Abraham.“
+[18] score=0.000199 abs_score=0.000199 lang=ces_Latn token=č pos=1 sentence=Leč je to od Pána lidstva seslání!
+[19] score=0.000199 abs_score=0.000199 lang=spa_Latn token=á pos=7 sentence=Dios tiene un corazón de papá“.
+[20] score=0.000198 abs_score=0.000198 lang=ces_Latn token=▁zá pos=12 sentence=179a pozoruj je, však oni také záhy zpozorují!
+
+--- Feature 5524 ---
+Top by z:
+[01] score=0.000216 abs_score=0.000216 lang=por_Latn token=enhor pos=7 sentence=Cada um receberá de teu Senhor seu quinhão.
+[02] score=0.000215 abs_score=0.000215 lang=nld_Latn token=▁wil pos=23 sentence=Is dit een voldoende basis voor ons, meer dan drieduizend jaar later, om te weten wat God wil dat we doen?
+[03] score=0.000211 abs_score=0.000211 lang=por_Latn token=▁S pos=6 sentence=Cada um receberá de teu Senhor seu quinhão.
+[04] score=0.000210 abs_score=0.000210 lang=spa_Latn token=▁Fuente pos=11 sentence=Y en mi interpretación de El, El es la Fuente inagotable de Vida.
+[05] score=0.000210 abs_score=0.000210 lang=por_Latn token=▁sir pos=1 sentence=Como sir Thomas você tem esta máquina.
+[06] score=0.000209 abs_score=0.000209 lang=fra_Latn token=é pos=9 sentence=1-May-85 Mon cœur est blessé.
+[07] score=0.000209 abs_score=0.000209 lang=spa_Latn token=▁Es pos=1 sentence=Apo Es el dios de las montañas.
+[08] score=0.000209 abs_score=0.000209 lang=nld_Latn token=▁was pos=15 sentence=Als het niet 1937 was, vroeg ik me af welk jaar het was.
+[09] score=0.000208 abs_score=0.000208 lang=nld_Latn token=▁games pos=7 sentence=Hij woonde de meeste van je games of recitals bij.
+[10] score=0.000207 abs_score=0.000207 lang=por_Latn token=enhor pos=10 sentence=(Ordenado pelo seu Salvador, seu Senhor!)
+[11] score=0.000207 abs_score=0.000207 lang=ces_Latn token=ran pos=15 sentence=Tedy předmětu, jenž dělají pána zla nezranitelného.
+[12] score=0.000206 abs_score=0.000206 lang=eng_Latn token=ing pos=6 sentence=For the Yin Fire (Ding), the month is much more difficult.
+[13] score=0.000206 abs_score=0.000206 lang=nld_Latn token=▁andere pos=8 sentence=Dat ze elkaar op de een of andere manier (kunnen) beïnvloeden.
+[14] score=0.000205 abs_score=0.000205 lang=spa_Latn token=▁el pos=2 sentence=Apo Es el dios de las montañas.
+[15] score=0.000205 abs_score=0.000205 lang=swe_Latn token=ycket pos=15 sentence=Åh, jag är ledsen, var min sass för mycket för dig?
+[16] score=0.000205 abs_score=0.000205 lang=nld_Latn token=▁het pos=14 sentence=Als het niet 1937 was, vroeg ik me af welk jaar het was.
+[17] score=0.000205 abs_score=0.000205 lang=nld_Latn token=▁weten pos=20 sentence=Is dit een voldoende basis voor ons, meer dan drieduizend jaar later, om te weten wat God wil dat we doen?
+[18] score=0.000204 abs_score=0.000204 lang=spa_Latn token=▁suger pos=8 sentence=Pero al igual que con todas las sugerencias hechas, el Corán da la respuesta.
+[19] score=0.000204 abs_score=0.000204 lang=pol_Latn token=! pos=10 sentence=Powiedz: "On jest moim Panem!
+[20] score=0.000204 abs_score=0.000204 lang=ces_Latn token=. pos=16 sentence=To je dobré pro diktátory v takových místech, jako je Venezuela.
+Top by |z|:
+[01] score=0.000216 abs_score=0.000216 lang=por_Latn token=enhor pos=7 sentence=Cada um receberá de teu Senhor seu quinhão.
+[02] score=0.000215 abs_score=0.000215 lang=nld_Latn token=▁wil pos=23 sentence=Is dit een voldoende basis voor ons, meer dan drieduizend jaar later, om te weten wat God wil dat we doen?
+[03] score=0.000211 abs_score=0.000211 lang=por_Latn token=▁S pos=6 sentence=Cada um receberá de teu Senhor seu quinhão.
+[04] score=0.000210 abs_score=0.000210 lang=spa_Latn token=▁Fuente pos=11 sentence=Y en mi interpretación de El, El es la Fuente inagotable de Vida.
+[05] score=0.000210 abs_score=0.000210 lang=por_Latn token=▁sir pos=1 sentence=Como sir Thomas você tem esta máquina.
+[06] score=0.000209 abs_score=0.000209 lang=fra_Latn token=é pos=9 sentence=1-May-85 Mon cœur est blessé.
+[07] score=0.000209 abs_score=0.000209 lang=spa_Latn token=▁Es pos=1 sentence=Apo Es el dios de las montañas.
+[08] score=0.000209 abs_score=0.000209 lang=nld_Latn token=▁was pos=15 sentence=Als het niet 1937 was, vroeg ik me af welk jaar het was.
+[09] score=0.000208 abs_score=0.000208 lang=nld_Latn token=▁games pos=7 sentence=Hij woonde de meeste van je games of recitals bij.
+[10] score=0.000207 abs_score=0.000207 lang=por_Latn token=enhor pos=10 sentence=(Ordenado pelo seu Salvador, seu Senhor!)
+[11] score=0.000207 abs_score=0.000207 lang=ces_Latn token=ran pos=15 sentence=Tedy předmětu, jenž dělají pána zla nezranitelného.
+[12] score=0.000206 abs_score=0.000206 lang=eng_Latn token=ing pos=6 sentence=For the Yin Fire (Ding), the month is much more difficult.
+[13] score=0.000206 abs_score=0.000206 lang=nld_Latn token=▁andere pos=8 sentence=Dat ze elkaar op de een of andere manier (kunnen) beïnvloeden.
+[14] score=0.000205 abs_score=0.000205 lang=spa_Latn token=▁el pos=2 sentence=Apo Es el dios de las montañas.
+[15] score=0.000205 abs_score=0.000205 lang=swe_Latn token=ycket pos=15 sentence=Åh, jag är ledsen, var min sass för mycket för dig?
+[16] score=0.000205 abs_score=0.000205 lang=nld_Latn token=▁het pos=14 sentence=Als het niet 1937 was, vroeg ik me af welk jaar het was.
+[17] score=0.000205 abs_score=0.000205 lang=nld_Latn token=▁weten pos=20 sentence=Is dit een voldoende basis voor ons, meer dan drieduizend jaar later, om te weten wat God wil dat we doen?
+[18] score=0.000204 abs_score=0.000204 lang=spa_Latn token=▁suger pos=8 sentence=Pero al igual que con todas las sugerencias hechas, el Corán da la respuesta.
+[19] score=0.000204 abs_score=0.000204 lang=pol_Latn token=! pos=10 sentence=Powiedz: "On jest moim Panem!
+[20] score=0.000204 abs_score=0.000204 lang=ces_Latn token=. pos=16 sentence=To je dobré pro diktátory v takových místech, jako je Venezuela.
+
+--- Feature 5681 ---
+Top by z:
+[01] score=0.000216 abs_score=0.000216 lang=pol_Latn token=▁dla pos=4 sentence=Zabiłeś go dla uciechy”.
+[02] score=0.000211 abs_score=0.000211 lang=eng_Latn token=▁to pos=14 sentence=Every mercy that comes from the heart brings you closer to my Son.”
+[03] score=0.000211 abs_score=0.000211 lang=pol_Latn token=▁ucie pos=5 sentence=Zabiłeś go dla uciechy”.
+[04] score=0.000210 abs_score=0.000210 lang=pol_Latn token=▁go pos=3 sentence=Zabiłeś go dla uciechy”.
+[05] score=0.000208 abs_score=0.000208 lang=deu_Latn token=▁wie pos=10 sentence=Einige der Brüder wurden geprüft wie der alte Abraham.“
+[06] score=0.000208 abs_score=0.000208 lang=pol_Latn token=”. pos=7 sentence=Zabiłeś go dla uciechy”.
+[07] score=0.000206 abs_score=0.000206 lang=pol_Latn token=▁samo pos=1 sentence=Tak samo jest lub być powinno, z wszystkimi wiernymi naśladowcami Pana.
+[08] score=0.000205 abs_score=0.000205 lang=pol_Latn token=iego pos=7 sentence=Zerwaliście przymierze Lewiego".
+[09] score=0.000205 abs_score=0.000205 lang=eng_Latn token=▁not pos=2 sentence=I did not see you fasting in any month as you do in the month of Shaban”.
+[10] score=0.000205 abs_score=0.000205 lang=pol_Latn token=chy pos=6 sentence=Zabiłeś go dla uciechy”.
+[11] score=0.000204 abs_score=0.000204 lang=swe_Latn token=▁vill pos=1 sentence=Vi vill bara våra hundar ska sluta med det (vad det nu än är).
+[12] score=0.000204 abs_score=0.000204 lang=eng_Latn token=▁to pos=7 sentence=Thus, you men will continue to fight, unafraid".
+[13] score=0.000204 abs_score=0.000204 lang=deu_Latn token=.“ pos=14 sentence=Einige der Brüder wurden geprüft wie der alte Abraham.“
+[14] score=0.000204 abs_score=0.000204 lang=eng_Latn token=▁everything pos=4 sentence="We will do everything to welcome the 113 countries that will participate.
+[15] score=0.000203 abs_score=0.000203 lang=ces_Latn token=▁pros pos=1 sentence=A pros za něho nebe!"[5]
+[16] score=0.000203 abs_score=0.000203 lang=ces_Latn token=▁je pos=2 sentence=Leč je to od Pána lidstva seslání!
+[17] score=0.000203 abs_score=0.000203 lang=nld_Latn token=▁weg pos=10 sentence=De verwarde persoon volgt de juiste weg met hen.
+[18] score=0.000203 abs_score=0.000203 lang=swe_Latn token=▁det pos=14 sentence=Vi vill bara våra hundar ska sluta med det (vad det nu än är).
+[19] score=0.000202 abs_score=0.000202 lang=pol_Latn token=▁przy pos=3 sentence=Zerwaliście przymierze Lewiego".
+[20] score=0.000202 abs_score=0.000202 lang=pol_Latn token=▁jest pos=2 sentence=Tak samo jest lub być powinno, z wszystkimi wiernymi naśladowcami Pana.
+Top by |z|:
+[01] score=0.000216 abs_score=0.000216 lang=pol_Latn token=▁dla pos=4 sentence=Zabiłeś go dla uciechy”.
+[02] score=0.000211 abs_score=0.000211 lang=eng_Latn token=▁to pos=14 sentence=Every mercy that comes from the heart brings you closer to my Son.”
+[03] score=0.000211 abs_score=0.000211 lang=pol_Latn token=▁ucie pos=5 sentence=Zabiłeś go dla uciechy”.
+[04] score=0.000210 abs_score=0.000210 lang=pol_Latn token=▁go pos=3 sentence=Zabiłeś go dla uciechy”.
+[05] score=0.000208 abs_score=0.000208 lang=deu_Latn token=▁wie pos=10 sentence=Einige der Brüder wurden geprüft wie der alte Abraham.“
+[06] score=0.000208 abs_score=0.000208 lang=pol_Latn token=”. pos=7 sentence=Zabiłeś go dla uciechy”.
+[07] score=0.000206 abs_score=0.000206 lang=pol_Latn token=▁samo pos=1 sentence=Tak samo jest lub być powinno, z wszystkimi wiernymi naśladowcami Pana.
+[08] score=0.000205 abs_score=0.000205 lang=pol_Latn token=iego pos=7 sentence=Zerwaliście przymierze Lewiego".
+[09] score=0.000205 abs_score=0.000205 lang=eng_Latn token=▁not pos=2 sentence=I did not see you fasting in any month as you do in the month of Shaban”.
+[10] score=0.000205 abs_score=0.000205 lang=pol_Latn token=chy pos=6 sentence=Zabiłeś go dla uciechy”.
+[11] score=0.000204 abs_score=0.000204 lang=swe_Latn token=▁vill pos=1 sentence=Vi vill bara våra hundar ska sluta med det (vad det nu än är).
+[12] score=0.000204 abs_score=0.000204 lang=eng_Latn token=▁to pos=7 sentence=Thus, you men will continue to fight, unafraid".
+[13] score=0.000204 abs_score=0.000204 lang=deu_Latn token=.“ pos=14 sentence=Einige der Brüder wurden geprüft wie der alte Abraham.“
+[14] score=0.000204 abs_score=0.000204 lang=eng_Latn token=▁everything pos=4 sentence="We will do everything to welcome the 113 countries that will participate.
+[15] score=0.000203 abs_score=0.000203 lang=ces_Latn token=▁pros pos=1 sentence=A pros za něho nebe!"[5]
+[16] score=0.000203 abs_score=0.000203 lang=ces_Latn token=▁je pos=2 sentence=Leč je to od Pána lidstva seslání!
+[17] score=0.000203 abs_score=0.000203 lang=nld_Latn token=▁weg pos=10 sentence=De verwarde persoon volgt de juiste weg met hen.
+[18] score=0.000203 abs_score=0.000203 lang=swe_Latn token=▁det pos=14 sentence=Vi vill bara våra hundar ska sluta med det (vad det nu än är).
+[19] score=0.000202 abs_score=0.000202 lang=pol_Latn token=▁przy pos=3 sentence=Zerwaliście przymierze Lewiego".
+[20] score=0.000202 abs_score=0.000202 lang=pol_Latn token=▁jest pos=2 sentence=Tak samo jest lub być powinno, z wszystkimi wiernymi naśladowcami Pana.
+
+--- Feature 62 ---
+Top by z:
+[01] score=0.000216 abs_score=0.000216 lang=eng_Latn token=▁any pos=1 sentence=Like any other State, this is its inherent right.
+[02] score=0.000215 abs_score=0.000215 lang=swe_Latn token=▁än pos=16 sentence=Vi vill bara våra hundar ska sluta med det (vad det nu än är).
+[03] score=0.000214 abs_score=0.000214 lang=swe_Latn token=). pos=18 sentence=Vi vill bara våra hundar ska sluta med det (vad det nu än är).
+[04] score=0.000214 abs_score=0.000214 lang=eng_Latn token=▁virus pos=7 sentence=“Everything we look at with this virus seems ...
+[05] score=0.000213 abs_score=0.000213 lang=ita_Latn token=porta pos=3 sentence=7- ma sopporta con pazienza per il tuo Signore!
+[06] score=0.000213 abs_score=0.000213 lang=swe_Latn token=▁är pos=17 sentence=Vi vill bara våra hundar ska sluta med det (vad det nu än är).
+[07] score=0.000212 abs_score=0.000212 lang=swe_Latn token=vad pos=13 sentence=Vi vill bara våra hundar ska sluta med det (vad det nu än är).
+[08] score=0.000212 abs_score=0.000212 lang=spa_Latn token=▁es pos=5 sentence=A dios lo que es de dios.
+[09] score=0.000211 abs_score=0.000211 lang=eng_Latn token=▁other pos=1 sentence=The other one I did this year was also popular: Are Avocados Good for You?
+[10] score=0.000211 abs_score=0.000211 lang=eng_Latn token=▁also pos=8 sentence=The other one I did this year was also popular: Are Avocados Good for You?
+[11] score=0.000211 abs_score=0.000211 lang=swe_Latn token=▁det pos=14 sentence=Vi vill bara våra hundar ska sluta med det (vad det nu än är).
+[12] score=0.000209 abs_score=0.000209 lang=eng_Latn token=▁in pos=12 sentence=Or, just plan your meals around the food that is in season.”
+[13] score=0.000209 abs_score=0.000209 lang=pol_Latn token=łeś pos=2 sentence=Zabiłeś go dla uciechy”.
+[14] score=0.000208 abs_score=0.000208 lang=eng_Latn token=Everything pos=1 sentence=“Everything we look at with this virus seems ...
+[15] score=0.000208 abs_score=0.000208 lang=eng_Latn token=e pos=13 sentence="We will do everything to welcome the 113 countries that will participate.
+[16] score=0.000208 abs_score=0.000208 lang=pol_Latn token=▁Zab pos=0 sentence=Zabiłeś go dla uciechy”.
+[17] score=0.000208 abs_score=0.000208 lang=pol_Latn token=chy pos=6 sentence=Zabiłeś go dla uciechy”.
+[18] score=0.000207 abs_score=0.000207 lang=ces_Latn token=lepší pos=1 sentence=Nejlepší produkt tam venku. – Richard B
+[19] score=0.000207 abs_score=0.000207 lang=ces_Latn token=▁Nej pos=0 sentence=Nejlepší produkt tam venku. – Richard B
+[20] score=0.000207 abs_score=0.000207 lang=eng_Latn token=▁everything pos=4 sentence="We will do everything to welcome the 113 countries that will participate.
+Top by |z|:
+[01] score=0.000216 abs_score=0.000216 lang=eng_Latn token=▁any pos=1 sentence=Like any other State, this is its inherent right.
+[02] score=0.000215 abs_score=0.000215 lang=swe_Latn token=▁än pos=16 sentence=Vi vill bara våra hundar ska sluta med det (vad det nu än är).
+[03] score=0.000214 abs_score=0.000214 lang=swe_Latn token=). pos=18 sentence=Vi vill bara våra hundar ska sluta med det (vad det nu än är).
+[04] score=0.000214 abs_score=0.000214 lang=eng_Latn token=▁virus pos=7 sentence=“Everything we look at with this virus seems ...
+[05] score=0.000213 abs_score=0.000213 lang=ita_Latn token=porta pos=3 sentence=7- ma sopporta con pazienza per il tuo Signore!
+[06] score=0.000213 abs_score=0.000213 lang=swe_Latn token=▁är pos=17 sentence=Vi vill bara våra hundar ska sluta med det (vad det nu än är).
+[07] score=0.000212 abs_score=0.000212 lang=swe_Latn token=vad pos=13 sentence=Vi vill bara våra hundar ska sluta med det (vad det nu än är).
+[08] score=0.000212 abs_score=0.000212 lang=spa_Latn token=▁es pos=5 sentence=A dios lo que es de dios.
+[09] score=0.000211 abs_score=0.000211 lang=eng_Latn token=▁other pos=1 sentence=The other one I did this year was also popular: Are Avocados Good for You?
+[10] score=0.000211 abs_score=0.000211 lang=eng_Latn token=▁also pos=8 sentence=The other one I did this year was also popular: Are Avocados Good for You?
+[11] score=0.000211 abs_score=0.000211 lang=swe_Latn token=▁det pos=14 sentence=Vi vill bara våra hundar ska sluta med det (vad det nu än är).
+[12] score=0.000209 abs_score=0.000209 lang=eng_Latn token=▁in pos=12 sentence=Or, just plan your meals around the food that is in season.”
+[13] score=0.000209 abs_score=0.000209 lang=pol_Latn token=łeś pos=2 sentence=Zabiłeś go dla uciechy”.
+[14] score=0.000208 abs_score=0.000208 lang=eng_Latn token=Everything pos=1 sentence=“Everything we look at with this virus seems ...
+[15] score=0.000208 abs_score=0.000208 lang=eng_Latn token=e pos=13 sentence="We will do everything to welcome the 113 countries that will participate.
+[16] score=0.000208 abs_score=0.000208 lang=pol_Latn token=▁Zab pos=0 sentence=Zabiłeś go dla uciechy”.
+[17] score=0.000208 abs_score=0.000208 lang=pol_Latn token=chy pos=6 sentence=Zabiłeś go dla uciechy”.
+[18] score=0.000207 abs_score=0.000207 lang=ces_Latn token=lepší pos=1 sentence=Nejlepší produkt tam venku. – Richard B
+[19] score=0.000207 abs_score=0.000207 lang=ces_Latn token=▁Nej pos=0 sentence=Nejlepší produkt tam venku. – Richard B
+[20] score=0.000207 abs_score=0.000207 lang=eng_Latn token=▁everything pos=4 sentence="We will do everything to welcome the 113 countries that will participate.
+
+--- Feature 3627 ---
+Top by z:
+[01] score=0.000213 abs_score=0.000213 lang=pol_Latn token=▁dla pos=4 sentence=Zabiłeś go dla uciechy”.
+[02] score=0.000207 abs_score=0.000207 lang=pol_Latn token=”. pos=7 sentence=Zabiłeś go dla uciechy”.
+[03] score=0.000207 abs_score=0.000207 lang=spa_Latn token=▁de pos=5 sentence=Dios tiene un corazón de papá“.
+[04] score=0.000206 abs_score=0.000206 lang=eng_Latn token=▁be pos=11 sentence=All of you are invited; and I’d be interested to know who else I should approach.”
+[05] score=0.000205 abs_score=0.000205 lang=ces_Latn token=▁zá pos=12 sentence=179a pozoruj je, však oni také záhy zpozorují!
+[06] score=0.000204 abs_score=0.000204 lang=ita_Latn token=porta pos=3 sentence=7- ma sopporta con pazienza per il tuo Signore!
+[07] score=0.000204 abs_score=0.000204 lang=spa_Latn token=pósito pos=6 sentence=Pero sabía que el propósito de Dios era bueno.
+[08] score=0.000204 abs_score=0.000204 lang=spa_Latn token=▁cor pos=3 sentence=Dios tiene un corazón de papá“.
+[09] score=0.000203 abs_score=0.000203 lang=nld_Latn token=zoeken pos=19 sentence=Kan bijlage VI van Richtlijn 1999/45/EG nog gebruikt worden voor dergelijke verzoeken?
+[10] score=0.000203 abs_score=0.000203 lang=eng_Latn token=▁should pos=19 sentence=All of you are invited; and I’d be interested to know who else I should approach.”
+[11] score=0.000203 abs_score=0.000203 lang=spa_Latn token=▁pro pos=5 sentence=Pero sabía que el propósito de Dios era bueno.
+[12] score=0.000203 abs_score=0.000203 lang=deu_Latn token=ungen pos=7 sentence="14% innerhalb aller Begrenzungen für Mellifera".
+[13] score=0.000203 abs_score=0.000203 lang=deu_Latn token=▁" pos=0 sentence="14% innerhalb aller Begrenzungen für Mellifera".
+[14] score=0.000203 abs_score=0.000203 lang=eng_Latn token=▁can pos=13 sentence=“The future is open for Tokio Hotel in every way we can imagine!
+[15] score=0.000203 abs_score=0.000203 lang=nld_Latn token=▁God pos=14 sentence=Na de gift van het leven is het wellicht de grootste van God zijn giften.
+[16] score=0.000202 abs_score=0.000202 lang=ces_Latn token=... pos=13 sentence=Evropský parlament můžete poznat ve Stanici Evropa...
+[17] score=0.000202 abs_score=0.000202 lang=eng_Latn token=▁approach pos=20 sentence=All of you are invited; and I’d be interested to know who else I should approach.”
+[18] score=0.000202 abs_score=0.000202 lang=ita_Latn token=▁7- pos=0 sentence=7- ma sopporta con pazienza per il tuo Signore!
+[19] score=0.000202 abs_score=0.000202 lang=por_Latn token=alta pos=9 sentence=Mas quão diferente no estado da Sua exaltação!
+[20] score=0.000202 abs_score=0.000202 lang=deu_Latn token=14% pos=1 sentence="14% innerhalb aller Begrenzungen für Mellifera".
+Top by |z|:
+[01] score=0.000213 abs_score=0.000213 lang=pol_Latn token=▁dla pos=4 sentence=Zabiłeś go dla uciechy”.
+[02] score=0.000207 abs_score=0.000207 lang=pol_Latn token=”. pos=7 sentence=Zabiłeś go dla uciechy”.
+[03] score=0.000207 abs_score=0.000207 lang=spa_Latn token=▁de pos=5 sentence=Dios tiene un corazón de papá“.
+[04] score=0.000206 abs_score=0.000206 lang=eng_Latn token=▁be pos=11 sentence=All of you are invited; and I’d be interested to know who else I should approach.”
+[05] score=0.000205 abs_score=0.000205 lang=ces_Latn token=▁zá pos=12 sentence=179a pozoruj je, však oni také záhy zpozorují!
+[06] score=0.000204 abs_score=0.000204 lang=ita_Latn token=porta pos=3 sentence=7- ma sopporta con pazienza per il tuo Signore!
+[07] score=0.000204 abs_score=0.000204 lang=spa_Latn token=pósito pos=6 sentence=Pero sabía que el propósito de Dios era bueno.
+[08] score=0.000204 abs_score=0.000204 lang=spa_Latn token=▁cor pos=3 sentence=Dios tiene un corazón de papá“.
+[09] score=0.000203 abs_score=0.000203 lang=nld_Latn token=zoeken pos=19 sentence=Kan bijlage VI van Richtlijn 1999/45/EG nog gebruikt worden voor dergelijke verzoeken?
+[10] score=0.000203 abs_score=0.000203 lang=eng_Latn token=▁should pos=19 sentence=All of you are invited; and I’d be interested to know who else I should approach.”
+[11] score=0.000203 abs_score=0.000203 lang=spa_Latn token=▁pro pos=5 sentence=Pero sabía que el propósito de Dios era bueno.
+[12] score=0.000203 abs_score=0.000203 lang=deu_Latn token=ungen pos=7 sentence="14% innerhalb aller Begrenzungen für Mellifera".
+[13] score=0.000203 abs_score=0.000203 lang=deu_Latn token=▁" pos=0 sentence="14% innerhalb aller Begrenzungen für Mellifera".
+[14] score=0.000203 abs_score=0.000203 lang=eng_Latn token=▁can pos=13 sentence=“The future is open for Tokio Hotel in every way we can imagine!
+[15] score=0.000203 abs_score=0.000203 lang=nld_Latn token=▁God pos=14 sentence=Na de gift van het leven is het wellicht de grootste van God zijn giften.
+[16] score=0.000202 abs_score=0.000202 lang=ces_Latn token=... pos=13 sentence=Evropský parlament můžete poznat ve Stanici Evropa...
+[17] score=0.000202 abs_score=0.000202 lang=eng_Latn token=▁approach pos=20 sentence=All of you are invited; and I’d be interested to know who else I should approach.”
+[18] score=0.000202 abs_score=0.000202 lang=ita_Latn token=▁7- pos=0 sentence=7- ma sopporta con pazienza per il tuo Signore!
+[19] score=0.000202 abs_score=0.000202 lang=por_Latn token=alta pos=9 sentence=Mas quão diferente no estado da Sua exaltação!
+[20] score=0.000202 abs_score=0.000202 lang=deu_Latn token=14% pos=1 sentence="14% innerhalb aller Begrenzungen für Mellifera".
+
+--- Feature 2605 ---
+Top by z:
+[01] score=0.000213 abs_score=0.000213 lang=pol_Latn token=liście pos=2 sentence=Zerwaliście przymierze Lewiego".
+[02] score=0.000213 abs_score=0.000213 lang=por_Latn token=hon pos=1 sentence=Nihon só apoia algumas escolas no Japão?
+[03] score=0.000212 abs_score=0.000212 lang=pol_Latn token=▁dla pos=4 sentence=Zabiłeś go dla uciechy”.
+[04] score=0.000211 abs_score=0.000211 lang=eng_Latn token=▁Hotel pos=8 sentence=“The future is open for Tokio Hotel in every way we can imagine!
+[05] score=0.000211 abs_score=0.000211 lang=pol_Latn token=”. pos=7 sentence=Zabiłeś go dla uciechy”.
+[06] score=0.000211 abs_score=0.000211 lang=pol_Latn token=▁samo pos=1 sentence=Tak samo jest lub być powinno, z wszystkimi wiernymi naśladowcami Pana.
+[07] score=0.000210 abs_score=0.000210 lang=pol_Latn token=▁lub pos=3 sentence=Tak samo jest lub być powinno, z wszystkimi wiernymi naśladowcami Pana.
+[08] score=0.000210 abs_score=0.000210 lang=deu_Latn token=▁Abraham pos=13 sentence=Einige der Brüder wurden geprüft wie der alte Abraham.“
+[09] score=0.000210 abs_score=0.000210 lang=por_Latn token=ão pos=2 sentence=Mas quão diferente no estado da Sua exaltação!
+[10] score=0.000209 abs_score=0.000209 lang=por_Latn token=▁Sua pos=7 sentence=Mas quão diferente no estado da Sua exaltação!
+[11] score=0.000209 abs_score=0.000209 lang=ces_Latn token=▁je pos=2 sentence=Leč je to od Pána lidstva seslání!
+[12] score=0.000208 abs_score=0.000208 lang=ces_Latn token=▁to pos=3 sentence=Leč je to od Pána lidstva seslání!
+[13] score=0.000208 abs_score=0.000208 lang=por_Latn token=▁diferente pos=3 sentence=Mas quão diferente no estado da Sua exaltação!
+[14] score=0.000208 abs_score=0.000208 lang=por_Latn token=▁ex pos=8 sentence=Mas quão diferente no estado da Sua exaltação!
+[15] score=0.000207 abs_score=0.000207 lang=ces_Latn token=▁toto pos=1 sentence=A toto je vskutku Pána lidstva seslání,
+[16] score=0.000207 abs_score=0.000207 lang=ita_Latn token=▁il pos=8 sentence=7- ma sopporta con pazienza per il tuo Signore!
+[17] score=0.000207 abs_score=0.000207 lang=pol_Latn token=▁go pos=3 sentence=Zabiłeś go dla uciechy”.
+[18] score=0.000207 abs_score=0.000207 lang=spa_Latn token=▁es pos=2 sentence=Quien es por Allah, Allah es por él.
+[19] score=0.000206 abs_score=0.000206 lang=pol_Latn token=▁jest pos=2 sentence=Tak samo jest lub być powinno, z wszystkimi wiernymi naśladowcami Pana.
+[20] score=0.000206 abs_score=0.000206 lang=por_Latn token=▁Ni pos=0 sentence=Nihon só apoia algumas escolas no Japão?
+Top by |z|:
+[01] score=0.000213 abs_score=0.000213 lang=pol_Latn token=liście pos=2 sentence=Zerwaliście przymierze Lewiego".
+[02] score=0.000213 abs_score=0.000213 lang=por_Latn token=hon pos=1 sentence=Nihon só apoia algumas escolas no Japão?
+[03] score=0.000212 abs_score=0.000212 lang=pol_Latn token=▁dla pos=4 sentence=Zabiłeś go dla uciechy”.
+[04] score=0.000211 abs_score=0.000211 lang=eng_Latn token=▁Hotel pos=8 sentence=“The future is open for Tokio Hotel in every way we can imagine!
+[05] score=0.000211 abs_score=0.000211 lang=pol_Latn token=”. pos=7 sentence=Zabiłeś go dla uciechy”.
+[06] score=0.000211 abs_score=0.000211 lang=pol_Latn token=▁samo pos=1 sentence=Tak samo jest lub być powinno, z wszystkimi wiernymi naśladowcami Pana.
+[07] score=0.000210 abs_score=0.000210 lang=pol_Latn token=▁lub pos=3 sentence=Tak samo jest lub być powinno, z wszystkimi wiernymi naśladowcami Pana.
+[08] score=0.000210 abs_score=0.000210 lang=deu_Latn token=▁Abraham pos=13 sentence=Einige der Brüder wurden geprüft wie der alte Abraham.“
+[09] score=0.000210 abs_score=0.000210 lang=por_Latn token=ão pos=2 sentence=Mas quão diferente no estado da Sua exaltação!
+[10] score=0.000209 abs_score=0.000209 lang=por_Latn token=▁Sua pos=7 sentence=Mas quão diferente no estado da Sua exaltação!
+[11] score=0.000209 abs_score=0.000209 lang=ces_Latn token=▁je pos=2 sentence=Leč je to od Pána lidstva seslání!
+[12] score=0.000208 abs_score=0.000208 lang=ces_Latn token=▁to pos=3 sentence=Leč je to od Pána lidstva seslání!
+[13] score=0.000208 abs_score=0.000208 lang=por_Latn token=▁diferente pos=3 sentence=Mas quão diferente no estado da Sua exaltação!
+[14] score=0.000208 abs_score=0.000208 lang=por_Latn token=▁ex pos=8 sentence=Mas quão diferente no estado da Sua exaltação!
+[15] score=0.000207 abs_score=0.000207 lang=ces_Latn token=▁toto pos=1 sentence=A toto je vskutku Pána lidstva seslání,
+[16] score=0.000207 abs_score=0.000207 lang=ita_Latn token=▁il pos=8 sentence=7- ma sopporta con pazienza per il tuo Signore!
+[17] score=0.000207 abs_score=0.000207 lang=pol_Latn token=▁go pos=3 sentence=Zabiłeś go dla uciechy”.
+[18] score=0.000207 abs_score=0.000207 lang=spa_Latn token=▁es pos=2 sentence=Quien es por Allah, Allah es por él.
+[19] score=0.000206 abs_score=0.000206 lang=pol_Latn token=▁jest pos=2 sentence=Tak samo jest lub być powinno, z wszystkimi wiernymi naśladowcami Pana.
+[20] score=0.000206 abs_score=0.000206 lang=por_Latn token=▁Ni pos=0 sentence=Nihon só apoia algumas escolas no Japão?
+
+--- Feature 2038 ---
+Top by z:
+[01] score=0.000213 abs_score=0.000213 lang=eng_Latn token=▁to pos=14 sentence=Every mercy that comes from the heart brings you closer to my Son.”
+[02] score=0.000212 abs_score=0.000212 lang=spa_Latn token=▁la pos=4 sentence=¡Juro por la belleza del Bienamado!
+[03] score=0.000210 abs_score=0.000210 lang=eng_Latn token=▁the pos=14 sentence=I did not see you fasting in any month as you do in the month of Shaban”.
+[04] score=0.000209 abs_score=0.000209 lang=pol_Latn token=▁dla pos=4 sentence=Zabiłeś go dla uciechy”.
+[05] score=0.000208 abs_score=0.000208 lang=eng_Latn token=▁my pos=15 sentence=Every mercy that comes from the heart brings you closer to my Son.”
+[06] score=0.000208 abs_score=0.000208 lang=spa_Latn token=▁por pos=3 sentence=¡Juro por la belleza del Bienamado!
+[07] score=0.000207 abs_score=0.000207 lang=eng_Latn token=▁everything pos=4 sentence="We will do everything to welcome the 113 countries that will participate.
+[08] score=0.000205 abs_score=0.000205 lang=deu_Latn token=▁inner pos=2 sentence="14% innerhalb aller Begrenzungen für Mellifera".
+[09] score=0.000205 abs_score=0.000205 lang=eng_Latn token=▁in pos=13 sentence=I did not see you fasting in any month as you do in the month of Shaban”.
+[10] score=0.000205 abs_score=0.000205 lang=eng_Latn token=▁will pos=7 sentence=I heard the new Emma 28 will be different?
+[11] score=0.000205 abs_score=0.000205 lang=pol_Latn token=liście pos=2 sentence=Zerwaliście przymierze Lewiego".
+[12] score=0.000204 abs_score=0.000204 lang=por_Latn token=▁diferente pos=3 sentence=Mas quão diferente no estado da Sua exaltação!
+[13] score=0.000204 abs_score=0.000204 lang=eng_Latn token=▁else pos=17 sentence=All of you are invited; and I’d be interested to know who else I should approach.”
+[14] score=0.000203 abs_score=0.000203 lang=pol_Latn token=▁przy pos=3 sentence=Zerwaliście przymierze Lewiego".
+[15] score=0.000203 abs_score=0.000203 lang=eng_Latn token=▁will pos=2 sentence="We will do everything to welcome the 113 countries that will participate.
+[16] score=0.000202 abs_score=0.000202 lang=eng_Latn token=▁month pos=9 sentence=I did not see you fasting in any month as you do in the month of Shaban”.
+[17] score=0.000202 abs_score=0.000202 lang=eng_Latn token=▁of pos=16 sentence=I did not see you fasting in any month as you do in the month of Shaban”.
+[18] score=0.000202 abs_score=0.000202 lang=eng_Latn token=▁you pos=11 sentence=I did not see you fasting in any month as you do in the month of Shaban”.
+[19] score=0.000201 abs_score=0.000201 lang=eng_Latn token=▁do pos=12 sentence=I did not see you fasting in any month as you do in the month of Shaban”.
+[20] score=0.000201 abs_score=0.000201 lang=pol_Latn token=▁go pos=3 sentence=Zabiłeś go dla uciechy”.
+Top by |z|:
+[01] score=0.000213 abs_score=0.000213 lang=eng_Latn token=▁to pos=14 sentence=Every mercy that comes from the heart brings you closer to my Son.”
+[02] score=0.000212 abs_score=0.000212 lang=spa_Latn token=▁la pos=4 sentence=¡Juro por la belleza del Bienamado!
+[03] score=0.000210 abs_score=0.000210 lang=eng_Latn token=▁the pos=14 sentence=I did not see you fasting in any month as you do in the month of Shaban”.
+[04] score=0.000209 abs_score=0.000209 lang=pol_Latn token=▁dla pos=4 sentence=Zabiłeś go dla uciechy”.
+[05] score=0.000208 abs_score=0.000208 lang=eng_Latn token=▁my pos=15 sentence=Every mercy that comes from the heart brings you closer to my Son.”
+[06] score=0.000208 abs_score=0.000208 lang=spa_Latn token=▁por pos=3 sentence=¡Juro por la belleza del Bienamado!
+[07] score=0.000207 abs_score=0.000207 lang=eng_Latn token=▁everything pos=4 sentence="We will do everything to welcome the 113 countries that will participate.
+[08] score=0.000205 abs_score=0.000205 lang=deu_Latn token=▁inner pos=2 sentence="14% innerhalb aller Begrenzungen für Mellifera".
+[09] score=0.000205 abs_score=0.000205 lang=eng_Latn token=▁in pos=13 sentence=I did not see you fasting in any month as you do in the month of Shaban”.
+[10] score=0.000205 abs_score=0.000205 lang=eng_Latn token=▁will pos=7 sentence=I heard the new Emma 28 will be different?
+[11] score=0.000205 abs_score=0.000205 lang=pol_Latn token=liście pos=2 sentence=Zerwaliście przymierze Lewiego".
+[12] score=0.000204 abs_score=0.000204 lang=por_Latn token=▁diferente pos=3 sentence=Mas quão diferente no estado da Sua exaltação!
+[13] score=0.000204 abs_score=0.000204 lang=eng_Latn token=▁else pos=17 sentence=All of you are invited; and I’d be interested to know who else I should approach.”
+[14] score=0.000203 abs_score=0.000203 lang=pol_Latn token=▁przy pos=3 sentence=Zerwaliście przymierze Lewiego".
+[15] score=0.000203 abs_score=0.000203 lang=eng_Latn token=▁will pos=2 sentence="We will do everything to welcome the 113 countries that will participate.
+[16] score=0.000202 abs_score=0.000202 lang=eng_Latn token=▁month pos=9 sentence=I did not see you fasting in any month as you do in the month of Shaban”.
+[17] score=0.000202 abs_score=0.000202 lang=eng_Latn token=▁of pos=16 sentence=I did not see you fasting in any month as you do in the month of Shaban”.
+[18] score=0.000202 abs_score=0.000202 lang=eng_Latn token=▁you pos=11 sentence=I did not see you fasting in any month as you do in the month of Shaban”.
+[19] score=0.000201 abs_score=0.000201 lang=eng_Latn token=▁do pos=12 sentence=I did not see you fasting in any month as you do in the month of Shaban”.
+[20] score=0.000201 abs_score=0.000201 lang=pol_Latn token=▁go pos=3 sentence=Zabiłeś go dla uciechy”.
+
+--- Feature 1197 ---
+Top by z:
+[01] score=0.000212 abs_score=0.000212 lang=pol_Latn token=▁dla pos=4 sentence=Zabiłeś go dla uciechy”.
+[02] score=0.000209 abs_score=0.000209 lang=deu_Latn token=▁Abraham pos=13 sentence=Einige der Brüder wurden geprüft wie der alte Abraham.“
+[03] score=0.000207 abs_score=0.000207 lang=pol_Latn token=liście pos=2 sentence=Zerwaliście przymierze Lewiego".
+[04] score=0.000205 abs_score=0.000205 lang=nld_Latn token=▁zijn pos=15 sentence=Na de gift van het leven is het wellicht de grootste van God zijn giften.
+[05] score=0.000205 abs_score=0.000205 lang=pol_Latn token=▁przy pos=3 sentence=Zerwaliście przymierze Lewiego".
+[06] score=0.000205 abs_score=0.000205 lang=ces_Latn token=▁to pos=3 sentence=Leč je to od Pána lidstva seslání!
+[07] score=0.000204 abs_score=0.000204 lang=swe_Latn token=▁nu pos=15 sentence=Vi vill bara våra hundar ska sluta med det (vad det nu än är).
+[08] score=0.000204 abs_score=0.000204 lang=pol_Latn token=▁lub pos=3 sentence=Tak samo jest lub być powinno, z wszystkimi wiernymi naśladowcami Pana.
+[09] score=0.000203 abs_score=0.000203 lang=ita_Latn token=▁ma pos=1 sentence=7- ma sopporta con pazienza per il tuo Signore!
+[10] score=0.000203 abs_score=0.000203 lang=pol_Latn token=▁jest pos=2 sentence=Tak samo jest lub być powinno, z wszystkimi wiernymi naśladowcami Pana.
+[11] score=0.000202 abs_score=0.000202 lang=ces_Latn token=▁je pos=2 sentence=Leč je to od Pána lidstva seslání!
+[12] score=0.000201 abs_score=0.000201 lang=nld_Latn token=▁Mij pos=3 sentence=Ik herinner Mij dat Ik hun beloofd had, en de tijd van de belofte is nabij.
+[13] score=0.000201 abs_score=0.000201 lang=ces_Latn token=▁den pos=1 sentence=V den Páně (Zj 1,10), tedy v den vzkříšeného Pána.
+[14] score=0.000201 abs_score=0.000201 lang=ces_Latn token=▁pros pos=1 sentence=A pros za něho nebe!"[5]
+[15] score=0.000200 abs_score=0.000200 lang=pol_Latn token=▁ucie pos=5 sentence=Zabiłeś go dla uciechy”.
+[16] score=0.000200 abs_score=0.000200 lang=ces_Latn token=hy pos=13 sentence=179a pozoruj je, však oni také záhy zpozorují!
+[17] score=0.000200 abs_score=0.000200 lang=pol_Latn token=”. pos=7 sentence=Zabiłeś go dla uciechy”.
+[18] score=0.000199 abs_score=0.000199 lang=ces_Latn token=▁A pos=0 sentence=A pros za něho nebe!"[5]
+[19] score=0.000199 abs_score=0.000199 lang=pol_Latn token=▁samo pos=1 sentence=Tak samo jest lub być powinno, z wszystkimi wiernymi naśladowcami Pana.
+[20] score=0.000199 abs_score=0.000199 lang=eng_Latn token=▁be pos=11 sentence=All of you are invited; and I’d be interested to know who else I should approach.”
+Top by |z|:
+[01] score=0.000212 abs_score=0.000212 lang=pol_Latn token=▁dla pos=4 sentence=Zabiłeś go dla uciechy”.
+[02] score=0.000209 abs_score=0.000209 lang=deu_Latn token=▁Abraham pos=13 sentence=Einige der Brüder wurden geprüft wie der alte Abraham.“
+[03] score=0.000207 abs_score=0.000207 lang=pol_Latn token=liście pos=2 sentence=Zerwaliście przymierze Lewiego".
+[04] score=0.000205 abs_score=0.000205 lang=nld_Latn token=▁zijn pos=15 sentence=Na de gift van het leven is het wellicht de grootste van God zijn giften.
+[05] score=0.000205 abs_score=0.000205 lang=pol_Latn token=▁przy pos=3 sentence=Zerwaliście przymierze Lewiego".
+[06] score=0.000205 abs_score=0.000205 lang=ces_Latn token=▁to pos=3 sentence=Leč je to od Pána lidstva seslání!
+[07] score=0.000204 abs_score=0.000204 lang=swe_Latn token=▁nu pos=15 sentence=Vi vill bara våra hundar ska sluta med det (vad det nu än är).
+[08] score=0.000204 abs_score=0.000204 lang=pol_Latn token=▁lub pos=3 sentence=Tak samo jest lub być powinno, z wszystkimi wiernymi naśladowcami Pana.
+[09] score=0.000203 abs_score=0.000203 lang=ita_Latn token=▁ma pos=1 sentence=7- ma sopporta con pazienza per il tuo Signore!
+[10] score=0.000203 abs_score=0.000203 lang=pol_Latn token=▁jest pos=2 sentence=Tak samo jest lub być powinno, z wszystkimi wiernymi naśladowcami Pana.
+[11] score=0.000202 abs_score=0.000202 lang=ces_Latn token=▁je pos=2 sentence=Leč je to od Pána lidstva seslání!
+[12] score=0.000201 abs_score=0.000201 lang=nld_Latn token=▁Mij pos=3 sentence=Ik herinner Mij dat Ik hun beloofd had, en de tijd van de belofte is nabij.
+[13] score=0.000201 abs_score=0.000201 lang=ces_Latn token=▁den pos=1 sentence=V den Páně (Zj 1,10), tedy v den vzkříšeného Pána.
+[14] score=0.000201 abs_score=0.000201 lang=ces_Latn token=▁pros pos=1 sentence=A pros za něho nebe!"[5]
+[15] score=0.000200 abs_score=0.000200 lang=pol_Latn token=▁ucie pos=5 sentence=Zabiłeś go dla uciechy”.
+[16] score=0.000200 abs_score=0.000200 lang=ces_Latn token=hy pos=13 sentence=179a pozoruj je, však oni také záhy zpozorují!
+[17] score=0.000200 abs_score=0.000200 lang=pol_Latn token=”. pos=7 sentence=Zabiłeś go dla uciechy”.
+[18] score=0.000199 abs_score=0.000199 lang=ces_Latn token=▁A pos=0 sentence=A pros za něho nebe!"[5]
+[19] score=0.000199 abs_score=0.000199 lang=pol_Latn token=▁samo pos=1 sentence=Tak samo jest lub być powinno, z wszystkimi wiernymi naśladowcami Pana.
+[20] score=0.000199 abs_score=0.000199 lang=eng_Latn token=▁be pos=11 sentence=All of you are invited; and I’d be interested to know who else I should approach.”
+
+--- Feature 2839 ---
+Top by z:
+[01] score=0.000211 abs_score=0.000211 lang=swe_Latn token=). pos=18 sentence=Vi vill bara våra hundar ska sluta med det (vad det nu än är).
+[02] score=0.000209 abs_score=0.000209 lang=eng_Latn token=▁season pos=13 sentence=Or, just plan your meals around the food that is in season.”
+[03] score=0.000206 abs_score=0.000206 lang=spa_Latn token=". pos=8 sentence=Él es Clemente, Misericordioso".
+[04] score=0.000204 abs_score=0.000204 lang=spa_Latn token=isericordi pos=6 sentence=Él es Clemente, Misericordioso".
+[05] score=0.000203 abs_score=0.000203 lang=pol_Latn token=▁dla pos=4 sentence=Zabiłeś go dla uciechy”.
+[06] score=0.000201 abs_score=0.000201 lang=pol_Latn token=▁go pos=3 sentence=Zabiłeś go dla uciechy”.
+[07] score=0.000201 abs_score=0.000201 lang=eng_Latn token=.” pos=14 sentence=Or, just plan your meals around the food that is in season.”
+[08] score=0.000201 abs_score=0.000201 lang=fra_Latn token=▁Les pos=0 sentence=Les Kurdes [des FDS] avançaient.
+[09] score=0.000200 abs_score=0.000200 lang=eng_Latn token=▁in pos=12 sentence=Or, just plan your meals around the food that is in season.”
+[10] score=0.000200 abs_score=0.000200 lang=swe_Latn token=vad pos=13 sentence=Vi vill bara våra hundar ska sluta med det (vad det nu än är).
+[11] score=0.000199 abs_score=0.000199 lang=ita_Latn token=▁7- pos=0 sentence=7- ma sopporta con pazienza per il tuo Signore!
+[12] score=0.000198 abs_score=0.000198 lang=ita_Latn token=porta pos=3 sentence=7- ma sopporta con pazienza per il tuo Signore!
+[13] score=0.000198 abs_score=0.000198 lang=swe_Latn token=▁det pos=14 sentence=Vi vill bara våra hundar ska sluta med det (vad det nu än är).
+[14] score=0.000198 abs_score=0.000198 lang=spa_Latn token=▁Dios pos=8 sentence=Pero sabía que el propósito de Dios era bueno.
+[15] score=0.000196 abs_score=0.000196 lang=swe_Latn token=▁nu pos=15 sentence=Vi vill bara våra hundar ska sluta med det (vad det nu än är).
+[16] score=0.000196 abs_score=0.000196 lang=deu_Latn token=ungen pos=7 sentence="14% innerhalb aller Begrenzungen für Mellifera".
+[17] score=0.000196 abs_score=0.000196 lang=por_Latn token=▁diferente pos=3 sentence=Mas quão diferente no estado da Sua exaltação!
+[18] score=0.000196 abs_score=0.000196 lang=spa_Latn token=oso pos=7 sentence=Él es Clemente, Misericordioso".
+[19] score=0.000195 abs_score=0.000195 lang=ita_Latn token=▁sop pos=2 sentence=7- ma sopporta con pazienza per il tuo Signore!
+[20] score=0.000195 abs_score=0.000195 lang=spa_Latn token=▁M pos=5 sentence=Él es Clemente, Misericordioso".
+Top by |z|:
+[01] score=0.000211 abs_score=0.000211 lang=swe_Latn token=). pos=18 sentence=Vi vill bara våra hundar ska sluta med det (vad det nu än är).
+[02] score=0.000209 abs_score=0.000209 lang=eng_Latn token=▁season pos=13 sentence=Or, just plan your meals around the food that is in season.”
+[03] score=0.000206 abs_score=0.000206 lang=spa_Latn token=". pos=8 sentence=Él es Clemente, Misericordioso".
+[04] score=0.000204 abs_score=0.000204 lang=spa_Latn token=isericordi pos=6 sentence=Él es Clemente, Misericordioso".
+[05] score=0.000203 abs_score=0.000203 lang=pol_Latn token=▁dla pos=4 sentence=Zabiłeś go dla uciechy”.
+[06] score=0.000201 abs_score=0.000201 lang=pol_Latn token=▁go pos=3 sentence=Zabiłeś go dla uciechy”.
+[07] score=0.000201 abs_score=0.000201 lang=eng_Latn token=.” pos=14 sentence=Or, just plan your meals around the food that is in season.”
+[08] score=0.000201 abs_score=0.000201 lang=fra_Latn token=▁Les pos=0 sentence=Les Kurdes [des FDS] avançaient.
+[09] score=0.000200 abs_score=0.000200 lang=eng_Latn token=▁in pos=12 sentence=Or, just plan your meals around the food that is in season.”
+[10] score=0.000200 abs_score=0.000200 lang=swe_Latn token=vad pos=13 sentence=Vi vill bara våra hundar ska sluta med det (vad det nu än är).
+[11] score=0.000199 abs_score=0.000199 lang=ita_Latn token=▁7- pos=0 sentence=7- ma sopporta con pazienza per il tuo Signore!
+[12] score=0.000198 abs_score=0.000198 lang=ita_Latn token=porta pos=3 sentence=7- ma sopporta con pazienza per il tuo Signore!
+[13] score=0.000198 abs_score=0.000198 lang=swe_Latn token=▁det pos=14 sentence=Vi vill bara våra hundar ska sluta med det (vad det nu än är).
+[14] score=0.000198 abs_score=0.000198 lang=spa_Latn token=▁Dios pos=8 sentence=Pero sabía que el propósito de Dios era bueno.
+[15] score=0.000196 abs_score=0.000196 lang=swe_Latn token=▁nu pos=15 sentence=Vi vill bara våra hundar ska sluta med det (vad det nu än är).
+[16] score=0.000196 abs_score=0.000196 lang=deu_Latn token=ungen pos=7 sentence="14% innerhalb aller Begrenzungen für Mellifera".
+[17] score=0.000196 abs_score=0.000196 lang=por_Latn token=▁diferente pos=3 sentence=Mas quão diferente no estado da Sua exaltação!
+[18] score=0.000196 abs_score=0.000196 lang=spa_Latn token=oso pos=7 sentence=Él es Clemente, Misericordioso".
+[19] score=0.000195 abs_score=0.000195 lang=ita_Latn token=▁sop pos=2 sentence=7- ma sopporta con pazienza per il tuo Signore!
+[20] score=0.000195 abs_score=0.000195 lang=spa_Latn token=▁M pos=5 sentence=Él es Clemente, Misericordioso".
+
+--- Feature 2562 ---
+Top by z:
+[01] score=0.000208 abs_score=0.000208 lang=pol_Latn token=▁dla pos=4 sentence=Zabiłeś go dla uciechy”.
+[02] score=0.000207 abs_score=0.000207 lang=pol_Latn token=▁go pos=3 sentence=Zabiłeś go dla uciechy”.
+[03] score=0.000207 abs_score=0.000207 lang=pol_Latn token=liście pos=2 sentence=Zerwaliście przymierze Lewiego".
+[04] score=0.000207 abs_score=0.000207 lang=swe_Latn token=▁det pos=14 sentence=Vi vill bara våra hundar ska sluta med det (vad det nu än är).
+[05] score=0.000206 abs_score=0.000206 lang=swe_Latn token=▁nu pos=15 sentence=Vi vill bara våra hundar ska sluta med det (vad det nu än är).
+[06] score=0.000206 abs_score=0.000206 lang=por_Latn token=▁ex pos=8 sentence=Mas quão diferente no estado da Sua exaltação!
+[07] score=0.000204 abs_score=0.000204 lang=pol_Latn token=▁Zer pos=0 sentence=Zerwaliście przymierze Lewiego".
+[08] score=0.000204 abs_score=0.000204 lang=por_Latn token=alta pos=9 sentence=Mas quão diferente no estado da Sua exaltação!
+[09] score=0.000203 abs_score=0.000203 lang=deu_Latn token=▁Abraham pos=13 sentence=Einige der Brüder wurden geprüft wie der alte Abraham.“
+[10] score=0.000203 abs_score=0.000203 lang=pol_Latn token=▁ucie pos=5 sentence=Zabiłeś go dla uciechy”.
+[11] score=0.000203 abs_score=0.000203 lang=ces_Latn token=▁zá pos=12 sentence=179a pozoruj je, však oni také záhy zpozorují!
+[12] score=0.000202 abs_score=0.000202 lang=ces_Latn token=hy pos=13 sentence=179a pozoruj je, však oni také záhy zpozorují!
+[13] score=0.000201 abs_score=0.000201 lang=pol_Latn token=”. pos=7 sentence=Zabiłeś go dla uciechy”.
+[14] score=0.000200 abs_score=0.000200 lang=por_Latn token=▁Sua pos=7 sentence=Mas quão diferente no estado da Sua exaltação!
+[15] score=0.000200 abs_score=0.000200 lang=ita_Latn token=▁il pos=8 sentence=7- ma sopporta con pazienza per il tuo Signore!
+[16] score=0.000200 abs_score=0.000200 lang=spa_Latn token=▁de pos=7 sentence=Pero sabía que el propósito de Dios era bueno.
+[17] score=0.000200 abs_score=0.000200 lang=deu_Latn token=.“ pos=14 sentence=Einige der Brüder wurden geprüft wie der alte Abraham.“
+[18] score=0.000199 abs_score=0.000199 lang=pol_Latn token=iego pos=7 sentence=Zerwaliście przymierze Lewiego".
+[19] score=0.000199 abs_score=0.000199 lang=pol_Latn token=chy pos=6 sentence=Zabiłeś go dla uciechy”.
+[20] score=0.000199 abs_score=0.000199 lang=por_Latn token=ção pos=10 sentence=Mas quão diferente no estado da Sua exaltação!
+Top by |z|:
+[01] score=0.000208 abs_score=0.000208 lang=pol_Latn token=▁dla pos=4 sentence=Zabiłeś go dla uciechy”.
+[02] score=0.000207 abs_score=0.000207 lang=pol_Latn token=▁go pos=3 sentence=Zabiłeś go dla uciechy”.
+[03] score=0.000207 abs_score=0.000207 lang=pol_Latn token=liście pos=2 sentence=Zerwaliście przymierze Lewiego".
+[04] score=0.000207 abs_score=0.000207 lang=swe_Latn token=▁det pos=14 sentence=Vi vill bara våra hundar ska sluta med det (vad det nu än är).
+[05] score=0.000206 abs_score=0.000206 lang=swe_Latn token=▁nu pos=15 sentence=Vi vill bara våra hundar ska sluta med det (vad det nu än är).
+[06] score=0.000206 abs_score=0.000206 lang=por_Latn token=▁ex pos=8 sentence=Mas quão diferente no estado da Sua exaltação!
+[07] score=0.000204 abs_score=0.000204 lang=pol_Latn token=▁Zer pos=0 sentence=Zerwaliście przymierze Lewiego".
+[08] score=0.000204 abs_score=0.000204 lang=por_Latn token=alta pos=9 sentence=Mas quão diferente no estado da Sua exaltação!
+[09] score=0.000203 abs_score=0.000203 lang=deu_Latn token=▁Abraham pos=13 sentence=Einige der Brüder wurden geprüft wie der alte Abraham.“
+[10] score=0.000203 abs_score=0.000203 lang=pol_Latn token=▁ucie pos=5 sentence=Zabiłeś go dla uciechy”.
+[11] score=0.000203 abs_score=0.000203 lang=ces_Latn token=▁zá pos=12 sentence=179a pozoruj je, však oni také záhy zpozorují!
+[12] score=0.000202 abs_score=0.000202 lang=ces_Latn token=hy pos=13 sentence=179a pozoruj je, však oni také záhy zpozorují!
+[13] score=0.000201 abs_score=0.000201 lang=pol_Latn token=”. pos=7 sentence=Zabiłeś go dla uciechy”.
+[14] score=0.000200 abs_score=0.000200 lang=por_Latn token=▁Sua pos=7 sentence=Mas quão diferente no estado da Sua exaltação!
+[15] score=0.000200 abs_score=0.000200 lang=ita_Latn token=▁il pos=8 sentence=7- ma sopporta con pazienza per il tuo Signore!
+[16] score=0.000200 abs_score=0.000200 lang=spa_Latn token=▁de pos=7 sentence=Pero sabía que el propósito de Dios era bueno.
+[17] score=0.000200 abs_score=0.000200 lang=deu_Latn token=.“ pos=14 sentence=Einige der Brüder wurden geprüft wie der alte Abraham.“
+[18] score=0.000199 abs_score=0.000199 lang=pol_Latn token=iego pos=7 sentence=Zerwaliście przymierze Lewiego".
+[19] score=0.000199 abs_score=0.000199 lang=pol_Latn token=chy pos=6 sentence=Zabiłeś go dla uciechy”.
+[20] score=0.000199 abs_score=0.000199 lang=por_Latn token=ção pos=10 sentence=Mas quão diferente no estado da Sua exaltação!
+
+--- Feature 121 ---
+Top by z:
+[01] score=0.000208 abs_score=0.000208 lang=ita_Latn token=▁tuo pos=9 sentence=7- ma sopporta con pazienza per il tuo Signore!
+[02] score=0.000205 abs_score=0.000205 lang=swe_Latn token=). pos=18 sentence=Vi vill bara våra hundar ska sluta med det (vad det nu än är).
+[03] score=0.000204 abs_score=0.000204 lang=eng_Latn token=▁season pos=13 sentence=Or, just plan your meals around the food that is in season.”
+[04] score=0.000204 abs_score=0.000204 lang=pol_Latn token=▁dla pos=4 sentence=Zabiłeś go dla uciechy”.
+[05] score=0.000203 abs_score=0.000203 lang=nld_Latn token=leden pos=9 sentence=We zullen de fouten uit het verleden – van 1948 en 1967 – niet opnieuw maken.
+[06] score=0.000201 abs_score=0.000201 lang=swe_Latn token=▁än pos=16 sentence=Vi vill bara våra hundar ska sluta med det (vad det nu än är).
+[07] score=0.000200 abs_score=0.000200 lang=swe_Latn token=. pos=17 sentence=*** Att stanna på budgeten har blivit den andra naturen för mig nu.
+[08] score=0.000200 abs_score=0.000200 lang=spa_Latn token=▁pro pos=5 sentence=Pero sabía que el propósito de Dios era bueno.
+[09] score=0.000200 abs_score=0.000200 lang=ces_Latn token=▁tak pos=8 sentence=To je dobré pro diktátory v takových místech, jako je Venezuela.
+[10] score=0.000200 abs_score=0.000200 lang=swe_Latn token=▁är pos=17 sentence=Vi vill bara våra hundar ska sluta med det (vad det nu än är).
+[11] score=0.000199 abs_score=0.000199 lang=spa_Latn token=▁Islam pos=14 sentence=Alá hará perecer todas las religiones excepto el Islam.
+[12] score=0.000199 abs_score=0.000199 lang=nld_Latn token=▁persoon pos=4 sentence=De verwarde persoon volgt de juiste weg met hen.
+[13] score=0.000199 abs_score=0.000199 lang=ces_Latn token=▁dikt pos=5 sentence=To je dobré pro diktátory v takových místech, jako je Venezuela.
+[14] score=0.000198 abs_score=0.000198 lang=pol_Latn token=▁ucie pos=5 sentence=Zabiłeś go dla uciechy”.
+[15] score=0.000198 abs_score=0.000198 lang=spa_Latn token=▁de pos=5 sentence=Dios tiene un corazón de papá“.
+[16] score=0.000198 abs_score=0.000198 lang=spa_Latn token=▁sabe pos=2 sentence=Alá sabe que mienten.
+[17] score=0.000198 abs_score=0.000198 lang=swe_Latn token=▁nu pos=15 sentence=Vi vill bara våra hundar ska sluta med det (vad det nu än är).
+[18] score=0.000198 abs_score=0.000198 lang=pol_Latn token=”. pos=7 sentence=Zabiłeś go dla uciechy”.
+[19] score=0.000198 abs_score=0.000198 lang=nld_Latn token=pen pos=3 sentence=Zij grepen hem en schreeuwden: "Mannen van Israël, help!
+[20] score=0.000197 abs_score=0.000197 lang=nld_Latn token=▁ver pos=8 sentence=We zullen de fouten uit het verleden – van 1948 en 1967 – niet opnieuw maken.
+Top by |z|:
+[01] score=0.000208 abs_score=0.000208 lang=ita_Latn token=▁tuo pos=9 sentence=7- ma sopporta con pazienza per il tuo Signore!
+[02] score=0.000205 abs_score=0.000205 lang=swe_Latn token=). pos=18 sentence=Vi vill bara våra hundar ska sluta med det (vad det nu än är).
+[03] score=0.000204 abs_score=0.000204 lang=eng_Latn token=▁season pos=13 sentence=Or, just plan your meals around the food that is in season.”
+[04] score=0.000204 abs_score=0.000204 lang=pol_Latn token=▁dla pos=4 sentence=Zabiłeś go dla uciechy”.
+[05] score=0.000203 abs_score=0.000203 lang=nld_Latn token=leden pos=9 sentence=We zullen de fouten uit het verleden – van 1948 en 1967 – niet opnieuw maken.
+[06] score=0.000201 abs_score=0.000201 lang=swe_Latn token=▁än pos=16 sentence=Vi vill bara våra hundar ska sluta med det (vad det nu än är).
+[07] score=0.000200 abs_score=0.000200 lang=swe_Latn token=. pos=17 sentence=*** Att stanna på budgeten har blivit den andra naturen för mig nu.
+[08] score=0.000200 abs_score=0.000200 lang=spa_Latn token=▁pro pos=5 sentence=Pero sabía que el propósito de Dios era bueno.
+[09] score=0.000200 abs_score=0.000200 lang=ces_Latn token=▁tak pos=8 sentence=To je dobré pro diktátory v takových místech, jako je Venezuela.
+[10] score=0.000200 abs_score=0.000200 lang=swe_Latn token=▁är pos=17 sentence=Vi vill bara våra hundar ska sluta med det (vad det nu än är).
+[11] score=0.000199 abs_score=0.000199 lang=spa_Latn token=▁Islam pos=14 sentence=Alá hará perecer todas las religiones excepto el Islam.
+[12] score=0.000199 abs_score=0.000199 lang=nld_Latn token=▁persoon pos=4 sentence=De verwarde persoon volgt de juiste weg met hen.
+[13] score=0.000199 abs_score=0.000199 lang=ces_Latn token=▁dikt pos=5 sentence=To je dobré pro diktátory v takových místech, jako je Venezuela.
+[14] score=0.000198 abs_score=0.000198 lang=pol_Latn token=▁ucie pos=5 sentence=Zabiłeś go dla uciechy”.
+[15] score=0.000198 abs_score=0.000198 lang=spa_Latn token=▁de pos=5 sentence=Dios tiene un corazón de papá“.
+[16] score=0.000198 abs_score=0.000198 lang=spa_Latn token=▁sabe pos=2 sentence=Alá sabe que mienten.
+[17] score=0.000198 abs_score=0.000198 lang=swe_Latn token=▁nu pos=15 sentence=Vi vill bara våra hundar ska sluta med det (vad det nu än är).
+[18] score=0.000198 abs_score=0.000198 lang=pol_Latn token=”. pos=7 sentence=Zabiłeś go dla uciechy”.
+[19] score=0.000198 abs_score=0.000198 lang=nld_Latn token=pen pos=3 sentence=Zij grepen hem en schreeuwden: "Mannen van Israël, help!
+[20] score=0.000197 abs_score=0.000197 lang=nld_Latn token=▁ver pos=8 sentence=We zullen de fouten uit het verleden – van 1948 en 1967 – niet opnieuw maken.
+
+--- Feature 2477 ---
+Top by z:
+[01] score=0.000207 abs_score=0.000207 lang=swe_Latn token=▁det pos=14 sentence=Vi vill bara våra hundar ska sluta med det (vad det nu än är).
+[02] score=0.000206 abs_score=0.000206 lang=ita_Latn token=vero pos=2 sentence=E davvero la mano del Signore era con lui."
+[03] score=0.000206 abs_score=0.000206 lang=swe_Latn token=▁nu pos=15 sentence=Vi vill bara våra hundar ska sluta med det (vad det nu än är).
+[04] score=0.000205 abs_score=0.000205 lang=deu_Latn token=halb pos=3 sentence="14% innerhalb aller Begrenzungen für Mellifera".
+[05] score=0.000204 abs_score=0.000204 lang=ita_Latn token=▁il pos=10 sentence=Il testimone di Dio non vede testimone contro il corpo.
+[06] score=0.000204 abs_score=0.000204 lang=eng_Latn token=▁Hotel pos=8 sentence=“The future is open for Tokio Hotel in every way we can imagine!
+[07] score=0.000203 abs_score=0.000203 lang=nld_Latn token=lopen pos=3 sentence="De afgelopen zeven maanden heb ik ontdekt wat hij wil in een contract, wat hij niet wil in een contract."
+[08] score=0.000203 abs_score=0.000203 lang=ces_Latn token=▁Pá pos=5 sentence=A komu je rámě Páně zjeveno?
+[09] score=0.000203 abs_score=0.000203 lang=ita_Latn token=▁Il pos=0 sentence=Il testimone di Dio non vede testimone contro il corpo.
+[10] score=0.000203 abs_score=0.000203 lang=ita_Latn token=▁del pos=4 sentence=È il Volere del mio Signore che agisce!”
+[11] score=0.000203 abs_score=0.000203 lang=nld_Latn token=▁pro pos=6 sentence=De terugkeer van je eigen profeet is in het Veld!
+[12] score=0.000203 abs_score=0.000203 lang=ita_Latn token=▁dav pos=1 sentence=E davvero la mano del Signore era con lui."
+[13] score=0.000203 abs_score=0.000203 lang=ces_Latn token=ě pos=4 sentence=A komu je rámě Páně zjeveno?
+[14] score=0.000202 abs_score=0.000202 lang=ces_Latn token=tku pos=5 sentence=A toto je vskutku Pána lidstva seslání,
+[15] score=0.000202 abs_score=0.000202 lang=por_Latn token=▁seu pos=8 sentence=Cada um receberá de teu Senhor seu quinhão.
+[16] score=0.000202 abs_score=0.000202 lang=por_Latn token=▁diferen pos=18 sentence=Independente da ajuda que trouxeram, sua presença por si só faz uma grande diferença’.
+[17] score=0.000202 abs_score=0.000202 lang=pol_Latn token=▁dla pos=4 sentence=Zabiłeś go dla uciechy”.
+[18] score=0.000201 abs_score=0.000201 lang=spa_Latn token=▁con pos=1 sentence=Pero con aquellos que no son solo "Uryakva!"
+[19] score=0.000201 abs_score=0.000201 lang=eng_Latn token=) pos=5 sentence=We had (almost) the sun every day.
+[20] score=0.000201 abs_score=0.000201 lang=spa_Latn token=▁no pos=3 sentence=Las montañas no son muy elevadas,
+Top by |z|:
+[01] score=0.000207 abs_score=0.000207 lang=swe_Latn token=▁det pos=14 sentence=Vi vill bara våra hundar ska sluta med det (vad det nu än är).
+[02] score=0.000206 abs_score=0.000206 lang=ita_Latn token=vero pos=2 sentence=E davvero la mano del Signore era con lui."
+[03] score=0.000206 abs_score=0.000206 lang=swe_Latn token=▁nu pos=15 sentence=Vi vill bara våra hundar ska sluta med det (vad det nu än är).
+[04] score=0.000205 abs_score=0.000205 lang=deu_Latn token=halb pos=3 sentence="14% innerhalb aller Begrenzungen für Mellifera".
+[05] score=0.000204 abs_score=0.000204 lang=ita_Latn token=▁il pos=10 sentence=Il testimone di Dio non vede testimone contro il corpo.
+[06] score=0.000204 abs_score=0.000204 lang=eng_Latn token=▁Hotel pos=8 sentence=“The future is open for Tokio Hotel in every way we can imagine!
+[07] score=0.000203 abs_score=0.000203 lang=nld_Latn token=lopen pos=3 sentence="De afgelopen zeven maanden heb ik ontdekt wat hij wil in een contract, wat hij niet wil in een contract."
+[08] score=0.000203 abs_score=0.000203 lang=ces_Latn token=▁Pá pos=5 sentence=A komu je rámě Páně zjeveno?
+[09] score=0.000203 abs_score=0.000203 lang=ita_Latn token=▁Il pos=0 sentence=Il testimone di Dio non vede testimone contro il corpo.
+[10] score=0.000203 abs_score=0.000203 lang=ita_Latn token=▁del pos=4 sentence=È il Volere del mio Signore che agisce!”
+[11] score=0.000203 abs_score=0.000203 lang=nld_Latn token=▁pro pos=6 sentence=De terugkeer van je eigen profeet is in het Veld!
+[12] score=0.000203 abs_score=0.000203 lang=ita_Latn token=▁dav pos=1 sentence=E davvero la mano del Signore era con lui."
+[13] score=0.000203 abs_score=0.000203 lang=ces_Latn token=ě pos=4 sentence=A komu je rámě Páně zjeveno?
+[14] score=0.000202 abs_score=0.000202 lang=ces_Latn token=tku pos=5 sentence=A toto je vskutku Pána lidstva seslání,
+[15] score=0.000202 abs_score=0.000202 lang=por_Latn token=▁seu pos=8 sentence=Cada um receberá de teu Senhor seu quinhão.
+[16] score=0.000202 abs_score=0.000202 lang=por_Latn token=▁diferen pos=18 sentence=Independente da ajuda que trouxeram, sua presença por si só faz uma grande diferença’.
+[17] score=0.000202 abs_score=0.000202 lang=pol_Latn token=▁dla pos=4 sentence=Zabiłeś go dla uciechy”.
+[18] score=0.000201 abs_score=0.000201 lang=spa_Latn token=▁con pos=1 sentence=Pero con aquellos que no son solo "Uryakva!"
+[19] score=0.000201 abs_score=0.000201 lang=eng_Latn token=) pos=5 sentence=We had (almost) the sun every day.
+[20] score=0.000201 abs_score=0.000201 lang=spa_Latn token=▁no pos=3 sentence=Las montañas no son muy elevadas,
+
+--- Feature 2102 ---
+Top by z:
+[01] score=0.000206 abs_score=0.000206 lang=deu_Latn token=.“ pos=14 sentence=Einige der Brüder wurden geprüft wie der alte Abraham.“
+[02] score=0.000205 abs_score=0.000205 lang=pol_Latn token=▁jest pos=2 sentence=Tak samo jest lub być powinno, z wszystkimi wiernymi naśladowcami Pana.
+[03] score=0.000204 abs_score=0.000204 lang=pol_Latn token=nno pos=7 sentence=Tak samo jest lub być powinno, z wszystkimi wiernymi naśladowcami Pana.
+[04] score=0.000203 abs_score=0.000203 lang=pol_Latn token=▁lub pos=3 sentence=Tak samo jest lub być powinno, z wszystkimi wiernymi naśladowcami Pana.
+[05] score=0.000201 abs_score=0.000201 lang=pol_Latn token=▁samo pos=1 sentence=Tak samo jest lub być powinno, z wszystkimi wiernymi naśladowcami Pana.
+[06] score=0.000201 abs_score=0.000201 lang=ces_Latn token=▁je pos=2 sentence=Leč je to od Pána lidstva seslání!
+[07] score=0.000200 abs_score=0.000200 lang=por_Latn token=▁sir pos=1 sentence=Como sir Thomas você tem esta máquina.
+[08] score=0.000200 abs_score=0.000200 lang=ces_Latn token=▁od pos=4 sentence=Leč je to od Pána lidstva seslání!
+[09] score=0.000199 abs_score=0.000199 lang=fra_Latn token=es pos=7 sentence=Et il trouvera des réponses, pour Shara, et pour lui-même.
+[10] score=0.000198 abs_score=0.000198 lang=eng_Latn token=▁we pos=4 sentence="With U18 we can continue to grow.
+[11] score=0.000198 abs_score=0.000198 lang=deu_Latn token=▁Abraham pos=13 sentence=Einige der Brüder wurden geprüft wie der alte Abraham.“
+[12] score=0.000198 abs_score=0.000198 lang=deu_Latn token=▁nicht pos=11 sentence=National Gallery of Australia: Zum Glück beissen diese Hunde nicht.
+[13] score=0.000198 abs_score=0.000198 lang=pol_Latn token=iego pos=7 sentence=Zerwaliście przymierze Lewiego".
+[14] score=0.000198 abs_score=0.000198 lang=eng_Latn token=▁Son pos=16 sentence=Every mercy that comes from the heart brings you closer to my Son.”
+[15] score=0.000198 abs_score=0.000198 lang=ita_Latn token=▁il pos=8 sentence=7- ma sopporta con pazienza per il tuo Signore!
+[16] score=0.000198 abs_score=0.000198 lang=por_Latn token=▁Como pos=0 sentence=Como sir Thomas você tem esta máquina.
+[17] score=0.000197 abs_score=0.000197 lang=ita_Latn token=▁ma pos=1 sentence=7- ma sopporta con pazienza per il tuo Signore!
+[18] score=0.000197 abs_score=0.000197 lang=por_Latn token=▁diferente pos=3 sentence=Mas quão diferente no estado da Sua exaltação!
+[19] score=0.000197 abs_score=0.000197 lang=pol_Latn token=▁przy pos=3 sentence=Zerwaliście przymierze Lewiego".
+[20] score=0.000197 abs_score=0.000197 lang=pol_Latn token=ny pos=7 sentence=Tak, ale wolałbym wolny system edukacji
+Top by |z|:
+[01] score=0.000206 abs_score=0.000206 lang=deu_Latn token=.“ pos=14 sentence=Einige der Brüder wurden geprüft wie der alte Abraham.“
+[02] score=0.000205 abs_score=0.000205 lang=pol_Latn token=▁jest pos=2 sentence=Tak samo jest lub być powinno, z wszystkimi wiernymi naśladowcami Pana.
+[03] score=0.000204 abs_score=0.000204 lang=pol_Latn token=nno pos=7 sentence=Tak samo jest lub być powinno, z wszystkimi wiernymi naśladowcami Pana.
+[04] score=0.000203 abs_score=0.000203 lang=pol_Latn token=▁lub pos=3 sentence=Tak samo jest lub być powinno, z wszystkimi wiernymi naśladowcami Pana.
+[05] score=0.000201 abs_score=0.000201 lang=pol_Latn token=▁samo pos=1 sentence=Tak samo jest lub być powinno, z wszystkimi wiernymi naśladowcami Pana.
+[06] score=0.000201 abs_score=0.000201 lang=ces_Latn token=▁je pos=2 sentence=Leč je to od Pána lidstva seslání!
+[07] score=0.000200 abs_score=0.000200 lang=por_Latn token=▁sir pos=1 sentence=Como sir Thomas você tem esta máquina.
+[08] score=0.000200 abs_score=0.000200 lang=ces_Latn token=▁od pos=4 sentence=Leč je to od Pána lidstva seslání!
+[09] score=0.000199 abs_score=0.000199 lang=fra_Latn token=es pos=7 sentence=Et il trouvera des réponses, pour Shara, et pour lui-même.
+[10] score=0.000198 abs_score=0.000198 lang=eng_Latn token=▁we pos=4 sentence="With U18 we can continue to grow.
+[11] score=0.000198 abs_score=0.000198 lang=deu_Latn token=▁Abraham pos=13 sentence=Einige der Brüder wurden geprüft wie der alte Abraham.“
+[12] score=0.000198 abs_score=0.000198 lang=deu_Latn token=▁nicht pos=11 sentence=National Gallery of Australia: Zum Glück beissen diese Hunde nicht.
+[13] score=0.000198 abs_score=0.000198 lang=pol_Latn token=iego pos=7 sentence=Zerwaliście przymierze Lewiego".
+[14] score=0.000198 abs_score=0.000198 lang=eng_Latn token=▁Son pos=16 sentence=Every mercy that comes from the heart brings you closer to my Son.”
+[15] score=0.000198 abs_score=0.000198 lang=ita_Latn token=▁il pos=8 sentence=7- ma sopporta con pazienza per il tuo Signore!
+[16] score=0.000198 abs_score=0.000198 lang=por_Latn token=▁Como pos=0 sentence=Como sir Thomas você tem esta máquina.
+[17] score=0.000197 abs_score=0.000197 lang=ita_Latn token=▁ma pos=1 sentence=7- ma sopporta con pazienza per il tuo Signore!
+[18] score=0.000197 abs_score=0.000197 lang=por_Latn token=▁diferente pos=3 sentence=Mas quão diferente no estado da Sua exaltação!
+[19] score=0.000197 abs_score=0.000197 lang=pol_Latn token=▁przy pos=3 sentence=Zerwaliście przymierze Lewiego".
+[20] score=0.000197 abs_score=0.000197 lang=pol_Latn token=ny pos=7 sentence=Tak, ale wolałbym wolny system edukacji
+
+--- Feature 2595 ---
+Top by z:
+[01] score=0.000206 abs_score=0.000206 lang=swe_Latn token=▁nu pos=15 sentence=Vi vill bara våra hundar ska sluta med det (vad det nu än är).
+[02] score=0.000204 abs_score=0.000204 lang=swe_Latn token=▁det pos=14 sentence=Vi vill bara våra hundar ska sluta med det (vad det nu än är).
+[03] score=0.000204 abs_score=0.000204 lang=pol_Latn token=▁dla pos=4 sentence=Zabiłeś go dla uciechy”.
+[04] score=0.000203 abs_score=0.000203 lang=eng_Latn token=▁to pos=14 sentence=Every mercy that comes from the heart brings you closer to my Son.”
+[05] score=0.000202 abs_score=0.000202 lang=swe_Latn token=▁är pos=17 sentence=Vi vill bara våra hundar ska sluta med det (vad det nu än är).
+[06] score=0.000201 abs_score=0.000201 lang=swe_Latn token=▁än pos=16 sentence=Vi vill bara våra hundar ska sluta med det (vad det nu än är).
+[07] score=0.000200 abs_score=0.000200 lang=ita_Latn token=▁7- pos=0 sentence=7- ma sopporta con pazienza per il tuo Signore!
+[08] score=0.000200 abs_score=0.000200 lang=swe_Latn token=). pos=18 sentence=Vi vill bara våra hundar ska sluta med det (vad det nu än är).
+[09] score=0.000199 abs_score=0.000199 lang=ita_Latn token=porta pos=3 sentence=7- ma sopporta con pazienza per il tuo Signore!
+[10] score=0.000198 abs_score=0.000198 lang=nld_Latn token=▁is pos=19 sentence=Ik herinner Mij dat Ik hun beloofd had, en de tijd van de belofte is nabij.
+[11] score=0.000197 abs_score=0.000197 lang=por_Latn token=▁não pos=17 sentence=A razão pela qual ele escolheu deles era em si mesmo (amor), não na deles (mérito).
+[12] score=0.000197 abs_score=0.000197 lang=ita_Latn token=▁che pos=8 sentence=È il Volere del mio Signore che agisce!”
+[13] score=0.000196 abs_score=0.000196 lang=pol_Latn token=▁ucie pos=5 sentence=Zabiłeś go dla uciechy”.
+[14] score=0.000196 abs_score=0.000196 lang=ita_Latn token=▁sop pos=2 sentence=7- ma sopporta con pazienza per il tuo Signore!
+[15] score=0.000196 abs_score=0.000196 lang=swe_Latn token=vad pos=13 sentence=Vi vill bara våra hundar ska sluta med det (vad det nu än är).
+[16] score=0.000196 abs_score=0.000196 lang=por_Latn token=▁Sua pos=7 sentence=Mas quão diferente no estado da Sua exaltação!
+[17] score=0.000196 abs_score=0.000196 lang=spa_Latn token=▁sab pos=1 sentence=Pero sabía que el propósito de Dios era bueno.
+[18] score=0.000195 abs_score=0.000195 lang=ita_Latn token=▁ma pos=1 sentence=7- ma sopporta con pazienza per il tuo Signore!
+[19] score=0.000195 abs_score=0.000195 lang=nld_Latn token=▁zijn pos=15 sentence=Na de gift van het leven is het wellicht de grootste van God zijn giften.
+[20] score=0.000195 abs_score=0.000195 lang=por_Latn token=alta pos=9 sentence=Mas quão diferente no estado da Sua exaltação!
+Top by |z|:
+[01] score=0.000206 abs_score=0.000206 lang=swe_Latn token=▁nu pos=15 sentence=Vi vill bara våra hundar ska sluta med det (vad det nu än är).
+[02] score=0.000204 abs_score=0.000204 lang=swe_Latn token=▁det pos=14 sentence=Vi vill bara våra hundar ska sluta med det (vad det nu än är).
+[03] score=0.000204 abs_score=0.000204 lang=pol_Latn token=▁dla pos=4 sentence=Zabiłeś go dla uciechy”.
+[04] score=0.000203 abs_score=0.000203 lang=eng_Latn token=▁to pos=14 sentence=Every mercy that comes from the heart brings you closer to my Son.”
+[05] score=0.000202 abs_score=0.000202 lang=swe_Latn token=▁är pos=17 sentence=Vi vill bara våra hundar ska sluta med det (vad det nu än är).
+[06] score=0.000201 abs_score=0.000201 lang=swe_Latn token=▁än pos=16 sentence=Vi vill bara våra hundar ska sluta med det (vad det nu än är).
+[07] score=0.000200 abs_score=0.000200 lang=ita_Latn token=▁7- pos=0 sentence=7- ma sopporta con pazienza per il tuo Signore!
+[08] score=0.000200 abs_score=0.000200 lang=swe_Latn token=). pos=18 sentence=Vi vill bara våra hundar ska sluta med det (vad det nu än är).
+[09] score=0.000199 abs_score=0.000199 lang=ita_Latn token=porta pos=3 sentence=7- ma sopporta con pazienza per il tuo Signore!
+[10] score=0.000198 abs_score=0.000198 lang=nld_Latn token=▁is pos=19 sentence=Ik herinner Mij dat Ik hun beloofd had, en de tijd van de belofte is nabij.
+[11] score=0.000197 abs_score=0.000197 lang=por_Latn token=▁não pos=17 sentence=A razão pela qual ele escolheu deles era em si mesmo (amor), não na deles (mérito).
+[12] score=0.000197 abs_score=0.000197 lang=ita_Latn token=▁che pos=8 sentence=È il Volere del mio Signore che agisce!”
+[13] score=0.000196 abs_score=0.000196 lang=pol_Latn token=▁ucie pos=5 sentence=Zabiłeś go dla uciechy”.
+[14] score=0.000196 abs_score=0.000196 lang=ita_Latn token=▁sop pos=2 sentence=7- ma sopporta con pazienza per il tuo Signore!
+[15] score=0.000196 abs_score=0.000196 lang=swe_Latn token=vad pos=13 sentence=Vi vill bara våra hundar ska sluta med det (vad det nu än är).
+[16] score=0.000196 abs_score=0.000196 lang=por_Latn token=▁Sua pos=7 sentence=Mas quão diferente no estado da Sua exaltação!
+[17] score=0.000196 abs_score=0.000196 lang=spa_Latn token=▁sab pos=1 sentence=Pero sabía que el propósito de Dios era bueno.
+[18] score=0.000195 abs_score=0.000195 lang=ita_Latn token=▁ma pos=1 sentence=7- ma sopporta con pazienza per il tuo Signore!
+[19] score=0.000195 abs_score=0.000195 lang=nld_Latn token=▁zijn pos=15 sentence=Na de gift van het leven is het wellicht de grootste van God zijn giften.
+[20] score=0.000195 abs_score=0.000195 lang=por_Latn token=alta pos=9 sentence=Mas quão diferente no estado da Sua exaltação!
+
+--- Feature 4504 ---
+Top by z:
+[01] score=0.000206 abs_score=0.000206 lang=swe_Latn token=▁nu pos=15 sentence=Vi vill bara våra hundar ska sluta med det (vad det nu än är).
+[02] score=0.000204 abs_score=0.000204 lang=swe_Latn token=▁vill pos=1 sentence=Vi vill bara våra hundar ska sluta med det (vad det nu än är).
+[03] score=0.000204 abs_score=0.000204 lang=swe_Latn token=▁det pos=14 sentence=Vi vill bara våra hundar ska sluta med det (vad det nu än är).
+[04] score=0.000203 abs_score=0.000203 lang=pol_Latn token=liście pos=2 sentence=Zerwaliście przymierze Lewiego".
+[05] score=0.000202 abs_score=0.000202 lang=eng_Latn token=▁thanks pos=7 sentence=I also want to tell you that thanks to your Keno system I won 2000 euros.
+[06] score=0.000200 abs_score=0.000200 lang=pol_Latn token=▁dla pos=4 sentence=Zabiłeś go dla uciechy”.
+[07] score=0.000200 abs_score=0.000200 lang=swe_Latn token=). pos=18 sentence=Vi vill bara våra hundar ska sluta med det (vad det nu än är).
+[08] score=0.000200 abs_score=0.000200 lang=eng_Latn token=▁in pos=12 sentence=Or, just plan your meals around the food that is in season.”
+[09] score=0.000200 abs_score=0.000200 lang=swe_Latn token=▁än pos=16 sentence=Vi vill bara våra hundar ska sluta med det (vad det nu än är).
+[10] score=0.000199 abs_score=0.000199 lang=swe_Latn token=▁Vi pos=0 sentence=Vi vill bara våra hundar ska sluta med det (vad det nu än är).
+[11] score=0.000199 abs_score=0.000199 lang=deu_Latn token=▁bist pos=1 sentence=Du bist Israels König und Davids erhabener Sprößling.
+[12] score=0.000199 abs_score=0.000199 lang=swe_Latn token=▁Min pos=0 sentence=Min adress är som mina skor – den reser med mig”.
+[13] score=0.000198 abs_score=0.000198 lang=pol_Latn token=wa pos=1 sentence=Zerwaliście przymierze Lewiego".
+[14] score=0.000198 abs_score=0.000198 lang=swe_Latn token=▁bara pos=2 sentence=Vi vill bara våra hundar ska sluta med det (vad det nu än är).
+[15] score=0.000198 abs_score=0.000198 lang=eng_Latn token=▁to pos=14 sentence=Every mercy that comes from the heart brings you closer to my Son.”
+[16] score=0.000197 abs_score=0.000197 lang=por_Latn token=▁qu pos=1 sentence=Mas quão diferente no estado da Sua exaltação!
+[17] score=0.000197 abs_score=0.000197 lang=eng_Latn token=▁also pos=8 sentence=The other one I did this year was also popular: Are Avocados Good for You?
+[18] score=0.000197 abs_score=0.000197 lang=deu_Latn token=▁frag pos=1 sentence=So frag die Kinder Israels.
+[19] score=0.000196 abs_score=0.000196 lang=eng_Latn token=▁is pos=11 sentence=Or, just plan your meals around the food that is in season.”
+[20] score=0.000196 abs_score=0.000196 lang=eng_Latn token=▁season pos=13 sentence=Or, just plan your meals around the food that is in season.”
+Top by |z|:
+[01] score=0.000206 abs_score=0.000206 lang=swe_Latn token=▁nu pos=15 sentence=Vi vill bara våra hundar ska sluta med det (vad det nu än är).
+[02] score=0.000204 abs_score=0.000204 lang=swe_Latn token=▁vill pos=1 sentence=Vi vill bara våra hundar ska sluta med det (vad det nu än är).
+[03] score=0.000204 abs_score=0.000204 lang=swe_Latn token=▁det pos=14 sentence=Vi vill bara våra hundar ska sluta med det (vad det nu än är).
+[04] score=0.000203 abs_score=0.000203 lang=pol_Latn token=liście pos=2 sentence=Zerwaliście przymierze Lewiego".
+[05] score=0.000202 abs_score=0.000202 lang=eng_Latn token=▁thanks pos=7 sentence=I also want to tell you that thanks to your Keno system I won 2000 euros.
+[06] score=0.000200 abs_score=0.000200 lang=pol_Latn token=▁dla pos=4 sentence=Zabiłeś go dla uciechy”.
+[07] score=0.000200 abs_score=0.000200 lang=swe_Latn token=). pos=18 sentence=Vi vill bara våra hundar ska sluta med det (vad det nu än är).
+[08] score=0.000200 abs_score=0.000200 lang=eng_Latn token=▁in pos=12 sentence=Or, just plan your meals around the food that is in season.”
+[09] score=0.000200 abs_score=0.000200 lang=swe_Latn token=▁än pos=16 sentence=Vi vill bara våra hundar ska sluta med det (vad det nu än är).
+[10] score=0.000199 abs_score=0.000199 lang=swe_Latn token=▁Vi pos=0 sentence=Vi vill bara våra hundar ska sluta med det (vad det nu än är).
+[11] score=0.000199 abs_score=0.000199 lang=deu_Latn token=▁bist pos=1 sentence=Du bist Israels König und Davids erhabener Sprößling.
+[12] score=0.000199 abs_score=0.000199 lang=swe_Latn token=▁Min pos=0 sentence=Min adress är som mina skor – den reser med mig”.
+[13] score=0.000198 abs_score=0.000198 lang=pol_Latn token=wa pos=1 sentence=Zerwaliście przymierze Lewiego".
+[14] score=0.000198 abs_score=0.000198 lang=swe_Latn token=▁bara pos=2 sentence=Vi vill bara våra hundar ska sluta med det (vad det nu än är).
+[15] score=0.000198 abs_score=0.000198 lang=eng_Latn token=▁to pos=14 sentence=Every mercy that comes from the heart brings you closer to my Son.”
+[16] score=0.000197 abs_score=0.000197 lang=por_Latn token=▁qu pos=1 sentence=Mas quão diferente no estado da Sua exaltação!
+[17] score=0.000197 abs_score=0.000197 lang=eng_Latn token=▁also pos=8 sentence=The other one I did this year was also popular: Are Avocados Good for You?
+[18] score=0.000197 abs_score=0.000197 lang=deu_Latn token=▁frag pos=1 sentence=So frag die Kinder Israels.
+[19] score=0.000196 abs_score=0.000196 lang=eng_Latn token=▁is pos=11 sentence=Or, just plan your meals around the food that is in season.”
+[20] score=0.000196 abs_score=0.000196 lang=eng_Latn token=▁season pos=13 sentence=Or, just plan your meals around the food that is in season.”
+
+--- Feature 5532 ---
+Top by z:
+[01] score=0.000205 abs_score=0.000205 lang=spa_Latn token=▁sab pos=1 sentence=Pero sabía que el propósito de Dios era bueno.
+[02] score=0.000204 abs_score=0.000204 lang=spa_Latn token=▁por pos=3 sentence=¡Juro por la belleza del Bienamado!
+[03] score=0.000203 abs_score=0.000203 lang=ita_Latn token=temente pos=3 sentence=Sentiva fortemente che il suo Signore
+[04] score=0.000202 abs_score=0.000202 lang=ita_Latn token=▁for pos=2 sentence=Sentiva fortemente che il suo Signore
+[05] score=0.000202 abs_score=0.000202 lang=ita_Latn token=▁mano pos=4 sentence=E davvero la mano del Signore era con lui."
+[06] score=0.000202 abs_score=0.000202 lang=pol_Latn token=▁swo pos=3 sentence=Czeka na swojego pana
+[07] score=0.000202 abs_score=0.000202 lang=pol_Latn token=▁na pos=2 sentence=Czeka na swojego pana
+[08] score=0.000202 abs_score=0.000202 lang=pol_Latn token=▁pana pos=5 sentence=Czeka na swojego pana
+[09] score=0.000201 abs_score=0.000201 lang=ita_Latn token=tiva pos=1 sentence=Sentiva fortemente che il suo Signore
+[10] score=0.000200 abs_score=0.000200 lang=pol_Latn token=▁dla pos=4 sentence=Zabiłeś go dla uciechy”.
+[11] score=0.000199 abs_score=0.000199 lang=spa_Latn token=idos pos=9 sentence=[pocos de Mis siervos son agradecidos.]
+[12] score=0.000199 abs_score=0.000199 lang=ita_Latn token=▁far pos=6 sentence=La mano del Signore si farà conoscere ai suoi servi".
+[13] score=0.000199 abs_score=0.000199 lang=por_Latn token=gio pos=7 sentence=Dize: Procuro refúgio no Senhor dos humanos,
+[14] score=0.000199 abs_score=0.000199 lang=deu_Latn token=▁der pos=11 sentence=Einige der Brüder wurden geprüft wie der alte Abraham.“
+[15] score=0.000198 abs_score=0.000198 lang=spa_Latn token=▁es pos=2 sentence=Quien es por Allah, Allah es por él.
+[16] score=0.000198 abs_score=0.000198 lang=deu_Latn token=▁habe pos=18 sentence=»Du mußt wissen, daß ich Ärger mit meinem Sohn Paul habe.
+[17] score=0.000198 abs_score=0.000198 lang=ita_Latn token=▁ag pos=9 sentence=È il Volere del mio Signore che agisce!”
+[18] score=0.000198 abs_score=0.000198 lang=pol_Latn token=▁go pos=3 sentence=Zabiłeś go dla uciechy”.
+[19] score=0.000198 abs_score=0.000198 lang=ita_Latn token=▁7- pos=0 sentence=7- ma sopporta con pazienza per il tuo Signore!
+[20] score=0.000198 abs_score=0.000198 lang=pol_Latn token=▁Cze pos=0 sentence=Czeka na swojego pana
+Top by |z|:
+[01] score=0.000205 abs_score=0.000205 lang=spa_Latn token=▁sab pos=1 sentence=Pero sabía que el propósito de Dios era bueno.
+[02] score=0.000204 abs_score=0.000204 lang=spa_Latn token=▁por pos=3 sentence=¡Juro por la belleza del Bienamado!
+[03] score=0.000203 abs_score=0.000203 lang=ita_Latn token=temente pos=3 sentence=Sentiva fortemente che il suo Signore
+[04] score=0.000202 abs_score=0.000202 lang=ita_Latn token=▁for pos=2 sentence=Sentiva fortemente che il suo Signore
+[05] score=0.000202 abs_score=0.000202 lang=ita_Latn token=▁mano pos=4 sentence=E davvero la mano del Signore era con lui."
+[06] score=0.000202 abs_score=0.000202 lang=pol_Latn token=▁swo pos=3 sentence=Czeka na swojego pana
+[07] score=0.000202 abs_score=0.000202 lang=pol_Latn token=▁na pos=2 sentence=Czeka na swojego pana
+[08] score=0.000202 abs_score=0.000202 lang=pol_Latn token=▁pana pos=5 sentence=Czeka na swojego pana
+[09] score=0.000201 abs_score=0.000201 lang=ita_Latn token=tiva pos=1 sentence=Sentiva fortemente che il suo Signore
+[10] score=0.000200 abs_score=0.000200 lang=pol_Latn token=▁dla pos=4 sentence=Zabiłeś go dla uciechy”.
+[11] score=0.000199 abs_score=0.000199 lang=spa_Latn token=idos pos=9 sentence=[pocos de Mis siervos son agradecidos.]
+[12] score=0.000199 abs_score=0.000199 lang=ita_Latn token=▁far pos=6 sentence=La mano del Signore si farà conoscere ai suoi servi".
+[13] score=0.000199 abs_score=0.000199 lang=por_Latn token=gio pos=7 sentence=Dize: Procuro refúgio no Senhor dos humanos,
+[14] score=0.000199 abs_score=0.000199 lang=deu_Latn token=▁der pos=11 sentence=Einige der Brüder wurden geprüft wie der alte Abraham.“
+[15] score=0.000198 abs_score=0.000198 lang=spa_Latn token=▁es pos=2 sentence=Quien es por Allah, Allah es por él.
+[16] score=0.000198 abs_score=0.000198 lang=deu_Latn token=▁habe pos=18 sentence=»Du mußt wissen, daß ich Ärger mit meinem Sohn Paul habe.
+[17] score=0.000198 abs_score=0.000198 lang=ita_Latn token=▁ag pos=9 sentence=È il Volere del mio Signore che agisce!”
+[18] score=0.000198 abs_score=0.000198 lang=pol_Latn token=▁go pos=3 sentence=Zabiłeś go dla uciechy”.
+[19] score=0.000198 abs_score=0.000198 lang=ita_Latn token=▁7- pos=0 sentence=7- ma sopporta con pazienza per il tuo Signore!
+[20] score=0.000198 abs_score=0.000198 lang=pol_Latn token=▁Cze pos=0 sentence=Czeka na swojego pana
+
+--- Feature 608 ---
+Top by z:
+[01] score=0.000205 abs_score=0.000205 lang=eng_Latn token=▁disappoint pos=6 sentence=*** Arseny, I must disappoint you, just for two months this year:
+[02] score=0.000205 abs_score=0.000205 lang=eng_Latn token=▁take pos=3 sentence=how can he take care of God’s church?”
+[03] score=0.000204 abs_score=0.000204 lang=eng_Latn token=▁was pos=7 sentence=The other one I did this year was also popular: Are Avocados Good for You?
+[04] score=0.000204 abs_score=0.000204 lang=eng_Latn token=▁this pos=5 sentence=The other one I did this year was also popular: Are Avocados Good for You?
+[05] score=0.000204 abs_score=0.000204 lang=nld_Latn token=pen pos=3 sentence=Zij grepen hem en schreeuwden: "Mannen van Israël, help!
+[06] score=0.000203 abs_score=0.000203 lang=eng_Latn token=▁did pos=4 sentence=The other one I did this year was also popular: Are Avocados Good for You?
+[07] score=0.000203 abs_score=0.000203 lang=eng_Latn token=▁I pos=3 sentence=The other one I did this year was also popular: Are Avocados Good for You?
+[08] score=0.000202 abs_score=0.000202 lang=deu_Latn token=▁Bolt pos=10 sentence=Diese Inseln sind immer noch da, Mr. Bolton.
+[09] score=0.000202 abs_score=0.000202 lang=nld_Latn token=▁hem pos=4 sentence=Zij grepen hem en schreeuwden: "Mannen van Israël, help!
+[10] score=0.000202 abs_score=0.000202 lang=eng_Latn token=▁the pos=1 sentence=For the Yin Fire (Ding), the month is much more difficult.
+[11] score=0.000201 abs_score=0.000201 lang=spa_Latn token=▁la pos=17 sentence=Pero al igual que con todas las sugerencias hechas, el Corán da la respuesta.
+[12] score=0.000201 abs_score=0.000201 lang=eng_Latn token=▁one pos=2 sentence=The other one I did this year was also popular: Are Avocados Good for You?
+[13] score=0.000200 abs_score=0.000200 lang=eng_Latn token=▁season pos=13 sentence=Or, just plan your meals around the food that is in season.”
+[14] score=0.000200 abs_score=0.000200 lang=eng_Latn token=▁continue pos=6 sentence="With U18 we can continue to grow.
+[15] score=0.000200 abs_score=0.000200 lang=deu_Latn token=▁Sie pos=2 sentence=Wählen Sie Kemppi, and you know.
+[16] score=0.000200 abs_score=0.000200 lang=eng_Latn token=▁made pos=1 sentence=God made men and women so they can bear children,” Mugabe said.
+[17] score=0.000200 abs_score=0.000200 lang=spa_Latn token=▁mien pos=4 sentence=Alá sabe que mienten.
+[18] score=0.000200 abs_score=0.000200 lang=eng_Latn token=▁also pos=8 sentence=The other one I did this year was also popular: Are Avocados Good for You?
+[19] score=0.000199 abs_score=0.000199 lang=swe_Latn token=▁än pos=16 sentence=Vi vill bara våra hundar ska sluta med det (vad det nu än är).
+[20] score=0.000199 abs_score=0.000199 lang=ces_Latn token=▁To pos=0 sentence=To je dobré pro diktátory v takových místech, jako je Venezuela.
+Top by |z|:
+[01] score=0.000205 abs_score=0.000205 lang=eng_Latn token=▁disappoint pos=6 sentence=*** Arseny, I must disappoint you, just for two months this year:
+[02] score=0.000205 abs_score=0.000205 lang=eng_Latn token=▁take pos=3 sentence=how can he take care of God’s church?”
+[03] score=0.000204 abs_score=0.000204 lang=eng_Latn token=▁was pos=7 sentence=The other one I did this year was also popular: Are Avocados Good for You?
+[04] score=0.000204 abs_score=0.000204 lang=eng_Latn token=▁this pos=5 sentence=The other one I did this year was also popular: Are Avocados Good for You?
+[05] score=0.000204 abs_score=0.000204 lang=nld_Latn token=pen pos=3 sentence=Zij grepen hem en schreeuwden: "Mannen van Israël, help!
+[06] score=0.000203 abs_score=0.000203 lang=eng_Latn token=▁did pos=4 sentence=The other one I did this year was also popular: Are Avocados Good for You?
+[07] score=0.000203 abs_score=0.000203 lang=eng_Latn token=▁I pos=3 sentence=The other one I did this year was also popular: Are Avocados Good for You?
+[08] score=0.000202 abs_score=0.000202 lang=deu_Latn token=▁Bolt pos=10 sentence=Diese Inseln sind immer noch da, Mr. Bolton.
+[09] score=0.000202 abs_score=0.000202 lang=nld_Latn token=▁hem pos=4 sentence=Zij grepen hem en schreeuwden: "Mannen van Israël, help!
+[10] score=0.000202 abs_score=0.000202 lang=eng_Latn token=▁the pos=1 sentence=For the Yin Fire (Ding), the month is much more difficult.
+[11] score=0.000201 abs_score=0.000201 lang=spa_Latn token=▁la pos=17 sentence=Pero al igual que con todas las sugerencias hechas, el Corán da la respuesta.
+[12] score=0.000201 abs_score=0.000201 lang=eng_Latn token=▁one pos=2 sentence=The other one I did this year was also popular: Are Avocados Good for You?
+[13] score=0.000200 abs_score=0.000200 lang=eng_Latn token=▁season pos=13 sentence=Or, just plan your meals around the food that is in season.”
+[14] score=0.000200 abs_score=0.000200 lang=eng_Latn token=▁continue pos=6 sentence="With U18 we can continue to grow.
+[15] score=0.000200 abs_score=0.000200 lang=deu_Latn token=▁Sie pos=2 sentence=Wählen Sie Kemppi, and you know.
+[16] score=0.000200 abs_score=0.000200 lang=eng_Latn token=▁made pos=1 sentence=God made men and women so they can bear children,” Mugabe said.
+[17] score=0.000200 abs_score=0.000200 lang=spa_Latn token=▁mien pos=4 sentence=Alá sabe que mienten.
+[18] score=0.000200 abs_score=0.000200 lang=eng_Latn token=▁also pos=8 sentence=The other one I did this year was also popular: Are Avocados Good for You?
+[19] score=0.000199 abs_score=0.000199 lang=swe_Latn token=▁än pos=16 sentence=Vi vill bara våra hundar ska sluta med det (vad det nu än är).
+[20] score=0.000199 abs_score=0.000199 lang=ces_Latn token=▁To pos=0 sentence=To je dobré pro diktátory v takových místech, jako je Venezuela.

@@ -1,0 +1,982 @@
+Loaded SAE checkpoint from weights/nllb/gsae_pool/model.pt
+Saving analysis output to results/nllb/gsae_pool/analysis.txt
+Using sentence-level pooled analysis to match training-time pooling.
+[collect] processed batch 0
+[collect] processed batch 10
+[collect] processed batch 20
+[collect] processed batch 30
+[collect] processed batch 40
+[collect] processed batch 50
+[collect] processed batch 60
+[collect] processed batch 70
+[collect] processed batch 80
+[collect] processed batch 90
+
+=== GLOBAL STATS ===
+num rows: 3200
+latent dim: 4096
+mean recon loss per token: 0.465405
+std recon loss per token:  0.150035
+top 10 feature max z:      [78.9907, 69.039787, 66.790817, 66.440445, 66.017998, 62.260258, 60.364899, 60.058842, 59.136833, 57.946598]
+top 10 feature mean z:     [7.422882, 6.941186, 6.932517, 6.129664, 6.006991, 5.938485, 5.854444, 5.837324, 5.830871, 5.775238]
+top 10 feature mean |z|:   [7.422882, 6.941186, 6.932517, 6.129664, 6.006991, 5.93849, 5.854444, 5.837324, 5.830871, 5.775238]
+
+=== PER-LANGUAGE SUMMARY ===
+eng_Latn: num_rows=320 mean_recon=0.571975
+fra_Latn: num_rows=320 mean_recon=0.481339
+deu_Latn: num_rows=320 mean_recon=0.431147
+nld_Latn: num_rows=320 mean_recon=0.431231
+swe_Latn: num_rows=320 mean_recon=0.421817
+spa_Latn: num_rows=320 mean_recon=0.509738
+ita_Latn: num_rows=320 mean_recon=0.474137
+por_Latn: num_rows=320 mean_recon=0.464636
+pol_Latn: num_rows=320 mean_recon=0.423752
+ces_Latn: num_rows=320 mean_recon=0.444275
+
+=== TOP FEATURES BY MAX Z ===
+feature= 358 max_z=78.990700 mean_z=5.116769 mean_abs_z=5.116769 max_abs_z=78.990700
+feature=3410 max_z=69.039787 mean_z=6.932517 mean_abs_z=6.932518 max_abs_z=69.039787
+feature= 143 max_z=66.790817 mean_z=5.938485 mean_abs_z=5.938490 max_abs_z=66.790817
+feature=1092 max_z=66.440445 mean_z=5.493667 mean_abs_z=5.493667 max_abs_z=66.440445
+feature=1343 max_z=66.017998 mean_z=5.404056 mean_abs_z=5.404056 max_abs_z=66.017998
+feature=1890 max_z=62.260258 mean_z=4.043536 mean_abs_z=4.043536 max_abs_z=62.260258
+feature=2965 max_z=60.364899 mean_z=3.245640 mean_abs_z=3.245640 max_abs_z=60.364899
+feature=3506 max_z=60.058842 mean_z=5.217052 mean_abs_z=5.217052 max_abs_z=60.058842
+feature=2777 max_z=59.136833 mean_z=3.474720 mean_abs_z=3.474720 max_abs_z=59.136833
+feature= 525 max_z=57.946598 mean_z=5.837324 mean_abs_z=5.837324 max_abs_z=57.946598
+feature= 677 max_z=57.569752 mean_z=6.129664 mean_abs_z=6.129664 max_abs_z=57.569752
+feature=2511 max_z=52.499393 mean_z=5.451808 mean_abs_z=5.451808 max_abs_z=52.499393
+feature=  14 max_z=49.932293 mean_z=5.407190 mean_abs_z=5.407190 max_abs_z=49.932293
+feature=3207 max_z=49.498009 mean_z=2.362927 mean_abs_z=2.362928 max_abs_z=49.498009
+feature=3556 max_z=47.099796 mean_z=5.775238 mean_abs_z=5.775238 max_abs_z=47.099796
+feature= 210 max_z=45.553482 mean_z=3.057505 mean_abs_z=3.057506 max_abs_z=45.553482
+feature=1008 max_z=45.326733 mean_z=3.176953 mean_abs_z=3.176953 max_abs_z=45.326733
+feature=3951 max_z=44.850574 mean_z=4.152868 mean_abs_z=4.152868 max_abs_z=44.850574
+feature= 524 max_z=42.390209 mean_z=6.941186 mean_abs_z=6.941185 max_abs_z=42.390209
+feature=2435 max_z=42.281742 mean_z=7.422883 mean_abs_z=7.422883 max_abs_z=42.281742
+
+=== TOP FEATURES BY MEAN Z ===
+feature=2435 mean_z=7.422883 max_z=42.281742 mean_abs_z=7.422883 max_abs_z=42.281742
+feature= 524 mean_z=6.941186 max_z=42.390209 mean_abs_z=6.941185 max_abs_z=42.390209
+feature=3410 mean_z=6.932517 max_z=69.039787 mean_abs_z=6.932518 max_abs_z=69.039787
+feature= 677 mean_z=6.129664 max_z=57.569752 mean_abs_z=6.129664 max_abs_z=57.569752
+feature=3525 mean_z=6.006991 max_z=30.447523 mean_abs_z=6.006991 max_abs_z=30.447523
+feature= 143 mean_z=5.938485 max_z=66.790817 mean_abs_z=5.938490 max_abs_z=66.790817
+feature=1109 mean_z=5.854444 max_z=40.272247 mean_abs_z=5.854444 max_abs_z=40.272247
+feature= 525 mean_z=5.837324 max_z=57.946598 mean_abs_z=5.837324 max_abs_z=57.946598
+feature=2832 mean_z=5.830870 max_z=33.081596 mean_abs_z=5.830871 max_abs_z=33.081596
+feature=3556 mean_z=5.775238 max_z=47.099796 mean_abs_z=5.775238 max_abs_z=47.099796
+feature=1092 mean_z=5.493667 max_z=66.440445 mean_abs_z=5.493667 max_abs_z=66.440445
+feature=2511 mean_z=5.451808 max_z=52.499393 mean_abs_z=5.451808 max_abs_z=52.499393
+feature=  14 mean_z=5.407190 max_z=49.932293 mean_abs_z=5.407190 max_abs_z=49.932293
+feature=1343 mean_z=5.404056 max_z=66.017998 mean_abs_z=5.404056 max_abs_z=66.017998
+feature=3818 mean_z=5.333017 max_z=27.748499 mean_abs_z=5.333016 max_abs_z=27.748499
+feature=2489 mean_z=5.259518 max_z=31.843714 mean_abs_z=5.259518 max_abs_z=31.843714
+feature=3506 mean_z=5.217052 max_z=60.058842 mean_abs_z=5.217052 max_abs_z=60.058842
+feature=2337 mean_z=5.198660 max_z=36.808601 mean_abs_z=5.198660 max_abs_z=36.808601
+feature=3881 mean_z=5.163109 max_z=35.942608 mean_abs_z=5.163134 max_abs_z=35.942608
+feature= 358 mean_z=5.116769 max_z=78.990700 mean_abs_z=5.116769 max_abs_z=78.990700
+
+=== TOP FEATURES BY MEAN |Z| ===
+feature=2435 mean_abs_z=7.422883 max_abs_z=42.281742 mean_z=7.422883 max_z=42.281742
+feature= 524 mean_abs_z=6.941185 max_abs_z=42.390209 mean_z=6.941186 max_z=42.390209
+feature=3410 mean_abs_z=6.932518 max_abs_z=69.039787 mean_z=6.932517 max_z=69.039787
+feature= 677 mean_abs_z=6.129664 max_abs_z=57.569752 mean_z=6.129664 max_z=57.569752
+feature=3525 mean_abs_z=6.006991 max_abs_z=30.447523 mean_z=6.006991 max_z=30.447523
+feature= 143 mean_abs_z=5.938490 max_abs_z=66.790817 mean_z=5.938485 max_z=66.790817
+feature=1109 mean_abs_z=5.854444 max_abs_z=40.272247 mean_z=5.854444 max_z=40.272247
+feature= 525 mean_abs_z=5.837324 max_abs_z=57.946598 mean_z=5.837324 max_z=57.946598
+feature=2832 mean_abs_z=5.830871 max_abs_z=33.081596 mean_z=5.830870 max_z=33.081596
+feature=3556 mean_abs_z=5.775238 max_abs_z=47.099796 mean_z=5.775238 max_z=47.099796
+feature=1092 mean_abs_z=5.493667 max_abs_z=66.440445 mean_z=5.493667 max_z=66.440445
+feature=2511 mean_abs_z=5.451808 max_abs_z=52.499393 mean_z=5.451808 max_z=52.499393
+feature=  14 mean_abs_z=5.407190 max_abs_z=49.932293 mean_z=5.407190 max_z=49.932293
+feature=1343 mean_abs_z=5.404056 max_abs_z=66.017998 mean_z=5.404056 max_z=66.017998
+feature=3818 mean_abs_z=5.333016 max_abs_z=27.748499 mean_z=5.333017 max_z=27.748499
+feature=2489 mean_abs_z=5.259518 max_abs_z=31.843714 mean_z=5.259518 max_z=31.843714
+feature=3506 mean_abs_z=5.217052 max_abs_z=60.058842 mean_z=5.217052 max_z=60.058842
+feature=2337 mean_abs_z=5.198660 max_abs_z=36.808601 mean_z=5.198660 max_z=36.808601
+feature=3881 mean_abs_z=5.163134 max_abs_z=35.942608 mean_z=5.163109 max_z=35.942608
+feature= 358 mean_abs_z=5.116769 max_abs_z=78.990700 mean_z=5.116769 max_z=78.990700
+
+=== TOP ACTIVATING EXAMPLES ===
+
+--- Feature 358 ---
+Top by z:
+[01] score=78.990700 abs_score=78.990700 lang=pol_Latn sentence=na niebie ani na ziemi, ani pod ziemią -
+[02] score=58.464516 abs_score=58.464516 lang=swe_Latn sentence=Gud vet allt och har all makt i himmelen och på jorden.
+[03] score=57.777103 abs_score=57.777103 lang=pol_Latn sentence=Znaków na niebie i na ziemi jest aż nadto.
+[04] score=56.159470 abs_score=56.159470 lang=swe_Latn sentence=är, han som är Herre över himmel och jord, han
+[05] score=53.839348 abs_score=53.839348 lang=pol_Latn sentence=Niech chwalą imię Pana, bo samo Jego imię jest wzniosłe, chwała Jego jest nad ziemią i niebem!
+[06] score=53.103775 abs_score=53.103775 lang=pol_Latn sentence=To On stworzył wszystko w niebie i na ziemi.
+[07] score=52.126293 abs_score=52.126293 lang=ces_Latn sentence=A Jemu náleží vše, co na nebesích je i na zemi, a všichni jsou Mu
+[08] score=50.234951 abs_score=50.234951 lang=pol_Latn sentence=Powiedziałeś nam oto że będą znaki i cuda na niebie i na ziemi, nim nastąpi koniec świata.
+[09] score=47.894501 abs_score=47.894501 lang=pol_Latn sentence=On jest władcą nieba i ziemi.
+[10] score=45.698952 abs_score=45.698952 lang=pol_Latn sentence=Bo jak wysoko jest niebo ponad ziemią, tak wielka jest Jego dobroć wobec bogobojnych.
+[11] score=45.553520 abs_score=45.553520 lang=swe_Latn sentence=Himmel och jord skall förgås, men Guds ord skall bestå.
+[12] score=45.052589 abs_score=45.052589 lang=swe_Latn sentence=undgår honom i himlarna eller på jorden, och det finns icke
+[13] score=45.047802 abs_score=45.047802 lang=ces_Latn sentence=překrásná a Jeho slaví vše, co na nebesích je i na zemi – On mocný
+[14] score=44.660267 abs_score=44.660267 lang=ces_Latn sentence=Pán tvůj zná nejlépe ty, kdož na nebesích jsou i na zemi.
+[15] score=44.159943 abs_score=44.159943 lang=ces_Latn sentence=On podmanil vám vše, co na nebesích je i na zemi, a všechno od Něho pochází.
+[16] score=43.886005 abs_score=43.886005 lang=ces_Latn sentence=Pán nebes i země a všeho, což mezi nimi jest a Pán východů.
+[17] score=43.768833 abs_score=43.768833 lang=ces_Latn sentence=Kolik je na nebesích i na zemi znamení, kolem nichž chodí a od nichž se odvracejí!
+[18] score=43.720306 abs_score=43.720306 lang=pol_Latn sentence=Powiedz do mnie: Dana mi jest wszelka władza w niebie i na ziemi [Dana mi jest wszelka władza w niebie i na ziemi] (patrz: Mt 28,18).
+[19] score=43.175125 abs_score=43.175125 lang=pol_Latn sentence=Bóg stworzył niebo i ziemię swoim Słowem.
+[20] score=42.803970 abs_score=42.803970 lang=swe_Latn sentence=Jesus är ju redan den som av Gud fått all makt i himmelen och på jorden!
+Top by |z|:
+[01] score=78.990700 abs_score=78.990700 lang=pol_Latn sentence=na niebie ani na ziemi, ani pod ziemią -
+[02] score=58.464516 abs_score=58.464516 lang=swe_Latn sentence=Gud vet allt och har all makt i himmelen och på jorden.
+[03] score=57.777103 abs_score=57.777103 lang=pol_Latn sentence=Znaków na niebie i na ziemi jest aż nadto.
+[04] score=56.159470 abs_score=56.159470 lang=swe_Latn sentence=är, han som är Herre över himmel och jord, han
+[05] score=53.839348 abs_score=53.839348 lang=pol_Latn sentence=Niech chwalą imię Pana, bo samo Jego imię jest wzniosłe, chwała Jego jest nad ziemią i niebem!
+[06] score=53.103775 abs_score=53.103775 lang=pol_Latn sentence=To On stworzył wszystko w niebie i na ziemi.
+[07] score=52.126293 abs_score=52.126293 lang=ces_Latn sentence=A Jemu náleží vše, co na nebesích je i na zemi, a všichni jsou Mu
+[08] score=50.234951 abs_score=50.234951 lang=pol_Latn sentence=Powiedziałeś nam oto że będą znaki i cuda na niebie i na ziemi, nim nastąpi koniec świata.
+[09] score=47.894501 abs_score=47.894501 lang=pol_Latn sentence=On jest władcą nieba i ziemi.
+[10] score=45.698952 abs_score=45.698952 lang=pol_Latn sentence=Bo jak wysoko jest niebo ponad ziemią, tak wielka jest Jego dobroć wobec bogobojnych.
+[11] score=45.553520 abs_score=45.553520 lang=swe_Latn sentence=Himmel och jord skall förgås, men Guds ord skall bestå.
+[12] score=45.052589 abs_score=45.052589 lang=swe_Latn sentence=undgår honom i himlarna eller på jorden, och det finns icke
+[13] score=45.047802 abs_score=45.047802 lang=ces_Latn sentence=překrásná a Jeho slaví vše, co na nebesích je i na zemi – On mocný
+[14] score=44.660267 abs_score=44.660267 lang=ces_Latn sentence=Pán tvůj zná nejlépe ty, kdož na nebesích jsou i na zemi.
+[15] score=44.159943 abs_score=44.159943 lang=ces_Latn sentence=On podmanil vám vše, co na nebesích je i na zemi, a všechno od Něho pochází.
+[16] score=43.886005 abs_score=43.886005 lang=ces_Latn sentence=Pán nebes i země a všeho, což mezi nimi jest a Pán východů.
+[17] score=43.768833 abs_score=43.768833 lang=ces_Latn sentence=Kolik je na nebesích i na zemi znamení, kolem nichž chodí a od nichž se odvracejí!
+[18] score=43.720306 abs_score=43.720306 lang=pol_Latn sentence=Powiedz do mnie: Dana mi jest wszelka władza w niebie i na ziemi [Dana mi jest wszelka władza w niebie i na ziemi] (patrz: Mt 28,18).
+[19] score=43.175125 abs_score=43.175125 lang=pol_Latn sentence=Bóg stworzył niebo i ziemię swoim Słowem.
+[20] score=42.803970 abs_score=42.803970 lang=swe_Latn sentence=Jesus är ju redan den som av Gud fått all makt i himmelen och på jorden!
+
+--- Feature 3410 ---
+Top by z:
+[01] score=69.039787 abs_score=69.039787 lang=swe_Latn sentence=Queer muslimer existerar - och vi är i sorg också
+[02] score=63.626774 abs_score=63.626774 lang=swe_Latn sentence=Vissa ting blir så starkt förknippade med en tid att de blir […]
+[03] score=61.051723 abs_score=61.051723 lang=por_Latn sentence=te foi mostrado no monte.”
+[04] score=58.011425 abs_score=58.011425 lang=swe_Latn sentence=Ert falska, tomma imperium kommer att bli historia.
+[05] score=57.467960 abs_score=57.467960 lang=deu_Latn sentence=Sein Gefährte verneinte dies.
+[06] score=56.020618 abs_score=56.020618 lang=swe_Latn sentence=Jag ger dem förhärligade kroppar”.
+[07] score=55.581894 abs_score=55.581894 lang=ces_Latn sentence=Budiž zdráva, milostiplná!
+[08] score=53.980923 abs_score=53.980923 lang=swe_Latn sentence=Himmel och jord är full av majestät: av din härlighet.
+[09] score=52.684074 abs_score=52.684074 lang=swe_Latn sentence=(Jag önskar att vi hade ett nationellt järnvägssystem!)
+[10] score=52.603489 abs_score=52.603489 lang=nld_Latn sentence=“Ze is zes en heeft meegedaan aan de Finnmarksløpet.
+[11] score=52.403538 abs_score=52.403538 lang=deu_Latn sentence=Ich mache dich stark, Wahad."
+[12] score=52.078926 abs_score=52.078926 lang=swe_Latn sentence=Himlarna visa fram hans makt; jordens hav är
+[13] score=51.448593 abs_score=51.448593 lang=swe_Latn sentence=De kan till och med vara, som vissa har föreslagit, en väg till ett annat universum.
+[14] score=50.709572 abs_score=50.709572 lang=swe_Latn sentence=* Endast om konsensus är synlig, den stabila versionen kommer att uppdateras.
+[15] score=50.077618 abs_score=50.077618 lang=swe_Latn sentence=Även om du redan är gift, har ett annat bröllop, eftersom du behöver den här bounce hus
+[16] score=49.291649 abs_score=49.291649 lang=swe_Latn sentence=Nej, [Jag svär] vid detta land
+[17] score=48.509861 abs_score=48.509861 lang=deu_Latn sentence=[787] Wirklich s. Wirklichkeit.[787]
+[18] score=48.153091 abs_score=48.153091 lang=deu_Latn sentence=Dann wollen wir mal schauen, was Jack unter Deiner Führung im Stande ist zu leisten.
+[19] score=47.968063 abs_score=47.968063 lang=ces_Latn sentence=Tam by to bylo, nevinnost Německa!
+[20] score=47.903904 abs_score=47.903904 lang=swe_Latn sentence=Var barmhärtig mot dem såsom de uppfostrade mig då jag var liten."
+Top by |z|:
+[01] score=69.039787 abs_score=69.039787 lang=swe_Latn sentence=Queer muslimer existerar - och vi är i sorg också
+[02] score=63.626774 abs_score=63.626774 lang=swe_Latn sentence=Vissa ting blir så starkt förknippade med en tid att de blir […]
+[03] score=61.051723 abs_score=61.051723 lang=por_Latn sentence=te foi mostrado no monte.”
+[04] score=58.011425 abs_score=58.011425 lang=swe_Latn sentence=Ert falska, tomma imperium kommer att bli historia.
+[05] score=57.467960 abs_score=57.467960 lang=deu_Latn sentence=Sein Gefährte verneinte dies.
+[06] score=56.020618 abs_score=56.020618 lang=swe_Latn sentence=Jag ger dem förhärligade kroppar”.
+[07] score=55.581894 abs_score=55.581894 lang=ces_Latn sentence=Budiž zdráva, milostiplná!
+[08] score=53.980923 abs_score=53.980923 lang=swe_Latn sentence=Himmel och jord är full av majestät: av din härlighet.
+[09] score=52.684074 abs_score=52.684074 lang=swe_Latn sentence=(Jag önskar att vi hade ett nationellt järnvägssystem!)
+[10] score=52.603489 abs_score=52.603489 lang=nld_Latn sentence=“Ze is zes en heeft meegedaan aan de Finnmarksløpet.
+[11] score=52.403538 abs_score=52.403538 lang=deu_Latn sentence=Ich mache dich stark, Wahad."
+[12] score=52.078926 abs_score=52.078926 lang=swe_Latn sentence=Himlarna visa fram hans makt; jordens hav är
+[13] score=51.448593 abs_score=51.448593 lang=swe_Latn sentence=De kan till och med vara, som vissa har föreslagit, en väg till ett annat universum.
+[14] score=50.709572 abs_score=50.709572 lang=swe_Latn sentence=* Endast om konsensus är synlig, den stabila versionen kommer att uppdateras.
+[15] score=50.077618 abs_score=50.077618 lang=swe_Latn sentence=Även om du redan är gift, har ett annat bröllop, eftersom du behöver den här bounce hus
+[16] score=49.291649 abs_score=49.291649 lang=swe_Latn sentence=Nej, [Jag svär] vid detta land
+[17] score=48.509861 abs_score=48.509861 lang=deu_Latn sentence=[787] Wirklich s. Wirklichkeit.[787]
+[18] score=48.153091 abs_score=48.153091 lang=deu_Latn sentence=Dann wollen wir mal schauen, was Jack unter Deiner Führung im Stande ist zu leisten.
+[19] score=47.968063 abs_score=47.968063 lang=ces_Latn sentence=Tam by to bylo, nevinnost Německa!
+[20] score=47.903904 abs_score=47.903904 lang=swe_Latn sentence=Var barmhärtig mot dem såsom de uppfostrade mig då jag var liten."
+
+--- Feature 143 ---
+Top by z:
+[01] score=66.790817 abs_score=66.790817 lang=eng_Latn sentence=Something wonderful has happened… Number Five is alive!
+[02] score=53.293610 abs_score=53.293610 lang=eng_Latn sentence=I also admit that He is the greatest Rabbi in Israel.»
+[03] score=49.484612 abs_score=49.484612 lang=eng_Latn sentence=If God is real (and He is!) then how could 9/11 happen?
+[04] score=49.412899 abs_score=49.412899 lang=eng_Latn sentence=(Every year, the students battle is quite high level….is it the same this year?
+[05] score=48.374184 abs_score=48.374184 lang=eng_Latn sentence=We are already dead - the gas will just kill us again.
+[06] score=48.040070 abs_score=48.040070 lang=eng_Latn sentence=[9] His work is also discussed here.
+[07] score=47.772018 abs_score=47.772018 lang=eng_Latn sentence=My child, be patient in everything, for the reward is great.
+[08] score=47.483273 abs_score=47.483273 lang=eng_Latn sentence=“We have known since 2007 that the city is vulnerable.
+[09] score=46.318748 abs_score=46.318748 lang=ita_Latn sentence=Voglio quello show, Frank.
+[10] score=46.080605 abs_score=46.080605 lang=eng_Latn sentence=“President Obama tried, they all tried.
+[11] score=46.052486 abs_score=46.052486 lang=eng_Latn sentence=Next month, Chris will recommend another five terrible markets.
+[12] score=46.021450 abs_score=46.021450 lang=eng_Latn sentence=Many years ago I changed my attitude towards him (the president).
+[13] score=45.783600 abs_score=45.783600 lang=eng_Latn sentence=We say YES to Europe, but we want a new beginning.
+[14] score=45.346416 abs_score=45.346416 lang=eng_Latn sentence=The first reason is obvious; we are an international organization dedicated to charity!
+[15] score=45.130501 abs_score=45.130501 lang=eng_Latn sentence=But I love that she created a new term for my unique birth).
+[16] score=44.796120 abs_score=44.796120 lang=eng_Latn sentence=If the sky and the sea are as black as ink,
+[17] score=44.697273 abs_score=44.697273 lang=eng_Latn sentence=In answer to an earlier question, I said that those three articles must and will be changed in Turkey.
+[18] score=43.586571 abs_score=43.586571 lang=eng_Latn sentence=(We can be sure that she had faith.
+[19] score=43.453606 abs_score=43.453606 lang=eng_Latn sentence=“But I think people saw the value of their money last night.
+[20] score=42.943661 abs_score=42.943661 lang=eng_Latn sentence=Of course we cannot know why he had that exceptional genius 500 years ago!
+Top by |z|:
+[01] score=66.790817 abs_score=66.790817 lang=eng_Latn sentence=Something wonderful has happened… Number Five is alive!
+[02] score=53.293610 abs_score=53.293610 lang=eng_Latn sentence=I also admit that He is the greatest Rabbi in Israel.»
+[03] score=49.484612 abs_score=49.484612 lang=eng_Latn sentence=If God is real (and He is!) then how could 9/11 happen?
+[04] score=49.412899 abs_score=49.412899 lang=eng_Latn sentence=(Every year, the students battle is quite high level….is it the same this year?
+[05] score=48.374184 abs_score=48.374184 lang=eng_Latn sentence=We are already dead - the gas will just kill us again.
+[06] score=48.040070 abs_score=48.040070 lang=eng_Latn sentence=[9] His work is also discussed here.
+[07] score=47.772018 abs_score=47.772018 lang=eng_Latn sentence=My child, be patient in everything, for the reward is great.
+[08] score=47.483273 abs_score=47.483273 lang=eng_Latn sentence=“We have known since 2007 that the city is vulnerable.
+[09] score=46.318748 abs_score=46.318748 lang=ita_Latn sentence=Voglio quello show, Frank.
+[10] score=46.080605 abs_score=46.080605 lang=eng_Latn sentence=“President Obama tried, they all tried.
+[11] score=46.052486 abs_score=46.052486 lang=eng_Latn sentence=Next month, Chris will recommend another five terrible markets.
+[12] score=46.021450 abs_score=46.021450 lang=eng_Latn sentence=Many years ago I changed my attitude towards him (the president).
+[13] score=45.783600 abs_score=45.783600 lang=eng_Latn sentence=We say YES to Europe, but we want a new beginning.
+[14] score=45.346416 abs_score=45.346416 lang=eng_Latn sentence=The first reason is obvious; we are an international organization dedicated to charity!
+[15] score=45.130501 abs_score=45.130501 lang=eng_Latn sentence=But I love that she created a new term for my unique birth).
+[16] score=44.796120 abs_score=44.796120 lang=eng_Latn sentence=If the sky and the sea are as black as ink,
+[17] score=44.697273 abs_score=44.697273 lang=eng_Latn sentence=In answer to an earlier question, I said that those three articles must and will be changed in Turkey.
+[18] score=43.586571 abs_score=43.586571 lang=eng_Latn sentence=(We can be sure that she had faith.
+[19] score=43.453606 abs_score=43.453606 lang=eng_Latn sentence=“But I think people saw the value of their money last night.
+[20] score=42.943661 abs_score=42.943661 lang=eng_Latn sentence=Of course we cannot know why he had that exceptional genius 500 years ago!
+
+--- Feature 1092 ---
+Top by z:
+[01] score=66.440445 abs_score=66.440445 lang=spa_Latn sentence=el Clemente y el Misericordioso.
+[02] score=62.986919 abs_score=62.986919 lang=spa_Latn sentence=Tú que eres Poderoso y Misericordioso,
+[03] score=61.050514 abs_score=61.050514 lang=spa_Latn sentence=Es indulgente y misericordioso.
+[04] score=59.326702 abs_score=59.326702 lang=ita_Latn sentence=Nel nome di Dio, il Compassionevole, il misericordioso
+[05] score=57.086674 abs_score=57.086674 lang=spa_Latn sentence=El Señor es muy misericordioso y compasivo”.
+[06] score=56.197124 abs_score=56.197124 lang=spa_Latn sentence=La Misericordia de Dios se manifiesta en la Eucaristía.
+[07] score=55.385960 abs_score=55.385960 lang=spa_Latn sentence=Aláh es indulgente, misericordioso."
+[08] score=51.367275 abs_score=51.367275 lang=spa_Latn sentence=Él es el Indulgente, el Misericordioso» (39, 53).
+[09] score=50.387028 abs_score=50.387028 lang=ita_Latn sentence=Siate testimoni della misericordia del nostro Signore.
+[10] score=48.499222 abs_score=48.499222 lang=spa_Latn sentence=Yo soy el Indulgente, el Misericordioso».
+[11] score=48.310398 abs_score=48.310398 lang=ita_Latn sentence=Tu sei in verità il Misericordioso, il Compassionevole, il Benevolo, il Generosissimo!
+[12] score=48.014816 abs_score=48.014816 lang=ita_Latn sentence=e proclama la grazia del tuo Signore.
+[13] score=47.885639 abs_score=47.885639 lang=por_Latn sentence="Ressurreição de Nosso Senhor"
+[14] score=47.581097 abs_score=47.581097 lang=spa_Latn sentence=¡Ciertamente Tú eres Compasivo y Misericordioso! [10].
+[15] score=47.462963 abs_score=47.462963 lang=spa_Latn sentence="¡Alabado sea Alá, el Todopoderoso, el Clementísimo, el Misericordioso!"
+[16] score=46.570686 abs_score=46.570686 lang=ita_Latn sentence=per proclamare l’anno di grazia del Signore.”
+[17] score=46.009449 abs_score=46.009449 lang=ita_Latn sentence=Essa è una porta verso la misericordia del tuo Signore.
+[18] score=45.687943 abs_score=45.687943 lang=spa_Latn sentence=La misericordia de Dios se muestra en su paciencia.
+[19] score=43.841816 abs_score=43.841816 lang=ita_Latn sentence=La mano della volontà del tuo Signore, il Compassionevole, il Clemente, Mi ha trasformato.
+[20] score=43.387192 abs_score=43.387192 lang=spa_Latn sentence=Dios Todopoderoso y Santo,
+Top by |z|:
+[01] score=66.440445 abs_score=66.440445 lang=spa_Latn sentence=el Clemente y el Misericordioso.
+[02] score=62.986919 abs_score=62.986919 lang=spa_Latn sentence=Tú que eres Poderoso y Misericordioso,
+[03] score=61.050514 abs_score=61.050514 lang=spa_Latn sentence=Es indulgente y misericordioso.
+[04] score=59.326702 abs_score=59.326702 lang=ita_Latn sentence=Nel nome di Dio, il Compassionevole, il misericordioso
+[05] score=57.086674 abs_score=57.086674 lang=spa_Latn sentence=El Señor es muy misericordioso y compasivo”.
+[06] score=56.197124 abs_score=56.197124 lang=spa_Latn sentence=La Misericordia de Dios se manifiesta en la Eucaristía.
+[07] score=55.385960 abs_score=55.385960 lang=spa_Latn sentence=Aláh es indulgente, misericordioso."
+[08] score=51.367275 abs_score=51.367275 lang=spa_Latn sentence=Él es el Indulgente, el Misericordioso» (39, 53).
+[09] score=50.387028 abs_score=50.387028 lang=ita_Latn sentence=Siate testimoni della misericordia del nostro Signore.
+[10] score=48.499222 abs_score=48.499222 lang=spa_Latn sentence=Yo soy el Indulgente, el Misericordioso».
+[11] score=48.310398 abs_score=48.310398 lang=ita_Latn sentence=Tu sei in verità il Misericordioso, il Compassionevole, il Benevolo, il Generosissimo!
+[12] score=48.014816 abs_score=48.014816 lang=ita_Latn sentence=e proclama la grazia del tuo Signore.
+[13] score=47.885639 abs_score=47.885639 lang=por_Latn sentence="Ressurreição de Nosso Senhor"
+[14] score=47.581097 abs_score=47.581097 lang=spa_Latn sentence=¡Ciertamente Tú eres Compasivo y Misericordioso! [10].
+[15] score=47.462963 abs_score=47.462963 lang=spa_Latn sentence="¡Alabado sea Alá, el Todopoderoso, el Clementísimo, el Misericordioso!"
+[16] score=46.570686 abs_score=46.570686 lang=ita_Latn sentence=per proclamare l’anno di grazia del Signore.”
+[17] score=46.009449 abs_score=46.009449 lang=ita_Latn sentence=Essa è una porta verso la misericordia del tuo Signore.
+[18] score=45.687943 abs_score=45.687943 lang=spa_Latn sentence=La misericordia de Dios se muestra en su paciencia.
+[19] score=43.841816 abs_score=43.841816 lang=ita_Latn sentence=La mano della volontà del tuo Signore, il Compassionevole, il Clemente, Mi ha trasformato.
+[20] score=43.387192 abs_score=43.387192 lang=spa_Latn sentence=Dios Todopoderoso y Santo,
+
+--- Feature 1343 ---
+Top by z:
+[01] score=66.017998 abs_score=66.017998 lang=deu_Latn sentence=„I’ll Never Love Again“ aus A STAR IS BORN
+[02] score=62.709049 abs_score=62.709049 lang=eng_Latn sentence=He is NOT saying there is NO AUTHORITY.”
+[03] score=62.493076 abs_score=62.493076 lang=eng_Latn sentence=Jason: Also, did you watch the reunion – THE KNOTS LANDING REUNION – that
+[04] score=62.030613 abs_score=62.030613 lang=ces_Latn sentence=Napsali na sklo: „JSTE V HELIKOPTÉŘE!“.
+[05] score=57.180088 abs_score=57.180088 lang=deu_Latn sentence=[787] Wirklich s. Wirklichkeit.[787]
+[06] score=54.536751 abs_score=54.536751 lang=swe_Latn sentence=Skall de då inte tacka [Honom](35)
+[07] score=54.145584 abs_score=54.145584 lang=eng_Latn sentence=“Thank you for becoming what @Coinbase would not.”
+[08] score=52.116177 abs_score=52.116177 lang=ces_Latn sentence=Není (ho) - (pak jen) Nebe a Země.
+[09] score=51.653248 abs_score=51.653248 lang=ces_Latn sentence=Rci: „Béřu útočiště u Pána JITŘENKY,
+[10] score=50.610935 abs_score=50.610935 lang=por_Latn sentence=“Ó Senhor Nosso!
+[11] score=50.328857 abs_score=50.328857 lang=eng_Latn sentence=[Rm 13:12]: The light of God's mercy.
+[12] score=49.482483 abs_score=49.482483 lang=por_Latn sentence=E A QUEM FOI REVELADO O BRAÇO DO SENHOR?
+[13] score=48.059616 abs_score=48.059616 lang=eng_Latn sentence=VILLARINO: You mean in the short term or with my retirement? [laughs]
+[14] score=47.340714 abs_score=47.340714 lang=eng_Latn sentence=Science Says You Can (Partly) Blame Your Friends
+[15] score=46.680046 abs_score=46.680046 lang=por_Latn sentence=“Ó povo de Bahá!
+[16] score=46.555180 abs_score=46.555180 lang=swe_Latn sentence=19:51 OCH MINNS [vad] denna Skrift [har att säga om] Moses.
+[17] score=46.212242 abs_score=46.212242 lang=eng_Latn sentence=All rights reserved, Boon.Today.
+[18] score=44.879158 abs_score=44.879158 lang=pol_Latn sentence=* Powiedzieli: "O Mojżeszu!
+[19] score=43.229218 abs_score=43.229218 lang=eng_Latn sentence=Al-Wajid: The Rich who is never poor.
+[20] score=42.328411 abs_score=42.328411 lang=eng_Latn sentence=Did the pharaohs get help… From above?
+Top by |z|:
+[01] score=66.017998 abs_score=66.017998 lang=deu_Latn sentence=„I’ll Never Love Again“ aus A STAR IS BORN
+[02] score=62.709049 abs_score=62.709049 lang=eng_Latn sentence=He is NOT saying there is NO AUTHORITY.”
+[03] score=62.493076 abs_score=62.493076 lang=eng_Latn sentence=Jason: Also, did you watch the reunion – THE KNOTS LANDING REUNION – that
+[04] score=62.030613 abs_score=62.030613 lang=ces_Latn sentence=Napsali na sklo: „JSTE V HELIKOPTÉŘE!“.
+[05] score=57.180088 abs_score=57.180088 lang=deu_Latn sentence=[787] Wirklich s. Wirklichkeit.[787]
+[06] score=54.536751 abs_score=54.536751 lang=swe_Latn sentence=Skall de då inte tacka [Honom](35)
+[07] score=54.145584 abs_score=54.145584 lang=eng_Latn sentence=“Thank you for becoming what @Coinbase would not.”
+[08] score=52.116177 abs_score=52.116177 lang=ces_Latn sentence=Není (ho) - (pak jen) Nebe a Země.
+[09] score=51.653248 abs_score=51.653248 lang=ces_Latn sentence=Rci: „Béřu útočiště u Pána JITŘENKY,
+[10] score=50.610935 abs_score=50.610935 lang=por_Latn sentence=“Ó Senhor Nosso!
+[11] score=50.328857 abs_score=50.328857 lang=eng_Latn sentence=[Rm 13:12]: The light of God's mercy.
+[12] score=49.482483 abs_score=49.482483 lang=por_Latn sentence=E A QUEM FOI REVELADO O BRAÇO DO SENHOR?
+[13] score=48.059616 abs_score=48.059616 lang=eng_Latn sentence=VILLARINO: You mean in the short term or with my retirement? [laughs]
+[14] score=47.340714 abs_score=47.340714 lang=eng_Latn sentence=Science Says You Can (Partly) Blame Your Friends
+[15] score=46.680046 abs_score=46.680046 lang=por_Latn sentence=“Ó povo de Bahá!
+[16] score=46.555180 abs_score=46.555180 lang=swe_Latn sentence=19:51 OCH MINNS [vad] denna Skrift [har att säga om] Moses.
+[17] score=46.212242 abs_score=46.212242 lang=eng_Latn sentence=All rights reserved, Boon.Today.
+[18] score=44.879158 abs_score=44.879158 lang=pol_Latn sentence=* Powiedzieli: "O Mojżeszu!
+[19] score=43.229218 abs_score=43.229218 lang=eng_Latn sentence=Al-Wajid: The Rich who is never poor.
+[20] score=42.328411 abs_score=42.328411 lang=eng_Latn sentence=Did the pharaohs get help… From above?
+
+--- Feature 1890 ---
+Top by z:
+[01] score=62.260258 abs_score=62.260258 lang=eng_Latn sentence=This Company Will Pay You $1,000 for Telling It Why Your School Rules
+[02] score=50.774223 abs_score=50.774223 lang=eng_Latn sentence=Science Says You Can (Partly) Blame Your Friends
+[03] score=50.001266 abs_score=50.001266 lang=swe_Latn sentence=What Do you Know About Desire?” från 1995.
+[04] score=45.594860 abs_score=45.594860 lang=swe_Latn sentence=Du är här: How to create value in your drug development
+[05] score=45.521923 abs_score=45.521923 lang=eng_Latn sentence=Did the pharaohs get help… From above?
+[06] score=41.079834 abs_score=41.079834 lang=deu_Latn sentence=Is the Two-State Solution in Danger? auf Haaretz
+[07] score=40.509514 abs_score=40.509514 lang=eng_Latn sentence=Great wines ... protected by an ambitious regulatory framework
+[08] score=39.848240 abs_score=39.848240 lang=eng_Latn sentence=PMI Always Present at the Institutional Level !
+[09] score=38.654667 abs_score=38.654667 lang=eng_Latn sentence=He is NOT saying there is NO AUTHORITY.”
+[10] score=37.695728 abs_score=37.695728 lang=eng_Latn sentence=“Thank you for becoming what @Coinbase would not.”
+[11] score=37.419647 abs_score=37.419647 lang=eng_Latn sentence=All rights reserved, Boon.Today.
+[12] score=36.718353 abs_score=36.718353 lang=eng_Latn sentence=Not by his name, but by his name-transcending "you".
+[13] score=36.454536 abs_score=36.454536 lang=eng_Latn sentence=And I felt like I [had done] this shit so many times.
+[14] score=36.418884 abs_score=36.418884 lang=eng_Latn sentence=Never Let me Go – Miss Lucy tells the truth
+[15] score=36.358765 abs_score=36.358765 lang=eng_Latn sentence=I remember now —the new creature uses it.
+[16] score=36.245514 abs_score=36.245514 lang=eng_Latn sentence=Say your dog’s name, followed by the command.
+[17] score=36.216946 abs_score=36.216946 lang=swe_Latn sentence=Give me a penny för your lungs man.
+[18] score=35.466949 abs_score=35.466949 lang=eng_Latn sentence=Version 1.2 created for: Shirts.
+[19] score=34.465443 abs_score=34.465443 lang=eng_Latn sentence=「Indeed a King may need to consider such things.
+[20] score=34.413319 abs_score=34.413319 lang=eng_Latn sentence=(3) Unfortunately, all your predecessors since 1967 have played a double game.
+Top by |z|:
+[01] score=62.260258 abs_score=62.260258 lang=eng_Latn sentence=This Company Will Pay You $1,000 for Telling It Why Your School Rules
+[02] score=50.774223 abs_score=50.774223 lang=eng_Latn sentence=Science Says You Can (Partly) Blame Your Friends
+[03] score=50.001266 abs_score=50.001266 lang=swe_Latn sentence=What Do you Know About Desire?” från 1995.
+[04] score=45.594860 abs_score=45.594860 lang=swe_Latn sentence=Du är här: How to create value in your drug development
+[05] score=45.521923 abs_score=45.521923 lang=eng_Latn sentence=Did the pharaohs get help… From above?
+[06] score=41.079834 abs_score=41.079834 lang=deu_Latn sentence=Is the Two-State Solution in Danger? auf Haaretz
+[07] score=40.509514 abs_score=40.509514 lang=eng_Latn sentence=Great wines ... protected by an ambitious regulatory framework
+[08] score=39.848240 abs_score=39.848240 lang=eng_Latn sentence=PMI Always Present at the Institutional Level !
+[09] score=38.654667 abs_score=38.654667 lang=eng_Latn sentence=He is NOT saying there is NO AUTHORITY.”
+[10] score=37.695728 abs_score=37.695728 lang=eng_Latn sentence=“Thank you for becoming what @Coinbase would not.”
+[11] score=37.419647 abs_score=37.419647 lang=eng_Latn sentence=All rights reserved, Boon.Today.
+[12] score=36.718353 abs_score=36.718353 lang=eng_Latn sentence=Not by his name, but by his name-transcending "you".
+[13] score=36.454536 abs_score=36.454536 lang=eng_Latn sentence=And I felt like I [had done] this shit so many times.
+[14] score=36.418884 abs_score=36.418884 lang=eng_Latn sentence=Never Let me Go – Miss Lucy tells the truth
+[15] score=36.358765 abs_score=36.358765 lang=eng_Latn sentence=I remember now —the new creature uses it.
+[16] score=36.245514 abs_score=36.245514 lang=eng_Latn sentence=Say your dog’s name, followed by the command.
+[17] score=36.216946 abs_score=36.216946 lang=swe_Latn sentence=Give me a penny för your lungs man.
+[18] score=35.466949 abs_score=35.466949 lang=eng_Latn sentence=Version 1.2 created for: Shirts.
+[19] score=34.465443 abs_score=34.465443 lang=eng_Latn sentence=「Indeed a King may need to consider such things.
+[20] score=34.413319 abs_score=34.413319 lang=eng_Latn sentence=(3) Unfortunately, all your predecessors since 1967 have played a double game.
+
+--- Feature 2965 ---
+Top by z:
+[01] score=60.364899 abs_score=60.364899 lang=spa_Latn sentence=Y a Dios lo que es de Dios
+[02] score=53.519909 abs_score=53.519909 lang=spa_Latn sentence=Dele a Dios lo que es de Dios.
+[03] score=49.093048 abs_score=49.093048 lang=spa_Latn sentence=denle a dios lo que es de dios
+[04] score=47.641304 abs_score=47.641304 lang=spa_Latn sentence=La fuente de la paz de Dios es Dios Mismo.
+[05] score=45.338070 abs_score=45.338070 lang=spa_Latn sentence=El único que conoce perfectamente la mente de Dios es el Espíritu de Dios.”
+[06] score=44.072052 abs_score=44.072052 lang=spa_Latn sentence=La Voluntad de Dios es dar vida, y traer a todos los hijos de Dios bajo Su protección.
+[07] score=43.509453 abs_score=43.509453 lang=eng_Latn sentence=does not have God's Son does not have life.
+[08] score=42.983227 abs_score=42.983227 lang=spa_Latn sentence=La palabra de Dios tiene poder y autoridad.
+[09] score=41.347023 abs_score=41.347023 lang=fra_Latn sentence=Je crois que vous êtes le Christ, le Fils de Dieu ".
+[10] score=40.468288 abs_score=40.468288 lang=spa_Latn sentence=Siga la guía de Dios.
+[11] score=40.215599 abs_score=40.215599 lang=eng_Latn sentence=He was also God's Sabbath and He was God.
+[12] score=39.463886 abs_score=39.463886 lang=spa_Latn sentence=habla las palabras de Dios, porque Dios le ha concedido sin medida su Espíritu.
+[13] score=38.970119 abs_score=38.970119 lang=spa_Latn sentence=La verdad viene de la Palabra de Dios.
+[14] score=38.786457 abs_score=38.786457 lang=spa_Latn sentence=“Pero el Espíritu de Dios está sobre todas las cosas.
+[15] score=38.729469 abs_score=38.729469 lang=eng_Latn sentence=What is sin except a false idea about God's Son?
+[16] score=37.511108 abs_score=37.511108 lang=fra_Latn sentence=Nous savons que ce n'est ni la Loi de Dieu ni Sa volonté.
+[17] score=37.376980 abs_score=37.376980 lang=spa_Latn sentence=Creo que es una verdad de Dios.
+[18] score=37.374340 abs_score=37.374340 lang=eng_Latn sentence=If it's contrary to God's Word, let his word be a lie, and keep God's Word.
+[19] score=37.006691 abs_score=37.006691 lang=spa_Latn sentence=No se da a dios lo que es de dios.
+[20] score=36.590397 abs_score=36.590397 lang=spa_Latn sentence=A través de estas palabras de Dios llegué a un mejor entendimiento de la voluntad de Dios.
+Top by |z|:
+[01] score=60.364899 abs_score=60.364899 lang=spa_Latn sentence=Y a Dios lo que es de Dios
+[02] score=53.519909 abs_score=53.519909 lang=spa_Latn sentence=Dele a Dios lo que es de Dios.
+[03] score=49.093048 abs_score=49.093048 lang=spa_Latn sentence=denle a dios lo que es de dios
+[04] score=47.641304 abs_score=47.641304 lang=spa_Latn sentence=La fuente de la paz de Dios es Dios Mismo.
+[05] score=45.338070 abs_score=45.338070 lang=spa_Latn sentence=El único que conoce perfectamente la mente de Dios es el Espíritu de Dios.”
+[06] score=44.072052 abs_score=44.072052 lang=spa_Latn sentence=La Voluntad de Dios es dar vida, y traer a todos los hijos de Dios bajo Su protección.
+[07] score=43.509453 abs_score=43.509453 lang=eng_Latn sentence=does not have God's Son does not have life.
+[08] score=42.983227 abs_score=42.983227 lang=spa_Latn sentence=La palabra de Dios tiene poder y autoridad.
+[09] score=41.347023 abs_score=41.347023 lang=fra_Latn sentence=Je crois que vous êtes le Christ, le Fils de Dieu ".
+[10] score=40.468288 abs_score=40.468288 lang=spa_Latn sentence=Siga la guía de Dios.
+[11] score=40.215599 abs_score=40.215599 lang=eng_Latn sentence=He was also God's Sabbath and He was God.
+[12] score=39.463886 abs_score=39.463886 lang=spa_Latn sentence=habla las palabras de Dios, porque Dios le ha concedido sin medida su Espíritu.
+[13] score=38.970119 abs_score=38.970119 lang=spa_Latn sentence=La verdad viene de la Palabra de Dios.
+[14] score=38.786457 abs_score=38.786457 lang=spa_Latn sentence=“Pero el Espíritu de Dios está sobre todas las cosas.
+[15] score=38.729469 abs_score=38.729469 lang=eng_Latn sentence=What is sin except a false idea about God's Son?
+[16] score=37.511108 abs_score=37.511108 lang=fra_Latn sentence=Nous savons que ce n'est ni la Loi de Dieu ni Sa volonté.
+[17] score=37.376980 abs_score=37.376980 lang=spa_Latn sentence=Creo que es una verdad de Dios.
+[18] score=37.374340 abs_score=37.374340 lang=eng_Latn sentence=If it's contrary to God's Word, let his word be a lie, and keep God's Word.
+[19] score=37.006691 abs_score=37.006691 lang=spa_Latn sentence=No se da a dios lo que es de dios.
+[20] score=36.590397 abs_score=36.590397 lang=spa_Latn sentence=A través de estas palabras de Dios llegué a un mejor entendimiento de la voluntad de Dios.
+
+--- Feature 3506 ---
+Top by z:
+[01] score=60.058842 abs_score=60.058842 lang=por_Latn sentence=É esse o senhor do universo?
+[02] score=53.765114 abs_score=53.765114 lang=nld_Latn sentence=150 Banks, waar ben je?
+[03] score=53.388287 abs_score=53.388287 lang=swe_Latn sentence=Vill du då ge dem i Israels hand?"
+[04] score=51.699791 abs_score=51.699791 lang=por_Latn sentence=Quer o perdão do Senhor?
+[05] score=51.364246 abs_score=51.364246 lang=eng_Latn sentence=Is he not the president of 77 million people?
+[06] score=47.599491 abs_score=47.599491 lang=ces_Latn sentence=A jak si svého pana Božského představuje?
+[07] score=46.166595 abs_score=46.166595 lang=por_Latn sentence=392 Você realmente faz isso?
+[08] score=45.265976 abs_score=45.265976 lang=deu_Latn sentence=Was ist der j!-over birthday contest?
+[09] score=45.157894 abs_score=45.157894 lang=por_Latn sentence=Ele não é o Senhor do Universo?
+[10] score=43.815456 abs_score=43.815456 lang=ita_Latn sentence=Non sarà forse questo il giorno della gloria di Dio?
+[11] score=43.012302 abs_score=43.012302 lang=swe_Latn sentence=What Do you Know About Desire?” från 1995.
+[12] score=42.303188 abs_score=42.303188 lang=por_Latn sentence=Que dons do vosso Senhor negareis?
+[13] score=41.089596 abs_score=41.089596 lang=swe_Latn sentence=Eller gjorde de skapar himlarna och jorden?
+[14] score=40.824757 abs_score=40.824757 lang=deu_Latn sentence=Aber warum ist $foo[bar] falsch?
+[15] score=40.562321 abs_score=40.562321 lang=ces_Latn sentence=Což nebudou vděčni?
+[16] score=40.472755 abs_score=40.472755 lang=por_Latn sentence=Acaso, uma montanha é uma coisa ruim?
+[17] score=39.938507 abs_score=39.938507 lang=spa_Latn sentence=¿Pediréis a las montañas que caigan sobre vosotros?
+[18] score=39.204517 abs_score=39.204517 lang=ces_Latn sentence=70 Všichni začali volat: "Ty jsi tedy Boží Syn?"
+[19] score=39.012707 abs_score=39.012707 lang=swe_Latn sentence=Och har inte Gud skapat himmel och jord?
+[20] score=38.306370 abs_score=38.306370 lang=ita_Latn sentence=Dio permette a volte la sedia elettrica?
+Top by |z|:
+[01] score=60.058842 abs_score=60.058842 lang=por_Latn sentence=É esse o senhor do universo?
+[02] score=53.765114 abs_score=53.765114 lang=nld_Latn sentence=150 Banks, waar ben je?
+[03] score=53.388287 abs_score=53.388287 lang=swe_Latn sentence=Vill du då ge dem i Israels hand?"
+[04] score=51.699791 abs_score=51.699791 lang=por_Latn sentence=Quer o perdão do Senhor?
+[05] score=51.364246 abs_score=51.364246 lang=eng_Latn sentence=Is he not the president of 77 million people?
+[06] score=47.599491 abs_score=47.599491 lang=ces_Latn sentence=A jak si svého pana Božského představuje?
+[07] score=46.166595 abs_score=46.166595 lang=por_Latn sentence=392 Você realmente faz isso?
+[08] score=45.265976 abs_score=45.265976 lang=deu_Latn sentence=Was ist der j!-over birthday contest?
+[09] score=45.157894 abs_score=45.157894 lang=por_Latn sentence=Ele não é o Senhor do Universo?
+[10] score=43.815456 abs_score=43.815456 lang=ita_Latn sentence=Non sarà forse questo il giorno della gloria di Dio?
+[11] score=43.012302 abs_score=43.012302 lang=swe_Latn sentence=What Do you Know About Desire?” från 1995.
+[12] score=42.303188 abs_score=42.303188 lang=por_Latn sentence=Que dons do vosso Senhor negareis?
+[13] score=41.089596 abs_score=41.089596 lang=swe_Latn sentence=Eller gjorde de skapar himlarna och jorden?
+[14] score=40.824757 abs_score=40.824757 lang=deu_Latn sentence=Aber warum ist $foo[bar] falsch?
+[15] score=40.562321 abs_score=40.562321 lang=ces_Latn sentence=Což nebudou vděčni?
+[16] score=40.472755 abs_score=40.472755 lang=por_Latn sentence=Acaso, uma montanha é uma coisa ruim?
+[17] score=39.938507 abs_score=39.938507 lang=spa_Latn sentence=¿Pediréis a las montañas que caigan sobre vosotros?
+[18] score=39.204517 abs_score=39.204517 lang=ces_Latn sentence=70 Všichni začali volat: "Ty jsi tedy Boží Syn?"
+[19] score=39.012707 abs_score=39.012707 lang=swe_Latn sentence=Och har inte Gud skapat himmel och jord?
+[20] score=38.306370 abs_score=38.306370 lang=ita_Latn sentence=Dio permette a volte la sedia elettrica?
+
+--- Feature 2777 ---
+Top by z:
+[01] score=59.136833 abs_score=59.136833 lang=ita_Latn sentence=solo dal suo Signore,
+[02] score=47.997013 abs_score=47.997013 lang=ces_Latn sentence=Lid se bál Hospodina a uvěřili Hospodinu i jeho služebníku Mojžíšovi.
+[03] score=46.965084 abs_score=46.965084 lang=ita_Latn sentence=presso il loro Signore.
+[04] score=46.375546 abs_score=46.375546 lang=por_Latn sentence=contudo aos olhos do SENHOR serei glorificado,
+[05] score=46.179840 abs_score=46.179840 lang=por_Latn sentence=obediência ao seu Senhor.
+[06] score=43.801704 abs_score=43.801704 lang=ita_Latn sentence=Siate testimoni della misericordia del nostro Signore.
+[07] score=43.686714 abs_score=43.686714 lang=por_Latn sentence=Este é o mandamento do nosso Senhor.
+[08] score=43.195530 abs_score=43.195530 lang=ita_Latn sentence=Ecco, l’occhio del Signore è su chi Lo teme,
+[09] score=42.476242 abs_score=42.476242 lang=por_Latn sentence=pela vinda de seu Senhor.
+[10] score=42.417290 abs_score=42.417290 lang=por_Latn sentence=Isso para quem receia a seu Senhor.”
+[11] score=41.172218 abs_score=41.172218 lang=por_Latn sentence=“Ó Senhor Nosso!
+[12] score=41.023937 abs_score=41.023937 lang=ita_Latn sentence=e proclama la grazia del tuo Signore.
+[13] score=40.891769 abs_score=40.891769 lang=por_Latn sentence=para o altar de Nosso Senhor."
+[14] score=40.040997 abs_score=40.040997 lang=por_Latn sentence=Seguindo a ordem de seu Senhor.
+[15] score=39.835724 abs_score=39.835724 lang=por_Latn sentence=porém o Espírito do SENHOR poderosamente se apossou dele,
+[16] score=39.781914 abs_score=39.781914 lang=ces_Latn sentence=Přímé jsou Hospodinovy cesty,
+[17] score=39.774513 abs_score=39.774513 lang=por_Latn sentence=E que seja feita a vontade do Senhor!".
+[18] score=39.433258 abs_score=39.433258 lang=por_Latn sentence=É o servo que se dirige ao seu Senhor.
+[19] score=39.352474 abs_score=39.352474 lang=por_Latn sentence=Quer o perdão do Senhor?
+[20] score=39.339104 abs_score=39.339104 lang=ita_Latn sentence=Perché il tuo Signore è il Generosissimo.
+Top by |z|:
+[01] score=59.136833 abs_score=59.136833 lang=ita_Latn sentence=solo dal suo Signore,
+[02] score=47.997013 abs_score=47.997013 lang=ces_Latn sentence=Lid se bál Hospodina a uvěřili Hospodinu i jeho služebníku Mojžíšovi.
+[03] score=46.965084 abs_score=46.965084 lang=ita_Latn sentence=presso il loro Signore.
+[04] score=46.375546 abs_score=46.375546 lang=por_Latn sentence=contudo aos olhos do SENHOR serei glorificado,
+[05] score=46.179840 abs_score=46.179840 lang=por_Latn sentence=obediência ao seu Senhor.
+[06] score=43.801704 abs_score=43.801704 lang=ita_Latn sentence=Siate testimoni della misericordia del nostro Signore.
+[07] score=43.686714 abs_score=43.686714 lang=por_Latn sentence=Este é o mandamento do nosso Senhor.
+[08] score=43.195530 abs_score=43.195530 lang=ita_Latn sentence=Ecco, l’occhio del Signore è su chi Lo teme,
+[09] score=42.476242 abs_score=42.476242 lang=por_Latn sentence=pela vinda de seu Senhor.
+[10] score=42.417290 abs_score=42.417290 lang=por_Latn sentence=Isso para quem receia a seu Senhor.”
+[11] score=41.172218 abs_score=41.172218 lang=por_Latn sentence=“Ó Senhor Nosso!
+[12] score=41.023937 abs_score=41.023937 lang=ita_Latn sentence=e proclama la grazia del tuo Signore.
+[13] score=40.891769 abs_score=40.891769 lang=por_Latn sentence=para o altar de Nosso Senhor."
+[14] score=40.040997 abs_score=40.040997 lang=por_Latn sentence=Seguindo a ordem de seu Senhor.
+[15] score=39.835724 abs_score=39.835724 lang=por_Latn sentence=porém o Espírito do SENHOR poderosamente se apossou dele,
+[16] score=39.781914 abs_score=39.781914 lang=ces_Latn sentence=Přímé jsou Hospodinovy cesty,
+[17] score=39.774513 abs_score=39.774513 lang=por_Latn sentence=E que seja feita a vontade do Senhor!".
+[18] score=39.433258 abs_score=39.433258 lang=por_Latn sentence=É o servo que se dirige ao seu Senhor.
+[19] score=39.352474 abs_score=39.352474 lang=por_Latn sentence=Quer o perdão do Senhor?
+[20] score=39.339104 abs_score=39.339104 lang=ita_Latn sentence=Perché il tuo Signore è il Generosissimo.
+
+--- Feature 525 ---
+Top by z:
+[01] score=57.946598 abs_score=57.946598 lang=por_Latn sentence=392 Você realmente faz isso?
+[02] score=56.146412 abs_score=56.146412 lang=deu_Latn sentence=[787] Wirklich s. Wirklichkeit.[787]
+[03] score=53.099167 abs_score=53.099167 lang=eng_Latn sentence=Everyone was upset, especially 899.
+[04] score=52.034885 abs_score=52.034885 lang=nld_Latn sentence=Dit geldt niet voor de 59,628 Turkse docenten.
+[05] score=47.859451 abs_score=47.859451 lang=deu_Latn sentence=Q1470 Diese Leute hassen Amerika.
+[06] score=43.033836 abs_score=43.033836 lang=fra_Latn sentence=1-May-85 Mon cœur est blessé.
+[07] score=40.264500 abs_score=40.264500 lang=deu_Latn sentence=Das wird bestätigt und verstärkt im Bericht E/CN.4/2000/63 Teil 42.
+[08] score=40.261662 abs_score=40.261662 lang=spa_Latn sentence=2596” en ellos siempre generará el mismo artículo.
+[09] score=39.628868 abs_score=39.628868 lang=por_Latn sentence=1124, poderia procurar submarinos por três dias!
+[10] score=39.337654 abs_score=39.337654 lang=fra_Latn sentence=Russie (144e) ne progresse pas.
+[11] score=39.264771 abs_score=39.264771 lang=nld_Latn sentence=874 Nu, Vader, U ziet hun handen.
+[12] score=38.647110 abs_score=38.647110 lang=nld_Latn sentence=(5) ook gebruikt in een seksuele context (29)
+[13] score=38.317108 abs_score=38.317108 lang=por_Latn sentence=1451, mas procurou uma carreira em outro lugar.
+[14] score=37.717724 abs_score=37.717724 lang=fra_Latn sentence=963-2 avait toujours été son sale petit secret.
+[15] score=37.630600 abs_score=37.630600 lang=deu_Latn sentence=Regelmäßig zum europäischen Handel zugelassen (E 957).
+[16] score=37.077099 abs_score=37.077099 lang=fra_Latn sentence=[104.8] Il se refermera sur eux,
+[17] score=35.969002 abs_score=35.969002 lang=por_Latn sentence=E mencionar o nome do seu Senhor e orar! (87:14-15)
+[18] score=35.605820 abs_score=35.605820 lang=ces_Latn sentence=25.21): Raduj se u svého pána.
+[19] score=35.414604 abs_score=35.414604 lang=spa_Latn sentence=¿Entienden Uds. la marcha de Israel? 277.
+[20] score=34.319210 abs_score=34.319210 lang=eng_Latn sentence=Five answers (A1-A5) were possible.
+Top by |z|:
+[01] score=57.946598 abs_score=57.946598 lang=por_Latn sentence=392 Você realmente faz isso?
+[02] score=56.146412 abs_score=56.146412 lang=deu_Latn sentence=[787] Wirklich s. Wirklichkeit.[787]
+[03] score=53.099167 abs_score=53.099167 lang=eng_Latn sentence=Everyone was upset, especially 899.
+[04] score=52.034885 abs_score=52.034885 lang=nld_Latn sentence=Dit geldt niet voor de 59,628 Turkse docenten.
+[05] score=47.859451 abs_score=47.859451 lang=deu_Latn sentence=Q1470 Diese Leute hassen Amerika.
+[06] score=43.033836 abs_score=43.033836 lang=fra_Latn sentence=1-May-85 Mon cœur est blessé.
+[07] score=40.264500 abs_score=40.264500 lang=deu_Latn sentence=Das wird bestätigt und verstärkt im Bericht E/CN.4/2000/63 Teil 42.
+[08] score=40.261662 abs_score=40.261662 lang=spa_Latn sentence=2596” en ellos siempre generará el mismo artículo.
+[09] score=39.628868 abs_score=39.628868 lang=por_Latn sentence=1124, poderia procurar submarinos por três dias!
+[10] score=39.337654 abs_score=39.337654 lang=fra_Latn sentence=Russie (144e) ne progresse pas.
+[11] score=39.264771 abs_score=39.264771 lang=nld_Latn sentence=874 Nu, Vader, U ziet hun handen.
+[12] score=38.647110 abs_score=38.647110 lang=nld_Latn sentence=(5) ook gebruikt in een seksuele context (29)
+[13] score=38.317108 abs_score=38.317108 lang=por_Latn sentence=1451, mas procurou uma carreira em outro lugar.
+[14] score=37.717724 abs_score=37.717724 lang=fra_Latn sentence=963-2 avait toujours été son sale petit secret.
+[15] score=37.630600 abs_score=37.630600 lang=deu_Latn sentence=Regelmäßig zum europäischen Handel zugelassen (E 957).
+[16] score=37.077099 abs_score=37.077099 lang=fra_Latn sentence=[104.8] Il se refermera sur eux,
+[17] score=35.969002 abs_score=35.969002 lang=por_Latn sentence=E mencionar o nome do seu Senhor e orar! (87:14-15)
+[18] score=35.605820 abs_score=35.605820 lang=ces_Latn sentence=25.21): Raduj se u svého pána.
+[19] score=35.414604 abs_score=35.414604 lang=spa_Latn sentence=¿Entienden Uds. la marcha de Israel? 277.
+[20] score=34.319210 abs_score=34.319210 lang=eng_Latn sentence=Five answers (A1-A5) were possible.
+
+--- Feature 677 ---
+Top by z:
+[01] score=57.569752 abs_score=57.569752 lang=por_Latn sentence=“Ó povo de Bahá!
+[02] score=54.924362 abs_score=54.924362 lang=por_Latn sentence=E segue teu Senhor!
+[03] score=54.631203 abs_score=54.631203 lang=pol_Latn sentence=Słuchajcie słowa Pana!”
+[04] score=53.940731 abs_score=53.940731 lang=por_Latn sentence=“Ó Senhor Nosso!
+[05] score=49.467812 abs_score=49.467812 lang=eng_Latn sentence=Down with that separate peace!”
+[06] score=44.817833 abs_score=44.817833 lang=pol_Latn sentence=Czcijcie waszego Pana!
+[07] score=43.016174 abs_score=43.016174 lang=por_Latn sentence=Oh e definitivamente ser negativo sobre o ex!
+[08] score=42.854572 abs_score=42.854572 lang=nld_Latn sentence=85 O, weet u, de grote dingen!
+[09] score=41.061413 abs_score=41.061413 lang=pol_Latn sentence=To, albo bali się ciebie Eric!
+[10] score=41.046467 abs_score=41.046467 lang=eng_Latn sentence=Something wonderful has happened… Number Five is alive!
+[11] score=40.260666 abs_score=40.260666 lang=deu_Latn sentence=Denn: „Es ist wahr!
+[12] score=40.060963 abs_score=40.060963 lang=ita_Latn sentence=Elogiato dal suo signore!
+[13] score=39.094379 abs_score=39.094379 lang=spa_Latn sentence=¡En Rusia hoy es necesaria una política leninista!
+[14] score=38.616192 abs_score=38.616192 lang=swe_Latn sentence=100% Legal - Karriärer med Europeiska unionen!
+[15] score=37.553825 abs_score=37.553825 lang=ces_Latn sentence=Více informací o projektu This is Poland!
+[16] score=36.536552 abs_score=36.536552 lang=nld_Latn sentence=Bij voorbaat bedankt voor hen !
+[17] score=36.400856 abs_score=36.400856 lang=spa_Latn sentence="!No hubo menos de 10.000 cambios en esa restricción!"
+[18] score=36.057739 abs_score=36.057739 lang=pol_Latn sentence=To jest objawienie Pana światów!
+[19] score=35.550301 abs_score=35.550301 lang=ces_Latn sentence=zde v Pánu odpočívajících!“
+[20] score=35.499950 abs_score=35.499950 lang=pol_Latn sentence=Obawiają się waszego Pana!
+Top by |z|:
+[01] score=57.569752 abs_score=57.569752 lang=por_Latn sentence=“Ó povo de Bahá!
+[02] score=54.924362 abs_score=54.924362 lang=por_Latn sentence=E segue teu Senhor!
+[03] score=54.631203 abs_score=54.631203 lang=pol_Latn sentence=Słuchajcie słowa Pana!”
+[04] score=53.940731 abs_score=53.940731 lang=por_Latn sentence=“Ó Senhor Nosso!
+[05] score=49.467812 abs_score=49.467812 lang=eng_Latn sentence=Down with that separate peace!”
+[06] score=44.817833 abs_score=44.817833 lang=pol_Latn sentence=Czcijcie waszego Pana!
+[07] score=43.016174 abs_score=43.016174 lang=por_Latn sentence=Oh e definitivamente ser negativo sobre o ex!
+[08] score=42.854572 abs_score=42.854572 lang=nld_Latn sentence=85 O, weet u, de grote dingen!
+[09] score=41.061413 abs_score=41.061413 lang=pol_Latn sentence=To, albo bali się ciebie Eric!
+[10] score=41.046467 abs_score=41.046467 lang=eng_Latn sentence=Something wonderful has happened… Number Five is alive!
+[11] score=40.260666 abs_score=40.260666 lang=deu_Latn sentence=Denn: „Es ist wahr!
+[12] score=40.060963 abs_score=40.060963 lang=ita_Latn sentence=Elogiato dal suo signore!
+[13] score=39.094379 abs_score=39.094379 lang=spa_Latn sentence=¡En Rusia hoy es necesaria una política leninista!
+[14] score=38.616192 abs_score=38.616192 lang=swe_Latn sentence=100% Legal - Karriärer med Europeiska unionen!
+[15] score=37.553825 abs_score=37.553825 lang=ces_Latn sentence=Více informací o projektu This is Poland!
+[16] score=36.536552 abs_score=36.536552 lang=nld_Latn sentence=Bij voorbaat bedankt voor hen !
+[17] score=36.400856 abs_score=36.400856 lang=spa_Latn sentence="!No hubo menos de 10.000 cambios en esa restricción!"
+[18] score=36.057739 abs_score=36.057739 lang=pol_Latn sentence=To jest objawienie Pana światów!
+[19] score=35.550301 abs_score=35.550301 lang=ces_Latn sentence=zde v Pánu odpočívajících!“
+[20] score=35.499950 abs_score=35.499950 lang=pol_Latn sentence=Obawiają się waszego Pana!
+
+--- Feature 2511 ---
+Top by z:
+[01] score=52.499393 abs_score=52.499393 lang=swe_Latn sentence=Mer specifikt, 260 miljoner sådana företag!
+[02] score=46.931377 abs_score=46.931377 lang=eng_Latn sentence=Is he not the president of 77 million people?
+[03] score=44.510788 abs_score=44.510788 lang=swe_Latn sentence=Vår smak för öl kan gå tillbaka till 13,000 år
+[04] score=43.287777 abs_score=43.287777 lang=deu_Latn sentence=Ob deswegen »280 Millionen Afrikaner« besser schlafen können?
+[05] score=42.534668 abs_score=42.534668 lang=fra_Latn sentence=Comment savoir si vous êtes l'une des 87 millions de victimes
+[06] score=42.434189 abs_score=42.434189 lang=eng_Latn sentence="Could the international organizations absorb and spend $60 million in four weeks?
+[07] score=42.362877 abs_score=42.362877 lang=ces_Latn sentence=Svět už nikdy neuvidí pět miliónů lidí plakat pohromadě".
+[08] score=41.006203 abs_score=41.006203 lang=nld_Latn sentence=Dit geldt niet voor de 59,628 Turkse docenten.
+[09] score=36.497562 abs_score=36.497562 lang=eng_Latn sentence=How to find out if you are one of the 87 million victims
+[10] score=36.332512 abs_score=36.332512 lang=eng_Latn sentence=Sir… more than forty people… died because of one mistake!”
+[11] score=34.911945 abs_score=34.911945 lang=deu_Latn sentence=Ist dies wirklich das Beste, was eine Nation von 320 Millionen produzieren kann?)
+[12] score=34.554070 abs_score=34.554070 lang=nld_Latn sentence=306 ton die aan Slovenië zijn toegewezen.”
+[13] score=34.301895 abs_score=34.301895 lang=nld_Latn sentence=Ik wil geen 150 Iraniërs vermoorden.
+[14] score=33.908283 abs_score=33.908283 lang=fra_Latn sentence=Tournez donc ces 400 pages avec Jimmy.
+[15] score=31.909889 abs_score=31.909889 lang=swe_Latn sentence=160 000 studenter senare vet vi att bara regn kan stoppa oss.
+[16] score=31.318323 abs_score=31.318323 lang=eng_Latn sentence=“How could people kill 4,000 animals just for money?
+[17] score=31.246738 abs_score=31.246738 lang=spa_Latn sentence="!No hubo menos de 10.000 cambios en esa restricción!"
+[18] score=31.084887 abs_score=31.084887 lang=por_Latn sentence=Vamos deixar que saibam que somos mais valiosos do que 2.100 soldados.”
+[19] score=30.956982 abs_score=30.956982 lang=por_Latn sentence=Sim, você deveria – e Jesus 10.000 vezes mais.
+[20] score=30.438793 abs_score=30.438793 lang=ces_Latn sentence=Co by mohlo být největší problém pro Ukrajinu s populací 45 milionů?
+Top by |z|:
+[01] score=52.499393 abs_score=52.499393 lang=swe_Latn sentence=Mer specifikt, 260 miljoner sådana företag!
+[02] score=46.931377 abs_score=46.931377 lang=eng_Latn sentence=Is he not the president of 77 million people?
+[03] score=44.510788 abs_score=44.510788 lang=swe_Latn sentence=Vår smak för öl kan gå tillbaka till 13,000 år
+[04] score=43.287777 abs_score=43.287777 lang=deu_Latn sentence=Ob deswegen »280 Millionen Afrikaner« besser schlafen können?
+[05] score=42.534668 abs_score=42.534668 lang=fra_Latn sentence=Comment savoir si vous êtes l'une des 87 millions de victimes
+[06] score=42.434189 abs_score=42.434189 lang=eng_Latn sentence="Could the international organizations absorb and spend $60 million in four weeks?
+[07] score=42.362877 abs_score=42.362877 lang=ces_Latn sentence=Svět už nikdy neuvidí pět miliónů lidí plakat pohromadě".
+[08] score=41.006203 abs_score=41.006203 lang=nld_Latn sentence=Dit geldt niet voor de 59,628 Turkse docenten.
+[09] score=36.497562 abs_score=36.497562 lang=eng_Latn sentence=How to find out if you are one of the 87 million victims
+[10] score=36.332512 abs_score=36.332512 lang=eng_Latn sentence=Sir… more than forty people… died because of one mistake!”
+[11] score=34.911945 abs_score=34.911945 lang=deu_Latn sentence=Ist dies wirklich das Beste, was eine Nation von 320 Millionen produzieren kann?)
+[12] score=34.554070 abs_score=34.554070 lang=nld_Latn sentence=306 ton die aan Slovenië zijn toegewezen.”
+[13] score=34.301895 abs_score=34.301895 lang=nld_Latn sentence=Ik wil geen 150 Iraniërs vermoorden.
+[14] score=33.908283 abs_score=33.908283 lang=fra_Latn sentence=Tournez donc ces 400 pages avec Jimmy.
+[15] score=31.909889 abs_score=31.909889 lang=swe_Latn sentence=160 000 studenter senare vet vi att bara regn kan stoppa oss.
+[16] score=31.318323 abs_score=31.318323 lang=eng_Latn sentence=“How could people kill 4,000 animals just for money?
+[17] score=31.246738 abs_score=31.246738 lang=spa_Latn sentence="!No hubo menos de 10.000 cambios en esa restricción!"
+[18] score=31.084887 abs_score=31.084887 lang=por_Latn sentence=Vamos deixar que saibam que somos mais valiosos do que 2.100 soldados.”
+[19] score=30.956982 abs_score=30.956982 lang=por_Latn sentence=Sim, você deveria – e Jesus 10.000 vezes mais.
+[20] score=30.438793 abs_score=30.438793 lang=ces_Latn sentence=Co by mohlo být největší problém pro Ukrajinu s populací 45 milionů?
+
+--- Feature 14 ---
+Top by z:
+[01] score=49.932293 abs_score=49.932293 lang=pol_Latn sentence=ja zaś IDĘ na ciebie W IMIĘ PANA ZASTĘPÓW.”
+[02] score=48.540730 abs_score=48.540730 lang=ces_Latn sentence=K chvále Pána Boha svého
+[03] score=48.027706 abs_score=48.027706 lang=por_Latn sentence=E A QUEM FOI REVELADO O BRAÇO DO SENHOR?
+[04] score=47.716919 abs_score=47.716919 lang=pol_Latn sentence=ja zaś IDĘ na ciebie W IMIĘ PANA ZASTĘPÓW.”
+[05] score=47.163033 abs_score=47.163033 lang=ces_Latn sentence=K chvále Pána Boha svého
+[06] score=46.237194 abs_score=46.237194 lang=ces_Latn sentence=A ta se zeptá pána ve 20. řadě,
+[07] score=42.413040 abs_score=42.413040 lang=ces_Latn sentence=Pána svého v srdci mějte
+[08] score=41.274185 abs_score=41.274185 lang=ces_Latn sentence=vděkem k Pánu oplývají
+[09] score=40.236256 abs_score=40.236256 lang=ces_Latn sentence=Které z dobrodiní Pána svého můžete popírat?
+[10] score=40.201557 abs_score=40.201557 lang=ces_Latn sentence=FAKT ČÍSLO 1: Lidé vás soudí právě v tuto chvíli
+[11] score=38.390572 abs_score=38.390572 lang=ces_Latn sentence=A za lháře ho prohlásili a my jsme je zahubili.
+[12] score=38.266220 abs_score=38.266220 lang=swe_Latn sentence=Men hela Israel sörjde och sökte[a] Herren.
+[13] score=36.851494 abs_score=36.851494 lang=ces_Latn sentence=- které z dobrodiní Pána svého můžete popírat? -
+[14] score=36.187290 abs_score=36.187290 lang=ces_Latn sentence=Které z dobrodiní Pána svého můžete popírat? 14.
+[15] score=35.989697 abs_score=35.989697 lang=ces_Latn sentence=Rci: „Béřu útočiště u Pána JITŘENKY,
+[16] score=35.541687 abs_score=35.541687 lang=ces_Latn sentence=Které z dobrodiní Pána svého můžete popírat? 37.
+[17] score=35.486931 abs_score=35.486931 lang=ces_Latn sentence=A ty, duše usmířená, vrať se k Pánu svému v zalíbení a spokojená!
+[18] score=34.245193 abs_score=34.245193 lang=pol_Latn sentence=Po odsłonięciu idziemy na mszę dziękczynną (albo przed).
+[19] score=34.101517 abs_score=34.101517 lang=pol_Latn sentence=do swego pana – i przenieść do niej wszystko,
+[20] score=34.079288 abs_score=34.079288 lang=ces_Latn sentence=A chvála Pánu za tu štědrou přízeň!
+Top by |z|:
+[01] score=49.932293 abs_score=49.932293 lang=pol_Latn sentence=ja zaś IDĘ na ciebie W IMIĘ PANA ZASTĘPÓW.”
+[02] score=48.540730 abs_score=48.540730 lang=ces_Latn sentence=K chvále Pána Boha svého
+[03] score=48.027706 abs_score=48.027706 lang=por_Latn sentence=E A QUEM FOI REVELADO O BRAÇO DO SENHOR?
+[04] score=47.716919 abs_score=47.716919 lang=pol_Latn sentence=ja zaś IDĘ na ciebie W IMIĘ PANA ZASTĘPÓW.”
+[05] score=47.163033 abs_score=47.163033 lang=ces_Latn sentence=K chvále Pána Boha svého
+[06] score=46.237194 abs_score=46.237194 lang=ces_Latn sentence=A ta se zeptá pána ve 20. řadě,
+[07] score=42.413040 abs_score=42.413040 lang=ces_Latn sentence=Pána svého v srdci mějte
+[08] score=41.274185 abs_score=41.274185 lang=ces_Latn sentence=vděkem k Pánu oplývají
+[09] score=40.236256 abs_score=40.236256 lang=ces_Latn sentence=Které z dobrodiní Pána svého můžete popírat?
+[10] score=40.201557 abs_score=40.201557 lang=ces_Latn sentence=FAKT ČÍSLO 1: Lidé vás soudí právě v tuto chvíli
+[11] score=38.390572 abs_score=38.390572 lang=ces_Latn sentence=A za lháře ho prohlásili a my jsme je zahubili.
+[12] score=38.266220 abs_score=38.266220 lang=swe_Latn sentence=Men hela Israel sörjde och sökte[a] Herren.
+[13] score=36.851494 abs_score=36.851494 lang=ces_Latn sentence=- které z dobrodiní Pána svého můžete popírat? -
+[14] score=36.187290 abs_score=36.187290 lang=ces_Latn sentence=Které z dobrodiní Pána svého můžete popírat? 14.
+[15] score=35.989697 abs_score=35.989697 lang=ces_Latn sentence=Rci: „Béřu útočiště u Pána JITŘENKY,
+[16] score=35.541687 abs_score=35.541687 lang=ces_Latn sentence=Které z dobrodiní Pána svého můžete popírat? 37.
+[17] score=35.486931 abs_score=35.486931 lang=ces_Latn sentence=A ty, duše usmířená, vrať se k Pánu svému v zalíbení a spokojená!
+[18] score=34.245193 abs_score=34.245193 lang=pol_Latn sentence=Po odsłonięciu idziemy na mszę dziękczynną (albo przed).
+[19] score=34.101517 abs_score=34.101517 lang=pol_Latn sentence=do swego pana – i przenieść do niej wszystko,
+[20] score=34.079288 abs_score=34.079288 lang=ces_Latn sentence=A chvála Pánu za tu štědrou přízeň!
+
+--- Feature 3207 ---
+Top by z:
+[01] score=49.498009 abs_score=49.498009 lang=pol_Latn sentence=na niebie ani na ziemi, ani pod ziemią -
+[02] score=44.243580 abs_score=44.243580 lang=pol_Latn sentence=To On stworzył wszystko w niebie i na ziemi.
+[03] score=37.334278 abs_score=37.334278 lang=pol_Latn sentence=Bóg stworzył niebo i ziemię swoim Słowem.
+[04] score=36.697639 abs_score=36.697639 lang=pol_Latn sentence=I Bóg stworzył Niebo i Ziemię, i potem stworzył człowieka…
+[05] score=36.686928 abs_score=36.686928 lang=pol_Latn sentence=Bóg wypełnia niebo i ziemię, jednak, ani niebo, ani ziemia go nie zawierają.
+[06] score=36.062317 abs_score=36.062317 lang=pol_Latn sentence=On jest bogiem, który stworzył niebo i ziemię”.
+[07] score=35.446423 abs_score=35.446423 lang=pol_Latn sentence=Znaków na niebie i na ziemi jest aż nadto.
+[08] score=34.499992 abs_score=34.499992 lang=spa_Latn sentence=Cada vez más yin del Cielo y la Tierra emitían a su alrededor.
+[09] score=33.344055 abs_score=33.344055 lang=swe_Latn sentence=Gud vet allt och har all makt i himmelen och på jorden.
+[10] score=31.953598 abs_score=31.953598 lang=swe_Latn sentence=uppenbaras Gud såsom himmelens och jordens skapare.
+[11] score=30.809036 abs_score=30.809036 lang=pol_Latn sentence=Wierni: Który stworzył niebo i ziemię.
+[12] score=30.319006 abs_score=30.319006 lang=pol_Latn sentence=Jemu jest dana wszelka władza w niebie i na ziemi.
+[13] score=29.955889 abs_score=29.955889 lang=pol_Latn sentence=On jest Stworzycielem nieba i ziemi.
+[14] score=29.190044 abs_score=29.190044 lang=swe_Latn sentence=Paradiset är större än både himlarna och jorden tillsammans.
+[15] score=29.042366 abs_score=29.042366 lang=pol_Latn sentence=“ Powiedz: Bóg wystarcza wszelkiemu stworzeniu ponad wszystko i nic w niebie ani na ziemi nie wystarcza – tylko Bóg.
+[16] score=28.964561 abs_score=28.964561 lang=pol_Latn sentence=Czy Ten, kto stworzył niebiosa i ziemię, nie zdoła stworzyć im podobnych?
+[17] score=28.952898 abs_score=28.952898 lang=pol_Latn sentence=Pierwszego dnia stworzył niebo i ziemię, ustanowił jasność i ciemność.
+[18] score=28.897570 abs_score=28.897570 lang=pol_Latn sentence=On jest władcą nieba i ziemi.
+[19] score=28.583082 abs_score=28.583082 lang=pol_Latn sentence=Powiedziałeś nam oto że będą znaki i cuda na niebie i na ziemi, nim nastąpi koniec świata.
+[20] score=28.043079 abs_score=28.043079 lang=pol_Latn sentence=W niedzielę Bóg stworzył niebo i ziemię i rozproszył ciemności sprzed swego oblicza.
+Top by |z|:
+[01] score=49.498009 abs_score=49.498009 lang=pol_Latn sentence=na niebie ani na ziemi, ani pod ziemią -
+[02] score=44.243580 abs_score=44.243580 lang=pol_Latn sentence=To On stworzył wszystko w niebie i na ziemi.
+[03] score=37.334278 abs_score=37.334278 lang=pol_Latn sentence=Bóg stworzył niebo i ziemię swoim Słowem.
+[04] score=36.697639 abs_score=36.697639 lang=pol_Latn sentence=I Bóg stworzył Niebo i Ziemię, i potem stworzył człowieka…
+[05] score=36.686928 abs_score=36.686928 lang=pol_Latn sentence=Bóg wypełnia niebo i ziemię, jednak, ani niebo, ani ziemia go nie zawierają.
+[06] score=36.062317 abs_score=36.062317 lang=pol_Latn sentence=On jest bogiem, który stworzył niebo i ziemię”.
+[07] score=35.446423 abs_score=35.446423 lang=pol_Latn sentence=Znaków na niebie i na ziemi jest aż nadto.
+[08] score=34.499992 abs_score=34.499992 lang=spa_Latn sentence=Cada vez más yin del Cielo y la Tierra emitían a su alrededor.
+[09] score=33.344055 abs_score=33.344055 lang=swe_Latn sentence=Gud vet allt och har all makt i himmelen och på jorden.
+[10] score=31.953598 abs_score=31.953598 lang=swe_Latn sentence=uppenbaras Gud såsom himmelens och jordens skapare.
+[11] score=30.809036 abs_score=30.809036 lang=pol_Latn sentence=Wierni: Który stworzył niebo i ziemię.
+[12] score=30.319006 abs_score=30.319006 lang=pol_Latn sentence=Jemu jest dana wszelka władza w niebie i na ziemi.
+[13] score=29.955889 abs_score=29.955889 lang=pol_Latn sentence=On jest Stworzycielem nieba i ziemi.
+[14] score=29.190044 abs_score=29.190044 lang=swe_Latn sentence=Paradiset är större än både himlarna och jorden tillsammans.
+[15] score=29.042366 abs_score=29.042366 lang=pol_Latn sentence=“ Powiedz: Bóg wystarcza wszelkiemu stworzeniu ponad wszystko i nic w niebie ani na ziemi nie wystarcza – tylko Bóg.
+[16] score=28.964561 abs_score=28.964561 lang=pol_Latn sentence=Czy Ten, kto stworzył niebiosa i ziemię, nie zdoła stworzyć im podobnych?
+[17] score=28.952898 abs_score=28.952898 lang=pol_Latn sentence=Pierwszego dnia stworzył niebo i ziemię, ustanowił jasność i ciemność.
+[18] score=28.897570 abs_score=28.897570 lang=pol_Latn sentence=On jest władcą nieba i ziemi.
+[19] score=28.583082 abs_score=28.583082 lang=pol_Latn sentence=Powiedziałeś nam oto że będą znaki i cuda na niebie i na ziemi, nim nastąpi koniec świata.
+[20] score=28.043079 abs_score=28.043079 lang=pol_Latn sentence=W niedzielę Bóg stworzył niebo i ziemię i rozproszył ciemności sprzed swego oblicza.
+
+--- Feature 3556 ---
+Top by z:
+[01] score=47.099796 abs_score=47.099796 lang=nld_Latn sentence=Ze zal veranderen in haar eigen soort hemel.
+[02] score=39.884605 abs_score=39.884605 lang=spa_Latn sentence=Estoy preparando para ustedes algunas notas y un discurso”.
+[03] score=35.841656 abs_score=35.841656 lang=ita_Latn sentence=Egli è veramente il lord del suo dominio.
+[04] score=35.373245 abs_score=35.373245 lang=spa_Latn sentence=He visto mejores habilidades en el grupo profesional de Ellen antes.
+[05] score=35.293041 abs_score=35.293041 lang=spa_Latn sentence=La palabra de Dios tiene poder y autoridad.
+[06] score=35.228718 abs_score=35.228718 lang=ita_Latn sentence=Siate testimoni della misericordia del nostro Signore.
+[07] score=34.988235 abs_score=34.988235 lang=spa_Latn sentence=Eso frustraría el plan eterno de felicidad de Dios.
+[08] score=34.545998 abs_score=34.545998 lang=por_Latn sentence=Nos planos de Deus cada vida é longo o suficiente e cada morte é oportuna.
+[09] score=34.041447 abs_score=34.041447 lang=swe_Latn sentence=Dina gåvor skapades av Gud med ett specifikt syfte, att berätta historien om hans härlighet.
+[10] score=33.696877 abs_score=33.696877 lang=spa_Latn sentence=La Luna es una pequeña parte del universo de Dios.
+[11] score=33.310013 abs_score=33.310013 lang=eng_Latn sentence=In every trouble we should first seek to realize God’s presence with us.
+[12] score=32.121635 abs_score=32.121635 lang=por_Latn sentence=Você teve uma experiência religiosa.”
+[13] score=31.719044 abs_score=31.719044 lang=por_Latn sentence=Temos aqui uma certeza clara da segunda vinda do Senhor para estabelecer seu reino na terra.
+[14] score=31.463196 abs_score=31.463196 lang=spa_Latn sentence=Las personas tienen que comer y beber las palabras de Dios.
+[15] score=31.407770 abs_score=31.407770 lang=swe_Latn sentence=Att öka effektiviteten var målet för alla mina reformer under denna period.
+[16] score=31.202229 abs_score=31.202229 lang=ita_Latn sentence=Essa è una porta verso la misericordia del tuo Signore.
+[17] score=30.549454 abs_score=30.549454 lang=spa_Latn sentence=Él vivió una vida perfecta, de acuerdo con la voluntad de Dios y luego murió inocentemente por todos nuestros pecados.
+[18] score=30.418417 abs_score=30.418417 lang=spa_Latn sentence=Estas personas no son enemigos de Dios ni tampoco son nuestras.
+[19] score=30.392694 abs_score=30.392694 lang=ita_Latn sentence=Egli è veramente libero nel Signore,
+[20] score=30.088915 abs_score=30.088915 lang=eng_Latn sentence=God has truly led us in our growth and development through these many years!
+Top by |z|:
+[01] score=47.099796 abs_score=47.099796 lang=nld_Latn sentence=Ze zal veranderen in haar eigen soort hemel.
+[02] score=39.884605 abs_score=39.884605 lang=spa_Latn sentence=Estoy preparando para ustedes algunas notas y un discurso”.
+[03] score=35.841656 abs_score=35.841656 lang=ita_Latn sentence=Egli è veramente il lord del suo dominio.
+[04] score=35.373245 abs_score=35.373245 lang=spa_Latn sentence=He visto mejores habilidades en el grupo profesional de Ellen antes.
+[05] score=35.293041 abs_score=35.293041 lang=spa_Latn sentence=La palabra de Dios tiene poder y autoridad.
+[06] score=35.228718 abs_score=35.228718 lang=ita_Latn sentence=Siate testimoni della misericordia del nostro Signore.
+[07] score=34.988235 abs_score=34.988235 lang=spa_Latn sentence=Eso frustraría el plan eterno de felicidad de Dios.
+[08] score=34.545998 abs_score=34.545998 lang=por_Latn sentence=Nos planos de Deus cada vida é longo o suficiente e cada morte é oportuna.
+[09] score=34.041447 abs_score=34.041447 lang=swe_Latn sentence=Dina gåvor skapades av Gud med ett specifikt syfte, att berätta historien om hans härlighet.
+[10] score=33.696877 abs_score=33.696877 lang=spa_Latn sentence=La Luna es una pequeña parte del universo de Dios.
+[11] score=33.310013 abs_score=33.310013 lang=eng_Latn sentence=In every trouble we should first seek to realize God’s presence with us.
+[12] score=32.121635 abs_score=32.121635 lang=por_Latn sentence=Você teve uma experiência religiosa.”
+[13] score=31.719044 abs_score=31.719044 lang=por_Latn sentence=Temos aqui uma certeza clara da segunda vinda do Senhor para estabelecer seu reino na terra.
+[14] score=31.463196 abs_score=31.463196 lang=spa_Latn sentence=Las personas tienen que comer y beber las palabras de Dios.
+[15] score=31.407770 abs_score=31.407770 lang=swe_Latn sentence=Att öka effektiviteten var målet för alla mina reformer under denna period.
+[16] score=31.202229 abs_score=31.202229 lang=ita_Latn sentence=Essa è una porta verso la misericordia del tuo Signore.
+[17] score=30.549454 abs_score=30.549454 lang=spa_Latn sentence=Él vivió una vida perfecta, de acuerdo con la voluntad de Dios y luego murió inocentemente por todos nuestros pecados.
+[18] score=30.418417 abs_score=30.418417 lang=spa_Latn sentence=Estas personas no son enemigos de Dios ni tampoco son nuestras.
+[19] score=30.392694 abs_score=30.392694 lang=ita_Latn sentence=Egli è veramente libero nel Signore,
+[20] score=30.088915 abs_score=30.088915 lang=eng_Latn sentence=God has truly led us in our growth and development through these many years!
+
+--- Feature 210 ---
+Top by z:
+[01] score=45.553482 abs_score=45.553482 lang=ces_Latn sentence=vděkem k Pánu oplývají
+[02] score=33.098099 abs_score=33.098099 lang=ces_Latn sentence=Mluv k Pánu (modli se)
+[03] score=29.859013 abs_score=29.859013 lang=por_Latn sentence=te foi mostrado no monte.”
+[04] score=29.151157 abs_score=29.151157 lang=nld_Latn sentence=En dit van een commentator in de What Now?
+[05] score=28.017208 abs_score=28.017208 lang=ces_Latn sentence=Budiž zdráva, milostiplná!
+[06] score=27.926565 abs_score=27.926565 lang=pol_Latn sentence=i w unii z Panem Bogiem przetrwali to,
+[07] score=26.141628 abs_score=26.141628 lang=ita_Latn sentence=a chiederGli con umile certezza che
+[08] score=25.780748 abs_score=25.780748 lang=ces_Latn sentence=A chvála Pánu za tu štědrou přízeň!
+[09] score=24.850552 abs_score=24.850552 lang=spa_Latn sentence=¡En el nombre de Dios, el Compasivo, el
+[10] score=24.850203 abs_score=24.850203 lang=swe_Latn sentence=Och om ni säger 'berg, flytta dig', ska det flytta sig."
+[11] score=24.675148 abs_score=24.675148 lang=spa_Latn sentence=Yo soy el Indulgente, el Misericordioso».
+[12] score=24.161947 abs_score=24.161947 lang=spa_Latn sentence=Encontrarás al Creador en el grupo
+[13] score=23.984867 abs_score=23.984867 lang=por_Latn sentence=Recita em nome do Teu Senhor:.
+[14] score=23.886425 abs_score=23.886425 lang=pol_Latn sentence=ja zaś IDĘ na ciebie W IMIĘ PANA ZASTĘPÓW.”
+[15] score=23.859547 abs_score=23.859547 lang=swe_Latn sentence=Nej, [Jag svär] vid detta land
+[16] score=23.644545 abs_score=23.644545 lang=pol_Latn sentence=Czcijcie waszego Pana!
+[17] score=23.627470 abs_score=23.627470 lang=spa_Latn sentence=Edith, para ti (le entrega el premio a ella).
+[18] score=22.975523 abs_score=22.975523 lang=ita_Latn sentence=La provvista del tuo Signore
+[19] score=22.632019 abs_score=22.632019 lang=ita_Latn sentence=Nel nome di Dio, il Compassionevole, il misericordioso
+[20] score=22.536167 abs_score=22.536167 lang=pol_Latn sentence=To jest dżihad w czystej formie.”
+Top by |z|:
+[01] score=45.553482 abs_score=45.553482 lang=ces_Latn sentence=vděkem k Pánu oplývají
+[02] score=33.098099 abs_score=33.098099 lang=ces_Latn sentence=Mluv k Pánu (modli se)
+[03] score=29.859013 abs_score=29.859013 lang=por_Latn sentence=te foi mostrado no monte.”
+[04] score=29.151157 abs_score=29.151157 lang=nld_Latn sentence=En dit van een commentator in de What Now?
+[05] score=28.017208 abs_score=28.017208 lang=ces_Latn sentence=Budiž zdráva, milostiplná!
+[06] score=27.926565 abs_score=27.926565 lang=pol_Latn sentence=i w unii z Panem Bogiem przetrwali to,
+[07] score=26.141628 abs_score=26.141628 lang=ita_Latn sentence=a chiederGli con umile certezza che
+[08] score=25.780748 abs_score=25.780748 lang=ces_Latn sentence=A chvála Pánu za tu štědrou přízeň!
+[09] score=24.850552 abs_score=24.850552 lang=spa_Latn sentence=¡En el nombre de Dios, el Compasivo, el
+[10] score=24.850203 abs_score=24.850203 lang=swe_Latn sentence=Och om ni säger 'berg, flytta dig', ska det flytta sig."
+[11] score=24.675148 abs_score=24.675148 lang=spa_Latn sentence=Yo soy el Indulgente, el Misericordioso».
+[12] score=24.161947 abs_score=24.161947 lang=spa_Latn sentence=Encontrarás al Creador en el grupo
+[13] score=23.984867 abs_score=23.984867 lang=por_Latn sentence=Recita em nome do Teu Senhor:.
+[14] score=23.886425 abs_score=23.886425 lang=pol_Latn sentence=ja zaś IDĘ na ciebie W IMIĘ PANA ZASTĘPÓW.”
+[15] score=23.859547 abs_score=23.859547 lang=swe_Latn sentence=Nej, [Jag svär] vid detta land
+[16] score=23.644545 abs_score=23.644545 lang=pol_Latn sentence=Czcijcie waszego Pana!
+[17] score=23.627470 abs_score=23.627470 lang=spa_Latn sentence=Edith, para ti (le entrega el premio a ella).
+[18] score=22.975523 abs_score=22.975523 lang=ita_Latn sentence=La provvista del tuo Signore
+[19] score=22.632019 abs_score=22.632019 lang=ita_Latn sentence=Nel nome di Dio, il Compassionevole, il misericordioso
+[20] score=22.536167 abs_score=22.536167 lang=pol_Latn sentence=To jest dżihad w czystej formie.”
+
+--- Feature 1008 ---
+Top by z:
+[01] score=45.326733 abs_score=45.326733 lang=eng_Latn sentence=Science Says You Can (Partly) Blame Your Friends
+[02] score=41.257469 abs_score=41.257469 lang=eng_Latn sentence=This Company Will Pay You $1,000 for Telling It Why Your School Rules
+[03] score=37.304668 abs_score=37.304668 lang=eng_Latn sentence=Never Let me Go – Miss Lucy tells the truth
+[04] score=36.173470 abs_score=36.173470 lang=deu_Latn sentence=Is the Two-State Solution in Danger? auf Haaretz
+[05] score=35.240398 abs_score=35.240398 lang=eng_Latn sentence=Corporal Sampson even threatened us.
+[06] score=34.287159 abs_score=34.287159 lang=deu_Latn sentence=Die Umsetzung der Agenda 2030 erfordert starke Partnerschaften. © UN Photos
+[07] score=34.138752 abs_score=34.138752 lang=swe_Latn sentence=What Do you Know About Desire?” från 1995.
+[08] score=33.499016 abs_score=33.499016 lang=nld_Latn sentence=Nog diezelfde dag werd in Amerika (“So now Homeland Security can detain suspected movie pirates?”
+[09] score=33.071793 abs_score=33.071793 lang=eng_Latn sentence=Great wines ... protected by an ambitious regulatory framework
+[10] score=32.849297 abs_score=32.849297 lang=spa_Latn sentence=Un nuevo contrato social inevitable “porque este mundo
+[11] score=31.960342 abs_score=31.960342 lang=eng_Latn sentence=PMI Always Present at the Institutional Level !
+[12] score=30.604761 abs_score=30.604761 lang=deu_Latn sentence=Vorsicht vor Agenda 21 und ihrem Green New Deal!
+[13] score=29.223392 abs_score=29.223392 lang=ces_Latn sentence=Více informací o projektu This is Poland!
+[14] score=28.876915 abs_score=28.876915 lang=swe_Latn sentence=2004 – Right Management förvärvas av ManpowerGroup.
+[15] score=27.844845 abs_score=27.844845 lang=eng_Latn sentence=Something wonderful has happened… Number Five is alive!
+[16] score=27.532967 abs_score=27.532967 lang=deu_Latn sentence=„I’ll Never Love Again“ aus A STAR IS BORN
+[17] score=26.845770 abs_score=26.845770 lang=swe_Latn sentence=9 Brännande hälsofrågor Människor frågade Google i år
+[18] score=26.549204 abs_score=26.549204 lang=deu_Latn sentence=Welcher Besuch in Havanna am selben Tag?
+[19] score=26.507343 abs_score=26.507343 lang=deu_Latn sentence=Herr Wonka, wer braucht Instant Payment?
+[20] score=25.574078 abs_score=25.574078 lang=swe_Latn sentence=Give me a penny för your lungs man.
+Top by |z|:
+[01] score=45.326733 abs_score=45.326733 lang=eng_Latn sentence=Science Says You Can (Partly) Blame Your Friends
+[02] score=41.257469 abs_score=41.257469 lang=eng_Latn sentence=This Company Will Pay You $1,000 for Telling It Why Your School Rules
+[03] score=37.304668 abs_score=37.304668 lang=eng_Latn sentence=Never Let me Go – Miss Lucy tells the truth
+[04] score=36.173470 abs_score=36.173470 lang=deu_Latn sentence=Is the Two-State Solution in Danger? auf Haaretz
+[05] score=35.240398 abs_score=35.240398 lang=eng_Latn sentence=Corporal Sampson even threatened us.
+[06] score=34.287159 abs_score=34.287159 lang=deu_Latn sentence=Die Umsetzung der Agenda 2030 erfordert starke Partnerschaften. © UN Photos
+[07] score=34.138752 abs_score=34.138752 lang=swe_Latn sentence=What Do you Know About Desire?” från 1995.
+[08] score=33.499016 abs_score=33.499016 lang=nld_Latn sentence=Nog diezelfde dag werd in Amerika (“So now Homeland Security can detain suspected movie pirates?”
+[09] score=33.071793 abs_score=33.071793 lang=eng_Latn sentence=Great wines ... protected by an ambitious regulatory framework
+[10] score=32.849297 abs_score=32.849297 lang=spa_Latn sentence=Un nuevo contrato social inevitable “porque este mundo
+[11] score=31.960342 abs_score=31.960342 lang=eng_Latn sentence=PMI Always Present at the Institutional Level !
+[12] score=30.604761 abs_score=30.604761 lang=deu_Latn sentence=Vorsicht vor Agenda 21 und ihrem Green New Deal!
+[13] score=29.223392 abs_score=29.223392 lang=ces_Latn sentence=Více informací o projektu This is Poland!
+[14] score=28.876915 abs_score=28.876915 lang=swe_Latn sentence=2004 – Right Management förvärvas av ManpowerGroup.
+[15] score=27.844845 abs_score=27.844845 lang=eng_Latn sentence=Something wonderful has happened… Number Five is alive!
+[16] score=27.532967 abs_score=27.532967 lang=deu_Latn sentence=„I’ll Never Love Again“ aus A STAR IS BORN
+[17] score=26.845770 abs_score=26.845770 lang=swe_Latn sentence=9 Brännande hälsofrågor Människor frågade Google i år
+[18] score=26.549204 abs_score=26.549204 lang=deu_Latn sentence=Welcher Besuch in Havanna am selben Tag?
+[19] score=26.507343 abs_score=26.507343 lang=deu_Latn sentence=Herr Wonka, wer braucht Instant Payment?
+[20] score=25.574078 abs_score=25.574078 lang=swe_Latn sentence=Give me a penny för your lungs man.
+
+--- Feature 3951 ---
+Top by z:
+[01] score=44.850574 abs_score=44.850574 lang=spa_Latn sentence=Alá dice la verdad.
+[02] score=44.764332 abs_score=44.764332 lang=fra_Latn sentence=Ceux qui cherchent authentiquement la vérité cherchent la vérité en toutes choses.
+[03] score=39.546658 abs_score=39.546658 lang=pol_Latn sentence=„Zaprawdę surowość twego Pana
+[04] score=38.054806 abs_score=38.054806 lang=eng_Latn sentence=“A great truth is a truth whose opposite is also a truth.”
+[05] score=32.699631 abs_score=32.699631 lang=ita_Latn sentence=In verità il tuo Signore è all'erta.
+[06] score=31.819216 abs_score=31.819216 lang=eng_Latn sentence=The good of the person is to be in the Truth and to do the Truth.”
+[07] score=29.866560 abs_score=29.866560 lang=deu_Latn sentence=„Eine große Wahrheit ist eine Wahrheit, deren Gegenteil immer noch eine Wahrheit ist."
+[08] score=29.476799 abs_score=29.476799 lang=deu_Latn sentence=[787] Wirklich s. Wirklichkeit.[787]
+[09] score=28.878260 abs_score=28.878260 lang=deu_Latn sentence=„Eine große Wahrheit ist eine Wahrheit, deren Gegenteil immer noch eine Wahrheit ist."
+[10] score=28.648682 abs_score=28.648682 lang=pol_Latn sentence=Zaprawdę, Pan mój jest blisko i odpowiada na modlitwy”.
+[11] score=27.421776 abs_score=27.421776 lang=pol_Latn sentence=Zaprawdę, Tyś jest Panem wszystkich światów.
+[12] score=27.296846 abs_score=27.296846 lang=fra_Latn sentence=17 Sanctifie-les par la vérité ; ta Parole est [la] vérité.
+[13] score=27.174694 abs_score=27.174694 lang=ita_Latn sentence=In verità il nostro Signore è perdonatore, riconoscente.
+[14] score=27.101627 abs_score=27.101627 lang=ita_Latn sentence=«Una grande verità è una verità il cui opposto è anch'esso una grande verità.»
+[15] score=26.857330 abs_score=26.857330 lang=deu_Latn sentence=Denn: „Es ist wahr!
+[16] score=26.776335 abs_score=26.776335 lang=deu_Latn sentence=Und wenn Sie Wahrheit wollen, dann sprechen Sie Wahrheit!
+[17] score=26.425426 abs_score=26.425426 lang=deu_Latn sentence=Und wenn Sie Wahrheit wollen, dann sprechen Sie Wahrheit!
+[18] score=26.312193 abs_score=26.312193 lang=fra_Latn sentence=“Dans le doute, dites la vérité.”
+[19] score=26.197054 abs_score=26.197054 lang=spa_Latn sentence=La verdad viene de la Palabra de Dios.
+[20] score=25.447321 abs_score=25.447321 lang=deu_Latn sentence=Wahrheit erkennen, und die Wahrheit wird [ihn] befreien" (Joh
+Top by |z|:
+[01] score=44.850574 abs_score=44.850574 lang=spa_Latn sentence=Alá dice la verdad.
+[02] score=44.764332 abs_score=44.764332 lang=fra_Latn sentence=Ceux qui cherchent authentiquement la vérité cherchent la vérité en toutes choses.
+[03] score=39.546658 abs_score=39.546658 lang=pol_Latn sentence=„Zaprawdę surowość twego Pana
+[04] score=38.054806 abs_score=38.054806 lang=eng_Latn sentence=“A great truth is a truth whose opposite is also a truth.”
+[05] score=32.699631 abs_score=32.699631 lang=ita_Latn sentence=In verità il tuo Signore è all'erta.
+[06] score=31.819216 abs_score=31.819216 lang=eng_Latn sentence=The good of the person is to be in the Truth and to do the Truth.”
+[07] score=29.866560 abs_score=29.866560 lang=deu_Latn sentence=„Eine große Wahrheit ist eine Wahrheit, deren Gegenteil immer noch eine Wahrheit ist."
+[08] score=29.476799 abs_score=29.476799 lang=deu_Latn sentence=[787] Wirklich s. Wirklichkeit.[787]
+[09] score=28.878260 abs_score=28.878260 lang=deu_Latn sentence=„Eine große Wahrheit ist eine Wahrheit, deren Gegenteil immer noch eine Wahrheit ist."
+[10] score=28.648682 abs_score=28.648682 lang=pol_Latn sentence=Zaprawdę, Pan mój jest blisko i odpowiada na modlitwy”.
+[11] score=27.421776 abs_score=27.421776 lang=pol_Latn sentence=Zaprawdę, Tyś jest Panem wszystkich światów.
+[12] score=27.296846 abs_score=27.296846 lang=fra_Latn sentence=17 Sanctifie-les par la vérité ; ta Parole est [la] vérité.
+[13] score=27.174694 abs_score=27.174694 lang=ita_Latn sentence=In verità il nostro Signore è perdonatore, riconoscente.
+[14] score=27.101627 abs_score=27.101627 lang=ita_Latn sentence=«Una grande verità è una verità il cui opposto è anch'esso una grande verità.»
+[15] score=26.857330 abs_score=26.857330 lang=deu_Latn sentence=Denn: „Es ist wahr!
+[16] score=26.776335 abs_score=26.776335 lang=deu_Latn sentence=Und wenn Sie Wahrheit wollen, dann sprechen Sie Wahrheit!
+[17] score=26.425426 abs_score=26.425426 lang=deu_Latn sentence=Und wenn Sie Wahrheit wollen, dann sprechen Sie Wahrheit!
+[18] score=26.312193 abs_score=26.312193 lang=fra_Latn sentence=“Dans le doute, dites la vérité.”
+[19] score=26.197054 abs_score=26.197054 lang=spa_Latn sentence=La verdad viene de la Palabra de Dios.
+[20] score=25.447321 abs_score=25.447321 lang=deu_Latn sentence=Wahrheit erkennen, und die Wahrheit wird [ihn] befreien" (Joh
+
+--- Feature 524 ---
+Top by z:
+[01] score=42.390209 abs_score=42.390209 lang=ita_Latn sentence=«Noi abbiamo una vasta eredità, ma non abbiamo alcun inventario dei nostri tesori».
+[02] score=41.542294 abs_score=41.542294 lang=spa_Latn sentence=Por esto, no nos sentimos un extraño entre vosotros.
+[03] score=39.866367 abs_score=39.866367 lang=ita_Latn sentence=Ne facemmo una guida per i Figli di Israele.
+[04] score=39.757053 abs_score=39.757053 lang=nld_Latn sentence=Nu kijken we uit naar ons tiende Russische contract.
+[05] score=39.146671 abs_score=39.146671 lang=ita_Latn sentence=Noi li espelleremo dalla nostra terra usando tutti i mezzi”.
+[06] score=36.809376 abs_score=36.809376 lang=eng_Latn sentence=We say YES to Europe, but we want a new beginning.
+[07] score=36.591187 abs_score=36.591187 lang=eng_Latn sentence=In every trouble we should first seek to realize God’s presence with us.
+[08] score=36.408119 abs_score=36.408119 lang=por_Latn sentence=Nós mudamos, é por isso que estamos qualificados a esperar o Senhor nos levar ao reino dos céus.”
+[09] score=36.399609 abs_score=36.399609 lang=eng_Latn sentence=1bank4all – Our name is our vision!
+[10] score=36.122971 abs_score=36.122971 lang=eng_Latn sentence=We are already dead - the gas will just kill us again.
+[11] score=34.448360 abs_score=34.448360 lang=fra_Latn sentence=Nous le pouvons et le ferons car nous sommes convaincus de l’amour et de la puissance de Dieu ».
+[12] score=34.119801 abs_score=34.119801 lang=por_Latn sentence=Por teu Senhor, que os congregaremos com os
+[13] score=33.606014 abs_score=33.606014 lang=ita_Latn sentence=Dovremmo vedere il nostro Signore, nel Giorno della Resurrezione?"
+[14] score=33.261173 abs_score=33.261173 lang=ces_Latn sentence=Vladimir Putin: Chceme rozvíjet naši zemi v rámci našich vlastních hranic, samozřejmě.
+[15] score=33.213184 abs_score=33.213184 lang=deu_Latn sentence=Heute haben wir jedoch bessere Optionen - wir haben HPR.
+[16] score=33.085529 abs_score=33.085529 lang=spa_Latn sentence=Lo llamamos así en los seres humanos ”.
+[17] score=32.984936 abs_score=32.984936 lang=spa_Latn sentence=Estamos listos para el día en que veremos el fin de Israel“.
+[18] score=32.883068 abs_score=32.883068 lang=nld_Latn sentence=Achtentwintig dagen voordat we Georgia vertellen wie we zijn.
+[19] score=32.838451 abs_score=32.838451 lang=ita_Latn sentence=Siate testimoni della misericordia del nostro Signore.
+[20] score=32.776184 abs_score=32.776184 lang=fra_Latn sentence=Vous n’avez pas de souveraineté là où nous nous rassemblons.»
+Top by |z|:
+[01] score=42.390209 abs_score=42.390209 lang=ita_Latn sentence=«Noi abbiamo una vasta eredità, ma non abbiamo alcun inventario dei nostri tesori».
+[02] score=41.542294 abs_score=41.542294 lang=spa_Latn sentence=Por esto, no nos sentimos un extraño entre vosotros.
+[03] score=39.866367 abs_score=39.866367 lang=ita_Latn sentence=Ne facemmo una guida per i Figli di Israele.
+[04] score=39.757053 abs_score=39.757053 lang=nld_Latn sentence=Nu kijken we uit naar ons tiende Russische contract.
+[05] score=39.146671 abs_score=39.146671 lang=ita_Latn sentence=Noi li espelleremo dalla nostra terra usando tutti i mezzi”.
+[06] score=36.809376 abs_score=36.809376 lang=eng_Latn sentence=We say YES to Europe, but we want a new beginning.
+[07] score=36.591187 abs_score=36.591187 lang=eng_Latn sentence=In every trouble we should first seek to realize God’s presence with us.
+[08] score=36.408119 abs_score=36.408119 lang=por_Latn sentence=Nós mudamos, é por isso que estamos qualificados a esperar o Senhor nos levar ao reino dos céus.”
+[09] score=36.399609 abs_score=36.399609 lang=eng_Latn sentence=1bank4all – Our name is our vision!
+[10] score=36.122971 abs_score=36.122971 lang=eng_Latn sentence=We are already dead - the gas will just kill us again.
+[11] score=34.448360 abs_score=34.448360 lang=fra_Latn sentence=Nous le pouvons et le ferons car nous sommes convaincus de l’amour et de la puissance de Dieu ».
+[12] score=34.119801 abs_score=34.119801 lang=por_Latn sentence=Por teu Senhor, que os congregaremos com os
+[13] score=33.606014 abs_score=33.606014 lang=ita_Latn sentence=Dovremmo vedere il nostro Signore, nel Giorno della Resurrezione?"
+[14] score=33.261173 abs_score=33.261173 lang=ces_Latn sentence=Vladimir Putin: Chceme rozvíjet naši zemi v rámci našich vlastních hranic, samozřejmě.
+[15] score=33.213184 abs_score=33.213184 lang=deu_Latn sentence=Heute haben wir jedoch bessere Optionen - wir haben HPR.
+[16] score=33.085529 abs_score=33.085529 lang=spa_Latn sentence=Lo llamamos así en los seres humanos ”.
+[17] score=32.984936 abs_score=32.984936 lang=spa_Latn sentence=Estamos listos para el día en que veremos el fin de Israel“.
+[18] score=32.883068 abs_score=32.883068 lang=nld_Latn sentence=Achtentwintig dagen voordat we Georgia vertellen wie we zijn.
+[19] score=32.838451 abs_score=32.838451 lang=ita_Latn sentence=Siate testimoni della misericordia del nostro Signore.
+[20] score=32.776184 abs_score=32.776184 lang=fra_Latn sentence=Vous n’avez pas de souveraineté là où nous nous rassemblons.»
+
+--- Feature 2435 ---
+Top by z:
+[01] score=42.281742 abs_score=42.281742 lang=pol_Latn sentence=Twój Pan jest Wszechmocny!
+[02] score=40.740490 abs_score=40.740490 lang=ces_Latn sentence=vděkem k Pánu oplývají
+[03] score=39.394539 abs_score=39.394539 lang=pol_Latn sentence=Czcijcie waszego Pana!
+[04] score=39.170265 abs_score=39.170265 lang=ces_Latn sentence=Budiž zdráva, milostiplná!
+[05] score=35.468910 abs_score=35.468910 lang=ces_Latn sentence=Vpravdě, On je Štědrý, Odpouštějící, Slitovný.
+[06] score=34.382076 abs_score=34.382076 lang=ces_Latn sentence=Z pán (rozcestník) zůstane přesměrování.
+[07] score=34.123856 abs_score=34.123856 lang=pol_Latn sentence=A Pan twój jest Wszechpotężny.
+[08] score=33.254257 abs_score=33.254257 lang=ces_Latn sentence=Požehnaný, který přichází v Pánově jménu!
+[09] score=33.107494 abs_score=33.107494 lang=pol_Latn sentence=To jest dżihad w czystej formie.”
+[10] score=33.019943 abs_score=33.019943 lang=pol_Latn sentence=A twój pan jest Najhojniejszy’ [początek sury 96].
+[11] score=32.803295 abs_score=32.803295 lang=ces_Latn sentence=Milosrdnému, Slitovnému,
+[12] score=32.733410 abs_score=32.733410 lang=ces_Latn sentence=On jest vpravdě Odpouštějící, Nadevše Milosrdný.
+[13] score=31.284571 abs_score=31.284571 lang=ces_Latn sentence=A chvála Pánu za tu štědrou přízeň!
+[14] score=30.880194 abs_score=30.880194 lang=ces_Latn sentence=Rci: „Béřu útočiště u Pána JITŘENKY,
+[15] score=30.532928 abs_score=30.532928 lang=pol_Latn sentence=Obiecany w Starym Testamencie tj. w planie Bożym.
+[16] score=30.426142 abs_score=30.426142 lang=pol_Latn sentence=Gdybyście byli ze świata,
+[17] score=30.233965 abs_score=30.233965 lang=pol_Latn sentence=Po odsłonięciu idziemy na mszę dziękczynną (albo przed).
+[18] score=30.160181 abs_score=30.160181 lang=pol_Latn sentence=Wiernie służy swemu panu
+[19] score=29.562990 abs_score=29.562990 lang=pol_Latn sentence=Twój Pan i władca czuje się odrzucony.
+[20] score=29.397896 abs_score=29.397896 lang=ces_Latn sentence=Tvůj Pán jest vpravdě Milostivý, Odpouštějící.
+Top by |z|:
+[01] score=42.281742 abs_score=42.281742 lang=pol_Latn sentence=Twój Pan jest Wszechmocny!
+[02] score=40.740490 abs_score=40.740490 lang=ces_Latn sentence=vděkem k Pánu oplývají
+[03] score=39.394539 abs_score=39.394539 lang=pol_Latn sentence=Czcijcie waszego Pana!
+[04] score=39.170265 abs_score=39.170265 lang=ces_Latn sentence=Budiž zdráva, milostiplná!
+[05] score=35.468910 abs_score=35.468910 lang=ces_Latn sentence=Vpravdě, On je Štědrý, Odpouštějící, Slitovný.
+[06] score=34.382076 abs_score=34.382076 lang=ces_Latn sentence=Z pán (rozcestník) zůstane přesměrování.
+[07] score=34.123856 abs_score=34.123856 lang=pol_Latn sentence=A Pan twój jest Wszechpotężny.
+[08] score=33.254257 abs_score=33.254257 lang=ces_Latn sentence=Požehnaný, který přichází v Pánově jménu!
+[09] score=33.107494 abs_score=33.107494 lang=pol_Latn sentence=To jest dżihad w czystej formie.”
+[10] score=33.019943 abs_score=33.019943 lang=pol_Latn sentence=A twój pan jest Najhojniejszy’ [początek sury 96].
+[11] score=32.803295 abs_score=32.803295 lang=ces_Latn sentence=Milosrdnému, Slitovnému,
+[12] score=32.733410 abs_score=32.733410 lang=ces_Latn sentence=On jest vpravdě Odpouštějící, Nadevše Milosrdný.
+[13] score=31.284571 abs_score=31.284571 lang=ces_Latn sentence=A chvála Pánu za tu štědrou přízeň!
+[14] score=30.880194 abs_score=30.880194 lang=ces_Latn sentence=Rci: „Béřu útočiště u Pána JITŘENKY,
+[15] score=30.532928 abs_score=30.532928 lang=pol_Latn sentence=Obiecany w Starym Testamencie tj. w planie Bożym.
+[16] score=30.426142 abs_score=30.426142 lang=pol_Latn sentence=Gdybyście byli ze świata,
+[17] score=30.233965 abs_score=30.233965 lang=pol_Latn sentence=Po odsłonięciu idziemy na mszę dziękczynną (albo przed).
+[18] score=30.160181 abs_score=30.160181 lang=pol_Latn sentence=Wiernie służy swemu panu
+[19] score=29.562990 abs_score=29.562990 lang=pol_Latn sentence=Twój Pan i władca czuje się odrzucony.
+[20] score=29.397896 abs_score=29.397896 lang=ces_Latn sentence=Tvůj Pán jest vpravdě Milostivý, Odpouštějící.

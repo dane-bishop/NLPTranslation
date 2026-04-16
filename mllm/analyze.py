@@ -1,56 +1,47 @@
-import math
+import argparse
+import contextlib
+import json
+import sys
+from pathlib import Path
 from collections import defaultdict, Counter
+from dataclasses import asdict, dataclass
 
 import torch
 from torch.utils.data import DataLoader
 
 from dataset import BalancedNLLBDataset
 from backbone import MLLMBackbone
-from sae import SAE
+from sae import SAE, GatedSparseAutoEncoder
+from train import TrainingConf, masked_mean_pool
+
+@dataclass
+class AnalysisConf:
+    weight_path: str
+    batch_size: int
+    num_batches: int
+    top_k_features: int
+    top_k_examples: int
+    output_dir: str
+    langs: list[str] | None
+    pairs: list[str] | None
 
 
-# -------------------------
-# Config
-# -------------------------
-PAIR_CONFIGS = [
-    "eng_Latn-fra_Latn",
-    "eng_Latn-fra_Latn",
-    "deu_Latn-eng_Latn",
-    "eng_Latn-nld_Latn",
-    "eng_Latn-swe_Latn",
-    "eng_Latn-spa_Latn",
-    "eng_Latn-ita_Latn",
-    "eng_Latn-por_Latn",
-    "eng_Latn-pol_Latn",
-    "ces_Latn-eng_Latn",
-]
+device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+sae_constructors = {"vanilla": SAE, "gated": GatedSparseAutoEncoder}
 
-LANGS = [
-    "eng_Latn",
-    "fra_Latn",
-    "deu_Latn",
-    "nld_Latn",
-    "swe_Latn",
-    "spa_Latn",
-    "ita_Latn",
-    "por_Latn",
-    "pol_Latn",
-    "ces_Latn",
-]
 
-LAYER_IDX = 6
-CHECKPOINT_PATH = "sae_layer6.pt"
+class Tee:
+    def __init__(self, *streams):
+        self.streams = streams
 
-BATCH_SIZE = 32
-MAX_LENGTH = 128
-NUM_BATCHES_TO_ANALYZE = 50
+    def write(self, data: str):
+        for stream in self.streams:
+            stream.write(data)
+        return len(data)
 
-IN_DIM = 768
-LATENT_DIM = 4096
-
-TOP_K_FEATURES_TO_PRINT = 10
-TOP_K_EXAMPLES_PER_FEATURE = 10
-ACTIVE_THRESHOLD = 1e-6
+    def flush(self):
+        for stream in self.streams:
+            stream.flush()
 
 
 # -------------------------
@@ -62,23 +53,6 @@ def collate_records(batch):
         "langs": [item["lang"] for item in batch],
         "pairs": [item["pair"] for item in batch],
     }
-
-
-# -------------------------
-# Helper: entropy
-# -------------------------
-def normalized_entropy(counter: Counter, num_langs: int) -> float:
-    total = sum(counter.values())
-    if total == 0:
-        return 0.0
-
-    probs = [v / total for v in counter.values() if v > 0]
-    h = -sum(p * math.log(p) for p in probs)
-
-    if num_langs <= 1:
-        return 0.0
-
-    return h / math.log(num_langs)
 
 
 # -------------------------
@@ -127,13 +101,14 @@ def get_valid_tokens_and_langs(
 # Main analysis collector
 # -------------------------
 @torch.no_grad()
-def collect_analysis_rows(
+def collect_token_analysis_rows(
     backbone: MLLMBackbone,
     sae: SAE,
     loader: DataLoader,
     device: torch.device,
     layer_idx: int,
     max_length: int,
+    encoder_only: bool,
     num_batches: int,
 ):
     """
@@ -157,6 +132,7 @@ def collect_analysis_rows(
             texts=texts,
             layer_idx=layer_idx,
             max_length=max_length,
+            encoder_only=encoder_only,
         )
 
         x = acts["token_activations"]  # (N, 768)
@@ -201,6 +177,69 @@ def collect_analysis_rows(
     return rows
 
 
+@torch.no_grad()
+def collect_pooled_analysis_rows(
+    backbone: MLLMBackbone,
+    sae: SAE,
+    loader: DataLoader,
+    device: torch.device,
+    layer_idx: int,
+    max_length: int,
+    encoder_only: bool,
+    num_batches: int,
+):
+    """
+    Collects sentence-level rows for SAEs trained on pooled sentence embeddings.
+    """
+    rows = []
+
+    sae.eval()
+
+    for batch_idx, batch in enumerate(loader):
+        if batch_idx >= num_batches:
+            break
+
+        texts = batch["texts"]
+        langs = batch["langs"]
+
+        acts = backbone.extract_layer_activations(
+            texts=texts,
+            layer_idx=layer_idx,
+            max_length=max_length,
+            encoder_only=encoder_only,
+        )
+
+        x = masked_mean_pool(acts["layer_tensor"], acts["valid_mask"])
+        if x.numel() == 0:
+            continue
+
+        x = x - x.mean(dim=0, keepdim=True)
+
+        out = sae(x)
+        x_hat = out["x_hat"]
+        z = out["z"]
+
+        per_sentence_recon = ((x_hat - x) ** 2).mean(dim=1)
+
+        z_cpu = z.detach().cpu()
+        per_sentence_recon_cpu = per_sentence_recon.detach().cpu()
+
+        for sent_idx in range(x.shape[0]):
+            rows.append(
+                {
+                    "lang": langs[sent_idx],
+                    "sentence": texts[sent_idx],
+                    "recon_loss": float(per_sentence_recon_cpu[sent_idx].item()),
+                    "z": z_cpu[sent_idx],
+                }
+            )
+
+        if batch_idx % 10 == 0:
+            print(f"[collect] processed batch {batch_idx}")
+
+    return rows
+
+
 # -------------------------
 # Global stats
 # -------------------------
@@ -212,35 +251,35 @@ def print_global_stats(rows, latent_dim: int):
 
     z = torch.stack([r["z"] for r in rows], dim=0)  # (N, D)
 
-    active_mask = z > ACTIVE_THRESHOLD
-    active_frac = active_mask.float().mean().item()
-
-    feature_firing = active_mask.float().mean(dim=0)
-    dead_features = int((feature_firing < 1e-6).sum().item())
-
     recon_losses = torch.tensor([r["recon_loss"] for r in rows])
+    max_by_feature = z.max(dim=0).values
+    mean_by_feature = z.mean(dim=0)
+    mean_abs_by_feature = z.abs().mean(dim=0)
 
     print("\n=== GLOBAL STATS ===")
-    print(f"num token rows: {num_rows}")
+    print(f"num rows: {num_rows}")
     print(f"latent dim: {latent_dim}")
     print(f"mean recon loss per token: {recon_losses.mean().item():.6f}")
     print(f"std recon loss per token:  {recon_losses.std().item():.6f}")
-    print(f"active fraction:           {active_frac:.6f}")
-    print(f"dead features:             {dead_features}")
-
-    firing_sorted, _ = torch.sort(feature_firing, descending=True)
-    print(f"top 10 feature firing rates: {[round(float(x), 6) for x in firing_sorted[:10]]}")
+    print(f"top 10 feature max z:      {[round(float(x), 6) for x in torch.sort(max_by_feature, descending=True).values[:10]]}")
+    print(f"top 10 feature mean z:     {[round(float(x), 6) for x in torch.sort(mean_by_feature, descending=True).values[:10]]}")
+    print(f"top 10 feature mean |z|:   {[round(float(x), 6) for x in torch.sort(mean_abs_by_feature, descending=True).values[:10]]}")
 
 
 # -------------------------
 # Top examples for features
 # -------------------------
-def get_top_examples_for_feature(rows, feature_idx: int, top_k: int = 10):
+def get_top_examples_for_feature(
+    rows,
+    feature_idx: int,
+    top_k: int = 10,
+    use_abs: bool = False,
+):
     scored = []
     for r in rows:
-        score = float(r["z"][feature_idx].item())
-        if score > ACTIVE_THRESHOLD:
-            scored.append((score, r))
+        raw_score = float(r["z"][feature_idx].item())
+        score = abs(raw_score) if use_abs else raw_score
+        scored.append((score, raw_score, r))
 
     scored.sort(key=lambda x: x[0], reverse=True)
     return scored[:top_k]
@@ -250,18 +289,54 @@ def print_top_examples_for_features(rows, feature_indices: list[int], top_k: int
     print("\n=== TOP ACTIVATING EXAMPLES ===")
     for feat_idx in feature_indices:
         print(f"\n--- Feature {feat_idx} ---")
-        top_examples = get_top_examples_for_feature(rows, feat_idx, top_k=top_k)
+        top_examples_by_z = get_top_examples_for_feature(
+            rows,
+            feat_idx,
+            top_k=top_k,
+            use_abs=False,
+        )
+        top_examples_by_abs = get_top_examples_for_feature(
+            rows,
+            feat_idx,
+            top_k=top_k,
+            use_abs=True,
+        )
 
-        if not top_examples:
-            print("No active examples.")
+        if not top_examples_by_z:
+            print("No examples.")
             continue
 
-        for rank, (score, r) in enumerate(top_examples, start=1):
-            print(
-                f"[{rank:02d}] score={score:.6f} "
-                f"lang={r['lang']} token={r['token']} pos={r['position']} "
-                f"sentence={r['sentence']}"
-            )
+        print("Top by z:")
+        for rank, (_, raw_score, r) in enumerate(top_examples_by_z, start=1):
+            if "token" in r:
+                print(
+                    f"[{rank:02d}] score={raw_score:.6f} "
+                    f"abs_score={abs(raw_score):.6f} "
+                    f"lang={r['lang']} token={r['token']} pos={r['position']} "
+                    f"sentence={r['sentence']}"
+                )
+            else:
+                print(
+                    f"[{rank:02d}] score={raw_score:.6f} "
+                    f"abs_score={abs(raw_score):.6f} "
+                    f"lang={r['lang']} sentence={r['sentence']}"
+                )
+
+        print("Top by |z|:")
+        for rank, (_, raw_score, r) in enumerate(top_examples_by_abs, start=1):
+            if "token" in r:
+                print(
+                    f"[{rank:02d}] score={raw_score:.6f} "
+                    f"abs_score={abs(raw_score):.6f} "
+                    f"lang={r['lang']} token={r['token']} pos={r['position']} "
+                    f"sentence={r['sentence']}"
+                )
+            else:
+                print(
+                    f"[{rank:02d}] score={raw_score:.6f} "
+                    f"abs_score={abs(raw_score):.6f} "
+                    f"lang={r['lang']} sentence={r['sentence']}"
+                )
 
 
 # -------------------------
@@ -269,90 +344,77 @@ def print_top_examples_for_features(rows, feature_indices: list[int], top_k: int
 # -------------------------
 def compute_feature_stats(rows, latent_dim: int, langs: list[str]):
     """
-    Returns per-feature stats:
-      - firing rate
-      - mean activation when active
-      - language counter among active examples
-      - normalized language entropy
-      - selectivity = 1 - entropy
+    Returns per-feature ranking stats without imposing an activity threshold.
     """
     z = torch.stack([r["z"] for r in rows], dim=0)  # (N, D)
-    row_langs = [r["lang"] for r in rows]
 
     feature_stats = []
 
     for j in range(latent_dim):
         vals = z[:, j]
-        active = vals > ACTIVE_THRESHOLD
-
-        firing_rate = float(active.float().mean().item())
-
-        if active.any():
-            mean_active = float(vals[active].mean().item())
-            lang_counter = Counter(
-                row_langs[i] for i in range(len(rows)) if bool(active[i].item())
-            )
-            ent = normalized_entropy(lang_counter, len(langs))
-            selectivity = 1.0 - ent
-        else:
-            mean_active = 0.0
-            lang_counter = Counter()
-            ent = 0.0
-            selectivity = 0.0
 
         feature_stats.append({
             "feature_idx": j,
-            "firing_rate": firing_rate,
-            "mean_active": mean_active,
-            "lang_counter": lang_counter,
-            "lang_entropy": ent,
-            "lang_selectivity": selectivity,
+            "mean_z": float(vals.mean().item()),
+            "max_z": float(vals.max().item()),
+            "mean_abs_z": float(vals.abs().mean().item()),
+            "max_abs_z": float(vals.abs().max().item()),
         })
 
     return feature_stats
 
 
-def print_most_language_selective_features(feature_stats, top_k: int = 20):
-    print("\n=== MOST LANGUAGE-SELECTIVE FEATURES ===")
+def print_top_features_by_max(feature_stats, top_k: int = 20):
+    print("\n=== TOP FEATURES BY MAX Z ===")
     ranked = sorted(
         feature_stats,
-        key=lambda d: (d["lang_selectivity"], d["mean_active"]),
-        reverse=True,
-    )
-
-    count = 0
-    for fs in ranked:
-        if fs["firing_rate"] <= 0:
-            continue
-
-        print(
-            f"feature={fs['feature_idx']:4d} "
-            f"firing={fs['firing_rate']:.6f} "
-            f"mean_active={fs['mean_active']:.6f} "
-            f"lang_selectivity={fs['lang_selectivity']:.6f} "
-            f"lang_entropy={fs['lang_entropy']:.6f} "
-            f"langs={dict(fs['lang_counter'].most_common(4))}"
-        )
-        count += 1
-        if count >= top_k:
-            break
-
-
-def print_most_common_features(feature_stats, top_k: int = 20):
-    print("\n=== MOST COMMONLY FIRING FEATURES ===")
-    ranked = sorted(
-        feature_stats,
-        key=lambda d: (d["firing_rate"], d["mean_active"]),
+        key=lambda d: (d["max_z"], d["mean_z"]),
         reverse=True,
     )[:top_k]
 
     for fs in ranked:
         print(
             f"feature={fs['feature_idx']:4d} "
-            f"firing={fs['firing_rate']:.6f} "
-            f"mean_active={fs['mean_active']:.6f} "
-            f"lang_selectivity={fs['lang_selectivity']:.6f} "
-            f"langs={dict(fs['lang_counter'].most_common(4))}"
+            f"max_z={fs['max_z']:.6f} "
+            f"mean_z={fs['mean_z']:.6f} "
+            f"mean_abs_z={fs['mean_abs_z']:.6f} "
+            f"max_abs_z={fs['max_abs_z']:.6f}"
+        )
+
+
+def print_top_features_by_mean(feature_stats, top_k: int = 20):
+    print("\n=== TOP FEATURES BY MEAN Z ===")
+    ranked = sorted(
+        feature_stats,
+        key=lambda d: (d["mean_z"], d["max_z"]),
+        reverse=True,
+    )[:top_k]
+
+    for fs in ranked:
+        print(
+            f"feature={fs['feature_idx']:4d} "
+            f"mean_z={fs['mean_z']:.6f} "
+            f"max_z={fs['max_z']:.6f} "
+            f"mean_abs_z={fs['mean_abs_z']:.6f} "
+            f"max_abs_z={fs['max_abs_z']:.6f}"
+        )
+
+
+def print_top_features_by_mean_abs(feature_stats, top_k: int = 20):
+    print("\n=== TOP FEATURES BY MEAN |Z| ===")
+    ranked = sorted(
+        feature_stats,
+        key=lambda d: (d["mean_abs_z"], d["max_abs_z"]),
+        reverse=True,
+    )[:top_k]
+
+    for fs in ranked:
+        print(
+            f"feature={fs['feature_idx']:4d} "
+            f"mean_abs_z={fs['mean_abs_z']:.6f} "
+            f"max_abs_z={fs['max_abs_z']:.6f} "
+            f"mean_z={fs['mean_z']:.6f} "
+            f"max_z={fs['max_z']:.6f}"
         )
 
 
@@ -372,14 +434,11 @@ def print_per_language_summary(rows, latent_dim: int, langs: list[str]):
             print(f"{lang}: no rows")
             continue
 
-        z = torch.stack([r["z"] for r in lang_rows], dim=0)
-        active_frac = float((z > ACTIVE_THRESHOLD).float().mean().item())
         mean_recon = sum(r["recon_loss"] for r in lang_rows) / len(lang_rows)
 
         print(
             f"{lang}: "
-            f"num_tokens={len(lang_rows)} "
-            f"active_frac={active_frac:.6f} "
+            f"num_rows={len(lang_rows)} "
             f"mean_recon={mean_recon:.6f}"
         )
 
@@ -390,89 +449,141 @@ def print_per_language_summary(rows, latent_dim: int, langs: list[str]):
 def choose_example_features(feature_stats, top_k: int = 10):
     """
     Picks a mix of:
-      - most common features
-      - most selective features
+      - largest peak activations
+      - strongest average magnitude
     """
-    common = sorted(
+    by_max = sorted(
         feature_stats,
-        key=lambda d: (d["firing_rate"], d["mean_active"]),
+        key=lambda d: (d["max_z"], d["mean_z"]),
         reverse=True,
     )[:top_k]
 
-    selective = sorted(
+    by_mean_abs = sorted(
         feature_stats,
-        key=lambda d: (d["lang_selectivity"], d["mean_active"]),
+        key=lambda d: (d["mean_abs_z"], d["max_abs_z"]),
         reverse=True,
     )[:top_k]
 
     chosen = []
     seen = set()
 
-    for group in (common, selective):
+    for group in (by_max, by_mean_abs):
         for fs in group:
             idx = fs["feature_idx"]
-            if idx not in seen and fs["firing_rate"] > 0:
+            if idx not in seen:
                 chosen.append(idx)
                 seen.add(idx)
 
     return chosen[:top_k]
 
 
-# -------------------------
-# Main
-# -------------------------
 def main():
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    parser = argparse.ArgumentParser()
+    parser.add_argument("config_path", help="path to analysis config. Required.")
+    
+    args = parser.parse_args()
 
+    # -------------------------
+    # Load analysis config / saved training config
+    # -------------------------
+    with open(args.config_path, "r") as stream:
+        conf = AnalysisConf(**json.load(stream))
+
+    output_dir = Path(conf.output_dir)
+    output_dir.mkdir(parents=True, exist_ok=True)
+    output_path = output_dir / "analysis.txt"
+
+    weight_path = Path(conf.weight_path)
+    model_dir = weight_path.parent
+
+    with open(model_dir / "config.json", "r") as stream:
+        train_conf = TrainingConf(**json.load(stream))
+
+    # -- Default to training langs/pairs if none provided
+    langs = conf.langs if conf.langs else train_conf.langs
+    pairs = conf.pairs if conf.pairs else train_conf.pairs
+
+    # -------------------------
+    # Create NLLB Dataset
+    # -------------------------
     dataset = BalancedNLLBDataset(
-        pair_configs=PAIR_CONFIGS,
-        langs=LANGS,
+        pair_configs=pairs,
+        langs=langs,
     )
 
     loader = DataLoader(
         dataset,
-        batch_size=BATCH_SIZE,
+        batch_size=conf.batch_size,
         collate_fn=collate_records,
         num_workers=0,
     )
 
-    backbone = MLLMBackbone(device)
+    # -------------------------
+    # Load backbone / SAE from train config
+    # -------------------------
+    backbone = MLLMBackbone(device, model_name=train_conf.backbone_name)
 
-    sae = SAE(in_dim=IN_DIM, latent_dim=LATENT_DIM).to(device)
-    state_dict = torch.load(CHECKPOINT_PATH, map_location=device)
+    model_constructor: SAE | GatedSparseAutoEncoder = sae_constructors[train_conf.sae_type]
+
+    sae = model_constructor(
+        d_act=train_conf.model_hidden_size,
+        d_hidden=train_conf.sae_hidden_size,
+    ).to(device)
+
+    state_dict = torch.load(weight_path, map_location=device)
     sae.load_state_dict(state_dict)
     sae.eval()
 
-    print(f"Loaded SAE checkpoint from {CHECKPOINT_PATH}")
+    with open(output_path, "w") as output_stream:
+        with contextlib.redirect_stdout(Tee(sys.stdout, output_stream)):
+            print(f"Loaded SAE checkpoint from {weight_path}")
+            print(f"Saving analysis output to {output_path}")
 
-    rows = collect_analysis_rows(
-        backbone=backbone,
-        sae=sae,
-        loader=loader,
-        device=device,
-        layer_idx=LAYER_IDX,
-        max_length=MAX_LENGTH,
-        num_batches=NUM_BATCHES_TO_ANALYZE,
-    )
+            if train_conf.pool_features:
+                print("Using sentence-level pooled analysis to match training-time pooling.")
+                if train_conf.reduction != "mean":
+                    raise ValueError("Pooled SAE analysis currently requires reduction='mean'")
+                rows = collect_pooled_analysis_rows(
+                    backbone=backbone,
+                    sae=sae,
+                    loader=loader,
+                    device=device,
+                    layer_idx=train_conf.layer_idx,
+                    max_length=train_conf.max_length,
+                    encoder_only=train_conf.encoder_only,
+                    num_batches=conf.num_batches,
+                )
+            else:
+                rows = collect_token_analysis_rows(
+                    backbone=backbone,
+                    sae=sae,
+                    loader=loader,
+                    device=device,
+                    layer_idx=train_conf.layer_idx,
+                    max_length=train_conf.max_length,
+                    encoder_only=train_conf.encoder_only,
+                    num_batches=conf.num_batches,
+                )
 
-    print_global_stats(rows, latent_dim=LATENT_DIM)
-    print_per_language_summary(rows, latent_dim=LATENT_DIM, langs=LANGS)
+            print_global_stats(rows, latent_dim=train_conf.sae_hidden_size)
+            print_per_language_summary(rows, latent_dim=train_conf.sae_hidden_size, langs=langs)
 
-    feature_stats = compute_feature_stats(rows, latent_dim=LATENT_DIM, langs=LANGS)
+            feature_stats = compute_feature_stats(rows, latent_dim=train_conf.sae_hidden_size, langs=langs)
 
-    print_most_common_features(feature_stats, top_k=20)
-    print_most_language_selective_features(feature_stats, top_k=20)
+            print_top_features_by_max(feature_stats, top_k=conf.top_k_features)
+            print_top_features_by_mean(feature_stats, top_k=conf.top_k_features)
+            print_top_features_by_mean_abs(feature_stats, top_k=conf.top_k_features)
 
-    chosen_features = choose_example_features(
-        feature_stats,
-        top_k=TOP_K_FEATURES_TO_PRINT,
-    )
+            chosen_features = choose_example_features(
+                feature_stats,
+                top_k=conf.top_k_features,
+            )
 
-    print_top_examples_for_features(
-        rows,
-        feature_indices=chosen_features,
-        top_k=TOP_K_EXAMPLES_PER_FEATURE,
-    )
+            print_top_examples_for_features(
+                rows,
+                feature_indices=chosen_features,
+                top_k=conf.top_k_examples,
+            )
 
 
 if __name__ == "__main__":
