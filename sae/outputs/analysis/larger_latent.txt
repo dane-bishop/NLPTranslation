@@ -1,0 +1,313 @@
+Loaded SAE checkpoint from weights/gsae_larger_latent.pt
+[collect] processed batch 0
+[collect] processed batch 10
+[collect] processed batch 20
+[collect] processed batch 30
+[collect] processed batch 40
+
+=== GLOBAL STATS ===
+num token rows: 28138
+latent dim: 6140
+mean recon loss per token: 69.137360
+std recon loss per token:  32.951588
+active fraction:           0.052294
+dead features:             5547
+top 10 feature firing rates: [0.745327, 0.723435, 0.716966, 0.713981, 0.71192, 0.706589, 0.705523, 0.704954, 0.702111, 0.701009]
+
+=== PER-LANGUAGE SUMMARY ===
+nld_Latn: num_tokens=3109 active_frac=0.051458 mean_recon=63.639850
+ces_Latn: num_tokens=2691 active_frac=0.053115 mean_recon=60.997170
+eng_Latn: num_tokens=2729 active_frac=0.052918 mean_recon=108.646888
+deu_Latn: num_tokens=3117 active_frac=0.052703 mean_recon=67.133267
+por_Latn: num_tokens=2409 active_frac=0.051481 mean_recon=64.738619
+spa_Latn: num_tokens=2782 active_frac=0.050580 mean_recon=62.354034
+ita_Latn: num_tokens=2441 active_frac=0.052040 mean_recon=62.826149
+swe_Latn: num_tokens=3113 active_frac=0.052573 mean_recon=62.689004
+fra_Latn: num_tokens=3280 active_frac=0.052541 mean_recon=75.972152
+pol_Latn: num_tokens=2467 active_frac=0.053541 mean_recon=61.010646
+
+=== MOST COMMONLY FIRING FEATURES ===
+feature=3634 firing=0.745327 mean_active=0.587357 lang_selectivity=0.001957 langs={'fra_Latn': 2338, 'deu_Latn': 2327, 'swe_Latn': 2317, 'nld_Latn': 2269}
+feature=4177 firing=0.723435 mean_active=0.636010 lang_selectivity=0.003327 langs={'nld_Latn': 2425, 'deu_Latn': 2401, 'fra_Latn': 2280, 'swe_Latn': 2163}
+feature=3410 firing=0.716966 mean_active=0.732792 lang_selectivity=0.002833 langs={'fra_Latn': 2355, 'deu_Latn': 2336, 'swe_Latn': 2273, 'nld_Latn': 2172}
+feature=4285 firing=0.713981 mean_active=0.671821 lang_selectivity=0.002901 langs={'fra_Latn': 2333, 'swe_Latn': 2278, 'deu_Latn': 2219, 'nld_Latn': 2203}
+feature= 308 firing=0.711920 mean_active=0.736518 lang_selectivity=0.003690 langs={'fra_Latn': 2436, 'swe_Latn': 2341, 'deu_Latn': 2306, 'nld_Latn': 2110}
+feature=2837 firing=0.706589 mean_active=0.640947 lang_selectivity=0.001673 langs={'fra_Latn': 2305, 'nld_Latn': 2178, 'deu_Latn': 2109, 'swe_Latn': 2032}
+feature=   8 firing=0.705523 mean_active=0.617197 lang_selectivity=0.002389 langs={'fra_Latn': 2312, 'nld_Latn': 2177, 'deu_Latn': 2160, 'swe_Latn': 2128}
+feature=1195 firing=0.704954 mean_active=0.691590 lang_selectivity=0.004304 langs={'swe_Latn': 2566, 'deu_Latn': 2324, 'fra_Latn': 2136, 'nld_Latn': 2056}
+feature=3727 firing=0.702111 mean_active=0.761431 lang_selectivity=0.002815 langs={'fra_Latn': 2275, 'deu_Latn': 2240, 'swe_Latn': 2154, 'nld_Latn': 2143}
+feature=5125 firing=0.701009 mean_active=0.642595 lang_selectivity=0.002875 langs={'fra_Latn': 2364, 'nld_Latn': 2236, 'deu_Latn': 2154, 'swe_Latn': 2085}
+feature=4566 firing=0.699872 mean_active=0.625089 lang_selectivity=0.002736 langs={'swe_Latn': 2254, 'fra_Latn': 2235, 'deu_Latn': 2194, 'nld_Latn': 2141}
+feature=2581 firing=0.695714 mean_active=0.711231 lang_selectivity=0.003670 langs={'fra_Latn': 2369, 'deu_Latn': 2221, 'nld_Latn': 2156, 'swe_Latn': 2150}
+feature=2221 firing=0.693688 mean_active=0.667849 lang_selectivity=0.003087 langs={'fra_Latn': 2291, 'swe_Latn': 2287, 'deu_Latn': 2176, 'nld_Latn': 2085}
+feature=   7 firing=0.693404 mean_active=0.769866 lang_selectivity=0.004037 langs={'deu_Latn': 2395, 'fra_Latn': 2303, 'swe_Latn': 2174, 'nld_Latn': 2091}
+feature=1675 firing=0.692302 mean_active=0.623009 lang_selectivity=0.003701 langs={'fra_Latn': 2457, 'swe_Latn': 2198, 'nld_Latn': 2103, 'deu_Latn': 2076}
+feature= 884 firing=0.692231 mean_active=0.714407 lang_selectivity=0.003398 langs={'deu_Latn': 2251, 'fra_Latn': 2226, 'nld_Latn': 2221, 'swe_Latn': 2157}
+feature=1112 firing=0.687398 mean_active=0.725666 lang_selectivity=0.002329 langs={'fra_Latn': 2405, 'swe_Latn': 2101, 'ces_Latn': 2020, 'nld_Latn': 2001}
+feature=4891 firing=0.686936 mean_active=0.667075 lang_selectivity=0.002628 langs={'swe_Latn': 2214, 'deu_Latn': 2214, 'fra_Latn': 2199, 'nld_Latn': 2089}
+feature=1855 firing=0.685550 mean_active=0.686814 lang_selectivity=0.002886 langs={'fra_Latn': 2291, 'deu_Latn': 2128, 'swe_Latn': 2057, 'eng_Latn': 2037}
+feature=3033 firing=0.685337 mean_active=0.580428 lang_selectivity=0.002854 langs={'fra_Latn': 2336, 'nld_Latn': 2205, 'deu_Latn': 2059, 'swe_Latn': 1980}
+
+=== MOST LANGUAGE-SELECTIVE FEATURES ===
+feature=5000 firing=0.000036 mean_active=12.448768 lang_selectivity=1.000000 lang_entropy=-0.000000 langs={'nld_Latn': 1}
+feature=4481 firing=0.000036 mean_active=12.387976 lang_selectivity=1.000000 lang_entropy=-0.000000 langs={'deu_Latn': 1}
+feature=2906 firing=0.000036 mean_active=9.486131 lang_selectivity=1.000000 lang_entropy=-0.000000 langs={'deu_Latn': 1}
+feature=4700 firing=0.000036 mean_active=8.634148 lang_selectivity=1.000000 lang_entropy=-0.000000 langs={'ces_Latn': 1}
+feature=1333 firing=0.000036 mean_active=8.381147 lang_selectivity=1.000000 lang_entropy=-0.000000 langs={'deu_Latn': 1}
+feature=5883 firing=0.000036 mean_active=8.122680 lang_selectivity=1.000000 lang_entropy=-0.000000 langs={'fra_Latn': 1}
+feature=3212 firing=0.000036 mean_active=7.972146 lang_selectivity=1.000000 lang_entropy=-0.000000 langs={'spa_Latn': 1}
+feature= 560 firing=0.000036 mean_active=7.421584 lang_selectivity=1.000000 lang_entropy=-0.000000 langs={'deu_Latn': 1}
+feature=4809 firing=0.000036 mean_active=7.372719 lang_selectivity=1.000000 lang_entropy=-0.000000 langs={'por_Latn': 1}
+feature= 376 firing=0.000036 mean_active=7.137972 lang_selectivity=1.000000 lang_entropy=-0.000000 langs={'por_Latn': 1}
+feature=2577 firing=0.000036 mean_active=6.843144 lang_selectivity=1.000000 lang_entropy=-0.000000 langs={'nld_Latn': 1}
+feature=1797 firing=0.000036 mean_active=6.770035 lang_selectivity=1.000000 lang_entropy=-0.000000 langs={'nld_Latn': 1}
+feature=1889 firing=0.000036 mean_active=5.883285 lang_selectivity=1.000000 lang_entropy=-0.000000 langs={'deu_Latn': 1}
+feature=5793 firing=0.000036 mean_active=5.735280 lang_selectivity=1.000000 lang_entropy=-0.000000 langs={'swe_Latn': 1}
+feature= 596 firing=0.000036 mean_active=5.495209 lang_selectivity=1.000000 lang_entropy=-0.000000 langs={'ita_Latn': 1}
+feature= 696 firing=0.000036 mean_active=4.877033 lang_selectivity=1.000000 lang_entropy=-0.000000 langs={'ces_Latn': 1}
+feature=  51 firing=0.000071 mean_active=4.656114 lang_selectivity=1.000000 lang_entropy=-0.000000 langs={'fra_Latn': 2}
+feature=4251 firing=0.000036 mean_active=4.381360 lang_selectivity=1.000000 lang_entropy=-0.000000 langs={'ita_Latn': 1}
+feature= 853 firing=0.000036 mean_active=4.094877 lang_selectivity=1.000000 lang_entropy=-0.000000 langs={'por_Latn': 1}
+feature=6097 firing=0.000107 mean_active=3.992070 lang_selectivity=1.000000 lang_entropy=-0.000000 langs={'fra_Latn': 3}
+
+=== TOP ACTIVATING EXAMPLES ===
+
+--- Feature 3634 ---
+[01] score=33.022369 lang=fra_Latn token=▁1968 pos=9 sentence=Richard Nixon l’a formulé en 1968 : « Sans l’aide de Dieu et votre aide, nous échouerons sûrement ; mais avec l’aide de Dieu et la vôtre, nous réussirons sûrement ».
+[02] score=32.350319 lang=deu_Latn token=▁1985 pos=1 sentence=1985: „Parksysteme haben wir auch!“
+[03] score=28.168091 lang=fra_Latn token=2018 pos=2 sentence=[2018-01-10 01:10:03] Se sensibiliser à la traite humaine au quotidien
+[04] score=27.943478 lang=eng_Latn token=2018 pos=2 sentence=[2018-01-10 01:10:03] Becoming aware of human trafficking on a daily basis
+[05] score=27.880920 lang=ita_Latn token=▁1980 pos=7 sentence=“Nell’anno 1980 il malvagio prevarrà.”
+[06] score=27.828976 lang=eng_Latn token=▁196 pos=7 sentence=Richard Nixon put it directly in 1968: “Without God’s help and your help, we will surely fail; but with God’s help and your help, we shall surely succeed.”
+[07] score=21.416327 lang=ita_Latn token=/200 pos=24 sentence=– Conseguenze economiche e sociali della ristrutturazione di imprese in Europa (B6-0383/2006)
+[08] score=20.639114 lang=nld_Latn token=▁188 pos=8 sentence=(Wij weten nu — 1885 — ook, dat er in het geheel geen ‘echte’ gassen bestaan.
+[09] score=20.241327 lang=nld_Latn token=5 pos=9 sentence=(Wij weten nu — 1885 — ook, dat er in het geheel geen ‘echte’ gassen bestaan.
+[10] score=19.949434 lang=deu_Latn token=▁2000 pos=5 sentence=Und als es auf 2000 zuging, waren die, die ich am meisten mochte, schon abgerissen.»
+
+--- Feature 4177 ---
+[01] score=17.019167 lang=por_Latn token=; pos=9 sentence=n O futuro pertence ao seu senhor;
+[02] score=15.987380 lang=deu_Latn token=; pos=11 sentence=Die Anzahl von Personen, die als Mentoren dienen;
+[03] score=15.449945 lang=pol_Latn token=; pos=5 sentence=od waszego Pana;
+[04] score=14.583187 lang=por_Latn token=; pos=14 sentence=e segundo a ordem do SENHOR se acampavam;
+[05] score=14.465840 lang=pol_Latn token=; pos=6 sentence=za pozwoleniem Jego Pana;
+[06] score=14.455388 lang=pol_Latn token=; pos=6 sentence=za pozwoleniem Jego Pana;
+[07] score=14.138017 lang=por_Latn token=; pos=7 sentence=Aclamando o seu Senhor;
+[08] score=13.959765 lang=por_Latn token=; pos=13 sentence=Obedecer (fazer a vontade) ao seu senhor;
+[09] score=12.147678 lang=pol_Latn token=; pos=13 sentence=jeśli pragniesz nieba, On jest Drogą;
+[10] score=12.036839 lang=pol_Latn token=; pos=12 sentence=jeśli pragniesz nieba, On jest drogą;
+
+--- Feature 3410 ---
+[01] score=21.627640 lang=eng_Latn token=▁European pos=45 sentence=Enikő Győri, President-in-Office of the Council. – (HU) Mr President, Commissioner, honourable Members, as Mrs Kalniete, too, has said, the European Union and the economy need a locomotive.
+[02] score=17.617764 lang=ita_Latn token=▁Europa pos=17 sentence=– Conseguenze economiche e sociali della ristrutturazione di imprese in Europa (B6-0383/2006)
+[03] score=17.267000 lang=fra_Latn token=▁européenne pos=51 sentence=Enikő Győri, présidente en exercice du Conseil. – (HU) Monsieur le Président, Monsieur le Commissaire, mes chers collègues, comme Mme Kalniete l’a dit également, l’Union européenne et l’économie ont besoin d’une locomotive.
+[04] score=13.669823 lang=eng_Latn token=▁Union pos=46 sentence=Enikő Győri, President-in-Office of the Council. – (HU) Mr President, Commissioner, honourable Members, as Mrs Kalniete, too, has said, the European Union and the economy need a locomotive.
+[05] score=12.645787 lang=fra_Latn token=▁eu pos=4 sentence=J’ai eu une révélation : la Vie est ancrée dans l’amour de Dieu, pas dans l’abus.
+[06] score=12.272743 lang=deu_Latn token=▁Europäischen pos=8 sentence=Wozu brauchen wir künftig den Europäischen Fonds für die Anpassung an die Globalisierung (EGF)?
+[07] score=11.553078 lang=fra_Latn token=Union pos=50 sentence=Enikő Győri, présidente en exercice du Conseil. – (HU) Monsieur le Président, Monsieur le Commissaire, mes chers collègues, comme Mme Kalniete l’a dit également, l’Union européenne et l’économie ont besoin d’une locomotive.
+[08] score=11.080684 lang=por_Latn token=▁eu pos=2 sentence=Então eu queria viajar com A Forma da Água”.
+[09] score=9.727157 lang=por_Latn token=▁Eu pos=1 sentence=Eu acho que ele sabe que o salvamos”.
+[10] score=9.664141 lang=fra_Latn token=▁eu pos=8 sentence=Regardez quoi; cette femme avait eu une bonne approche du don de Dieu.
+
+--- Feature 4285 ---
+[01] score=7.254628 lang=ita_Latn token=▁con pos=6 sentence=Tendono ad associarla con l’essere un perdente.
+[02] score=7.011264 lang=spa_Latn token=▁con pos=6 sentence=Estarás a solas con los dioses y las noches arderán con fuego.
+[03] score=7.008131 lang=spa_Latn token=▁con pos=11 sentence=Cuéntales qué hacer y te sorprenderán con su ingenio…"
+[04] score=6.914604 lang=spa_Latn token=▁con pos=12 sentence=“Comscore, por supuesto, cumplirá con sus deseos”.
+[05] score=6.691200 lang=spa_Latn token=▁con pos=17 sentence=¿Ha pensado sobre la paciencia de Dios, la paciencia que Él tiene con cada uno de nosotros?
+[06] score=6.600440 lang=ita_Latn token=▁con pos=18 sentence=Vieni, fratello, andiamo in paradiso, le nostre donne ci aspettano lì, con gli angeli come servi.
+[07] score=6.592219 lang=spa_Latn token=▁con pos=16 sentence=¿Han pensado en la paciencia de Dios, la paciencia que tiene con cada uno de nosotros?
+[08] score=6.570649 lang=ita_Latn token=▁con pos=3 sentence=O sono con loro i tesori del tuo Signore?
+[09] score=6.551387 lang=ita_Latn token=▁con pos=15 sentence=Voglio dire, sono davvero in ottimi rapporti con tutti quei ragazzi, con Bruce [Campbell] e Sam [Raimi], e [il produttore] Rob [Tapert].
+[10] score=6.540558 lang=spa_Latn token=▁con pos=17 sentence=¿Hemos pensado en la paciencia de Dios, la paciencia que tiene con cada uno de nosotros?
+
+--- Feature 308 ---
+[01] score=6.461579 lang=eng_Latn token=▁special pos=6 sentence=He did not need a special revelation from God—God’s will was clear.
+[02] score=5.710312 lang=eng_Latn token=▁fully pos=6 sentence=Your burden cannot be fully resolved simply from eating and drinking God’s words.
+[03] score=5.505842 lang=deu_Latn token=▁voll pos=11 sentence="An dem Tag, an dem wir einander vollständig vertrauen können, wird es Frieden auf der Erde geben."
+[04] score=5.502921 lang=eng_Latn token=▁only pos=8 sentence=He was very clear: this could only be done through the Qur’an.
+[05] score=5.412909 lang=fra_Latn token=▁spé pos=13 sentence=Il n’avait pas besoin d’une révélation spéciale de Dieu – la volonté de Dieu était claire.
+[06] score=5.336212 lang=spa_Latn token=▁única pos=3 sentence=Y la única manera en que ellos podrían ser uno como familia, con Dios, era porque la naturaleza de Dios estaba en ellos.
+[07] score=5.322510 lang=eng_Latn token=▁only pos=6 sentence=you will see that your only reality is love.”
+[08] score=5.307133 lang=eng_Latn token=▁fully pos=9 sentence=If that life is to be devoted fully and acceptably to God, it must be “according to knowledge.”
+[09] score=5.303856 lang=pol_Latn token=▁wy pos=7 sentence=Moja nagroda spoczywa wyłącznie u Pana światów.
+[10] score=5.164302 lang=spa_Latn token=▁solo pos=4 sentence=Pero el hombre solo tiene que hundirse bajo la superficie y es libre ”.
+
+--- Feature 2837 ---
+[01] score=4.621435 lang=ita_Latn token=▁ang pos=20 sentence=Vieni, fratello, andiamo in paradiso, le nostre donne ci aspettano lì, con gli angeli come servi.
+[02] score=4.443231 lang=spa_Latn token=▁plan pos=5 sentence=Cuando proponen un plan - es el plan de Dios.
+[03] score=4.437071 lang=spa_Latn token=▁plan pos=2 sentence=El plan de Dios para cambiar el mundo es: “Hacer Discípulos”.
+[04] score=4.350352 lang=spa_Latn token=▁Plan pos=5 sentence=Mentira #1 El Plan Supremo de Dios es que las Mujeres sirvan a sus Esposos.
+[05] score=4.313692 lang=spa_Latn token=▁plan pos=5 sentence=Cuando proponen un plan – es el plan de Dios.
+[06] score=4.295794 lang=spa_Latn token=▁plan pos=5 sentence=Cuando proponen un plan—Es el plan de Dios.
+[07] score=4.293715 lang=swe_Latn token=▁plan pos=21 sentence=14:19 KAN DU inte se att Gud har skapat himlarna och jorden i enlighet med en plan och ett syfte?
+[08] score=4.250657 lang=swe_Latn token=▁plan pos=19 sentence=[de som vet] att Gud har skapat himlarna och jorden i enlighet med en plan och ett syfte.
+[09] score=4.189222 lang=fra_Latn token=▁Plan pos=2 sentence=Le Plan de Dieu, tout comme celui d'une construction, est aussi composé de différentes parties.
+[10] score=4.183768 lang=spa_Latn token=▁Plan pos=17 sentence=Es un regalo para todas las religiones del mundo, ya que forma parte del Plan Mayor de Dios.
+
+--- Feature 8 ---
+[01] score=10.843080 lang=swe_Latn token=▁son pos=20 sentence=[18:4] Och för att varna de som sa, "GUD har fått en son!"
+[02] score=10.751235 lang=eng_Latn token=▁son pos=9 sentence=Please, I also want to become a son of God like you’.
+[03] score=10.454967 lang=eng_Latn token=▁son pos=17 sentence=O Lord, my God, is there no help for the widow’s son?”
+[04] score=10.412622 lang=eng_Latn token=▁son pos=14 sentence=18:4 To warn those who said, "God has taken a son."
+[05] score=10.288924 lang=eng_Latn token=▁Son pos=10 sentence=Yet does he seek to kill God's Son within, and prove that he is victor over him.
+[06] score=9.376573 lang=eng_Latn token=▁Son pos=12 sentence=What is sin except a false idea about God's Son?
+[07] score=9.376573 lang=eng_Latn token=▁Son pos=12 sentence=What is sin except a false idea about God's Son?
+[08] score=9.376573 lang=eng_Latn token=▁Son pos=12 sentence=What is sin except a false idea about God's Son?
+[09] score=9.332592 lang=spa_Latn token=▁son pos=19 sentence=Así como Dios protegió a Noé y a su familia, protege a quienes le son fieles hoy.
+[10] score=8.849656 lang=fra_Latn token=▁Son pos=13 sentence=Mais cela est fait à travers la ‘’puissance de Son (Dieu) pouvoir,” pas le leur!
+
+--- Feature 1195 ---
+[01] score=6.257334 lang=swe_Latn token=▁är pos=10 sentence=Allahs Budbärare sade: Islam är baserat på (följande) fem (principer): 1.
+[02] score=6.253478 lang=swe_Latn token=▁är pos=12 sentence=Men att veta hur man ska använda kunskapen, är att ha visdom.”
+[03] score=6.213144 lang=swe_Latn token=▁är pos=11 sentence=”Mellan världarna i Hekates ögon är du (namn) bunden kraftlös.
+[04] score=6.177393 lang=swe_Latn token=▁är pos=10 sentence=Allahs Budbärare sade: Islam är baserat på (följande) fem (principer): 1.
+[05] score=6.173918 lang=swe_Latn token=▁är pos=8 sentence=[:sv]Livet är starkare än döden[:]
+[06] score=6.167384 lang=swe_Latn token=▁är pos=11 sentence=Skaparen av himlarna och jorden, Du är min beskyddare i denna värld och Livet efter detta.
+[07] score=6.150115 lang=swe_Latn token=▁är pos=13 sentence=I den heliga Koranen nämns: ”Han är himlarnas och jordens Skapare.
+[08] score=6.103825 lang=swe_Latn token=▁är pos=13 sentence=I den heliga Koranen nämns: ”Han är himlarnas och jordens Skapare.
+[09] score=6.081017 lang=swe_Latn token=▁är pos=18 sentence="Vår England är en trädgård, och sådana trädgårdar är inte gjorda
+[10] score=6.073790 lang=swe_Latn token=▁är pos=6 sentence=[87:16] Ni är sannerligen upptagna med detta första liv.
+
+--- Feature 3727 ---
+[01] score=26.793211 lang=ita_Latn token=▁( pos=5 sentence=“E noi (angeli) non discendiamo se non attraverso il Comando del vostro Signore.”
+[02] score=26.771339 lang=nld_Latn token=▁( pos=10 sentence=Zij organiseren bijeenkomsten en mensen worden (hopelijk) gered.
+[03] score=26.471384 lang=nld_Latn token=▁( pos=14 sentence=“O mijn volk, dit wereldse leven is slechts een (vergankelijke) genieting.
+[04] score=26.190737 lang=swe_Latn token=▁( pos=9 sentence=”Vi erbjöd ansvaret om (valfrihet) till himlarna och jorden, och
+[05] score=26.007156 lang=swe_Latn token=▁( pos=8 sentence=”Och om du, (Allahs sändebud), skulle fråga dem (avgudadyrkarna): ’Vem skapade himlarna och jorden?’
+[06] score=25.884470 lang=fra_Latn token=▁( pos=14 sentence=Mais cela est fait à travers la ‘’puissance de Son (Dieu) pouvoir,” pas le leur!
+[07] score=25.843550 lang=fra_Latn token=▁( pos=5 sentence=Tout le monde veut (et peut) devenir une star.
+[08] score=25.839796 lang=swe_Latn token=▁( pos=13 sentence=”Mellan världarna i Hekates ögon är du (namn) bunden kraftlös.
+[09] score=25.834322 lang=nld_Latn token=▁( pos=3 sentence=Zijn grote (en enige) vriend is zijn hond Lorde.
+[10] score=25.794777 lang=deu_Latn token=▁( pos=14 sentence=43:52 Oder bin ich (nicht) besser als dieser (Mose) der verächtlich ist und sich kaum verständlich machen kann?
+
+--- Feature 5125 ---
+[01] score=13.160696 lang=spa_Latn token=▁religi pos=7 sentence=Es un regalo para todas las religiones del mundo, ya que forma parte del Plan Mayor de Dios.
+[02] score=13.127090 lang=deu_Latn token=re pos=15 sentence=Er antwortete: "Zur Teilnahme an Jihad (religiöse Kämpfe) in Allah's Cause."
+[03] score=12.755640 lang=por_Latn token=▁religi pos=21 sentence=Não, como Dawkins também escreveu, “Embora tenha muitas das virtudes da religião, [a ciência] não contém nenhum de seus vícios.
+[04] score=12.152749 lang=ita_Latn token=▁religi pos=12 sentence=Ovunque andiate si combatte a causa della religione.
+[05] score=12.122682 lang=deu_Latn token=ligi pos=16 sentence=Er antwortete: "Zur Teilnahme an Jihad (religiöse Kämpfe) in Allah's Cause."
+[06] score=11.664330 lang=por_Latn token=▁religi pos=8 sentence=O dia do Senhor tem sido mais religiosa e estritamente observado.
+[07] score=7.079698 lang=ita_Latn token=Islam pos=8 sentence=Apostolo di Allah disse: l'Islam è basato su (seguenti) cinque (principi):
+[08] score=6.975716 lang=por_Latn token=▁Islam pos=6 sentence=E será devolvida ao Islam (e aos árabes).
+[09] score=6.526614 lang=ces_Latn token=▁is pos=7 sentence=Takže kdokoli si volí islám, odmítá sekularismus."
+[10] score=6.130150 lang=nld_Latn token=cul pos=9 sentence=Want hij is de Heer van de tegencultuur.”
+
+--- Feature 4566 ---
+[01] score=19.092178 lang=eng_Latn token=▁now pos=3 sentence=So, now we have “God is actually imminent”.
+[02] score=14.332128 lang=eng_Latn token=▁today pos=6 sentence=You killed 210 monsters today too?
+[03] score=12.781178 lang=por_Latn token=▁Agora pos=1 sentence=Agora vocês veem quem é o mestre; A vaca não está interessada neste homem - na verdade, ela está escapando.
+[04] score=12.081749 lang=por_Latn token=▁Agora pos=1 sentence=Agora, haverá aqueles que dirão: "Bem, Kryon, deve existir formas erradas de se falar com Deus”.
+[05] score=11.545620 lang=fra_Latn token=▁aujourd pos=8 sentence=Tu as tué 210 monstres aujourd’hui aussi ?
+[06] score=11.504134 lang=fra_Latn token=▁maintenant pos=3 sentence=Donc, maintenant nous avons « Dieu est en réalité imminent ».
+[07] score=10.744731 lang=pol_Latn token=▁teraz pos=17 sentence=Postanowiliście zostać w domu za pierwszym razem, siedźcie więc i teraz wraz z tymi, którzy pozostają w tyle”.
+[08] score=9.876302 lang=spa_Latn token=▁hoy pos=22 sentence=Así como Dios protegió a Noé y a su familia, protege a quienes le son fieles hoy.
+[09] score=9.685222 lang=pol_Latn token=▁teraz pos=3 sentence=Ludzie są teraz słabi, a mimo to przekształcają powierzchnię Ziemi.
+[10] score=9.562795 lang=fra_Latn token=hui pos=10 sentence=Tu as tué 210 monstres aujourd’hui aussi ?
+
+--- Feature 2581 ---
+[01] score=17.338926 lang=eng_Latn token=▁years pos=15 sentence=You will rarely (if ever) see a car older than 2 years.
+[02] score=17.158558 lang=fra_Latn token=ann pos=11 sentence=Comme il le décrit: Ce furent ses "années de gloire".
+[03] score=14.870778 lang=fra_Latn token=▁années pos=26 sentence=[Mengele] qui ne se repentait de rien, n’a-t-il vraiment rien écrit sur ces années décisives ?
+[04] score=14.280565 lang=eng_Latn token=▁years pos=13 sentence=As he describes it: It was his "glory years".
+[05] score=13.988632 lang=eng_Latn token=▁years pos=21 sentence=Had [Mengele], who did not repent a thing, really not written anything about these decisive years?
+[06] score=13.516161 lang=fra_Latn token=▁ans pos=21 sentence=Vous ne verrez que rarement (voir jamais) un véhicule âgé de plus de 2 ans.
+[07] score=13.097130 lang=eng_Latn token=ades pos=9 sentence=You will very likely spend about three decades of your life as an old person.”
+[08] score=12.316008 lang=fra_Latn token=ées pos=12 sentence=Comme il le décrit: Ce furent ses "années de gloire".
+[09] score=12.207349 lang=spa_Latn token=▁años pos=9 sentence=Si así lo haces, vivirás muchos años, y tu vida te dará satisfacción”.
+[10] score=12.157738 lang=fra_Latn token=cen pos=9 sentence=Vous allez très probablement passer environ trois décennies de votre vie en tant que personne âgée. »
+
+--- Feature 2221 ---
+[01] score=14.323503 lang=eng_Latn token=▁begin pos=8 sentence=Then God’s judgment will suddenly begin to descend with vast destructive force.
+[02] score=13.873892 lang=fra_Latn token=▁commence pos=3 sentence=Celui qui commence à la place de Green aura les mains pleines.
+[03] score=13.433715 lang=eng_Latn token=▁first pos=2 sentence=The first step out of darkness and despair is simply asking for God's grace and guidance.
+[04] score=12.122499 lang=pol_Latn token=▁począ pos=11 sentence=Kiedy Bóg stworzył niebo i ziemię na początku, On powiedział: “Niechaj się stanie światłość.”
+[05] score=11.843721 lang=deu_Latn token=▁begonnen pos=12 sentence=Wir haben ihre Gehälter erhöht, wir haben begonnen, auf sie zu hören”.
+[06] score=11.757087 lang=pol_Latn token=▁począ pos=21 sentence=Oto jest Ten, który stworzył niebo i ziemię, i ukształtował od początku człowieka.
+[07] score=11.597703 lang=fra_Latn token=▁première pos=2 sentence=La première étape pour sortir de l’obscurité et du désespoir est de simplement demander la grâce et l’orientation de Dieu.
+[08] score=10.731177 lang=eng_Latn token=▁starts pos=3 sentence=Whoever starts in Green’s place will have their hands full.
+[09] score=10.486653 lang=pol_Latn token=▁pierws pos=9 sentence=Postanowiliście zostać w domu za pierwszym razem, siedźcie więc i teraz wraz z tymi, którzy pozostają w tyle”.
+[10] score=10.018896 lang=swe_Latn token=▁begynnelsen pos=3 sentence=1 I begynnelsen[a] skapade Gud himmel och jord[b].
+
+--- Feature 7 ---
+[01] score=13.558843 lang=fra_Latn token=▁que pos=7 sentence=Ils veulent s'assurer que c'est la bonne personne avant de s'engager. »
+[02] score=12.539638 lang=eng_Latn token=▁that pos=6 sentence=I formulate the hope that, with God’s help, it will produce the fruits hoped for”.
+[03] score=12.345311 lang=fra_Latn token=▁que pos=7 sentence=Comme il est bon de savoir que, comme vous le dites, tous nos péchés sont au fond de la mer !’
+[04] score=12.019078 lang=spa_Latn token=▁que pos=6 sentence=Mira las pequeñas cosas que he podido hacer y Dios lo ha usado y multiplicado’.
+[05] score=11.842469 lang=nld_Latn token=▁dat pos=14 sentence=Geen profeet van Mij zal op een voetstuk staan en zeggen dat hij meer dan jullie is.
+[06] score=11.558768 lang=fra_Latn token=▁que pos=10 sentence=Une autre façon de voir cela serait de dire que la mesure de la dignité de Dieu est déterminée par ce dont Il fait ses délices.
+[07] score=11.480246 lang=fra_Latn token=▁que pos=4 sentence=Vous constaterez que la seule réalité est l’AMOUR. »
+[08] score=11.479644 lang=spa_Latn token=▁que pos=4 sentence=Pero él sabía que él se había encontrado con Dios, y Dios era Dios, y Dios todavía es Dios.
+[09] score=11.460463 lang=spa_Latn token=▁que pos=4 sentence=Mira lo poco que he podido hacer y Dios lo ha usado y multiplicado”.
+[10] score=11.459648 lang=fra_Latn token=▁que pos=10 sentence=(Le point de vue de Sheen est que la loi de Dieu manque de sagesse et n’est pas digne de confiance.
+
+--- Feature 1675 ---
+[01] score=21.930971 lang=nld_Latn token=▁februari pos=4 sentence=Toen hij in februari met TalkSport sprak, zei hij: “Ik kan eerlijk zeggen dat het [seizoen vijf] tot nu toe het beste is.
+[02] score=12.900690 lang=deu_Latn token=▁Juni pos=11 sentence=[Events] Apulien im Mai und Juni: Was Sie sich nicht entgehen lassen sollten!
+[03] score=12.823046 lang=deu_Latn token=▁Mai pos=9 sentence=[Events] Apulien im Mai und Juni: Was Sie sich nicht entgehen lassen sollten!
+[04] score=12.592299 lang=fra_Latn token=▁sept pos=25 sentence=Il a dit : « J’ai heurté la voiture d’une femme et elle était enceinte de sept mois.
+[05] score=9.136075 lang=fra_Latn token=une pos=9 sentence=Demandez-lui si la lune brillait.»
+[06] score=8.778542 lang=eng_Latn token=-0 pos=3 sentence=[2018-01-10 01:10:03] Becoming aware of human trafficking on a daily basis
+[07] score=8.398692 lang=eng_Latn token=▁01 pos=6 sentence=[2018-01-10 01:10:03] Becoming aware of human trafficking on a daily basis
+[08] score=8.213366 lang=eng_Latn token=1 pos=4 sentence=[2018-01-10 01:10:03] Becoming aware of human trafficking on a daily basis
+[09] score=8.059075 lang=fra_Latn token=-0 pos=3 sentence=[2018-01-10 01:10:03] Se sensibiliser à la traite humaine au quotidien
+[10] score=8.056923 lang=eng_Latn token=-10 pos=5 sentence=[2018-01-10 01:10:03] Becoming aware of human trafficking on a daily basis
+
+--- Feature 884 ---
+[01] score=18.848938 lang=spa_Latn token=amos pos=3 sentence=Cuando consideramos el poder de la palabra de Dios, a menudo es útil pensar primero sobre cómo su palabra tiene poder sobre la creación.
+[02] score=17.765402 lang=spa_Latn token=amos pos=7 sentence=Y las doctrinas que proclamamos son la verdad eterna de Dios.
+[03] score=17.744043 lang=eng_Latn token=▁us pos=20 sentence=Have you thought about God’s patience, the patience He has with each one of us?
+[04] score=17.744043 lang=eng_Latn token=▁us pos=20 sentence=Have you thought about God’s patience, the patience He has with each one of us?
+[05] score=16.330755 lang=eng_Latn token=▁we pos=37 sentence=Richard Nixon put it directly in 1968: “Without God’s help and your help, we will surely fail; but with God’s help and your help, we shall surely succeed.”
+[06] score=16.204069 lang=por_Latn token=amos pos=9 sentence=Eu acho que ele sabe que o salvamos”.
+[07] score=15.895841 lang=eng_Latn token=▁we pos=8 sentence=(15:92) By your Lord, we will question them all,
+[08] score=15.700378 lang=nld_Latn token=▁we pos=17 sentence=Zelfs een van mijn vrienden deed hetzelfde op de sam, e dag, en we hebben allebei geleverd zonen op dezelfde dag.”
+[09] score=15.639288 lang=eng_Latn token=▁we pos=4 sentence=So, now we have “God is actually imminent”.
+[10] score=15.557066 lang=eng_Latn token=▁us pos=2 sentence=Let us return to the simple notion of faith and the sanctity of God.”
+
+--- Feature 1112 ---
+[01] score=9.196441 lang=spa_Latn token=▁que pos=8 sentence=“Ellos piensan que es mejor por el bien de su relación en este momento”.
+[02] score=9.147259 lang=spa_Latn token=▁que pos=4 sentence=– El que es de Dios escucha las palabras de Dios.
+[03] score=9.098320 lang=por_Latn token=▁que pos=3 sentence=clamem que as montanhas caiam sobre eles,
+[04] score=8.977200 lang=por_Latn token=▁que pos=4 sentence=e fez o que era mau aos olhos do SENHOR.
+[05] score=8.943510 lang=por_Latn token=▁que pos=4 sentence=Fez o que era mal aos olhos do Senhor.
+[06] score=8.839770 lang=spa_Latn token=▁que pos=14 sentence="Tenía un bocadillo en la mano y pensaron que era un arma.
+[07] score=8.821801 lang=por_Latn token=▁que pos=4 sentence=Fez o que era mau perante os olhos do Senhor.
+[08] score=8.657918 lang=por_Latn token=▁que pos=4 sentence=e fez o que era mau aos olhos do Senhor.
+[09] score=8.578099 lang=por_Latn token=▁que pos=8 sentence=foram declarar ao seu senhor tudo o que
+[10] score=8.572738 lang=por_Latn token=▁que pos=4 sentence=E fez o que era mau aos olhos do Senhor.
+
+--- Feature 4891 ---
+[01] score=15.347987 lang=fra_Latn token=▁entre pos=8 sentence=La pratique de la vertu doit être entre l'âme et son Créateur."
+[02] score=15.148113 lang=deu_Latn token=▁zwischen pos=8 sentence=Abraham ist jetzt gezwungen, zwischen seinen beiden Söhnen zu entscheiden.
+[03] score=15.060310 lang=swe_Latn token=▁mellan pos=10 sentence=Är det något du undrar över, allt mellan himmel och jord,
+[04] score=15.038469 lang=eng_Latn token=▁between pos=9 sentence=The practice of virtue needs to be between the soul and his Creator.”
+[05] score=14.580814 lang=deu_Latn token=▁zwischen pos=13 sentence=Ich sage dir: Wahrlich, es gibt neun Himmel, zwischen denen sich die Planeten befinden.
+[06] score=13.872539 lang=por_Latn token=▁entre pos=8 sentence=Embora os seres vivos variem entre si na aparência, a presença de Deus é consistente.
+[07] score=12.994611 lang=spa_Latn token=▁entre pos=6 sentence=Era tan pesada que entre ocho hombres difícilmente pudieron voltearla de un lado a otro.”
+[08] score=12.212259 lang=fra_Latn token=▁entre pos=11 sentence=Ce que vous faites avec les avertissements est entre vos mains.
+[09] score=11.980965 lang=eng_Latn token=▁among pos=6 sentence=There are certainly different views among the rebels,’ he said.
+[10] score=11.761595 lang=ces_Latn token=▁mezi pos=8 sentence=Avšak Pán tvůj vskutku mezi nimi rozsoudí v
+
+--- Feature 1855 ---
+[01] score=12.100680 lang=spa_Latn token=▁plan pos=2 sentence=El plan de Dios para cambiar el mundo es: “Hacer Discípulos”.
+[02] score=12.083923 lang=swe_Latn token=▁plan pos=21 sentence=14:19 KAN DU inte se att Gud har skapat himlarna och jorden i enlighet med en plan och ett syfte?
+[03] score=11.870836 lang=swe_Latn token=▁plan pos=17 sentence=[39:5] Han har skapat himlarna och jorden i enlighet med en plan och ett syfte.
+[04] score=11.732686 lang=swe_Latn token=▁plan pos=19 sentence=[de som vet] att Gud har skapat himlarna och jorden i enlighet med en plan och ett syfte.
+[05] score=11.515447 lang=spa_Latn token=▁plan pos=9 sentence=Cuando proponen un plan - es el plan de Dios.
+[06] score=11.434336 lang=spa_Latn token=▁plan pos=10 sentence=Cuando proponen un plan – es el plan de Dios.
+[07] score=11.418739 lang=spa_Latn token=▁plan pos=9 sentence=Cuando proponen un plan—Es el plan de Dios.
+[08] score=11.142073 lang=eng_Latn token=▁plan pos=8 sentence=God’s plan, like the plan of a building, is also made up of many parts.
+[09] score=11.012679 lang=fra_Latn token=▁plan pos=5 sentence=Délaissant le plan de Dieu pour eux, ils rejettent la seule source de bonheur réel.
+[10] score=11.008659 lang=spa_Latn token=▁plan pos=5 sentence=Cuando proponen un plan – es el plan de Dios.
+
+--- Feature 3033 ---
+[01] score=15.570685 lang=por_Latn token=- pos=15 sentence=Assim, plantando-os em cada geração, eles multiplicar-se-iam.
+[02] score=15.212821 lang=por_Latn token=- pos=13 sentence=Eles se transformam em gordura”, diz Taub-Dix.
+[03] score=14.578538 lang=nld_Latn token=- pos=17 sentence=We waren er ook van overtuigd dat wie er stierf onder zijn zorg-en hulpverlening zeker ging naar de hemel ging."
+[04] score=13.757324 lang=por_Latn token=- pos=5 sentence=Assim, plantando-os em cada geração, eles multiplicar-se-iam.
+[05] score=13.648353 lang=fra_Latn token=- pos=12 sentence=On pourrait les appelerles paroles du «non-pardon».
+[06] score=13.634445 lang=swe_Latn token=- pos=17 sentence=Jarir sade: "Det föreföll mig om sex alnar från Al-Hijr eller så."
+[07] score=13.615677 lang=fra_Latn token=- pos=12 sentence=On pourrait les appelerles paroles du «non-pardon».
+[08] score=13.578499 lang=fra_Latn token=- pos=4 sentence=Demandez-lui si la lune brillait.»
+[09] score=13.554826 lang=por_Latn token=- pos=4 sentence=Então deixe-os adorar o Senhor desta casa (Caaba).
+[10] score=13.522488 lang=por_Latn token=- pos=4 sentence=ajoelhar-se diante do Senhor do universo.

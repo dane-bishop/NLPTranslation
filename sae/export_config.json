@@ -1,0 +1,29 @@
+{
+  "backbone_name": "facebook/nllb-200-distilled-600M",
+  "pairs": [
+  "deu_Latn-spa_Latn",
+  "eng_Latn-fra_Latn",
+  "deu_Latn-eng_Latn",
+  "eng_Latn-fra_Latn",
+  "deu_Latn-jpn_Jpan",
+  "deu_Latn-zho_Hans",
+  "deu_Latn-vie_Latn"
+],
+"langs": [
+  "spa_Latn",
+  "fra_Latn",
+  "deu_Latn",
+  "eng_Latn",
+  "jpn_Jpan",
+  "zho_Hans",
+  "vie_Latn"
+],
+  "batch_size": 16,
+  "max_steps": 500,
+  "layer_idx": -1,
+  "encoder_only": true,
+  "max_length": 128,
+  "reduction": "mean",
+  "output_csv": "outputs/language_embeddings.csv",
+  "output_npy": "outputs/language_embeddings.npy"
+}

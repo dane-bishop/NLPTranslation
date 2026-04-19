@@ -1,0 +1,11 @@
+numpy>=1.26,<3
+pandas>=2.2,<4
+matplotlib>=3.8,<4
+transformers>=4.40,<5
+datasets>=2.20,<5
+einops>=0.7,<1
+tqdm>=4.66,<5
+pycirclize>=1.10,<2
+lang2vec==1.1.2
+setuptools<82
+scikit-learn>=1.5,<2
