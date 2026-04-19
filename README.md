@@ -3,3 +3,17 @@ Root Repository for work from NLPTranslation group. Further experiments for tran
 - laser - experiments around laser feature vector embeddings. Minimal work here due to limitations on 
 
 - language_similarity_graphics - experiments in creating visualizations for diplaying similarty between languages 
+## Running UI
+
+- Install `streamlit` and `plotly`
+
+```
+pip install streamlit
+pip install plotly
+```
+
+- Run app with streamlit and go to localhost
+
+```
+streamlit run ui/app.py
+```

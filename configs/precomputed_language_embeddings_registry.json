@@ -1,0 +1,15 @@
+{
+  "default_key": "mdeberta",
+  "artifacts": [
+    {
+      "key": "mdeberta",
+      "label": "mDeBERTa",
+      "config_path": "configs/precomputed_language_embeddings.json"
+    },
+    {
+      "key": "nllb",
+      "label": "NLLB Encoder",
+      "config_path": "configs/precomputed_language_embeddings_nllb.json"
+    }
+  ]
+}

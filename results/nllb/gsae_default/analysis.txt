@@ -1,0 +1,981 @@
+Loaded SAE checkpoint from weights/nllb/gsae_default/model.pt
+Saving analysis output to results/nllb/gsae_default/analysis.txt
+[collect] processed batch 0
+[collect] processed batch 10
+[collect] processed batch 20
+[collect] processed batch 30
+[collect] processed batch 40
+[collect] processed batch 50
+[collect] processed batch 60
+[collect] processed batch 70
+[collect] processed batch 80
+[collect] processed batch 90
+
+=== GLOBAL STATS ===
+num token rows: 57001
+latent dim: 4096
+mean recon loss per token: 1.122694
+std recon loss per token:  0.505688
+top 10 feature max z:      [420.650848, 346.555939, 266.793396, 243.450134, 241.230789, 215.634811, 207.489258, 196.696381, 193.951675, 183.313568]
+top 10 feature mean z:     [23.361143, 22.509047, 19.431856, 19.18598, 18.695957, 16.614817, 15.081033, 13.481121, 13.269917, 12.796324]
+top 10 feature mean |z|:   [23.361143, 22.509047, 19.431856, 19.18598, 18.695957, 16.614817, 15.081033, 13.481121, 13.269917, 12.796324]
+
+=== PER-LANGUAGE SUMMARY ===
+eng_Latn: num_tokens=5212 mean_recon=1.348963
+fra_Latn: num_tokens=6356 mean_recon=1.134741
+deu_Latn: num_tokens=5847 mean_recon=1.151782
+nld_Latn: num_tokens=5735 mean_recon=1.153549
+swe_Latn: num_tokens=5946 mean_recon=1.089769
+spa_Latn: num_tokens=5468 mean_recon=1.096126
+ita_Latn: num_tokens=5166 mean_recon=1.101618
+por_Latn: num_tokens=5206 mean_recon=1.105024
+pol_Latn: num_tokens=6126 mean_recon=1.031859
+ces_Latn: num_tokens=5939 mean_recon=1.037745
+
+=== TOP FEATURES BY MAX Z ===
+feature=3933 max_z=420.650848 mean_z=6.307974 mean_abs_z=6.307974 max_abs_z=420.650848
+feature= 846 max_z=346.555939 mean_z=12.721940 mean_abs_z=12.721941 max_abs_z=346.555939
+feature=3197 max_z=266.793396 mean_z=5.634001 mean_abs_z=5.634001 max_abs_z=266.793396
+feature= 343 max_z=243.450134 mean_z=15.081033 mean_abs_z=15.081033 max_abs_z=243.450134
+feature=1203 max_z=241.230789 mean_z=10.304876 mean_abs_z=10.304876 max_abs_z=241.230789
+feature=2716 max_z=215.634811 mean_z=6.981586 mean_abs_z=6.981585 max_abs_z=215.634811
+feature=3092 max_z=207.489258 mean_z=6.986109 mean_abs_z=6.986109 max_abs_z=207.489258
+feature=1593 max_z=196.696381 mean_z=4.812923 mean_abs_z=4.812923 max_abs_z=196.696381
+feature=3410 max_z=193.951675 mean_z=12.350865 mean_abs_z=12.350865 max_abs_z=193.951675
+feature=3488 max_z=183.313568 mean_z=4.042881 mean_abs_z=4.042881 max_abs_z=183.313568
+feature=3252 max_z=177.890381 mean_z=3.718533 mean_abs_z=3.718546 max_abs_z=177.890381
+feature= 494 max_z=172.464828 mean_z=4.047045 mean_abs_z=4.047046 max_abs_z=172.464828
+feature=1520 max_z=171.953201 mean_z=3.804143 mean_abs_z=3.804143 max_abs_z=171.953201
+feature=1652 max_z=170.488113 mean_z=7.791422 mean_abs_z=7.791825 max_abs_z=170.488113
+feature=1343 max_z=169.170074 mean_z=5.175793 mean_abs_z=5.175793 max_abs_z=169.170074
+feature=2670 max_z=168.625656 mean_z=10.174217 mean_abs_z=10.174217 max_abs_z=168.625656
+feature=2860 max_z=167.976624 mean_z=9.326062 mean_abs_z=9.326062 max_abs_z=167.976624
+feature=2700 max_z=166.577545 mean_z=19.431852 mean_abs_z=19.431854 max_abs_z=166.577545
+feature= 168 max_z=166.196838 mean_z=12.358094 mean_abs_z=12.358094 max_abs_z=166.196838
+feature=1592 max_z=165.924850 mean_z=8.693583 mean_abs_z=8.693584 max_abs_z=165.924850
+
+=== TOP FEATURES BY MEAN Z ===
+feature=3353 mean_z=23.361141 max_z=155.461914 mean_abs_z=23.361141 max_abs_z=155.461914
+feature= 511 mean_z=22.509048 max_z=160.098465 mean_abs_z=22.509048 max_abs_z=160.098465
+feature=2700 mean_z=19.431852 max_z=166.577545 mean_abs_z=19.431854 max_abs_z=166.577545
+feature=1598 mean_z=19.185980 max_z=115.274834 mean_abs_z=19.185980 max_abs_z=115.274834
+feature=2621 mean_z=18.695957 max_z=154.359512 mean_abs_z=18.695957 max_abs_z=154.359512
+feature= 474 mean_z=16.614817 max_z=122.184334 mean_abs_z=16.614817 max_abs_z=122.184334
+feature= 343 mean_z=15.081033 max_z=243.450134 mean_abs_z=15.081033 max_abs_z=243.450134
+feature=2294 mean_z=13.481122 max_z=121.489548 mean_abs_z=13.481122 max_abs_z=121.489548
+feature=1967 mean_z=13.269917 max_z=127.054062 mean_abs_z=13.269917 max_abs_z=127.054062
+feature= 815 mean_z=12.796324 max_z=104.450844 mean_abs_z=12.796324 max_abs_z=104.450844
+feature= 846 mean_z=12.721940 max_z=346.555939 mean_abs_z=12.721941 max_abs_z=346.555939
+feature= 168 mean_z=12.358094 max_z=166.196838 mean_abs_z=12.358094 max_abs_z=166.196838
+feature=3410 mean_z=12.350865 max_z=193.951675 mean_abs_z=12.350865 max_abs_z=193.951675
+feature=2073 mean_z=12.333294 max_z=141.140015 mean_abs_z=12.333295 max_abs_z=141.140015
+feature=3368 mean_z=11.614579 max_z=72.697945 mean_abs_z=11.614579 max_abs_z=72.697945
+feature= 619 mean_z=11.363991 max_z=106.166985 mean_abs_z=11.363991 max_abs_z=106.166985
+feature=1055 mean_z=11.319542 max_z=157.017273 mean_abs_z=11.319543 max_abs_z=157.017273
+feature=1955 mean_z=11.300864 max_z=120.397591 mean_abs_z=11.300865 max_abs_z=120.397591
+feature=1119 mean_z=11.219572 max_z=141.442535 mean_abs_z=11.219571 max_abs_z=141.442535
+feature=3696 mean_z=11.175942 max_z=108.658203 mean_abs_z=11.175942 max_abs_z=108.658203
+
+=== TOP FEATURES BY MEAN |Z| ===
+feature=3353 mean_abs_z=23.361141 max_abs_z=155.461914 mean_z=23.361141 max_z=155.461914
+feature= 511 mean_abs_z=22.509048 max_abs_z=160.098465 mean_z=22.509048 max_z=160.098465
+feature=2700 mean_abs_z=19.431854 max_abs_z=166.577545 mean_z=19.431852 max_z=166.577545
+feature=1598 mean_abs_z=19.185980 max_abs_z=115.274834 mean_z=19.185980 max_z=115.274834
+feature=2621 mean_abs_z=18.695957 max_abs_z=154.359512 mean_z=18.695957 max_z=154.359512
+feature= 474 mean_abs_z=16.614817 max_abs_z=122.184334 mean_z=16.614817 max_z=122.184334
+feature= 343 mean_abs_z=15.081033 max_abs_z=243.450134 mean_z=15.081033 max_z=243.450134
+feature=2294 mean_abs_z=13.481122 max_abs_z=121.489548 mean_z=13.481122 max_z=121.489548
+feature=1967 mean_abs_z=13.269917 max_abs_z=127.054062 mean_z=13.269917 max_z=127.054062
+feature= 815 mean_abs_z=12.796324 max_abs_z=104.450844 mean_z=12.796324 max_z=104.450844
+feature= 846 mean_abs_z=12.721941 max_abs_z=346.555939 mean_z=12.721940 max_z=346.555939
+feature= 168 mean_abs_z=12.358094 max_abs_z=166.196838 mean_z=12.358094 max_z=166.196838
+feature=3410 mean_abs_z=12.350865 max_abs_z=193.951675 mean_z=12.350865 max_z=193.951675
+feature=2073 mean_abs_z=12.333295 max_abs_z=141.140015 mean_z=12.333294 max_z=141.140015
+feature=3368 mean_abs_z=11.614579 max_abs_z=72.697945 mean_z=11.614579 max_z=72.697945
+feature= 619 mean_abs_z=11.363991 max_abs_z=106.166985 mean_z=11.363991 max_z=106.166985
+feature=1055 mean_abs_z=11.319543 max_abs_z=157.017273 mean_z=11.319542 max_z=157.017273
+feature=1955 mean_abs_z=11.300865 max_abs_z=120.397591 mean_z=11.300864 max_z=120.397591
+feature=1119 mean_abs_z=11.219571 max_abs_z=141.442535 mean_z=11.219572 max_z=141.442535
+feature=3696 mean_abs_z=11.175942 max_abs_z=108.658203 mean_z=11.175942 max_z=108.658203
+
+=== TOP ACTIVATING EXAMPLES ===
+
+--- Feature 3933 ---
+Top by z:
+[01] score=420.650848 abs_score=420.650848 lang=nld_Latn token=" pos=14 sentence=Vandaag hebben ze me zo weinig gegeven dat ik nog honger heb."
+[02] score=420.613159 abs_score=420.613159 lang=deu_Latn token=" pos=15 sentence=Das wird die beste Antwort auf die Ungerechtigkeiten gegen Sie sein."
+[03] score=417.262024 abs_score=417.262024 lang=swe_Latn token=" pos=12 sentence=Jag är hedrad över att vara en designer för kärlek."
+[04] score=416.970428 abs_score=416.970428 lang=spa_Latn token=" pos=15 sentence=Cualquier cosa que sueñes será real, y vice-versa también."
+[05] score=414.812073 abs_score=414.812073 lang=spa_Latn token=" pos=29 sentence=A menos que realmente vivamos en una simulación, nuestros descendientes casi seguramente nunca ejecutarán una simulación de ancestros."[4]
+[06] score=414.484589 abs_score=414.484589 lang=pol_Latn token=" pos=15 sentence=Jestem Panu głęboko wdzięczny za tę książkę."
+[07] score=413.959473 abs_score=413.959473 lang=por_Latn token=" pos=15 sentence=Mas, enquanto isso, é garantido que você estará queimado."
+[08] score=413.549530 abs_score=413.549530 lang=deu_Latn token=" pos=24 sentence=Das muss nichts bedeuten, aber zusammengenommen könnte es dazu führen, dass Sie misstrauisch werden."
+[09] score=413.199524 abs_score=413.199524 lang=ita_Latn token=" pos=14 sentence=Persone che hanno costruito la loro dimora nel tuo cuore."
+[10] score=412.988770 abs_score=412.988770 lang=deu_Latn token=" pos=15 sentence=Denn ich weiß, dass du meine dritte Hand akzeptierst."
+[11] score=412.231995 abs_score=412.231995 lang=ita_Latn token=" pos=9 sentence=Allora posso lavorare con esso per la pace."
+[12] score=411.402100 abs_score=411.402100 lang=pol_Latn token=" pos=14 sentence=Tak oto zostało powiedziane, że świat jest nicością."
+[13] score=410.803650 abs_score=410.803650 lang=por_Latn token=" pos=15 sentence=Mas se você contar uma mentira, ele se torna parte de seu futuro."
+[14] score=410.665466 abs_score=410.665466 lang=swe_Latn token=" pos=19 sentence=Men den som känner den och kallar den för lögn, han är en brottsling."
+[15] score=409.058777 abs_score=409.058777 lang=swe_Latn token=" pos=14 sentence=I dess ställe träder vi in i en period av konsekvenser."
+[16] score=408.848633 abs_score=408.848633 lang=swe_Latn token=" pos=18 sentence=Men vad jag kan säga är att du är föräldraskap som en rockstar."
+[17] score=408.323639 abs_score=408.323639 lang=ces_Latn token=" pos=21 sentence=A bylo mi poručeno, abych se odevzdal do vůle Pána všech světů."
+[18] score=406.257599 abs_score=406.257599 lang=ces_Latn token=" pos=22 sentence=Naopak, oni jsou živí a u Pána svého odměnu svou užívají. . ."
+[19] score=406.255127 abs_score=406.255127 lang=deu_Latn token=" pos=26 sentence=Dann wirst du mehr Geld besitzen, und die Leute haben nicht länger Gelegenheit, sich über dich lustig zu machen."
+[20] score=405.670349 abs_score=405.670349 lang=nld_Latn token=" pos=16 sentence=En de droom is zeker en zijn interpretatie van is betrouwbaar."
+Top by |z|:
+[01] score=420.650848 abs_score=420.650848 lang=nld_Latn token=" pos=14 sentence=Vandaag hebben ze me zo weinig gegeven dat ik nog honger heb."
+[02] score=420.613159 abs_score=420.613159 lang=deu_Latn token=" pos=15 sentence=Das wird die beste Antwort auf die Ungerechtigkeiten gegen Sie sein."
+[03] score=417.262024 abs_score=417.262024 lang=swe_Latn token=" pos=12 sentence=Jag är hedrad över att vara en designer för kärlek."
+[04] score=416.970428 abs_score=416.970428 lang=spa_Latn token=" pos=15 sentence=Cualquier cosa que sueñes será real, y vice-versa también."
+[05] score=414.812073 abs_score=414.812073 lang=spa_Latn token=" pos=29 sentence=A menos que realmente vivamos en una simulación, nuestros descendientes casi seguramente nunca ejecutarán una simulación de ancestros."[4]
+[06] score=414.484589 abs_score=414.484589 lang=pol_Latn token=" pos=15 sentence=Jestem Panu głęboko wdzięczny za tę książkę."
+[07] score=413.959473 abs_score=413.959473 lang=por_Latn token=" pos=15 sentence=Mas, enquanto isso, é garantido que você estará queimado."
+[08] score=413.549530 abs_score=413.549530 lang=deu_Latn token=" pos=24 sentence=Das muss nichts bedeuten, aber zusammengenommen könnte es dazu führen, dass Sie misstrauisch werden."
+[09] score=413.199524 abs_score=413.199524 lang=ita_Latn token=" pos=14 sentence=Persone che hanno costruito la loro dimora nel tuo cuore."
+[10] score=412.988770 abs_score=412.988770 lang=deu_Latn token=" pos=15 sentence=Denn ich weiß, dass du meine dritte Hand akzeptierst."
+[11] score=412.231995 abs_score=412.231995 lang=ita_Latn token=" pos=9 sentence=Allora posso lavorare con esso per la pace."
+[12] score=411.402100 abs_score=411.402100 lang=pol_Latn token=" pos=14 sentence=Tak oto zostało powiedziane, że świat jest nicością."
+[13] score=410.803650 abs_score=410.803650 lang=por_Latn token=" pos=15 sentence=Mas se você contar uma mentira, ele se torna parte de seu futuro."
+[14] score=410.665466 abs_score=410.665466 lang=swe_Latn token=" pos=19 sentence=Men den som känner den och kallar den för lögn, han är en brottsling."
+[15] score=409.058777 abs_score=409.058777 lang=swe_Latn token=" pos=14 sentence=I dess ställe träder vi in i en period av konsekvenser."
+[16] score=408.848633 abs_score=408.848633 lang=swe_Latn token=" pos=18 sentence=Men vad jag kan säga är att du är föräldraskap som en rockstar."
+[17] score=408.323639 abs_score=408.323639 lang=ces_Latn token=" pos=21 sentence=A bylo mi poručeno, abych se odevzdal do vůle Pána všech světů."
+[18] score=406.257599 abs_score=406.257599 lang=ces_Latn token=" pos=22 sentence=Naopak, oni jsou živí a u Pána svého odměnu svou užívají. . ."
+[19] score=406.255127 abs_score=406.255127 lang=deu_Latn token=" pos=26 sentence=Dann wirst du mehr Geld besitzen, und die Leute haben nicht länger Gelegenheit, sich über dich lustig zu machen."
+[20] score=405.670349 abs_score=405.670349 lang=nld_Latn token=" pos=16 sentence=En de droom is zeker en zijn interpretatie van is betrouwbaar."
+
+--- Feature 846 ---
+Top by z:
+[01] score=346.555939 abs_score=346.555939 lang=ces_Latn token=? pos=14 sentence=Prostě proto, že tam s McCutcheonem toho dne byl?
+[02] score=341.509949 abs_score=341.509949 lang=deu_Latn token=? pos=14 sentence=Glauben Sie, dass unser Team das gleiche ohne Harry Kane ist?
+[03] score=339.227325 abs_score=339.227325 lang=deu_Latn token=? pos=14 sentence=Würde man sagen, dass er von zwei Göttern spricht?
+[04] score=339.207092 abs_score=339.207092 lang=nld_Latn token=? pos=11 sentence=Heb je nog contact met de andere Piper, de echte?
+[05] score=338.321411 abs_score=338.321411 lang=deu_Latn token=? pos=14 sentence=Würde man sagen, dass er von zwei Göttern spricht?
+[06] score=337.147369 abs_score=337.147369 lang=eng_Latn token=? pos=13 sentence=Do you think we were going to question the Lou's orders?
+[07] score=337.119995 abs_score=337.119995 lang=swe_Latn token=? pos=11 sentence=- Flygmuseum: Kom ihåg namnet Jet City?
+[08] score=334.304443 abs_score=334.304443 lang=deu_Latn token=? pos=9 sentence=fz: Selbst die Junge Union war da?
+[09] score=334.128845 abs_score=334.128845 lang=nld_Latn token=? pos=13 sentence=Bob Jamison, denk je dat we het ooit zullen zien?
+[10] score=332.960205 abs_score=332.960205 lang=swe_Latn token=? pos=15 sentence=Och vad om, som med Jeff Cook, gör någon annan matlagningen?
+[11] score=332.211456 abs_score=332.211456 lang=nld_Latn token=? pos=17 sentence=Oh m ****, is het mogelijk dat deze verdomde fiets altijd breekt?
+[12] score=331.562897 abs_score=331.562897 lang=nld_Latn token=? pos=17 sentence=Als auto's gewoon paarden zijn, is dit technisch een westerse?
+[13] score=330.808533 abs_score=330.808533 lang=por_Latn token=? pos=8 sentence=Vocês não estão todos destruindo Meu altar?
+[14] score=330.302917 abs_score=330.302917 lang=eng_Latn token=? pos=18 sentence=(Belibaste) In the past, was there a country with a higher percentage?
+[15] score=330.137024 abs_score=330.137024 lang=deu_Latn token=? pos=9 sentence=12: // Welcher Wert wurde erzeugt?
+[16] score=330.082489 abs_score=330.082489 lang=swe_Latn token=? pos=10 sentence=Skulle ditt lilla företag bara ignorera dessa 7 teknologier?
+[17] score=329.681305 abs_score=329.681305 lang=eng_Latn token=? pos=15 sentence=b) Do you understand the very clear message that AKEL is sending you?
+[18] score=329.472992 abs_score=329.472992 lang=nld_Latn token=? pos=18 sentence=Maar wil dat zeggen dat letterlijk iedereen 4,4 keer méér verdient dan vroeger?
+[19] score=329.273376 abs_score=329.273376 lang=ces_Latn token=? pos=14 sentence=Není-li platná, tak kdo je za to zodpovědný?
+[20] score=329.168274 abs_score=329.168274 lang=eng_Latn token=? pos=15 sentence=Are we too stupid that President Obama has to tell us what kind of insurance?
+Top by |z|:
+[01] score=346.555939 abs_score=346.555939 lang=ces_Latn token=? pos=14 sentence=Prostě proto, že tam s McCutcheonem toho dne byl?
+[02] score=341.509949 abs_score=341.509949 lang=deu_Latn token=? pos=14 sentence=Glauben Sie, dass unser Team das gleiche ohne Harry Kane ist?
+[03] score=339.227325 abs_score=339.227325 lang=deu_Latn token=? pos=14 sentence=Würde man sagen, dass er von zwei Göttern spricht?
+[04] score=339.207092 abs_score=339.207092 lang=nld_Latn token=? pos=11 sentence=Heb je nog contact met de andere Piper, de echte?
+[05] score=338.321411 abs_score=338.321411 lang=deu_Latn token=? pos=14 sentence=Würde man sagen, dass er von zwei Göttern spricht?
+[06] score=337.147369 abs_score=337.147369 lang=eng_Latn token=? pos=13 sentence=Do you think we were going to question the Lou's orders?
+[07] score=337.119995 abs_score=337.119995 lang=swe_Latn token=? pos=11 sentence=- Flygmuseum: Kom ihåg namnet Jet City?
+[08] score=334.304443 abs_score=334.304443 lang=deu_Latn token=? pos=9 sentence=fz: Selbst die Junge Union war da?
+[09] score=334.128845 abs_score=334.128845 lang=nld_Latn token=? pos=13 sentence=Bob Jamison, denk je dat we het ooit zullen zien?
+[10] score=332.960205 abs_score=332.960205 lang=swe_Latn token=? pos=15 sentence=Och vad om, som med Jeff Cook, gör någon annan matlagningen?
+[11] score=332.211456 abs_score=332.211456 lang=nld_Latn token=? pos=17 sentence=Oh m ****, is het mogelijk dat deze verdomde fiets altijd breekt?
+[12] score=331.562897 abs_score=331.562897 lang=nld_Latn token=? pos=17 sentence=Als auto's gewoon paarden zijn, is dit technisch een westerse?
+[13] score=330.808533 abs_score=330.808533 lang=por_Latn token=? pos=8 sentence=Vocês não estão todos destruindo Meu altar?
+[14] score=330.302917 abs_score=330.302917 lang=eng_Latn token=? pos=18 sentence=(Belibaste) In the past, was there a country with a higher percentage?
+[15] score=330.137024 abs_score=330.137024 lang=deu_Latn token=? pos=9 sentence=12: // Welcher Wert wurde erzeugt?
+[16] score=330.082489 abs_score=330.082489 lang=swe_Latn token=? pos=10 sentence=Skulle ditt lilla företag bara ignorera dessa 7 teknologier?
+[17] score=329.681305 abs_score=329.681305 lang=eng_Latn token=? pos=15 sentence=b) Do you understand the very clear message that AKEL is sending you?
+[18] score=329.472992 abs_score=329.472992 lang=nld_Latn token=? pos=18 sentence=Maar wil dat zeggen dat letterlijk iedereen 4,4 keer méér verdient dan vroeger?
+[19] score=329.273376 abs_score=329.273376 lang=ces_Latn token=? pos=14 sentence=Není-li platná, tak kdo je za to zodpovědný?
+[20] score=329.168274 abs_score=329.168274 lang=eng_Latn token=? pos=15 sentence=Are we too stupid that President Obama has to tell us what kind of insurance?
+
+--- Feature 3197 ---
+Top by z:
+[01] score=266.793396 abs_score=266.793396 lang=eng_Latn token=! pos=11 sentence=“Now five companies control America, instead of 100!
+[02] score=265.168213 abs_score=265.168213 lang=fra_Latn token=▁! pos=16 sentence=Il voulait évidemment le soutien de ses trois oncles martiaux cachés !
+[03] score=264.793396 abs_score=264.793396 lang=ces_Latn token=▁! pos=17 sentence=Ve jménu Alláha, Milosrdného a Slitovného !
+[04] score=263.905029 abs_score=263.905029 lang=eng_Latn token=! pos=18 sentence=However, they are demonstrating some of the capabilities in the integrated system in 2012!
+[05] score=263.259888 abs_score=263.259888 lang=deu_Latn token=! pos=8 sentence=Mantis MR 991 ist die Lösung!
+[06] score=262.917908 abs_score=262.917908 lang=spa_Latn token=! pos=13 sentence=Di: «¡Alá es más rápido en intrigar!»
+[07] score=262.266541 abs_score=262.266541 lang=ita_Latn token=! pos=13 sentence=Questo blog è come un magazine perché ciascun post è differente!”
+[08] score=262.264893 abs_score=262.264893 lang=spa_Latn token=! pos=15 sentence=¡Pero de acuerdo con un nuevo estudio chino, podría querer aumentar la frecuencia!
+[09] score=261.273010 abs_score=261.273010 lang=ita_Latn token=! pos=13 sentence=Ti meriti un futuro migliore di quello che Hamas ha programmato!
+[10] score=260.720856 abs_score=260.720856 lang=fra_Latn token=! pos=10 sentence=Nous aidons les Kurdes financièrement/armes!»
+[11] score=260.278717 abs_score=260.278717 lang=eng_Latn token=! pos=10 sentence=Something wonderful has happened--Number Five is alive!
+[12] score=260.261353 abs_score=260.261353 lang=fra_Latn token=▁! pos=19 sentence=Il y a peut-être des bugs cachés dans les 10% que nous avons manqués !
+[13] score=260.243988 abs_score=260.243988 lang=eng_Latn token=! pos=14 sentence=Excellent flexibility… thanks to the fact that we are Belgians!
+[14] score=260.174988 abs_score=260.174988 lang=pol_Latn token=! pos=12 sentence=Ja i 5G damy tobie środki do wygrania!
+[15] score=260.161743 abs_score=260.161743 lang=ces_Latn token=! pos=12 sentence=Můžeš tento “vlak nemoci” zastavit právě teď!
+[16] score=259.367218 abs_score=259.367218 lang=eng_Latn token=! pos=14 sentence=This is true for many other foods as well as our beloved chocolate!
+[17] score=259.258606 abs_score=259.258606 lang=nld_Latn token=! pos=12 sentence=[6] En, natuurlijk, De Iliad is een lang boek!
+[18] score=259.075684 abs_score=259.075684 lang=por_Latn token=! pos=12 sentence=Chris e Tony estão de volta com mais 10 para o presidente!
+[19] score=259.014435 abs_score=259.014435 lang=spa_Latn token=! pos=14 sentence=Si sólo el 3000 muertos fuera el último de este tipo de comportamiento!
+[20] score=257.908966 abs_score=257.908966 lang=eng_Latn token=! pos=10 sentence=T.N. Mi-8, again judge by yourself!
+Top by |z|:
+[01] score=266.793396 abs_score=266.793396 lang=eng_Latn token=! pos=11 sentence=“Now five companies control America, instead of 100!
+[02] score=265.168213 abs_score=265.168213 lang=fra_Latn token=▁! pos=16 sentence=Il voulait évidemment le soutien de ses trois oncles martiaux cachés !
+[03] score=264.793396 abs_score=264.793396 lang=ces_Latn token=▁! pos=17 sentence=Ve jménu Alláha, Milosrdného a Slitovného !
+[04] score=263.905029 abs_score=263.905029 lang=eng_Latn token=! pos=18 sentence=However, they are demonstrating some of the capabilities in the integrated system in 2012!
+[05] score=263.259888 abs_score=263.259888 lang=deu_Latn token=! pos=8 sentence=Mantis MR 991 ist die Lösung!
+[06] score=262.917908 abs_score=262.917908 lang=spa_Latn token=! pos=13 sentence=Di: «¡Alá es más rápido en intrigar!»
+[07] score=262.266541 abs_score=262.266541 lang=ita_Latn token=! pos=13 sentence=Questo blog è come un magazine perché ciascun post è differente!”
+[08] score=262.264893 abs_score=262.264893 lang=spa_Latn token=! pos=15 sentence=¡Pero de acuerdo con un nuevo estudio chino, podría querer aumentar la frecuencia!
+[09] score=261.273010 abs_score=261.273010 lang=ita_Latn token=! pos=13 sentence=Ti meriti un futuro migliore di quello che Hamas ha programmato!
+[10] score=260.720856 abs_score=260.720856 lang=fra_Latn token=! pos=10 sentence=Nous aidons les Kurdes financièrement/armes!»
+[11] score=260.278717 abs_score=260.278717 lang=eng_Latn token=! pos=10 sentence=Something wonderful has happened--Number Five is alive!
+[12] score=260.261353 abs_score=260.261353 lang=fra_Latn token=▁! pos=19 sentence=Il y a peut-être des bugs cachés dans les 10% que nous avons manqués !
+[13] score=260.243988 abs_score=260.243988 lang=eng_Latn token=! pos=14 sentence=Excellent flexibility… thanks to the fact that we are Belgians!
+[14] score=260.174988 abs_score=260.174988 lang=pol_Latn token=! pos=12 sentence=Ja i 5G damy tobie środki do wygrania!
+[15] score=260.161743 abs_score=260.161743 lang=ces_Latn token=! pos=12 sentence=Můžeš tento “vlak nemoci” zastavit právě teď!
+[16] score=259.367218 abs_score=259.367218 lang=eng_Latn token=! pos=14 sentence=This is true for many other foods as well as our beloved chocolate!
+[17] score=259.258606 abs_score=259.258606 lang=nld_Latn token=! pos=12 sentence=[6] En, natuurlijk, De Iliad is een lang boek!
+[18] score=259.075684 abs_score=259.075684 lang=por_Latn token=! pos=12 sentence=Chris e Tony estão de volta com mais 10 para o presidente!
+[19] score=259.014435 abs_score=259.014435 lang=spa_Latn token=! pos=14 sentence=Si sólo el 3000 muertos fuera el último de este tipo de comportamiento!
+[20] score=257.908966 abs_score=257.908966 lang=eng_Latn token=! pos=10 sentence=T.N. Mi-8, again judge by yourself!
+
+--- Feature 343 ---
+Top by z:
+[01] score=243.450134 abs_score=243.450134 lang=fra_Latn token=▁Edward pos=8 sentence=Mais ne vous inquiétez pas, Edward & Sons fait un.
+[02] score=241.138809 abs_score=241.138809 lang=eng_Latn token=▁Superman pos=7 sentence=(Linda is dressed as Superman) Can they see you back home?
+[03] score=230.074936 abs_score=230.074936 lang=deu_Latn token=▁Watson pos=10 sentence=Hier ist für unsere Gesundheit, mit Hilfe von Watson
+[04] score=226.942596 abs_score=226.942596 lang=deu_Latn token=▁Robin pos=3 sentence=Ein Blogger namens Robin Good hatte uns im Internet gefunden.
+[05] score=222.474518 abs_score=222.474518 lang=fra_Latn token=▁Taylor pos=0 sentence=Taylor pourrait très bien être à la recherche d'un nouveau partenaire après Tokyo.
+[06] score=221.265991 abs_score=221.265991 lang=ita_Latn token=▁Rose pos=1 sentence=Dr Rose, guardando indietro alla storia, è particolarmente difficile essere felici oggi?
+[07] score=215.956314 abs_score=215.956314 lang=eng_Latn token=▁Eyes pos=4 sentence=Amy: "Big Eyes is nominated tonight.
+[08] score=214.873047 abs_score=214.873047 lang=deu_Latn token=▁Hello pos=8 sentence=Jeder macht seine eigenen Fortschritte mit Hello Slim.
+[09] score=213.168365 abs_score=213.168365 lang=fra_Latn token=▁Volkswagen pos=13 sentence=« Pour éviter tout malentendu: le Groupe Volkswagen ne construira pas ses propres voitures à l'avenir non plus.
+[10] score=212.131622 abs_score=212.131622 lang=fra_Latn token=▁Hello pos=9 sentence=N'importe qui peut maintenant amener le Hello Slim à experience.
+[11] score=211.237152 abs_score=211.237152 lang=fra_Latn token=▁Sons pos=10 sentence=Mais ne vous inquiétez pas, Edward & Sons fait un.
+[12] score=209.270493 abs_score=209.270493 lang=por_Latn token=▁Robert pos=1 sentence=* Robert Jordan encontra o amor de sua vida em cerca de 17 minutos.
+[13] score=208.220764 abs_score=208.220764 lang=pol_Latn token=▁George pos=15 sentence="W rzeczywistości ma więcej niż jedną noc" - mówi dr George.
+[14] score=207.975739 abs_score=207.975739 lang=swe_Latn token=▁Arthur pos=0 sentence=Arthur D. Little: är bilindustrin på väg att förändras för gott?
+[15] score=207.080704 abs_score=207.080704 lang=pol_Latn token=▁Donna pos=8 sentence=Wiem, że ty, bardziej nawet niż Donna, możesz utrzymać tajemnicę.
+[16] score=207.059448 abs_score=207.059448 lang=por_Latn token=▁John pos=16 sentence=Às vezes me pergunto se o ambiente de hoje faz com que alguém como John Leary não seja mais possível.
+[17] score=206.667587 abs_score=206.667587 lang=spa_Latn token=▁Brown pos=6 sentence=Y a quién llamar", dijo Brown sobre lo último.
+[18] score=202.869705 abs_score=202.869705 lang=swe_Latn token=▁Jeff pos=6 sentence=Och vad om, som med Jeff Cook, gör någon annan matlagningen?
+[19] score=200.903915 abs_score=200.903915 lang=nld_Latn token=▁Dark pos=11 sentence=Maar praten over dubieuze activiteit, wat is Dark Santa?
+[20] score=200.902023 abs_score=200.902023 lang=swe_Latn token=▁Cook pos=7 sentence=Och vad om, som med Jeff Cook, gör någon annan matlagningen?
+Top by |z|:
+[01] score=243.450134 abs_score=243.450134 lang=fra_Latn token=▁Edward pos=8 sentence=Mais ne vous inquiétez pas, Edward & Sons fait un.
+[02] score=241.138809 abs_score=241.138809 lang=eng_Latn token=▁Superman pos=7 sentence=(Linda is dressed as Superman) Can they see you back home?
+[03] score=230.074936 abs_score=230.074936 lang=deu_Latn token=▁Watson pos=10 sentence=Hier ist für unsere Gesundheit, mit Hilfe von Watson
+[04] score=226.942596 abs_score=226.942596 lang=deu_Latn token=▁Robin pos=3 sentence=Ein Blogger namens Robin Good hatte uns im Internet gefunden.
+[05] score=222.474518 abs_score=222.474518 lang=fra_Latn token=▁Taylor pos=0 sentence=Taylor pourrait très bien être à la recherche d'un nouveau partenaire après Tokyo.
+[06] score=221.265991 abs_score=221.265991 lang=ita_Latn token=▁Rose pos=1 sentence=Dr Rose, guardando indietro alla storia, è particolarmente difficile essere felici oggi?
+[07] score=215.956314 abs_score=215.956314 lang=eng_Latn token=▁Eyes pos=4 sentence=Amy: "Big Eyes is nominated tonight.
+[08] score=214.873047 abs_score=214.873047 lang=deu_Latn token=▁Hello pos=8 sentence=Jeder macht seine eigenen Fortschritte mit Hello Slim.
+[09] score=213.168365 abs_score=213.168365 lang=fra_Latn token=▁Volkswagen pos=13 sentence=« Pour éviter tout malentendu: le Groupe Volkswagen ne construira pas ses propres voitures à l'avenir non plus.
+[10] score=212.131622 abs_score=212.131622 lang=fra_Latn token=▁Hello pos=9 sentence=N'importe qui peut maintenant amener le Hello Slim à experience.
+[11] score=211.237152 abs_score=211.237152 lang=fra_Latn token=▁Sons pos=10 sentence=Mais ne vous inquiétez pas, Edward & Sons fait un.
+[12] score=209.270493 abs_score=209.270493 lang=por_Latn token=▁Robert pos=1 sentence=* Robert Jordan encontra o amor de sua vida em cerca de 17 minutos.
+[13] score=208.220764 abs_score=208.220764 lang=pol_Latn token=▁George pos=15 sentence="W rzeczywistości ma więcej niż jedną noc" - mówi dr George.
+[14] score=207.975739 abs_score=207.975739 lang=swe_Latn token=▁Arthur pos=0 sentence=Arthur D. Little: är bilindustrin på väg att förändras för gott?
+[15] score=207.080704 abs_score=207.080704 lang=pol_Latn token=▁Donna pos=8 sentence=Wiem, że ty, bardziej nawet niż Donna, możesz utrzymać tajemnicę.
+[16] score=207.059448 abs_score=207.059448 lang=por_Latn token=▁John pos=16 sentence=Às vezes me pergunto se o ambiente de hoje faz com que alguém como John Leary não seja mais possível.
+[17] score=206.667587 abs_score=206.667587 lang=spa_Latn token=▁Brown pos=6 sentence=Y a quién llamar", dijo Brown sobre lo último.
+[18] score=202.869705 abs_score=202.869705 lang=swe_Latn token=▁Jeff pos=6 sentence=Och vad om, som med Jeff Cook, gör någon annan matlagningen?
+[19] score=200.903915 abs_score=200.903915 lang=nld_Latn token=▁Dark pos=11 sentence=Maar praten over dubieuze activiteit, wat is Dark Santa?
+[20] score=200.902023 abs_score=200.902023 lang=swe_Latn token=▁Cook pos=7 sentence=Och vad om, som med Jeff Cook, gör någon annan matlagningen?
+
+--- Feature 1203 ---
+Top by z:
+[01] score=241.230789 abs_score=241.230789 lang=nld_Latn token=▁67 pos=10 sentence=Het laatste rapport over Ethiek werd in korte tijd 674 keer opgevraagd!
+[02] score=241.165146 abs_score=241.165146 lang=swe_Latn token=▁84 pos=0 sentence=849, 000: detta är den officiella statistiken av den mänskliga befolkningen.
+[03] score=238.332153 abs_score=238.332153 lang=eng_Latn token=▁23 pos=12 sentence=However, Turkey increased its number of diplomatic missions to 239 recently.
+[04] score=237.760117 abs_score=237.760117 lang=fra_Latn token=▁93 pos=7 sentence=Dans cette chanson je dis fuck 93 fois
+[05] score=236.992813 abs_score=236.992813 lang=eng_Latn token=▁23 pos=4 sentence=The message from these 232 million voters is therefore clear: “Europeans Yes !
+[06] score=233.743225 abs_score=233.743225 lang=nld_Latn token=▁27 pos=0 sentence=279 Wij Amerikanen zijn te goed.
+[07] score=233.201096 abs_score=233.201096 lang=swe_Latn token=▁84 pos=25 sentence=PS - Jag lovar att du kommer att bli förvånad över vad dessa män och kvinnor uppnådde på bara 84 dagar.
+[08] score=232.148636 abs_score=232.148636 lang=por_Latn token=▁38 pos=17 sentence=Foi essa crença, com estas palavras particular, aprovado pelo conselho de 381?
+[09] score=231.935959 abs_score=231.935959 lang=por_Latn token=▁38 pos=7 sentence=Nossa análise diz que precisamos de 386.”
+[10] score=230.759842 abs_score=230.759842 lang=por_Latn token=▁39 pos=0 sentence=397 Mas, oh, permita-me dar-lhe esta coisa abençoada.
+[11] score=228.667953 abs_score=228.667953 lang=eng_Latn token=▁49 pos=0 sentence=491 days where she almost lost her mind.
+[12] score=226.607910 abs_score=226.607910 lang=deu_Latn token=▁78 pos=8 sentence=Tom Brady möchte, dass Sie $ 78 pro Woche zahlen, um wie er zu essen
+[13] score=225.992218 abs_score=225.992218 lang=swe_Latn token=▁77 pos=7 sentence=Sim från den italienska gruppen Blood 77 svara på mina frågor i mitten av april och han gör det riktigt bra.
+[14] score=225.810104 abs_score=225.810104 lang=eng_Latn token=▁68 pos=0 sentence=682 I took the little baby.
+[15] score=223.947037 abs_score=223.947037 lang=fra_Latn token=▁54 pos=0 sentence=54 ÉTATS : Vous avez donc déjà signé le contrat avec Total ?
+[16] score=223.901718 abs_score=223.901718 lang=swe_Latn token=▁34 pos=7 sentence=Detta innebär att de följde 131 342 patienter under decennier och frågade dem vad de åt.
+[17] score=223.011002 abs_score=223.011002 lang=nld_Latn token=▁14 pos=7 sentence=[Haal het hier - € 149]
+[18] score=222.973572 abs_score=222.973572 lang=nld_Latn token=▁46 pos=1 sentence=Maar 46% van de mensen doet dit - goed nieuws voor de huidige geliefden.
+[19] score=221.683151 abs_score=221.683151 lang=nld_Latn token=▁29 pos=0 sentence=294 De kleine dame heeft een operatie gehad.
+[20] score=221.432800 abs_score=221.432800 lang=fra_Latn token=▁45 pos=10 sentence=Cas où au moins un enfant avait un avocat : 459
+Top by |z|:
+[01] score=241.230789 abs_score=241.230789 lang=nld_Latn token=▁67 pos=10 sentence=Het laatste rapport over Ethiek werd in korte tijd 674 keer opgevraagd!
+[02] score=241.165146 abs_score=241.165146 lang=swe_Latn token=▁84 pos=0 sentence=849, 000: detta är den officiella statistiken av den mänskliga befolkningen.
+[03] score=238.332153 abs_score=238.332153 lang=eng_Latn token=▁23 pos=12 sentence=However, Turkey increased its number of diplomatic missions to 239 recently.
+[04] score=237.760117 abs_score=237.760117 lang=fra_Latn token=▁93 pos=7 sentence=Dans cette chanson je dis fuck 93 fois
+[05] score=236.992813 abs_score=236.992813 lang=eng_Latn token=▁23 pos=4 sentence=The message from these 232 million voters is therefore clear: “Europeans Yes !
+[06] score=233.743225 abs_score=233.743225 lang=nld_Latn token=▁27 pos=0 sentence=279 Wij Amerikanen zijn te goed.
+[07] score=233.201096 abs_score=233.201096 lang=swe_Latn token=▁84 pos=25 sentence=PS - Jag lovar att du kommer att bli förvånad över vad dessa män och kvinnor uppnådde på bara 84 dagar.
+[08] score=232.148636 abs_score=232.148636 lang=por_Latn token=▁38 pos=17 sentence=Foi essa crença, com estas palavras particular, aprovado pelo conselho de 381?
+[09] score=231.935959 abs_score=231.935959 lang=por_Latn token=▁38 pos=7 sentence=Nossa análise diz que precisamos de 386.”
+[10] score=230.759842 abs_score=230.759842 lang=por_Latn token=▁39 pos=0 sentence=397 Mas, oh, permita-me dar-lhe esta coisa abençoada.
+[11] score=228.667953 abs_score=228.667953 lang=eng_Latn token=▁49 pos=0 sentence=491 days where she almost lost her mind.
+[12] score=226.607910 abs_score=226.607910 lang=deu_Latn token=▁78 pos=8 sentence=Tom Brady möchte, dass Sie $ 78 pro Woche zahlen, um wie er zu essen
+[13] score=225.992218 abs_score=225.992218 lang=swe_Latn token=▁77 pos=7 sentence=Sim från den italienska gruppen Blood 77 svara på mina frågor i mitten av april och han gör det riktigt bra.
+[14] score=225.810104 abs_score=225.810104 lang=eng_Latn token=▁68 pos=0 sentence=682 I took the little baby.
+[15] score=223.947037 abs_score=223.947037 lang=fra_Latn token=▁54 pos=0 sentence=54 ÉTATS : Vous avez donc déjà signé le contrat avec Total ?
+[16] score=223.901718 abs_score=223.901718 lang=swe_Latn token=▁34 pos=7 sentence=Detta innebär att de följde 131 342 patienter under decennier och frågade dem vad de åt.
+[17] score=223.011002 abs_score=223.011002 lang=nld_Latn token=▁14 pos=7 sentence=[Haal het hier - € 149]
+[18] score=222.973572 abs_score=222.973572 lang=nld_Latn token=▁46 pos=1 sentence=Maar 46% van de mensen doet dit - goed nieuws voor de huidige geliefden.
+[19] score=221.683151 abs_score=221.683151 lang=nld_Latn token=▁29 pos=0 sentence=294 De kleine dame heeft een operatie gehad.
+[20] score=221.432800 abs_score=221.432800 lang=fra_Latn token=▁45 pos=10 sentence=Cas où au moins un enfant avait un avocat : 459
+
+--- Feature 2716 ---
+Top by z:
+[01] score=215.634811 abs_score=215.634811 lang=spa_Latn token=[4] pos=30 sentence=A menos que realmente vivamos en una simulación, nuestros descendientes casi seguramente nunca ejecutarán una simulación de ancestros."[4]
+[02] score=191.051498 abs_score=191.051498 lang=swe_Latn token=[2] pos=15 sentence=Sanningen är försvunnen och utrotad ur deras mun.”[2]
+[03] score=190.831161 abs_score=190.831161 lang=por_Latn token=]) pos=1 sentence=6:3]) de modo que aquele que não aceita o meu ensino não pode ser salvo - porque ele é de Deus e não meu.
+[04] score=189.094131 abs_score=189.094131 lang=ces_Latn token=8] pos=8 sentence=A to není dobré pro rodiny " [68] .
+[05] score=186.748764 abs_score=186.748764 lang=por_Latn token=7] pos=16 sentence=Pois, os servos hão de imitar o seu Senhor (…).[27]
+[06] score=186.536926 abs_score=186.536926 lang=eng_Latn token=*. pos=10 sentence=A special monitoring agreement exists with regards to Kosovo*.
+[07] score=180.610153 abs_score=180.610153 lang=spa_Latn token=.[4] pos=15 sentence=Persistió hasta que los tártaros los liberaron a todos ellos.[4]
+[08] score=180.304245 abs_score=180.304245 lang=ita_Latn token=.. pos=11 sentence=E davvero la mano del Signore era con lui. [..]
+[09] score=179.485657 abs_score=179.485657 lang=por_Latn token=[2 pos=15 sentence=Pois, os servos hão de imitar o seu Senhor (…).[27]
+[10] score=179.430939 abs_score=179.430939 lang=fra_Latn token=30] pos=14 sentence=Qu’attendez-vous de la justice ? »[30]
+[11] score=179.337906 abs_score=179.337906 lang=deu_Latn token=.[8] pos=18 sentence=Indem Sie nur die Symptome vortäuschen, werden Ihre Eltern Ihnen glauben.[8]
+[12] score=176.112640 abs_score=176.112640 lang=por_Latn token=7] pos=31 sentence=“Por certo, os que, pelo receio de seu Senhor, estão amedrontados.” [al-Mu’minun 23:57]
+[13] score=175.542679 abs_score=175.542679 lang=nld_Latn token=*. pos=18 sentence=In landen buiten onze thuismarkt doen we dit deels door onze strategische allianties*.
+[14] score=174.695221 abs_score=174.695221 lang=eng_Latn token=▁[1] pos=22 sentence='' The Days of Tashreeq are days of eating and drinking and remembrance of Allah.” [1]
+[15] score=173.204193 abs_score=173.204193 lang=pol_Latn token=▁[8 pos=30 sentence=Dwanaście aniołów zechciało wejść w życie [ do] władzy nad chaosem i [ podziemiem? ] [8].
+[16] score=170.621841 abs_score=170.621841 lang=pol_Latn token=▁] pos=29 sentence=Dwanaście aniołów zechciało wejść w życie [ do] władzy nad chaosem i [ podziemiem? ] [8].
+[17] score=170.047562 abs_score=170.047562 lang=swe_Latn token="), pos=3 sentence=Yasss ."), Och visa dem alternativ till de saker du inte gör.
+[18] score=169.420288 abs_score=169.420288 lang=swe_Latn token=7] pos=2 sentence=[96:7] När han blir rik.
+[19] score=168.957886 abs_score=168.957886 lang=swe_Latn token=7] pos=2 sentence=[92:7] Honom kommer vi att leda mot lycka.
+[20] score=168.722183 abs_score=168.722183 lang=ita_Latn token=*, pos=9 sentence=Adorino dunque il Signore di questa Casa*,
+Top by |z|:
+[01] score=215.634811 abs_score=215.634811 lang=spa_Latn token=[4] pos=30 sentence=A menos que realmente vivamos en una simulación, nuestros descendientes casi seguramente nunca ejecutarán una simulación de ancestros."[4]
+[02] score=191.051498 abs_score=191.051498 lang=swe_Latn token=[2] pos=15 sentence=Sanningen är försvunnen och utrotad ur deras mun.”[2]
+[03] score=190.831161 abs_score=190.831161 lang=por_Latn token=]) pos=1 sentence=6:3]) de modo que aquele que não aceita o meu ensino não pode ser salvo - porque ele é de Deus e não meu.
+[04] score=189.094131 abs_score=189.094131 lang=ces_Latn token=8] pos=8 sentence=A to není dobré pro rodiny " [68] .
+[05] score=186.748764 abs_score=186.748764 lang=por_Latn token=7] pos=16 sentence=Pois, os servos hão de imitar o seu Senhor (…).[27]
+[06] score=186.536926 abs_score=186.536926 lang=eng_Latn token=*. pos=10 sentence=A special monitoring agreement exists with regards to Kosovo*.
+[07] score=180.610153 abs_score=180.610153 lang=spa_Latn token=.[4] pos=15 sentence=Persistió hasta que los tártaros los liberaron a todos ellos.[4]
+[08] score=180.304245 abs_score=180.304245 lang=ita_Latn token=.. pos=11 sentence=E davvero la mano del Signore era con lui. [..]
+[09] score=179.485657 abs_score=179.485657 lang=por_Latn token=[2 pos=15 sentence=Pois, os servos hão de imitar o seu Senhor (…).[27]
+[10] score=179.430939 abs_score=179.430939 lang=fra_Latn token=30] pos=14 sentence=Qu’attendez-vous de la justice ? »[30]
+[11] score=179.337906 abs_score=179.337906 lang=deu_Latn token=.[8] pos=18 sentence=Indem Sie nur die Symptome vortäuschen, werden Ihre Eltern Ihnen glauben.[8]
+[12] score=176.112640 abs_score=176.112640 lang=por_Latn token=7] pos=31 sentence=“Por certo, os que, pelo receio de seu Senhor, estão amedrontados.” [al-Mu’minun 23:57]
+[13] score=175.542679 abs_score=175.542679 lang=nld_Latn token=*. pos=18 sentence=In landen buiten onze thuismarkt doen we dit deels door onze strategische allianties*.
+[14] score=174.695221 abs_score=174.695221 lang=eng_Latn token=▁[1] pos=22 sentence='' The Days of Tashreeq are days of eating and drinking and remembrance of Allah.” [1]
+[15] score=173.204193 abs_score=173.204193 lang=pol_Latn token=▁[8 pos=30 sentence=Dwanaście aniołów zechciało wejść w życie [ do] władzy nad chaosem i [ podziemiem? ] [8].
+[16] score=170.621841 abs_score=170.621841 lang=pol_Latn token=▁] pos=29 sentence=Dwanaście aniołów zechciało wejść w życie [ do] władzy nad chaosem i [ podziemiem? ] [8].
+[17] score=170.047562 abs_score=170.047562 lang=swe_Latn token="), pos=3 sentence=Yasss ."), Och visa dem alternativ till de saker du inte gör.
+[18] score=169.420288 abs_score=169.420288 lang=swe_Latn token=7] pos=2 sentence=[96:7] När han blir rik.
+[19] score=168.957886 abs_score=168.957886 lang=swe_Latn token=7] pos=2 sentence=[92:7] Honom kommer vi att leda mot lycka.
+[20] score=168.722183 abs_score=168.722183 lang=ita_Latn token=*, pos=9 sentence=Adorino dunque il Signore di questa Casa*,
+
+--- Feature 3092 ---
+Top by z:
+[01] score=207.489258 abs_score=207.489258 lang=ita_Latn token=▁Dio pos=12 sentence=Quale testimone della pienezza del Figlio di Dio può vedere se stesso in un mondo di corpi separati, per quanto che lui dia testimonianza della verità?
+[02] score=199.720596 abs_score=199.720596 lang=spa_Latn token=▁Dios pos=12 sentence=Por lo tanto, ustedes son un signo del amor de Dios y de la presencia de la Iglesia en medio de estas personas desdichadas”.
+[03] score=197.979446 abs_score=197.979446 lang=ita_Latn token=▁Dio pos=15 sentence=Ma quante persone hanno un vivo interesse nel realizzare la volontà di Dio con la propria vita?
+[04] score=194.079971 abs_score=194.079971 lang=ita_Latn token=▁Dio pos=4 sentence=La grazia di Dio è presente come l’aria che si respira.
+[05] score=194.011261 abs_score=194.011261 lang=ita_Latn token=▁Dio pos=16 sentence=Cerchiamo di vivere per noi stessi o soltanto per fare la volontà di Dio?
+[06] score=192.897415 abs_score=192.897415 lang=ita_Latn token=▁Dio pos=12 sentence=Voi donne che desiderate avere l’approvazione di Dio evitate tale mancanza di umiltà?
+[07] score=192.598038 abs_score=192.598038 lang=spa_Latn token=▁Dios pos=23 sentence=Siguiente: ¿Es un verdadero testimonio de fe en Dios si sólo se disfruta la gracia de Dios?
+[08] score=191.938370 abs_score=191.938370 lang=ita_Latn token=▁Dio pos=19 sentence=Infatti è per questo che è stato visto come una grande dimostrazione della potenza di Dio.
+[09] score=191.790054 abs_score=191.790054 lang=eng_Latn token=▁God pos=13 sentence=Confess and convert, for in 14 days the wrath of God will fall upon you and the City.”
+[10] score=190.888474 abs_score=190.888474 lang=spa_Latn token=▁Dios pos=14 sentence=¿Qué nacerá de la vida de Pablo cuando el Reino de Dios haya llegado a su plenitud en él?
+[11] score=190.335846 abs_score=190.335846 lang=ita_Latn token=▁Dio pos=15 sentence=A parte quelli che sono pienamente rassegnati alla volontà di Dio, ognuno vorrebbe cambiare la propria condizione con quella degli altri.
+[12] score=190.031586 abs_score=190.031586 lang=spa_Latn token=▁Dios pos=12 sentence=“Por la gracia y tremenda misericordia de Dios, Él nos está advirtiendo con anticipación de lo que está a punto de hacer.
+[13] score=189.750717 abs_score=189.750717 lang=por_Latn token=▁Deus pos=11 sentence=Somente a graça e a misericórdia de Deus podem fazer isso; e estas são encontradas no seu povo.
+[14] score=189.697815 abs_score=189.697815 lang=eng_Latn token=▁God pos=7 sentence=Daily blessings are reminders of God's faithfulness.
+[15] score=188.608032 abs_score=188.608032 lang=eng_Latn token=▁God pos=15 sentence=But the most severe reproaches I received were about the rejection of God's gifts.
+[16] score=188.580399 abs_score=188.580399 lang=ita_Latn token=▁Dio pos=15 sentence=Ne risulta che questo è un battesimo di cui il popolo di Dio deve “godere”.
+[17] score=187.707718 abs_score=187.707718 lang=eng_Latn token=▁God pos=13 sentence=Our intolerance with one another is an abomination in God's eyes.
+[18] score=187.490967 abs_score=187.490967 lang=spa_Latn token=▁Dios pos=8 sentence=La obediencia a la voluntad de Dios es la evidencia de todo verdadero reavivamiento.
+[19] score=187.220657 abs_score=187.220657 lang=spa_Latn token=▁Dios pos=11 sentence=Su enseñanza (sumisión a la voluntad de Dios) ha sido y será la enseñanza de la religión para todos los tiempos y para todos los pueblos.
+[20] score=186.858154 abs_score=186.858154 lang=ita_Latn token=▁Dio pos=10 sentence=Perché la fedele osservanza della Parola di Dio non è sempre facile?
+Top by |z|:
+[01] score=207.489258 abs_score=207.489258 lang=ita_Latn token=▁Dio pos=12 sentence=Quale testimone della pienezza del Figlio di Dio può vedere se stesso in un mondo di corpi separati, per quanto che lui dia testimonianza della verità?
+[02] score=199.720596 abs_score=199.720596 lang=spa_Latn token=▁Dios pos=12 sentence=Por lo tanto, ustedes son un signo del amor de Dios y de la presencia de la Iglesia en medio de estas personas desdichadas”.
+[03] score=197.979446 abs_score=197.979446 lang=ita_Latn token=▁Dio pos=15 sentence=Ma quante persone hanno un vivo interesse nel realizzare la volontà di Dio con la propria vita?
+[04] score=194.079971 abs_score=194.079971 lang=ita_Latn token=▁Dio pos=4 sentence=La grazia di Dio è presente come l’aria che si respira.
+[05] score=194.011261 abs_score=194.011261 lang=ita_Latn token=▁Dio pos=16 sentence=Cerchiamo di vivere per noi stessi o soltanto per fare la volontà di Dio?
+[06] score=192.897415 abs_score=192.897415 lang=ita_Latn token=▁Dio pos=12 sentence=Voi donne che desiderate avere l’approvazione di Dio evitate tale mancanza di umiltà?
+[07] score=192.598038 abs_score=192.598038 lang=spa_Latn token=▁Dios pos=23 sentence=Siguiente: ¿Es un verdadero testimonio de fe en Dios si sólo se disfruta la gracia de Dios?
+[08] score=191.938370 abs_score=191.938370 lang=ita_Latn token=▁Dio pos=19 sentence=Infatti è per questo che è stato visto come una grande dimostrazione della potenza di Dio.
+[09] score=191.790054 abs_score=191.790054 lang=eng_Latn token=▁God pos=13 sentence=Confess and convert, for in 14 days the wrath of God will fall upon you and the City.”
+[10] score=190.888474 abs_score=190.888474 lang=spa_Latn token=▁Dios pos=14 sentence=¿Qué nacerá de la vida de Pablo cuando el Reino de Dios haya llegado a su plenitud en él?
+[11] score=190.335846 abs_score=190.335846 lang=ita_Latn token=▁Dio pos=15 sentence=A parte quelli che sono pienamente rassegnati alla volontà di Dio, ognuno vorrebbe cambiare la propria condizione con quella degli altri.
+[12] score=190.031586 abs_score=190.031586 lang=spa_Latn token=▁Dios pos=12 sentence=“Por la gracia y tremenda misericordia de Dios, Él nos está advirtiendo con anticipación de lo que está a punto de hacer.
+[13] score=189.750717 abs_score=189.750717 lang=por_Latn token=▁Deus pos=11 sentence=Somente a graça e a misericórdia de Deus podem fazer isso; e estas são encontradas no seu povo.
+[14] score=189.697815 abs_score=189.697815 lang=eng_Latn token=▁God pos=7 sentence=Daily blessings are reminders of God's faithfulness.
+[15] score=188.608032 abs_score=188.608032 lang=eng_Latn token=▁God pos=15 sentence=But the most severe reproaches I received were about the rejection of God's gifts.
+[16] score=188.580399 abs_score=188.580399 lang=ita_Latn token=▁Dio pos=15 sentence=Ne risulta che questo è un battesimo di cui il popolo di Dio deve “godere”.
+[17] score=187.707718 abs_score=187.707718 lang=eng_Latn token=▁God pos=13 sentence=Our intolerance with one another is an abomination in God's eyes.
+[18] score=187.490967 abs_score=187.490967 lang=spa_Latn token=▁Dios pos=8 sentence=La obediencia a la voluntad de Dios es la evidencia de todo verdadero reavivamiento.
+[19] score=187.220657 abs_score=187.220657 lang=spa_Latn token=▁Dios pos=11 sentence=Su enseñanza (sumisión a la voluntad de Dios) ha sido y será la enseñanza de la religión para todos los tiempos y para todos los pueblos.
+[20] score=186.858154 abs_score=186.858154 lang=ita_Latn token=▁Dio pos=10 sentence=Perché la fedele osservanza della Parola di Dio non è sempre facile?
+
+--- Feature 1593 ---
+Top by z:
+[01] score=196.696381 abs_score=196.696381 lang=spa_Latn token=) pos=16 sentence=(Tal vez por eso la mayoría de nosotros beber milk.Natural o no)
+[02] score=195.984512 abs_score=195.984512 lang=swe_Latn token=) pos=12 sentence=Peace ”Lost On Me”(från Happy People)
+[03] score=193.533798 abs_score=193.533798 lang=deu_Latn token=) pos=9 sentence=(9 wichtige Funktionen Ihres Körpers)
+[04] score=184.543411 abs_score=184.543411 lang=eng_Latn token=) pos=5 sentence=(Belibaste) In the past, was there a country with a higher percentage?
+[05] score=184.498901 abs_score=184.498901 lang=nld_Latn token=) pos=18 sentence=3 Days of Darkness? – (Veel mensen en christenen geloven dit niet)
+[06] score=183.233124 abs_score=183.233124 lang=swe_Latn token=) pos=19 sentence=Två huvuden bättre än en (om huvudet pratar och vet hur kompetent de är)
+[07] score=177.194473 abs_score=177.194473 lang=eng_Latn token=4) pos=4 sentence=(September 2014) You and I, we have been called by God.
+[08] score=177.036896 abs_score=177.036896 lang=ces_Latn token=) pos=16 sentence=Kdo je pánem na palubě (Kdo je pánem na palubě)
+[09] score=173.815598 abs_score=173.815598 lang=eng_Latn token=) pos=8 sentence=(Linda is dressed as Superman) Can they see you back home?
+[10] score=171.901917 abs_score=171.901917 lang=pol_Latn token=) pos=6 sentence=(ANS – Lizbona) – “Drodzy młodzi, przybędę do Panamy.
+[11] score=169.831146 abs_score=169.831146 lang=ita_Latn token=) pos=3 sentence=(Risate) Non ridete, mi costò 4000 dollari a suo tempo.
+[12] score=169.517944 abs_score=169.517944 lang=spa_Latn token=) pos=16 sentence=¿Quién sabe a quién seleccionaría Trump (y qué consejo, si acaso) solicitaría?
+[13] score=169.212982 abs_score=169.212982 lang=swe_Latn token=5) pos=13 sentence=Skall de då inte tacka [Honom](35)
+[14] score=167.939423 abs_score=167.939423 lang=swe_Latn token=). pos=13 sentence=Din iPad (eller motsvarande i ett decennium eller så).
+[15] score=167.698410 abs_score=167.698410 lang=fra_Latn token=) pos=13 sentence=75 (Sont-ils tous prêts, Billy, tout ?)
+[16] score=167.571625 abs_score=167.571625 lang=deu_Latn token=) pos=6 sentence=(DOKUMENT A) Dies muss ein glücklicher Augenblick für Hubbard gewesen sein.
+[17] score=167.371414 abs_score=167.371414 lang=swe_Latn token=) pos=6 sentence=(Föråldrad) "Go, för din vistelse, inte gratis, absents dig mer."
+[18] score=166.473969 abs_score=166.473969 lang=deu_Latn token=). pos=22 sentence=Mein vater war nie nackt um uns herum (ich habe 1 bruder und 1 schwester).
+[19] score=165.960281 abs_score=165.960281 lang=nld_Latn token=). pos=10 sentence=(Ano Asites wordt het eerst genoemd in 900).
+[20] score=165.826767 abs_score=165.826767 lang=eng_Latn token=). pos=15 sentence=In other words, the strategic review will not paralyzed the ECB).
+Top by |z|:
+[01] score=196.696381 abs_score=196.696381 lang=spa_Latn token=) pos=16 sentence=(Tal vez por eso la mayoría de nosotros beber milk.Natural o no)
+[02] score=195.984512 abs_score=195.984512 lang=swe_Latn token=) pos=12 sentence=Peace ”Lost On Me”(från Happy People)
+[03] score=193.533798 abs_score=193.533798 lang=deu_Latn token=) pos=9 sentence=(9 wichtige Funktionen Ihres Körpers)
+[04] score=184.543411 abs_score=184.543411 lang=eng_Latn token=) pos=5 sentence=(Belibaste) In the past, was there a country with a higher percentage?
+[05] score=184.498901 abs_score=184.498901 lang=nld_Latn token=) pos=18 sentence=3 Days of Darkness? – (Veel mensen en christenen geloven dit niet)
+[06] score=183.233124 abs_score=183.233124 lang=swe_Latn token=) pos=19 sentence=Två huvuden bättre än en (om huvudet pratar och vet hur kompetent de är)
+[07] score=177.194473 abs_score=177.194473 lang=eng_Latn token=4) pos=4 sentence=(September 2014) You and I, we have been called by God.
+[08] score=177.036896 abs_score=177.036896 lang=ces_Latn token=) pos=16 sentence=Kdo je pánem na palubě (Kdo je pánem na palubě)
+[09] score=173.815598 abs_score=173.815598 lang=eng_Latn token=) pos=8 sentence=(Linda is dressed as Superman) Can they see you back home?
+[10] score=171.901917 abs_score=171.901917 lang=pol_Latn token=) pos=6 sentence=(ANS – Lizbona) – “Drodzy młodzi, przybędę do Panamy.
+[11] score=169.831146 abs_score=169.831146 lang=ita_Latn token=) pos=3 sentence=(Risate) Non ridete, mi costò 4000 dollari a suo tempo.
+[12] score=169.517944 abs_score=169.517944 lang=spa_Latn token=) pos=16 sentence=¿Quién sabe a quién seleccionaría Trump (y qué consejo, si acaso) solicitaría?
+[13] score=169.212982 abs_score=169.212982 lang=swe_Latn token=5) pos=13 sentence=Skall de då inte tacka [Honom](35)
+[14] score=167.939423 abs_score=167.939423 lang=swe_Latn token=). pos=13 sentence=Din iPad (eller motsvarande i ett decennium eller så).
+[15] score=167.698410 abs_score=167.698410 lang=fra_Latn token=) pos=13 sentence=75 (Sont-ils tous prêts, Billy, tout ?)
+[16] score=167.571625 abs_score=167.571625 lang=deu_Latn token=) pos=6 sentence=(DOKUMENT A) Dies muss ein glücklicher Augenblick für Hubbard gewesen sein.
+[17] score=167.371414 abs_score=167.371414 lang=swe_Latn token=) pos=6 sentence=(Föråldrad) "Go, för din vistelse, inte gratis, absents dig mer."
+[18] score=166.473969 abs_score=166.473969 lang=deu_Latn token=). pos=22 sentence=Mein vater war nie nackt um uns herum (ich habe 1 bruder und 1 schwester).
+[19] score=165.960281 abs_score=165.960281 lang=nld_Latn token=). pos=10 sentence=(Ano Asites wordt het eerst genoemd in 900).
+[20] score=165.826767 abs_score=165.826767 lang=eng_Latn token=). pos=15 sentence=In other words, the strategic review will not paralyzed the ECB).
+
+--- Feature 3410 ---
+Top by z:
+[01] score=193.951675 abs_score=193.951675 lang=swe_Latn token=äm pos=6 sentence=Varför folk i en översvämd brittisk stad var berättade för att sluta spola toaletten
+[02] score=187.560608 abs_score=187.560608 lang=swe_Latn token=▁ett pos=7 sentence=Din iPad (eller motsvarande i ett decennium eller så).
+[03] score=184.228439 abs_score=184.228439 lang=por_Latn token=ência pos=29 sentence=Em italiano, é Chiocciola ("caracol") ou um commerciale, por vezes, (pronuncia-se com mais freqüência [ɛt], raramente [at]) ou ad.
+[04] score=180.975754 abs_score=180.975754 lang=deu_Latn token=öre pos=2 sentence=Ich schöre (hiermit) die Wahrheit zu sagen.
+[05] score=180.423630 abs_score=180.423630 lang=ces_Latn token=ání pos=8 sentence=„Waynovo zklamání vyplynulo z frustrace.
+[06] score=178.830933 abs_score=178.830933 lang=swe_Latn token=▁ett pos=3 sentence=2När ett land syndar (gör uppror mot Gud), får det många ledare
+[07] score=178.170227 abs_score=178.170227 lang=swe_Latn token=ör pos=4 sentence=V: Din observatörsbefogenhet fortsätter att tjäna dig bra.
+[08] score=176.651764 abs_score=176.651764 lang=swe_Latn token=är pos=5 sentence=Nej, [Jag svär] vid detta land
+[09] score=172.661545 abs_score=172.661545 lang=por_Latn token=▁mesmo pos=9 sentence=E acrescentou: “Até mesmo os ateus.”
+[10] score=169.532837 abs_score=169.532837 lang=swe_Latn token=ät pos=8 sentence=Himmel och jord är full av majestät: av din härlighet.
+[11] score=165.095657 abs_score=165.095657 lang=por_Latn token=▁mais pos=26 sentence=Em italiano, é Chiocciola ("caracol") ou um commerciale, por vezes, (pronuncia-se com mais freqüência [ɛt], raramente [at]) ou ad.
+[12] score=164.144089 abs_score=164.144089 lang=ces_Latn token=áž pos=37 sentence=[Toho dne,] jsem viděl Aišu a Umm-e-Sulaim, jak popotahovaly své oblečení nad svá chodidla [aby jim nepřekážely v pohybu]."
+[13] score=161.444138 abs_score=161.444138 lang=swe_Latn token=ö pos=3 sentence=prästadömet skapade Gud himlarna och jorden och råder över dem.
+[14] score=161.315750 abs_score=161.315750 lang=swe_Latn token=äl pos=11 sentence=(Ussia sade till Judit:) “Välsignad (är) Herren Gud, som skapade himlarna och jorden, som helt och hållet ’rätade ut’/styrde dig till våra fienders ledares huvudsår.
+[15] score=158.938492 abs_score=158.938492 lang=ces_Latn token=ž pos=4 sentence=Nebe (muž) tvoří, Země (žena) přijímá.
+[16] score=155.967194 abs_score=155.967194 lang=swe_Latn token=▁ett pos=2 sentence=Ät ett ton - du kan aldrig ha tillräckligt med mat i Barcelona
+[17] score=155.883636 abs_score=155.883636 lang=swe_Latn token=ätter pos=11 sentence=V: Din observatörsbefogenhet fortsätter att tjäna dig bra.
+[18] score=155.786591 abs_score=155.786591 lang=pol_Latn token=ż pos=3 sentence="O Mojżeszu!
+[19] score=155.001266 abs_score=155.001266 lang=ces_Latn token=árod pos=12 sentence=Roosevelta, který uvedl, že „národ, který ničí půdu, ničí sebe“.
+[20] score=154.864838 abs_score=154.864838 lang=ces_Latn token=ný pos=11 sentence=A On odpouštějící je i slitovný.“
+Top by |z|:
+[01] score=193.951675 abs_score=193.951675 lang=swe_Latn token=äm pos=6 sentence=Varför folk i en översvämd brittisk stad var berättade för att sluta spola toaletten
+[02] score=187.560608 abs_score=187.560608 lang=swe_Latn token=▁ett pos=7 sentence=Din iPad (eller motsvarande i ett decennium eller så).
+[03] score=184.228439 abs_score=184.228439 lang=por_Latn token=ência pos=29 sentence=Em italiano, é Chiocciola ("caracol") ou um commerciale, por vezes, (pronuncia-se com mais freqüência [ɛt], raramente [at]) ou ad.
+[04] score=180.975754 abs_score=180.975754 lang=deu_Latn token=öre pos=2 sentence=Ich schöre (hiermit) die Wahrheit zu sagen.
+[05] score=180.423630 abs_score=180.423630 lang=ces_Latn token=ání pos=8 sentence=„Waynovo zklamání vyplynulo z frustrace.
+[06] score=178.830933 abs_score=178.830933 lang=swe_Latn token=▁ett pos=3 sentence=2När ett land syndar (gör uppror mot Gud), får det många ledare
+[07] score=178.170227 abs_score=178.170227 lang=swe_Latn token=ör pos=4 sentence=V: Din observatörsbefogenhet fortsätter att tjäna dig bra.
+[08] score=176.651764 abs_score=176.651764 lang=swe_Latn token=är pos=5 sentence=Nej, [Jag svär] vid detta land
+[09] score=172.661545 abs_score=172.661545 lang=por_Latn token=▁mesmo pos=9 sentence=E acrescentou: “Até mesmo os ateus.”
+[10] score=169.532837 abs_score=169.532837 lang=swe_Latn token=ät pos=8 sentence=Himmel och jord är full av majestät: av din härlighet.
+[11] score=165.095657 abs_score=165.095657 lang=por_Latn token=▁mais pos=26 sentence=Em italiano, é Chiocciola ("caracol") ou um commerciale, por vezes, (pronuncia-se com mais freqüência [ɛt], raramente [at]) ou ad.
+[12] score=164.144089 abs_score=164.144089 lang=ces_Latn token=áž pos=37 sentence=[Toho dne,] jsem viděl Aišu a Umm-e-Sulaim, jak popotahovaly své oblečení nad svá chodidla [aby jim nepřekážely v pohybu]."
+[13] score=161.444138 abs_score=161.444138 lang=swe_Latn token=ö pos=3 sentence=prästadömet skapade Gud himlarna och jorden och råder över dem.
+[14] score=161.315750 abs_score=161.315750 lang=swe_Latn token=äl pos=11 sentence=(Ussia sade till Judit:) “Välsignad (är) Herren Gud, som skapade himlarna och jorden, som helt och hållet ’rätade ut’/styrde dig till våra fienders ledares huvudsår.
+[15] score=158.938492 abs_score=158.938492 lang=ces_Latn token=ž pos=4 sentence=Nebe (muž) tvoří, Země (žena) přijímá.
+[16] score=155.967194 abs_score=155.967194 lang=swe_Latn token=▁ett pos=2 sentence=Ät ett ton - du kan aldrig ha tillräckligt med mat i Barcelona
+[17] score=155.883636 abs_score=155.883636 lang=swe_Latn token=ätter pos=11 sentence=V: Din observatörsbefogenhet fortsätter att tjäna dig bra.
+[18] score=155.786591 abs_score=155.786591 lang=pol_Latn token=ż pos=3 sentence="O Mojżeszu!
+[19] score=155.001266 abs_score=155.001266 lang=ces_Latn token=árod pos=12 sentence=Roosevelta, který uvedl, že „národ, který ničí půdu, ničí sebe“.
+[20] score=154.864838 abs_score=154.864838 lang=ces_Latn token=ný pos=11 sentence=A On odpouštějící je i slitovný.“
+
+--- Feature 3488 ---
+Top by z:
+[01] score=183.313568 abs_score=183.313568 lang=nld_Latn token=7). pos=13 sentence=Regelmatig toegelaten tot de Europese handel (E 957).
+[02] score=169.521179 abs_score=169.521179 lang=eng_Latn token=4. pos=11 sentence=Baby you're so cute you made my page 404.
+[03] score=156.396698 abs_score=156.396698 lang=ita_Latn token=6. pos=11 sentence=Ora prendi il valore assoluto di questa risposta: 96.
+[04] score=153.175430 abs_score=153.175430 lang=ces_Latn token=▁4). pos=25 sentence=Není divu, že lidé v mnoha zemích chtějí odblokovat 4oD (nyní nazývané Všichni 4).
+[05] score=146.683594 abs_score=146.683594 lang=eng_Latn token=▁2013. pos=14 sentence=We know what you’re thinking – single-core, in 2013.
+[06] score=146.467911 abs_score=146.467911 lang=swe_Latn token=6, pos=12 sentence=Så, vi är tillbaka till 3 hund lådor för $6, rätt?
+[07] score=146.081146 abs_score=146.081146 lang=fra_Latn token=4, pos=3 sentence=Au paragraphe 1.44, vous parlez un peu de ce qui a été fait depuis 2015.
+[08] score=144.990906 abs_score=144.990906 lang=spa_Latn token=1. pos=16 sentence=Ellos llevan un número de referencia, como FCCC/CP/1998/1.
+[09] score=144.556870 abs_score=144.556870 lang=pol_Latn token=▁3). pos=30 sentence=i wszechmocnego, Stworzyciela nieba i ziemi, który przemówił do ludzi” (Nostra aetate, 3).
+[10] score=144.039230 abs_score=144.039230 lang=pol_Latn token=2). pos=27 sentence=Opuszczone słowa: „Bądź wola Twoja, jako w niebie tak i na ziemi” (cz.2).
+[11] score=143.666840 abs_score=143.666840 lang=fra_Latn token=1. pos=16 sentence=Ils portent un numéro de référence, comme FCCC/CP/1998/1.
+[12] score=143.206223 abs_score=143.206223 lang=deu_Latn token=▁26. pos=0 sentence=26. Mai 1980: Er machte auch gerne Bilder seiner Freunde
+[13] score=142.320847 abs_score=142.320847 lang=nld_Latn token=1. pos=18 sentence=Iedereen weet dat ze duidelijk omschreven doelen nodig hebben; dat is motivatie 101.
+[14] score=141.296799 abs_score=141.296799 lang=por_Latn token=▁29: pos=0 sentence=29: Os soviéticos querem novos territórios.
+[15] score=141.118835 abs_score=141.118835 lang=fra_Latn token=6). pos=14 sentence=qu’Allah l'a dit dans le Coran (51:56).
+[16] score=141.049393 abs_score=141.049393 lang=deu_Latn token=▁32. pos=0 sentence=32. Vielmehr leugnete er (die Wahrheit) und wandte sich ab.
+[17] score=140.596481 abs_score=140.596481 lang=ita_Latn token=▁2014. pos=24 sentence=(Siamo lieti di non dover aumentare il prezzo de facto di questa operazione per i nostri pazienti nel 2014.
+[18] score=140.470627 abs_score=140.470627 lang=pol_Latn token=▁9). pos=26 sentence=„Dusza moja rozraduje się w Panu i rozkocha się w zbawieniu” (Ps 35, 9).
+[19] score=139.501541 abs_score=139.501541 lang=deu_Latn token=▁2: pos=1 sentence=Ziel 2: Politiker und Parlamentarier werden nicht mögen, etwas wie "Marfinetten" zu sein.
+[20] score=138.666168 abs_score=138.666168 lang=ces_Latn token=7. pos=10 sentence=# 11 Být nejlepší, co můžete být 24/7.
+Top by |z|:
+[01] score=183.313568 abs_score=183.313568 lang=nld_Latn token=7). pos=13 sentence=Regelmatig toegelaten tot de Europese handel (E 957).
+[02] score=169.521179 abs_score=169.521179 lang=eng_Latn token=4. pos=11 sentence=Baby you're so cute you made my page 404.
+[03] score=156.396698 abs_score=156.396698 lang=ita_Latn token=6. pos=11 sentence=Ora prendi il valore assoluto di questa risposta: 96.
+[04] score=153.175430 abs_score=153.175430 lang=ces_Latn token=▁4). pos=25 sentence=Není divu, že lidé v mnoha zemích chtějí odblokovat 4oD (nyní nazývané Všichni 4).
+[05] score=146.683594 abs_score=146.683594 lang=eng_Latn token=▁2013. pos=14 sentence=We know what you’re thinking – single-core, in 2013.
+[06] score=146.467911 abs_score=146.467911 lang=swe_Latn token=6, pos=12 sentence=Så, vi är tillbaka till 3 hund lådor för $6, rätt?
+[07] score=146.081146 abs_score=146.081146 lang=fra_Latn token=4, pos=3 sentence=Au paragraphe 1.44, vous parlez un peu de ce qui a été fait depuis 2015.
+[08] score=144.990906 abs_score=144.990906 lang=spa_Latn token=1. pos=16 sentence=Ellos llevan un número de referencia, como FCCC/CP/1998/1.
+[09] score=144.556870 abs_score=144.556870 lang=pol_Latn token=▁3). pos=30 sentence=i wszechmocnego, Stworzyciela nieba i ziemi, który przemówił do ludzi” (Nostra aetate, 3).
+[10] score=144.039230 abs_score=144.039230 lang=pol_Latn token=2). pos=27 sentence=Opuszczone słowa: „Bądź wola Twoja, jako w niebie tak i na ziemi” (cz.2).
+[11] score=143.666840 abs_score=143.666840 lang=fra_Latn token=1. pos=16 sentence=Ils portent un numéro de référence, comme FCCC/CP/1998/1.
+[12] score=143.206223 abs_score=143.206223 lang=deu_Latn token=▁26. pos=0 sentence=26. Mai 1980: Er machte auch gerne Bilder seiner Freunde
+[13] score=142.320847 abs_score=142.320847 lang=nld_Latn token=1. pos=18 sentence=Iedereen weet dat ze duidelijk omschreven doelen nodig hebben; dat is motivatie 101.
+[14] score=141.296799 abs_score=141.296799 lang=por_Latn token=▁29: pos=0 sentence=29: Os soviéticos querem novos territórios.
+[15] score=141.118835 abs_score=141.118835 lang=fra_Latn token=6). pos=14 sentence=qu’Allah l'a dit dans le Coran (51:56).
+[16] score=141.049393 abs_score=141.049393 lang=deu_Latn token=▁32. pos=0 sentence=32. Vielmehr leugnete er (die Wahrheit) und wandte sich ab.
+[17] score=140.596481 abs_score=140.596481 lang=ita_Latn token=▁2014. pos=24 sentence=(Siamo lieti di non dover aumentare il prezzo de facto di questa operazione per i nostri pazienti nel 2014.
+[18] score=140.470627 abs_score=140.470627 lang=pol_Latn token=▁9). pos=26 sentence=„Dusza moja rozraduje się w Panu i rozkocha się w zbawieniu” (Ps 35, 9).
+[19] score=139.501541 abs_score=139.501541 lang=deu_Latn token=▁2: pos=1 sentence=Ziel 2: Politiker und Parlamentarier werden nicht mögen, etwas wie "Marfinetten" zu sein.
+[20] score=138.666168 abs_score=138.666168 lang=ces_Latn token=7. pos=10 sentence=# 11 Být nejlepší, co můžete být 24/7.
+
+--- Feature 3252 ---
+Top by z:
+[01] score=177.890381 abs_score=177.890381 lang=por_Latn token=. pos=35 sentence=Assim, o trabalho de Adão de dar nomes aos animais e sua descoberta de necessitar uma parceira teriam ocupado apenas um curto tempo depois de sua criação.
+[02] score=172.906815 abs_score=172.906815 lang=eng_Latn token=. pos=29 sentence=He was also responsible for the supply of food, settling disputes between nobles and the running and protection of the Pharaoh’s household.
+[03] score=172.376923 abs_score=172.376923 lang=eng_Latn token=. pos=28 sentence=Unless we admonish one another every day and have true relationship every day, this person’s true condition might never even be known.
+[04] score=171.180740 abs_score=171.180740 lang=swe_Latn token=. pos=26 sentence=Det var därför den svarta marknadsekonomi i Sovjetunionen faktiskt kunde ha varit större än den officiella socialistiska ekonomin.
+[05] score=168.707657 abs_score=168.707657 lang=ita_Latn token=. pos=20 sentence=Prendere la vita di nessuno per niente e ucciderlo è un atto proibito e illegale.
+[06] score=168.479919 abs_score=168.479919 lang=eng_Latn token=. pos=22 sentence=However, it is no surprise that Kenya and Morocco spend less than 4 and 3 hours online per day respectively.
+[07] score=167.775360 abs_score=167.775360 lang=por_Latn token=. pos=25 sentence=Vamos dizer que o autor original - neste caso, David Christian - teria a autoridade para aceitar ou rejeitar as várias propostas.
+[08] score=167.741989 abs_score=167.741989 lang=swe_Latn token=. pos=25 sentence=Jag menar att 1973 såg du inte några personer med funktionsnedsättningar någonstans, bara om du gick till institutioner.
+[09] score=167.402206 abs_score=167.402206 lang=deu_Latn token=. pos=35 sentence=Wenn wir einander jeden Tag nicht ermahnen und nicht jeden Tag echte Beziehung haben, dann könnte der wahre Zustand dieser Person vielleicht nie einmal ans Licht kommen.
+[10] score=166.526749 abs_score=166.526749 lang=ces_Latn token=. pos=27 sentence="Ale věřím, že existuje také politický a strategický zájem tuto dohodu udržet a tím i dialog s Evropou.
+[11] score=165.463425 abs_score=165.463425 lang=nld_Latn token=. pos=26 sentence=Ze zei zelfs dat het erger was dan toen ze in een “normaal huis” in Eritrea en Soedan woonde.
+[12] score=165.192291 abs_score=165.192291 lang=nld_Latn token=. pos=29 sentence=Wat dit nog belangrijker maakt, is dat TUBITAK ook verantwoordelijk is voor alle nucleaire technologie-ontwikkeling in Turkije.
+[13] score=164.905060 abs_score=164.905060 lang=swe_Latn token=. pos=32 sentence=Det var klart att de var medvetna om att efter 2006, med olje- och gasinkomster, skulle jag kunna göra mycket bättre för det här landet.
+[14] score=164.505951 abs_score=164.505951 lang=nld_Latn token=. pos=21 sentence=Maar dat was de enige boodschap die we hadden voor homoseksuele mannen gedurende een lange periode van tijd.
+[15] score=164.187820 abs_score=164.187820 lang=swe_Latn token=. pos=26 sentence=Det bör dock komma ihåg att det fortsätter att fungera direkt och indirekt väl efter sin exakta retrograde period.
+[16] score=163.657166 abs_score=163.657166 lang=eng_Latn token=. pos=35 sentence=But at his best, what O'Neil has done and does for us is, he reminds us, in fact, to look at the 52-week highs.
+[17] score=163.406754 abs_score=163.406754 lang=nld_Latn token=. pos=26 sentence="In die tijd waren de Yao-stammen rebels en hij stampte de rebellen eruit", zegt de inscriptie.
+[18] score=163.173584 abs_score=163.173584 lang=eng_Latn token=. pos=32 sentence=He was only thirty when he was appointed superior of the skete, and even in this position of authority he did nothing without his brother’s blessing.
+[19] score=162.807770 abs_score=162.807770 lang=eng_Latn token=. pos=31 sentence=Or perhaps we may seek God’s guidance how and where to spend our month’s annual leave, but may never ask Him how to spend our money.
+[20] score=162.400482 abs_score=162.400482 lang=spa_Latn token=. pos=29 sentence=Primero, la voluntad de Dios respecto a sus mandamientos está revelada con una autoridad suprema y decisiva, solo en la Biblia.
+Top by |z|:
+[01] score=177.890381 abs_score=177.890381 lang=por_Latn token=. pos=35 sentence=Assim, o trabalho de Adão de dar nomes aos animais e sua descoberta de necessitar uma parceira teriam ocupado apenas um curto tempo depois de sua criação.
+[02] score=172.906815 abs_score=172.906815 lang=eng_Latn token=. pos=29 sentence=He was also responsible for the supply of food, settling disputes between nobles and the running and protection of the Pharaoh’s household.
+[03] score=172.376923 abs_score=172.376923 lang=eng_Latn token=. pos=28 sentence=Unless we admonish one another every day and have true relationship every day, this person’s true condition might never even be known.
+[04] score=171.180740 abs_score=171.180740 lang=swe_Latn token=. pos=26 sentence=Det var därför den svarta marknadsekonomi i Sovjetunionen faktiskt kunde ha varit större än den officiella socialistiska ekonomin.
+[05] score=168.707657 abs_score=168.707657 lang=ita_Latn token=. pos=20 sentence=Prendere la vita di nessuno per niente e ucciderlo è un atto proibito e illegale.
+[06] score=168.479919 abs_score=168.479919 lang=eng_Latn token=. pos=22 sentence=However, it is no surprise that Kenya and Morocco spend less than 4 and 3 hours online per day respectively.
+[07] score=167.775360 abs_score=167.775360 lang=por_Latn token=. pos=25 sentence=Vamos dizer que o autor original - neste caso, David Christian - teria a autoridade para aceitar ou rejeitar as várias propostas.
+[08] score=167.741989 abs_score=167.741989 lang=swe_Latn token=. pos=25 sentence=Jag menar att 1973 såg du inte några personer med funktionsnedsättningar någonstans, bara om du gick till institutioner.
+[09] score=167.402206 abs_score=167.402206 lang=deu_Latn token=. pos=35 sentence=Wenn wir einander jeden Tag nicht ermahnen und nicht jeden Tag echte Beziehung haben, dann könnte der wahre Zustand dieser Person vielleicht nie einmal ans Licht kommen.
+[10] score=166.526749 abs_score=166.526749 lang=ces_Latn token=. pos=27 sentence="Ale věřím, že existuje také politický a strategický zájem tuto dohodu udržet a tím i dialog s Evropou.
+[11] score=165.463425 abs_score=165.463425 lang=nld_Latn token=. pos=26 sentence=Ze zei zelfs dat het erger was dan toen ze in een “normaal huis” in Eritrea en Soedan woonde.
+[12] score=165.192291 abs_score=165.192291 lang=nld_Latn token=. pos=29 sentence=Wat dit nog belangrijker maakt, is dat TUBITAK ook verantwoordelijk is voor alle nucleaire technologie-ontwikkeling in Turkije.
+[13] score=164.905060 abs_score=164.905060 lang=swe_Latn token=. pos=32 sentence=Det var klart att de var medvetna om att efter 2006, med olje- och gasinkomster, skulle jag kunna göra mycket bättre för det här landet.
+[14] score=164.505951 abs_score=164.505951 lang=nld_Latn token=. pos=21 sentence=Maar dat was de enige boodschap die we hadden voor homoseksuele mannen gedurende een lange periode van tijd.
+[15] score=164.187820 abs_score=164.187820 lang=swe_Latn token=. pos=26 sentence=Det bör dock komma ihåg att det fortsätter att fungera direkt och indirekt väl efter sin exakta retrograde period.
+[16] score=163.657166 abs_score=163.657166 lang=eng_Latn token=. pos=35 sentence=But at his best, what O'Neil has done and does for us is, he reminds us, in fact, to look at the 52-week highs.
+[17] score=163.406754 abs_score=163.406754 lang=nld_Latn token=. pos=26 sentence="In die tijd waren de Yao-stammen rebels en hij stampte de rebellen eruit", zegt de inscriptie.
+[18] score=163.173584 abs_score=163.173584 lang=eng_Latn token=. pos=32 sentence=He was only thirty when he was appointed superior of the skete, and even in this position of authority he did nothing without his brother’s blessing.
+[19] score=162.807770 abs_score=162.807770 lang=eng_Latn token=. pos=31 sentence=Or perhaps we may seek God’s guidance how and where to spend our month’s annual leave, but may never ask Him how to spend our money.
+[20] score=162.400482 abs_score=162.400482 lang=spa_Latn token=. pos=29 sentence=Primero, la voluntad de Dios respecto a sus mandamientos está revelada con una autoridad suprema y decisiva, solo en la Biblia.
+
+--- Feature 494 ---
+Top by z:
+[01] score=172.464828 abs_score=172.464828 lang=spa_Latn token=. pos=11 sentence=(Tal vez por eso la mayoría de nosotros beber milk.Natural o no)
+[02] score=166.926926 abs_score=166.926926 lang=eng_Latn token=. pos=8 sentence=That was never more necessary than right now.” 135 countries have signed the action plan.
+[03] score=157.441956 abs_score=157.441956 lang=deu_Latn token=. pos=9 sentence=Bei meinem Volk gibt es ein Sprichwort. Das Herz eines weisen Mannes ist nur selten froh.«
+[04] score=156.547806 abs_score=156.547806 lang=pol_Latn token=. pos=5 sentence=Jest to jasne i proste. […] Ministerstwo Gospodarki i Finansów już to jasno wyjaśniło.
+[05] score=155.912186 abs_score=155.912186 lang=ces_Latn token=. pos=36 sentence=„Stvoření nebes a země zajisté je velkolepější a složitější než stvoření lidí, avšak většina lidí o tom nemá ani ponětí.“ Korán (40:57)
+[06] score=155.530579 abs_score=155.530579 lang=ces_Latn token=. pos=18 sentence=Podobně když se přiblíží ke své manželce, bude odměněn.“ (Muslim)
+[07] score=147.026306 abs_score=147.026306 lang=ces_Latn token=. pos=30 sentence=On stvořitelem je nebes a země, a když rozhodne věc nějakou, pak řekne toliko "Staniž se!" a stane se.(117)
+[08] score=146.324051 abs_score=146.324051 lang=eng_Latn token=. pos=7 sentence=I swear this place is the best.”
+[09] score=144.486603 abs_score=144.486603 lang=ces_Latn token=. pos=15 sentence=Pán váš však věru shovívavý je a slitovný.(47)
+[10] score=138.627396 abs_score=138.627396 lang=nld_Latn token=. pos=17 sentence=Raül Romeva i Rueda (Verts/ALE), schriftelijk. – (EN) Ik heb vandaag voor ontwerpresolutie B7-0133/2010 over een belasting op financiële transacties gestemd, en het verheugt mij zeer dat het Parlement voor het eerst om een beoordeling heeft gevraagd van de haalbaarheid en het effect van het invoeren van een belasting op financiële transacties op EU-niveau.
+[11] score=136.416931 abs_score=136.416931 lang=ces_Latn token=. pos=20 sentence=28 Teď ho tedy odevzdávám Hospodinu, aby mu patřil po celý svůj život.“ A poklonili se tam Hospodinu.
+[12] score=133.609497 abs_score=133.609497 lang=nld_Latn token=. pos=13 sentence=Kristiina Ojuland (ALDE), schriftelijk. – (ET) Mijnheer de Voorzitter, als coauteur van de resolutie van het Europees Parlement over de situatie van het maatschappelijk middenveld en minderheden in Wit-Rusland, heb ik voor de resolutie gestemd.
+[13] score=131.642929 abs_score=131.642929 lang=ces_Latn token=. pos=15 sentence=ON řekl: „Na počátku stvořil Bůh nebe a zemi.“ Tím je to vyřízeno.
+[14] score=129.498032 abs_score=129.498032 lang=fra_Latn token=. pos=10 sentence=Il n’y a pas d’autre choix. – Postimees
+[15] score=129.064194 abs_score=129.064194 lang=eng_Latn token=. pos=6 sentence=In this life or any other.”
+[16] score=128.959183 abs_score=128.959183 lang=spa_Latn token=. pos=5 sentence=“No, no. Deberías al menos estar entre los Cinco Dedos.
+[17] score=128.959152 abs_score=128.959152 lang=ces_Latn token=. pos=11 sentence=9 A Hospodin bude králem vší země.V onen den bude Hospodin jediný a jeho jméno jediné.
+[18] score=128.656754 abs_score=128.656754 lang=eng_Latn token=. pos=11 sentence=The soul travels all over the world when you dream.”
+[19] score=127.944092 abs_score=127.944092 lang=eng_Latn token=? pos=7 sentence=1.7 Why should I believe in God? 1.9 Is it logical to believe?
+[20] score=127.140724 abs_score=127.140724 lang=fra_Latn token=. pos=17 sentence=Elżbieta Katarzyna Łukacijewska (PPE), par écrit. – (PL) Je suis très heureuse que des décisions aussi constructives soient prises au sein du Parlement européen.
+Top by |z|:
+[01] score=172.464828 abs_score=172.464828 lang=spa_Latn token=. pos=11 sentence=(Tal vez por eso la mayoría de nosotros beber milk.Natural o no)
+[02] score=166.926926 abs_score=166.926926 lang=eng_Latn token=. pos=8 sentence=That was never more necessary than right now.” 135 countries have signed the action plan.
+[03] score=157.441956 abs_score=157.441956 lang=deu_Latn token=. pos=9 sentence=Bei meinem Volk gibt es ein Sprichwort. Das Herz eines weisen Mannes ist nur selten froh.«
+[04] score=156.547806 abs_score=156.547806 lang=pol_Latn token=. pos=5 sentence=Jest to jasne i proste. […] Ministerstwo Gospodarki i Finansów już to jasno wyjaśniło.
+[05] score=155.912186 abs_score=155.912186 lang=ces_Latn token=. pos=36 sentence=„Stvoření nebes a země zajisté je velkolepější a složitější než stvoření lidí, avšak většina lidí o tom nemá ani ponětí.“ Korán (40:57)
+[06] score=155.530579 abs_score=155.530579 lang=ces_Latn token=. pos=18 sentence=Podobně když se přiblíží ke své manželce, bude odměněn.“ (Muslim)
+[07] score=147.026306 abs_score=147.026306 lang=ces_Latn token=. pos=30 sentence=On stvořitelem je nebes a země, a když rozhodne věc nějakou, pak řekne toliko "Staniž se!" a stane se.(117)
+[08] score=146.324051 abs_score=146.324051 lang=eng_Latn token=. pos=7 sentence=I swear this place is the best.”
+[09] score=144.486603 abs_score=144.486603 lang=ces_Latn token=. pos=15 sentence=Pán váš však věru shovívavý je a slitovný.(47)
+[10] score=138.627396 abs_score=138.627396 lang=nld_Latn token=. pos=17 sentence=Raül Romeva i Rueda (Verts/ALE), schriftelijk. – (EN) Ik heb vandaag voor ontwerpresolutie B7-0133/2010 over een belasting op financiële transacties gestemd, en het verheugt mij zeer dat het Parlement voor het eerst om een beoordeling heeft gevraagd van de haalbaarheid en het effect van het invoeren van een belasting op financiële transacties op EU-niveau.
+[11] score=136.416931 abs_score=136.416931 lang=ces_Latn token=. pos=20 sentence=28 Teď ho tedy odevzdávám Hospodinu, aby mu patřil po celý svůj život.“ A poklonili se tam Hospodinu.
+[12] score=133.609497 abs_score=133.609497 lang=nld_Latn token=. pos=13 sentence=Kristiina Ojuland (ALDE), schriftelijk. – (ET) Mijnheer de Voorzitter, als coauteur van de resolutie van het Europees Parlement over de situatie van het maatschappelijk middenveld en minderheden in Wit-Rusland, heb ik voor de resolutie gestemd.
+[13] score=131.642929 abs_score=131.642929 lang=ces_Latn token=. pos=15 sentence=ON řekl: „Na počátku stvořil Bůh nebe a zemi.“ Tím je to vyřízeno.
+[14] score=129.498032 abs_score=129.498032 lang=fra_Latn token=. pos=10 sentence=Il n’y a pas d’autre choix. – Postimees
+[15] score=129.064194 abs_score=129.064194 lang=eng_Latn token=. pos=6 sentence=In this life or any other.”
+[16] score=128.959183 abs_score=128.959183 lang=spa_Latn token=. pos=5 sentence=“No, no. Deberías al menos estar entre los Cinco Dedos.
+[17] score=128.959152 abs_score=128.959152 lang=ces_Latn token=. pos=11 sentence=9 A Hospodin bude králem vší země.V onen den bude Hospodin jediný a jeho jméno jediné.
+[18] score=128.656754 abs_score=128.656754 lang=eng_Latn token=. pos=11 sentence=The soul travels all over the world when you dream.”
+[19] score=127.944092 abs_score=127.944092 lang=eng_Latn token=? pos=7 sentence=1.7 Why should I believe in God? 1.9 Is it logical to believe?
+[20] score=127.140724 abs_score=127.140724 lang=fra_Latn token=. pos=17 sentence=Elżbieta Katarzyna Łukacijewska (PPE), par écrit. – (PL) Je suis très heureuse que des décisions aussi constructives soient prises au sein du Parlement européen.
+
+--- Feature 1520 ---
+Top by z:
+[01] score=171.953201 abs_score=171.953201 lang=nld_Latn token=. pos=88 sentence=Raül Romeva i Rueda (Verts/ALE), schriftelijk. – (EN) Ik heb vandaag voor ontwerpresolutie B7-0133/2010 over een belasting op financiële transacties gestemd, en het verheugt mij zeer dat het Parlement voor het eerst om een beoordeling heeft gevraagd van de haalbaarheid en het effect van het invoeren van een belasting op financiële transacties op EU-niveau.
+[02] score=134.048676 abs_score=134.048676 lang=nld_Latn token=. pos=65 sentence=Kristiina Ojuland (ALDE), schriftelijk. – (ET) Mijnheer de Voorzitter, als coauteur van de resolutie van het Europees Parlement over de situatie van het maatschappelijk middenveld en minderheden in Wit-Rusland, heb ik voor de resolutie gestemd.
+[03] score=133.673355 abs_score=133.673355 lang=swe_Latn token=. pos=42 sentence=En av de stora orsaker [som leder till att ha kärlek för Allah] är den specifika kunskapen som kommer genom att reflektera över skapelsen av himlarna och jorden och vad Allah har skapat.
+[04] score=124.887566 abs_score=124.887566 lang=swe_Latn token=. pos=33 sentence=Oavsett vad han gör måste han först veta varför han gör det och då måste han fortsätta med sina handlingar utan att ha tvivel eller ånger om dem. "
+[05] score=120.492386 abs_score=120.492386 lang=spa_Latn token=. pos=39 sentence=Nadie está en esta tierra para siempre; la vida de todos terminara, él dijo, y Dios querrá ver qué se ha cosechado — “la calidad de nuestra vida”.
+[06] score=115.632492 abs_score=115.632492 lang=por_Latn token=. pos=35 sentence=Assim, o trabalho de Adão de dar nomes aos animais e sua descoberta de necessitar uma parceira teriam ocupado apenas um curto tempo depois de sua criação.
+[07] score=115.281769 abs_score=115.281769 lang=fra_Latn token=. pos=54 sentence=Mais la création glorieuse d'Allah et les œuvres incomparables sont tellement apparentes et manifestes qu'avec la science d'aujourd'hui, qu'il n'y a pas d'endroit où ils ne peuvent pas être vus.
+[08] score=110.112923 abs_score=110.112923 lang=deu_Latn token=. pos=35 sentence=Wenn wir einander jeden Tag nicht ermahnen und nicht jeden Tag echte Beziehung haben, dann könnte der wahre Zustand dieser Person vielleicht nie einmal ans Licht kommen.
+[09] score=108.862534 abs_score=108.862534 lang=pol_Latn token=). pos=38 sentence=Jezus zapewnia: Dana Mi jest wszelka władza w niebie i na ziemi (…) a oto Ja jestem z wami przez wszystkie dni, aż do skończenia świata (Mt 28,18).
+[10] score=97.814789 abs_score=97.814789 lang=pol_Latn token=. pos=38 sentence=Stanowczo i prawdziwie zwracam się ku Temu, który stworzył niebo i ziemię i nigdy nie będę czcić żadnych bożków, tylko Allaha”.
+[11] score=97.675026 abs_score=97.675026 lang=swe_Latn token=. pos=55 sentence=(Ussia sade till Judit:) “Välsignad (är) Herren Gud, som skapade himlarna och jorden, som helt och hållet ’rätade ut’/styrde dig till våra fienders ledares huvudsår.
+[12] score=97.017189 abs_score=97.017189 lang=spa_Latn token=. pos=30 sentence=Jacob quería saber que pagar los diezmos de Dios significaba que las bendiciones, la guía y la protección de Dios siempre estarían aseguradas.
+[13] score=94.904976 abs_score=94.904976 lang=fra_Latn token=. pos=39 sentence=La croix que nous devons porter n’est que la justice de Dieu, mais si quelqu’un la porte et qu’il y renonce, le Seigneur ne prend plus plaisir en lui.
+[14] score=94.688293 abs_score=94.688293 lang=swe_Latn token=. pos=35 sentence=“Om människorna av himlarna och jorden deltog i blodsutgjutelse av en troende, skulle Allah kasta dem med huvudet före in i elden.”
+[15] score=93.687675 abs_score=93.687675 lang=por_Latn token=. pos=35 sentence=Em lugar de cometerem um deliberado infanticídio das crianças de seu próprio povo, as parteiras decidiram desobedecer às ordens de Faraó.
+[16] score=93.660248 abs_score=93.660248 lang=pol_Latn token=. pos=43 sentence="Bóg Wszechmogący stworzył pożądanie seksualne w dziesięciu częściach; potem dziewięcioma częściami obdarował kobiety, a jedną mężczyzn."
+[17] score=93.625740 abs_score=93.625740 lang=pol_Latn token=. pos=35 sentence=On ochrania, kogo zechce spośród sług swoich potęgą swych zastępów w niebie i na ziemi i we wszystkich miejscach pomiędzy nimi.
+[18] score=93.135658 abs_score=93.135658 lang=swe_Latn token=. pos=37 sentence=Och till Honom hör all tacksamhet och lovprisande i himlarna och jorden, oavsett om det är nattsvart mörker, eller mitt på ljusa dagen.
+[19] score=93.008018 abs_score=93.008018 lang=ita_Latn token=. pos=36 sentence=Oggi, qui ci sono tante mamme; pensate fino a che punto è arrivata la fedeltà di Maria a Dio: vedere il suo unico Figlio sulla Croce.
+[20] score=92.803459 abs_score=92.803459 lang=eng_Latn token=. pos=31 sentence=Or perhaps we may seek God’s guidance how and where to spend our month’s annual leave, but may never ask Him how to spend our money.
+Top by |z|:
+[01] score=171.953201 abs_score=171.953201 lang=nld_Latn token=. pos=88 sentence=Raül Romeva i Rueda (Verts/ALE), schriftelijk. – (EN) Ik heb vandaag voor ontwerpresolutie B7-0133/2010 over een belasting op financiële transacties gestemd, en het verheugt mij zeer dat het Parlement voor het eerst om een beoordeling heeft gevraagd van de haalbaarheid en het effect van het invoeren van een belasting op financiële transacties op EU-niveau.
+[02] score=134.048676 abs_score=134.048676 lang=nld_Latn token=. pos=65 sentence=Kristiina Ojuland (ALDE), schriftelijk. – (ET) Mijnheer de Voorzitter, als coauteur van de resolutie van het Europees Parlement over de situatie van het maatschappelijk middenveld en minderheden in Wit-Rusland, heb ik voor de resolutie gestemd.
+[03] score=133.673355 abs_score=133.673355 lang=swe_Latn token=. pos=42 sentence=En av de stora orsaker [som leder till att ha kärlek för Allah] är den specifika kunskapen som kommer genom att reflektera över skapelsen av himlarna och jorden och vad Allah har skapat.
+[04] score=124.887566 abs_score=124.887566 lang=swe_Latn token=. pos=33 sentence=Oavsett vad han gör måste han först veta varför han gör det och då måste han fortsätta med sina handlingar utan att ha tvivel eller ånger om dem. "
+[05] score=120.492386 abs_score=120.492386 lang=spa_Latn token=. pos=39 sentence=Nadie está en esta tierra para siempre; la vida de todos terminara, él dijo, y Dios querrá ver qué se ha cosechado — “la calidad de nuestra vida”.
+[06] score=115.632492 abs_score=115.632492 lang=por_Latn token=. pos=35 sentence=Assim, o trabalho de Adão de dar nomes aos animais e sua descoberta de necessitar uma parceira teriam ocupado apenas um curto tempo depois de sua criação.
+[07] score=115.281769 abs_score=115.281769 lang=fra_Latn token=. pos=54 sentence=Mais la création glorieuse d'Allah et les œuvres incomparables sont tellement apparentes et manifestes qu'avec la science d'aujourd'hui, qu'il n'y a pas d'endroit où ils ne peuvent pas être vus.
+[08] score=110.112923 abs_score=110.112923 lang=deu_Latn token=. pos=35 sentence=Wenn wir einander jeden Tag nicht ermahnen und nicht jeden Tag echte Beziehung haben, dann könnte der wahre Zustand dieser Person vielleicht nie einmal ans Licht kommen.
+[09] score=108.862534 abs_score=108.862534 lang=pol_Latn token=). pos=38 sentence=Jezus zapewnia: Dana Mi jest wszelka władza w niebie i na ziemi (…) a oto Ja jestem z wami przez wszystkie dni, aż do skończenia świata (Mt 28,18).
+[10] score=97.814789 abs_score=97.814789 lang=pol_Latn token=. pos=38 sentence=Stanowczo i prawdziwie zwracam się ku Temu, który stworzył niebo i ziemię i nigdy nie będę czcić żadnych bożków, tylko Allaha”.
+[11] score=97.675026 abs_score=97.675026 lang=swe_Latn token=. pos=55 sentence=(Ussia sade till Judit:) “Välsignad (är) Herren Gud, som skapade himlarna och jorden, som helt och hållet ’rätade ut’/styrde dig till våra fienders ledares huvudsår.
+[12] score=97.017189 abs_score=97.017189 lang=spa_Latn token=. pos=30 sentence=Jacob quería saber que pagar los diezmos de Dios significaba que las bendiciones, la guía y la protección de Dios siempre estarían aseguradas.
+[13] score=94.904976 abs_score=94.904976 lang=fra_Latn token=. pos=39 sentence=La croix que nous devons porter n’est que la justice de Dieu, mais si quelqu’un la porte et qu’il y renonce, le Seigneur ne prend plus plaisir en lui.
+[14] score=94.688293 abs_score=94.688293 lang=swe_Latn token=. pos=35 sentence=“Om människorna av himlarna och jorden deltog i blodsutgjutelse av en troende, skulle Allah kasta dem med huvudet före in i elden.”
+[15] score=93.687675 abs_score=93.687675 lang=por_Latn token=. pos=35 sentence=Em lugar de cometerem um deliberado infanticídio das crianças de seu próprio povo, as parteiras decidiram desobedecer às ordens de Faraó.
+[16] score=93.660248 abs_score=93.660248 lang=pol_Latn token=. pos=43 sentence="Bóg Wszechmogący stworzył pożądanie seksualne w dziesięciu częściach; potem dziewięcioma częściami obdarował kobiety, a jedną mężczyzn."
+[17] score=93.625740 abs_score=93.625740 lang=pol_Latn token=. pos=35 sentence=On ochrania, kogo zechce spośród sług swoich potęgą swych zastępów w niebie i na ziemi i we wszystkich miejscach pomiędzy nimi.
+[18] score=93.135658 abs_score=93.135658 lang=swe_Latn token=. pos=37 sentence=Och till Honom hör all tacksamhet och lovprisande i himlarna och jorden, oavsett om det är nattsvart mörker, eller mitt på ljusa dagen.
+[19] score=93.008018 abs_score=93.008018 lang=ita_Latn token=. pos=36 sentence=Oggi, qui ci sono tante mamme; pensate fino a che punto è arrivata la fedeltà di Maria a Dio: vedere il suo unico Figlio sulla Croce.
+[20] score=92.803459 abs_score=92.803459 lang=eng_Latn token=. pos=31 sentence=Or perhaps we may seek God’s guidance how and where to spend our month’s annual leave, but may never ask Him how to spend our money.
+
+--- Feature 1652 ---
+Top by z:
+[01] score=170.488113 abs_score=170.488113 lang=eng_Latn token=, pos=12 sentence=We know what you’re thinking – single-core, in 2013.
+[02] score=169.872437 abs_score=169.872437 lang=ces_Latn token=, pos=9 sentence=„v roce našeho Pána“,
+[03] score=168.662064 abs_score=168.662064 lang=deu_Latn token=, pos=10 sentence=„Wir sind alle nur Zutaten, Tom.
+[04] score=163.561081 abs_score=163.561081 lang=por_Latn token=, pos=7 sentence=“Mas todo esse conhecimento, Lucy.
+[05] score=163.026428 abs_score=163.026428 lang=spa_Latn token=, pos=7 sentence=¡Él me habría matado, Sirius! "
+[06] score=162.312546 abs_score=162.312546 lang=spa_Latn token=, pos=6 sentence=Que los montes traigan paz,
+[07] score=161.934036 abs_score=161.934036 lang=pol_Latn token=, pos=6 sentence=Oto są uczynki Pana,
+[08] score=161.927765 abs_score=161.927765 lang=deu_Latn token=, pos=7 sentence=Sie müssen seinen Besitzer finden, Sam.
+[09] score=161.701782 abs_score=161.701782 lang=ita_Latn token=, pos=13 sentence=(T) Quindi il quattordicesimo sarà quello grande, a Tokyo?
+[10] score=161.386490 abs_score=161.386490 lang=ita_Latn token=, pos=9 sentence=Ho visto centinaia di mondi nuovi, Thomas.
+[11] score=160.979462 abs_score=160.979462 lang=nld_Latn token=, pos=6 sentence=Nu hebben ze alleen ons nog, Daniel.
+[12] score=160.563049 abs_score=160.563049 lang=nld_Latn token=, pos=2 sentence=Waarom heeft, tijdens mijn hele managementplan, nooit iemand mijn bedoelingen begrepen?
+[13] score=160.372238 abs_score=160.372238 lang=swe_Latn token=, pos=3 sentence=Trots allt, om Dr. Einhorn kunde göra det...
+[14] score=160.269379 abs_score=160.269379 lang=fra_Latn token=, pos=16 sentence=Que l’esclavage des uns est l’esclavage de tous,
+[15] score=160.088364 abs_score=160.088364 lang=ita_Latn token=, pos=3 sentence=Il Profeta, in Città Profeta, hanno mostrato crescente ostilità verso i bianchi.
+[16] score=160.055481 abs_score=160.055481 lang=eng_Latn token=, pos=5 sentence=That's very fine, Jerry, if you're here this morning.
+[17] score=159.680725 abs_score=159.680725 lang=pol_Latn token=, pos=13 sentence=Niebo – Ziemi, Niebu – Ziemia,
+[18] score=159.101959 abs_score=159.101959 lang=spa_Latn token=, pos=8 sentence=el clemente, el misericordioso,
+[19] score=158.443222 abs_score=158.443222 lang=por_Latn token=, pos=9 sentence=o céu que me tendes prometido,
+[20] score=158.226501 abs_score=158.226501 lang=deu_Latn token=, pos=10 sentence=Kann ich Ihnen meine Definition von Depression geben, Johnny?“
+Top by |z|:
+[01] score=170.488113 abs_score=170.488113 lang=eng_Latn token=, pos=12 sentence=We know what you’re thinking – single-core, in 2013.
+[02] score=169.872437 abs_score=169.872437 lang=ces_Latn token=, pos=9 sentence=„v roce našeho Pána“,
+[03] score=168.662064 abs_score=168.662064 lang=deu_Latn token=, pos=10 sentence=„Wir sind alle nur Zutaten, Tom.
+[04] score=163.561081 abs_score=163.561081 lang=por_Latn token=, pos=7 sentence=“Mas todo esse conhecimento, Lucy.
+[05] score=163.026428 abs_score=163.026428 lang=spa_Latn token=, pos=7 sentence=¡Él me habría matado, Sirius! "
+[06] score=162.312546 abs_score=162.312546 lang=spa_Latn token=, pos=6 sentence=Que los montes traigan paz,
+[07] score=161.934036 abs_score=161.934036 lang=pol_Latn token=, pos=6 sentence=Oto są uczynki Pana,
+[08] score=161.927765 abs_score=161.927765 lang=deu_Latn token=, pos=7 sentence=Sie müssen seinen Besitzer finden, Sam.
+[09] score=161.701782 abs_score=161.701782 lang=ita_Latn token=, pos=13 sentence=(T) Quindi il quattordicesimo sarà quello grande, a Tokyo?
+[10] score=161.386490 abs_score=161.386490 lang=ita_Latn token=, pos=9 sentence=Ho visto centinaia di mondi nuovi, Thomas.
+[11] score=160.979462 abs_score=160.979462 lang=nld_Latn token=, pos=6 sentence=Nu hebben ze alleen ons nog, Daniel.
+[12] score=160.563049 abs_score=160.563049 lang=nld_Latn token=, pos=2 sentence=Waarom heeft, tijdens mijn hele managementplan, nooit iemand mijn bedoelingen begrepen?
+[13] score=160.372238 abs_score=160.372238 lang=swe_Latn token=, pos=3 sentence=Trots allt, om Dr. Einhorn kunde göra det...
+[14] score=160.269379 abs_score=160.269379 lang=fra_Latn token=, pos=16 sentence=Que l’esclavage des uns est l’esclavage de tous,
+[15] score=160.088364 abs_score=160.088364 lang=ita_Latn token=, pos=3 sentence=Il Profeta, in Città Profeta, hanno mostrato crescente ostilità verso i bianchi.
+[16] score=160.055481 abs_score=160.055481 lang=eng_Latn token=, pos=5 sentence=That's very fine, Jerry, if you're here this morning.
+[17] score=159.680725 abs_score=159.680725 lang=pol_Latn token=, pos=13 sentence=Niebo – Ziemi, Niebu – Ziemia,
+[18] score=159.101959 abs_score=159.101959 lang=spa_Latn token=, pos=8 sentence=el clemente, el misericordioso,
+[19] score=158.443222 abs_score=158.443222 lang=por_Latn token=, pos=9 sentence=o céu que me tendes prometido,
+[20] score=158.226501 abs_score=158.226501 lang=deu_Latn token=, pos=10 sentence=Kann ich Ihnen meine Definition von Depression geben, Johnny?“
+
+--- Feature 1343 ---
+Top by z:
+[01] score=169.170074 abs_score=169.170074 lang=fra_Latn token=▁[ pos=9 sentence="Dis: La Vérité [l'Islam] est venue.
+[02] score=168.889099 abs_score=168.889099 lang=pol_Latn token=▁[ pos=13 sentence=Dwanaście aniołów zechciało wejść w życie [ do] władzy nad chaosem i [ podziemiem? ] [8].
+[03] score=168.291992 abs_score=168.291992 lang=spa_Latn token=▁[ pos=10 sentence=Como Annis dijo: "Todos esos cristianos [estaban] tratando de meterlo a su seno".
+[04] score=168.030609 abs_score=168.030609 lang=fra_Latn token=▁[ pos=14 sentence=Mais après « avoir vécu pendant treize ans la vie de [son] père », la jeune femme aspire au changement.
+[05] score=166.177444 abs_score=166.177444 lang=ita_Latn token=▁[ pos=11 sentence=Nel loro comportamento verso le creature, tutti gli uomini [sono] nazisti.
+[06] score=165.618622 abs_score=165.618622 lang=eng_Latn token=▁[ pos=13 sentence="It's surprising and wonderful that no one thought of [the wind explanation] sooner."
+[07] score=165.188965 abs_score=165.188965 lang=por_Latn token=▁[ pos=30 sentence=Em italiano, é Chiocciola ("caracol") ou um commerciale, por vezes, (pronuncia-se com mais freqüência [ɛt], raramente [at]) ou ad.
+[08] score=163.609268 abs_score=163.609268 lang=eng_Latn token=▁[ pos=6 sentence=He was not a Wasichu [white man] and he was not an Indian.
+[09] score=163.503540 abs_score=163.503540 lang=ita_Latn token=▁[ pos=4 sentence=“Ma loro [le autorità israeliane] non ci riuscirono né con quei 26 prigionieri, né con noi.
+[10] score=163.255920 abs_score=163.255920 lang=nld_Latn token=▁[ pos=8 sentence="Elke werkende vrouw betekent een [seksueel] ontevreden man.
+[11] score=162.052444 abs_score=162.052444 lang=deu_Latn token=▁[ pos=13 sentence=Er nimmt sich seines Knechtes Israel an, um an [seine] Barmherzigkeit zu gedenken,
+[12] score=159.009811 abs_score=159.009811 lang=swe_Latn token=▁[ pos=7 sentence=I begynnelsen skapade Gud himmel [himlarna] och jord.
+[13] score=158.886032 abs_score=158.886032 lang=por_Latn token=▁[ pos=24 sentence=(Não poderia ser pior do que a bagunça da alimentação dos Cinco Mil – após a qual [Nosso] Senhor propôs a alimentação que estava por vir.)"
+[14] score=158.582764 abs_score=158.582764 lang=eng_Latn token=▁[ pos=14 sentence=“Tennis [Abalone] is more than just a [mind] sport.
+[15] score=158.470306 abs_score=158.470306 lang=eng_Latn token=▁[ pos=2 sentence="This [Hilux] is a full evolution.
+[16] score=158.003174 abs_score=158.003174 lang=swe_Latn token=▁[ pos=7 sentence=Och om vi inte agerar, [kommer] vi att konfrontera en ännu skrämande framtid".
+[17] score=157.570099 abs_score=157.570099 lang=eng_Latn token=▁[ pos=18 sentence=“The entire world stood on one side of the river, and he was across [mei’ever] the other side of it.”
+[18] score=157.355408 abs_score=157.355408 lang=swe_Latn token=▁[ pos=18 sentence=19När det blev kväll gick han [Jesus och lärjungarna] ut ur staden [till Betania].
+[19] score=157.251007 abs_score=157.251007 lang=ita_Latn token=▁[ pos=11 sentence=Poiché chiunque avrà invocato il nome del Signore [Geova] sarà salvato”.
+[20] score=156.579620 abs_score=156.579620 lang=fra_Latn token=▁[ pos=16 sentence=Qui a livré Jacob au pillage, Et Israël aux pillards [bazaz]?
+Top by |z|:
+[01] score=169.170074 abs_score=169.170074 lang=fra_Latn token=▁[ pos=9 sentence="Dis: La Vérité [l'Islam] est venue.
+[02] score=168.889099 abs_score=168.889099 lang=pol_Latn token=▁[ pos=13 sentence=Dwanaście aniołów zechciało wejść w życie [ do] władzy nad chaosem i [ podziemiem? ] [8].
+[03] score=168.291992 abs_score=168.291992 lang=spa_Latn token=▁[ pos=10 sentence=Como Annis dijo: "Todos esos cristianos [estaban] tratando de meterlo a su seno".
+[04] score=168.030609 abs_score=168.030609 lang=fra_Latn token=▁[ pos=14 sentence=Mais après « avoir vécu pendant treize ans la vie de [son] père », la jeune femme aspire au changement.
+[05] score=166.177444 abs_score=166.177444 lang=ita_Latn token=▁[ pos=11 sentence=Nel loro comportamento verso le creature, tutti gli uomini [sono] nazisti.
+[06] score=165.618622 abs_score=165.618622 lang=eng_Latn token=▁[ pos=13 sentence="It's surprising and wonderful that no one thought of [the wind explanation] sooner."
+[07] score=165.188965 abs_score=165.188965 lang=por_Latn token=▁[ pos=30 sentence=Em italiano, é Chiocciola ("caracol") ou um commerciale, por vezes, (pronuncia-se com mais freqüência [ɛt], raramente [at]) ou ad.
+[08] score=163.609268 abs_score=163.609268 lang=eng_Latn token=▁[ pos=6 sentence=He was not a Wasichu [white man] and he was not an Indian.
+[09] score=163.503540 abs_score=163.503540 lang=ita_Latn token=▁[ pos=4 sentence=“Ma loro [le autorità israeliane] non ci riuscirono né con quei 26 prigionieri, né con noi.
+[10] score=163.255920 abs_score=163.255920 lang=nld_Latn token=▁[ pos=8 sentence="Elke werkende vrouw betekent een [seksueel] ontevreden man.
+[11] score=162.052444 abs_score=162.052444 lang=deu_Latn token=▁[ pos=13 sentence=Er nimmt sich seines Knechtes Israel an, um an [seine] Barmherzigkeit zu gedenken,
+[12] score=159.009811 abs_score=159.009811 lang=swe_Latn token=▁[ pos=7 sentence=I begynnelsen skapade Gud himmel [himlarna] och jord.
+[13] score=158.886032 abs_score=158.886032 lang=por_Latn token=▁[ pos=24 sentence=(Não poderia ser pior do que a bagunça da alimentação dos Cinco Mil – após a qual [Nosso] Senhor propôs a alimentação que estava por vir.)"
+[14] score=158.582764 abs_score=158.582764 lang=eng_Latn token=▁[ pos=14 sentence=“Tennis [Abalone] is more than just a [mind] sport.
+[15] score=158.470306 abs_score=158.470306 lang=eng_Latn token=▁[ pos=2 sentence="This [Hilux] is a full evolution.
+[16] score=158.003174 abs_score=158.003174 lang=swe_Latn token=▁[ pos=7 sentence=Och om vi inte agerar, [kommer] vi att konfrontera en ännu skrämande framtid".
+[17] score=157.570099 abs_score=157.570099 lang=eng_Latn token=▁[ pos=18 sentence=“The entire world stood on one side of the river, and he was across [mei’ever] the other side of it.”
+[18] score=157.355408 abs_score=157.355408 lang=swe_Latn token=▁[ pos=18 sentence=19När det blev kväll gick han [Jesus och lärjungarna] ut ur staden [till Betania].
+[19] score=157.251007 abs_score=157.251007 lang=ita_Latn token=▁[ pos=11 sentence=Poiché chiunque avrà invocato il nome del Signore [Geova] sarà salvato”.
+[20] score=156.579620 abs_score=156.579620 lang=fra_Latn token=▁[ pos=16 sentence=Qui a livré Jacob au pillage, Et Israël aux pillards [bazaz]?
+
+--- Feature 2670 ---
+Top by z:
+[01] score=168.625656 abs_score=168.625656 lang=eng_Latn token=▁could pos=3 sentence=“I could have six fake weddings.
+[02] score=167.668808 abs_score=167.668808 lang=eng_Latn token=▁can pos=13 sentence=NO - It is up to the Italian authorities to decide if you can get married there.
+[03] score=166.323914 abs_score=166.323914 lang=fra_Latn token=▁peux pos=8 sentence=Avec Sean comme entraîneur, je peux réellement voir un succès à long terme dans mon avenir.
+[04] score=165.563797 abs_score=165.563797 lang=spa_Latn token=▁puedes pos=11 sentence=Y por la gracia de Dios, ¡tú puedes también cambiar el tuyo!
+[05] score=163.819672 abs_score=163.819672 lang=eng_Latn token=▁able pos=7 sentence=In Hungary he and Antonio will be able to achieve another good result.
+[06] score=162.775116 abs_score=162.775116 lang=fra_Latn token=▁peux pos=8 sentence=Aujourd’hui – je ne peux pas le croire – mais aujourd’hui le Gouverneur parlait de trois millions.
+[07] score=161.132126 abs_score=161.132126 lang=fra_Latn token=▁peuvent pos=50 sentence=Mais la création glorieuse d'Allah et les œuvres incomparables sont tellement apparentes et manifestes qu'avec la science d'aujourd'hui, qu'il n'y a pas d'endroit où ils ne peuvent pas être vus.
+[08] score=160.765976 abs_score=160.765976 lang=eng_Latn token=▁can pos=8 sentence="You will be taken aside and you can then talk to staff in private."
+[09] score=159.725403 abs_score=159.725403 lang=eng_Latn token=▁can pos=9 sentence=If the light is in your eyes, you can say, "it is here."
+[10] score=159.390518 abs_score=159.390518 lang=eng_Latn token=▁can pos=1 sentence=But can this also be done when you are looking for work in Qatar?
+[11] score=156.979401 abs_score=156.979401 lang=fra_Latn token=▁peux pos=6 sentence=Mais si je veux, je peux vous faire un Haut Brion 90.
+[12] score=154.821274 abs_score=154.821274 lang=fra_Latn token=▁peut pos=23 sentence=Si ce n’est pas l’une des raquettes les plus rapides du marché en 2015, alors comment peut-elle fournir des réponses rapides ?
+[13] score=154.650757 abs_score=154.650757 lang=fra_Latn token=▁puis pos=1 sentence=Comment puis-je être absolument certain d’avoir déjà et l’univers persistant et Squadron 42 ?
+[14] score=153.863068 abs_score=153.863068 lang=fra_Latn token=▁peut pos=14 sentence=Toutefois, peu de croyants réalisent que ce désir ne peut être satisfait qu'au moyen de la vie de Dieu lui-même...
+[15] score=153.668182 abs_score=153.668182 lang=fra_Latn token=▁peuvent pos=3 sentence="Ou ils peuvent avoir [réduire leur activité physique]."
+[16] score=153.299667 abs_score=153.299667 lang=eng_Latn token=▁can pos=17 sentence=2:138 (Our religion is) the religion of God (Islam) and which religion can be better than God's?
+[17] score=152.581635 abs_score=152.581635 lang=eng_Latn token=▁Can pos=9 sentence=(Linda is dressed as Superman) Can they see you back home?
+[18] score=152.565796 abs_score=152.565796 lang=deu_Latn token=▁können pos=10 sentence=“Es gibt viele Dinge, die Sie tun können, wenn Sie 30-90 Sekunden haben.”
+[19] score=151.018250 abs_score=151.018250 lang=fra_Latn token=▁peut pos=14 sentence=Toutefois, peu de croyants réalisent que ce désir ne peut être satisfait qu'au moyen de la vie même de Dieu.
+[20] score=150.895081 abs_score=150.895081 lang=por_Latn token=▁podemos pos=1 sentence=Como podemos nós prosseguir em busca do conhecimento e contudo evitar ser apanhados nas malhas de Satanás?
+Top by |z|:
+[01] score=168.625656 abs_score=168.625656 lang=eng_Latn token=▁could pos=3 sentence=“I could have six fake weddings.
+[02] score=167.668808 abs_score=167.668808 lang=eng_Latn token=▁can pos=13 sentence=NO - It is up to the Italian authorities to decide if you can get married there.
+[03] score=166.323914 abs_score=166.323914 lang=fra_Latn token=▁peux pos=8 sentence=Avec Sean comme entraîneur, je peux réellement voir un succès à long terme dans mon avenir.
+[04] score=165.563797 abs_score=165.563797 lang=spa_Latn token=▁puedes pos=11 sentence=Y por la gracia de Dios, ¡tú puedes también cambiar el tuyo!
+[05] score=163.819672 abs_score=163.819672 lang=eng_Latn token=▁able pos=7 sentence=In Hungary he and Antonio will be able to achieve another good result.
+[06] score=162.775116 abs_score=162.775116 lang=fra_Latn token=▁peux pos=8 sentence=Aujourd’hui – je ne peux pas le croire – mais aujourd’hui le Gouverneur parlait de trois millions.
+[07] score=161.132126 abs_score=161.132126 lang=fra_Latn token=▁peuvent pos=50 sentence=Mais la création glorieuse d'Allah et les œuvres incomparables sont tellement apparentes et manifestes qu'avec la science d'aujourd'hui, qu'il n'y a pas d'endroit où ils ne peuvent pas être vus.
+[08] score=160.765976 abs_score=160.765976 lang=eng_Latn token=▁can pos=8 sentence="You will be taken aside and you can then talk to staff in private."
+[09] score=159.725403 abs_score=159.725403 lang=eng_Latn token=▁can pos=9 sentence=If the light is in your eyes, you can say, "it is here."
+[10] score=159.390518 abs_score=159.390518 lang=eng_Latn token=▁can pos=1 sentence=But can this also be done when you are looking for work in Qatar?
+[11] score=156.979401 abs_score=156.979401 lang=fra_Latn token=▁peux pos=6 sentence=Mais si je veux, je peux vous faire un Haut Brion 90.
+[12] score=154.821274 abs_score=154.821274 lang=fra_Latn token=▁peut pos=23 sentence=Si ce n’est pas l’une des raquettes les plus rapides du marché en 2015, alors comment peut-elle fournir des réponses rapides ?
+[13] score=154.650757 abs_score=154.650757 lang=fra_Latn token=▁puis pos=1 sentence=Comment puis-je être absolument certain d’avoir déjà et l’univers persistant et Squadron 42 ?
+[14] score=153.863068 abs_score=153.863068 lang=fra_Latn token=▁peut pos=14 sentence=Toutefois, peu de croyants réalisent que ce désir ne peut être satisfait qu'au moyen de la vie de Dieu lui-même...
+[15] score=153.668182 abs_score=153.668182 lang=fra_Latn token=▁peuvent pos=3 sentence="Ou ils peuvent avoir [réduire leur activité physique]."
+[16] score=153.299667 abs_score=153.299667 lang=eng_Latn token=▁can pos=17 sentence=2:138 (Our religion is) the religion of God (Islam) and which religion can be better than God's?
+[17] score=152.581635 abs_score=152.581635 lang=eng_Latn token=▁Can pos=9 sentence=(Linda is dressed as Superman) Can they see you back home?
+[18] score=152.565796 abs_score=152.565796 lang=deu_Latn token=▁können pos=10 sentence=“Es gibt viele Dinge, die Sie tun können, wenn Sie 30-90 Sekunden haben.”
+[19] score=151.018250 abs_score=151.018250 lang=fra_Latn token=▁peut pos=14 sentence=Toutefois, peu de croyants réalisent que ce désir ne peut être satisfait qu'au moyen de la vie même de Dieu.
+[20] score=150.895081 abs_score=150.895081 lang=por_Latn token=▁podemos pos=1 sentence=Como podemos nós prosseguir em busca do conhecimento e contudo evitar ser apanhados nas malhas de Satanás?
+
+--- Feature 2860 ---
+Top by z:
+[01] score=167.976624 abs_score=167.976624 lang=eng_Latn token=▁all pos=4 sentence=The soul travels all over the world when you dream.”
+[02] score=166.515976 abs_score=166.515976 lang=eng_Latn token=▁all pos=9 sentence=Tomorrow, those budgets must be balanced all over Europe, in this line of thinking.
+[03] score=151.297913 abs_score=151.297913 lang=nld_Latn token=▁alle pos=20 sentence=We zien Gods wijsheid, Zijn wonder en we zien dat Hij de bron van leven is voor alle dingen.)
+[04] score=148.753693 abs_score=148.753693 lang=spa_Latn token=▁todas pos=21 sentence=Tu cuerpo y tu mente se harán más claros y te darás cuenta de la unidad de todas las cosas.”
+[05] score=148.404816 abs_score=148.404816 lang=eng_Latn token=▁everywhere pos=8 sentence=“We will humiliate them everywhere, God willing, and we will raise the flag of Allah in the White House.”
+[06] score=148.214157 abs_score=148.214157 lang=pol_Latn token=▁wszyst pos=20 sentence=Zmienia On, co tylko zechce; zaprawdę, posiada On władzę nad wszystkimi rzeczami. (...)
+[07] score=148.145065 abs_score=148.145065 lang=spa_Latn token=▁todos pos=30 sentence=Su enseñanza (sumisión a la voluntad de Dios) ha sido y será la enseñanza de la religión para todos los tiempos y para todos los pueblos.
+[08] score=147.892288 abs_score=147.892288 lang=eng_Latn token=▁All pos=0 sentence=All the entities that appear before us every day are proofs of God’s sublime creation.
+[09] score=147.415024 abs_score=147.415024 lang=por_Latn token=▁todas pos=15 sentence=Eu procuro — procuro! — encontrá-lo em todas as circunstâncias da vida.
+[10] score=146.797821 abs_score=146.797821 lang=eng_Latn token=▁all pos=15 sentence=So we entered the camp, and inside we found hundreds of people coming from all over Libya.”
+[11] score=146.313675 abs_score=146.313675 lang=spa_Latn token=▁Todas pos=0 sentence=Todas las cosas fueron creadas por las palabras de Dios; las palabras de Dios lo dominan todo y lo logran todo.
+[12] score=144.938171 abs_score=144.938171 lang=fra_Latn token=▁tous pos=8 sentence=Le FEM devrait pouvoir être utilisé par tous les États membres équitablement.
+[13] score=144.799362 abs_score=144.799362 lang=fra_Latn token=▁toutes pos=3 sentence=Vous avez mis toutes choses sous ses pieds."
+[14] score=144.401260 abs_score=144.401260 lang=deu_Latn token=▁alle pos=15 sentence=Schauen Sie, was in China passiert, denn das ist der Plan für alle Länder.
+[15] score=141.846695 abs_score=141.846695 lang=eng_Latn token=▁all pos=4 sentence=Paradise is open to all God’s creatures."
+[16] score=140.534637 abs_score=140.534637 lang=pol_Latn token=▁wsz pos=6 sentence=One są zdolne do wszelkich poświęceń dla swojego pana.
+[17] score=139.946457 abs_score=139.946457 lang=eng_Latn token=▁all pos=11 sentence=Nor is He contained by the six directions like all the created things."
+[18] score=139.813080 abs_score=139.813080 lang=ita_Latn token=▁tutta pos=10 sentence=E' l'unione che io desiderai tutta la vita, che sempre chiesi a nostro Signore ed è anche la più facile a conoscersi e la più sicura".
+[19] score=139.288300 abs_score=139.288300 lang=swe_Latn token=▁all pos=3 sentence=Gud gav Jesus all makt i himmel och på jord.
+[20] score=139.053101 abs_score=139.053101 lang=eng_Latn token=▁all pos=1 sentence=And all the earth shall know that Israel has a God;
+Top by |z|:
+[01] score=167.976624 abs_score=167.976624 lang=eng_Latn token=▁all pos=4 sentence=The soul travels all over the world when you dream.”
+[02] score=166.515976 abs_score=166.515976 lang=eng_Latn token=▁all pos=9 sentence=Tomorrow, those budgets must be balanced all over Europe, in this line of thinking.
+[03] score=151.297913 abs_score=151.297913 lang=nld_Latn token=▁alle pos=20 sentence=We zien Gods wijsheid, Zijn wonder en we zien dat Hij de bron van leven is voor alle dingen.)
+[04] score=148.753693 abs_score=148.753693 lang=spa_Latn token=▁todas pos=21 sentence=Tu cuerpo y tu mente se harán más claros y te darás cuenta de la unidad de todas las cosas.”
+[05] score=148.404816 abs_score=148.404816 lang=eng_Latn token=▁everywhere pos=8 sentence=“We will humiliate them everywhere, God willing, and we will raise the flag of Allah in the White House.”
+[06] score=148.214157 abs_score=148.214157 lang=pol_Latn token=▁wszyst pos=20 sentence=Zmienia On, co tylko zechce; zaprawdę, posiada On władzę nad wszystkimi rzeczami. (...)
+[07] score=148.145065 abs_score=148.145065 lang=spa_Latn token=▁todos pos=30 sentence=Su enseñanza (sumisión a la voluntad de Dios) ha sido y será la enseñanza de la religión para todos los tiempos y para todos los pueblos.
+[08] score=147.892288 abs_score=147.892288 lang=eng_Latn token=▁All pos=0 sentence=All the entities that appear before us every day are proofs of God’s sublime creation.
+[09] score=147.415024 abs_score=147.415024 lang=por_Latn token=▁todas pos=15 sentence=Eu procuro — procuro! — encontrá-lo em todas as circunstâncias da vida.
+[10] score=146.797821 abs_score=146.797821 lang=eng_Latn token=▁all pos=15 sentence=So we entered the camp, and inside we found hundreds of people coming from all over Libya.”
+[11] score=146.313675 abs_score=146.313675 lang=spa_Latn token=▁Todas pos=0 sentence=Todas las cosas fueron creadas por las palabras de Dios; las palabras de Dios lo dominan todo y lo logran todo.
+[12] score=144.938171 abs_score=144.938171 lang=fra_Latn token=▁tous pos=8 sentence=Le FEM devrait pouvoir être utilisé par tous les États membres équitablement.
+[13] score=144.799362 abs_score=144.799362 lang=fra_Latn token=▁toutes pos=3 sentence=Vous avez mis toutes choses sous ses pieds."
+[14] score=144.401260 abs_score=144.401260 lang=deu_Latn token=▁alle pos=15 sentence=Schauen Sie, was in China passiert, denn das ist der Plan für alle Länder.
+[15] score=141.846695 abs_score=141.846695 lang=eng_Latn token=▁all pos=4 sentence=Paradise is open to all God’s creatures."
+[16] score=140.534637 abs_score=140.534637 lang=pol_Latn token=▁wsz pos=6 sentence=One są zdolne do wszelkich poświęceń dla swojego pana.
+[17] score=139.946457 abs_score=139.946457 lang=eng_Latn token=▁all pos=11 sentence=Nor is He contained by the six directions like all the created things."
+[18] score=139.813080 abs_score=139.813080 lang=ita_Latn token=▁tutta pos=10 sentence=E' l'unione che io desiderai tutta la vita, che sempre chiesi a nostro Signore ed è anche la più facile a conoscersi e la più sicura".
+[19] score=139.288300 abs_score=139.288300 lang=swe_Latn token=▁all pos=3 sentence=Gud gav Jesus all makt i himmel och på jord.
+[20] score=139.053101 abs_score=139.053101 lang=eng_Latn token=▁all pos=1 sentence=And all the earth shall know that Israel has a God;
+
+--- Feature 2700 ---
+Top by z:
+[01] score=166.577545 abs_score=166.577545 lang=ita_Latn token=▁chissà pos=6 sentence=E con quel "ma" chissà cos'altro voleva intendere.
+[02] score=148.729446 abs_score=148.729446 lang=pol_Latn token=▁czeka pos=0 sentence=czeka na ruch swego pana
+[03] score=148.306610 abs_score=148.306610 lang=spa_Latn token=▁inmediatamente pos=22 sentence=Si no respondías a las preguntas sobre los versículos del Corán, los disparos se escuchaban inmediatamente”.
+[04] score=147.298782 abs_score=147.298782 lang=por_Latn token=▁excelente pos=1 sentence=mais excelente nome do que eles”.
+[05] score=147.193451 abs_score=147.193451 lang=ita_Latn token=▁Servi pos=0 sentence=Servi fedelmente il tuo signore signore
+[06] score=146.078827 abs_score=146.078827 lang=nld_Latn token=▁144.000 pos=1 sentence=De 144.000 … wij zijn geboren met een missie.
+[07] score=145.336288 abs_score=145.336288 lang=por_Latn token=▁outro pos=9 sentence=Em seguida, veio um outro homem, depois outro, Acharya, Acharya outro.
+[08] score=145.002487 abs_score=145.002487 lang=ita_Latn token=▁considera pos=1 sentence=ti considera suo signore e guida.
+[09] score=143.991714 abs_score=143.991714 lang=spa_Latn token=▁25,000 pos=3 sentence=[Y] 25,000 lo enviarían aún más bajo".
+[10] score=143.391113 abs_score=143.391113 lang=pol_Latn token=▁chroni pos=15 sentence=Możliwe też, że zna historię i – ponownie – chroni Bank Światowy.
+[11] score=142.133423 abs_score=142.133423 lang=nld_Latn token=▁enorme pos=11 sentence=Waarom speelt Frankrijk deze rol terwijl de HVB enorme voordelen heeft:
+[12] score=141.710190 abs_score=141.710190 lang=swe_Latn token=▁jordens pos=8 sentence=I Hans Hand ligger himlarnas och jordens, detta liv och nästa livs skatter.
+[13] score=140.890915 abs_score=140.890915 lang=por_Latn token=▁poderoso pos=7 sentence=18 , 28 ) tinha dado esse poderoso monarca a sua posição.
+[14] score=140.606003 abs_score=140.606003 lang=swe_Latn token=▁specifika pos=8 sentence=Och glöm inte att ICP: s specifika problem också kan lösas.
+[15] score=140.313156 abs_score=140.313156 lang=por_Latn token=▁pacientes pos=2 sentence=Sejam pacientes até a vinda do Senhor.
+[16] score=139.760361 abs_score=139.760361 lang=nld_Latn token=▁gemeente pos=16 sentence=17. [appellanten sub 17], wonend te [woonplaats], gemeente Bergen,
+[17] score=138.840134 abs_score=138.840134 lang=swe_Latn token=▁symptom pos=9 sentence=Här är jag, dör av hundra goda symptom. .
+[18] score=137.703598 abs_score=137.703598 lang=por_Latn token=▁outro pos=16 sentence=Em seguida, veio um outro homem, depois outro, Acharya, Acharya outro.
+[19] score=134.712845 abs_score=134.712845 lang=pol_Latn token=▁Dlaczego pos=0 sentence=Dlaczego blogosfery Will Eat Itself
+[20] score=134.471588 abs_score=134.471588 lang=nld_Latn token=▁Abbas pos=0 sentence=Abbas had slechts één pagina, met de belangrijkste punten, en hij begon te spreken.
+Top by |z|:
+[01] score=166.577545 abs_score=166.577545 lang=ita_Latn token=▁chissà pos=6 sentence=E con quel "ma" chissà cos'altro voleva intendere.
+[02] score=148.729446 abs_score=148.729446 lang=pol_Latn token=▁czeka pos=0 sentence=czeka na ruch swego pana
+[03] score=148.306610 abs_score=148.306610 lang=spa_Latn token=▁inmediatamente pos=22 sentence=Si no respondías a las preguntas sobre los versículos del Corán, los disparos se escuchaban inmediatamente”.
+[04] score=147.298782 abs_score=147.298782 lang=por_Latn token=▁excelente pos=1 sentence=mais excelente nome do que eles”.
+[05] score=147.193451 abs_score=147.193451 lang=ita_Latn token=▁Servi pos=0 sentence=Servi fedelmente il tuo signore signore
+[06] score=146.078827 abs_score=146.078827 lang=nld_Latn token=▁144.000 pos=1 sentence=De 144.000 … wij zijn geboren met een missie.
+[07] score=145.336288 abs_score=145.336288 lang=por_Latn token=▁outro pos=9 sentence=Em seguida, veio um outro homem, depois outro, Acharya, Acharya outro.
+[08] score=145.002487 abs_score=145.002487 lang=ita_Latn token=▁considera pos=1 sentence=ti considera suo signore e guida.
+[09] score=143.991714 abs_score=143.991714 lang=spa_Latn token=▁25,000 pos=3 sentence=[Y] 25,000 lo enviarían aún más bajo".
+[10] score=143.391113 abs_score=143.391113 lang=pol_Latn token=▁chroni pos=15 sentence=Możliwe też, że zna historię i – ponownie – chroni Bank Światowy.
+[11] score=142.133423 abs_score=142.133423 lang=nld_Latn token=▁enorme pos=11 sentence=Waarom speelt Frankrijk deze rol terwijl de HVB enorme voordelen heeft:
+[12] score=141.710190 abs_score=141.710190 lang=swe_Latn token=▁jordens pos=8 sentence=I Hans Hand ligger himlarnas och jordens, detta liv och nästa livs skatter.
+[13] score=140.890915 abs_score=140.890915 lang=por_Latn token=▁poderoso pos=7 sentence=18 , 28 ) tinha dado esse poderoso monarca a sua posição.
+[14] score=140.606003 abs_score=140.606003 lang=swe_Latn token=▁specifika pos=8 sentence=Och glöm inte att ICP: s specifika problem också kan lösas.
+[15] score=140.313156 abs_score=140.313156 lang=por_Latn token=▁pacientes pos=2 sentence=Sejam pacientes até a vinda do Senhor.
+[16] score=139.760361 abs_score=139.760361 lang=nld_Latn token=▁gemeente pos=16 sentence=17. [appellanten sub 17], wonend te [woonplaats], gemeente Bergen,
+[17] score=138.840134 abs_score=138.840134 lang=swe_Latn token=▁symptom pos=9 sentence=Här är jag, dör av hundra goda symptom. .
+[18] score=137.703598 abs_score=137.703598 lang=por_Latn token=▁outro pos=16 sentence=Em seguida, veio um outro homem, depois outro, Acharya, Acharya outro.
+[19] score=134.712845 abs_score=134.712845 lang=pol_Latn token=▁Dlaczego pos=0 sentence=Dlaczego blogosfery Will Eat Itself
+[20] score=134.471588 abs_score=134.471588 lang=nld_Latn token=▁Abbas pos=0 sentence=Abbas had slechts één pagina, met de belangrijkste punten, en hij begon te spreken.
+
+--- Feature 168 ---
+Top by z:
+[01] score=166.196838 abs_score=166.196838 lang=eng_Latn token=▁had pos=16 sentence=the Jews because of what he, or Oswald, or both of them, had done."
+[02] score=157.274643 abs_score=157.274643 lang=deu_Latn token=▁hatte pos=10 sentence=darüber hinaus, die Menschen, die er studiert hatte, erbte eine spezifische mutation.
+[03] score=149.356384 abs_score=149.356384 lang=nld_Latn token=▁had pos=5 sentence=Precies wat ik nodig had in het midden van de fucking apocalyps.
+[04] score=149.084778 abs_score=149.084778 lang=deu_Latn token=▁hatte pos=5 sentence=Ein Blogger namens Robin Good hatte uns im Internet gefunden.
+[05] score=147.421097 abs_score=147.421097 lang=eng_Latn token=▁have pos=3 sentence=Any girl would have appreciated what you did – from a different perspective.
+[06] score=147.059921 abs_score=147.059921 lang=eng_Latn token=▁have pos=19 sentence=Indeed, otherwise that repentance, on which Rabbinism so largely insists, would have had no meaning.
+[07] score=146.001373 abs_score=146.001373 lang=deu_Latn token=▁hatten pos=18 sentence=„Wir so lange recherchiert, bis wir einen 993 von 1998 gefunden hatten“
+[08] score=144.154602 abs_score=144.154602 lang=deu_Latn token=▁hatte pos=1 sentence=Alex hatte sich für uns alle entschieden, oder seine Waffe hatte.
+[09] score=141.455688 abs_score=141.455688 lang=por_Latn token=▁tinha pos=5 sentence=de que o seu Senhor tinha ressuscitado.
+[10] score=139.331589 abs_score=139.331589 lang=deu_Latn token=▁hatte pos=1 sentence=Adam hatte versucht, den Platz einzunehmen von dem, der ihn suchte, denn er war der Missetäter.
+[11] score=138.891205 abs_score=138.891205 lang=eng_Latn token=▁was pos=1 sentence=How was this submitting to God’s sovereignty and arrangements?
+[12] score=138.509155 abs_score=138.509155 lang=deu_Latn token=▁hatte pos=12 sentence=In anderen Worten, was, wenn es noch nicht gesehen hatte, dass C übertragen 50 Münzen zu B bereits?
+[13] score=138.170029 abs_score=138.170029 lang=eng_Latn token=▁did pos=4 sentence=E-66 How did the astronaut find this?
+[14] score=135.692200 abs_score=135.692200 lang=spa_Latn token=▁había pos=7 sentence=“Sabíamos lo terrible que había sido la vida en los campos y los guetos”, precisó, “pero estos números son increíbles.”
+[15] score=134.934875 abs_score=134.934875 lang=eng_Latn token=▁had pos=10 sentence=“Some of the discussions that we had during the adoption of the copyright directive will come back.
+[16] score=134.867920 abs_score=134.867920 lang=deu_Latn token=▁hatte pos=10 sentence=Du bist derjenige, der die Affäre hatte; du solltest gehen zu $% & @ therapy! "
+[17] score=134.845184 abs_score=134.845184 lang=spa_Latn token=▁había pos=12 sentence=Sus corazones ardían con las palabras que él les había dicho. (ver 24:32).
+[18] score=134.682007 abs_score=134.682007 lang=fra_Latn token=▁avait pos=18 sentence=Même quand je suis en face de lui, il peut se faire disparaître comme si il avait cessé d’exister. »
+[19] score=134.547958 abs_score=134.547958 lang=eng_Latn token=▁have pos=13 sentence=I will always wonder how many of those 800 women and children could have been saved.
+[20] score=133.311874 abs_score=133.311874 lang=eng_Latn token=▁was pos=1 sentence=That was never more necessary than right now.” 135 countries have signed the action plan.
+Top by |z|:
+[01] score=166.196838 abs_score=166.196838 lang=eng_Latn token=▁had pos=16 sentence=the Jews because of what he, or Oswald, or both of them, had done."
+[02] score=157.274643 abs_score=157.274643 lang=deu_Latn token=▁hatte pos=10 sentence=darüber hinaus, die Menschen, die er studiert hatte, erbte eine spezifische mutation.
+[03] score=149.356384 abs_score=149.356384 lang=nld_Latn token=▁had pos=5 sentence=Precies wat ik nodig had in het midden van de fucking apocalyps.
+[04] score=149.084778 abs_score=149.084778 lang=deu_Latn token=▁hatte pos=5 sentence=Ein Blogger namens Robin Good hatte uns im Internet gefunden.
+[05] score=147.421097 abs_score=147.421097 lang=eng_Latn token=▁have pos=3 sentence=Any girl would have appreciated what you did – from a different perspective.
+[06] score=147.059921 abs_score=147.059921 lang=eng_Latn token=▁have pos=19 sentence=Indeed, otherwise that repentance, on which Rabbinism so largely insists, would have had no meaning.
+[07] score=146.001373 abs_score=146.001373 lang=deu_Latn token=▁hatten pos=18 sentence=„Wir so lange recherchiert, bis wir einen 993 von 1998 gefunden hatten“
+[08] score=144.154602 abs_score=144.154602 lang=deu_Latn token=▁hatte pos=1 sentence=Alex hatte sich für uns alle entschieden, oder seine Waffe hatte.
+[09] score=141.455688 abs_score=141.455688 lang=por_Latn token=▁tinha pos=5 sentence=de que o seu Senhor tinha ressuscitado.
+[10] score=139.331589 abs_score=139.331589 lang=deu_Latn token=▁hatte pos=1 sentence=Adam hatte versucht, den Platz einzunehmen von dem, der ihn suchte, denn er war der Missetäter.
+[11] score=138.891205 abs_score=138.891205 lang=eng_Latn token=▁was pos=1 sentence=How was this submitting to God’s sovereignty and arrangements?
+[12] score=138.509155 abs_score=138.509155 lang=deu_Latn token=▁hatte pos=12 sentence=In anderen Worten, was, wenn es noch nicht gesehen hatte, dass C übertragen 50 Münzen zu B bereits?
+[13] score=138.170029 abs_score=138.170029 lang=eng_Latn token=▁did pos=4 sentence=E-66 How did the astronaut find this?
+[14] score=135.692200 abs_score=135.692200 lang=spa_Latn token=▁había pos=7 sentence=“Sabíamos lo terrible que había sido la vida en los campos y los guetos”, precisó, “pero estos números son increíbles.”
+[15] score=134.934875 abs_score=134.934875 lang=eng_Latn token=▁had pos=10 sentence=“Some of the discussions that we had during the adoption of the copyright directive will come back.
+[16] score=134.867920 abs_score=134.867920 lang=deu_Latn token=▁hatte pos=10 sentence=Du bist derjenige, der die Affäre hatte; du solltest gehen zu $% & @ therapy! "
+[17] score=134.845184 abs_score=134.845184 lang=spa_Latn token=▁había pos=12 sentence=Sus corazones ardían con las palabras que él les había dicho. (ver 24:32).
+[18] score=134.682007 abs_score=134.682007 lang=fra_Latn token=▁avait pos=18 sentence=Même quand je suis en face de lui, il peut se faire disparaître comme si il avait cessé d’exister. »
+[19] score=134.547958 abs_score=134.547958 lang=eng_Latn token=▁have pos=13 sentence=I will always wonder how many of those 800 women and children could have been saved.
+[20] score=133.311874 abs_score=133.311874 lang=eng_Latn token=▁was pos=1 sentence=That was never more necessary than right now.” 135 countries have signed the action plan.
+
+--- Feature 1592 ---
+Top by z:
+[01] score=165.924850 abs_score=165.924850 lang=eng_Latn token=▁earth pos=14 sentence=Under the Father’s direction, Jesus created the heavens and the earth.
+[02] score=160.744156 abs_score=160.744156 lang=fra_Latn token=▁terre pos=8 sentence=Après nous terminons la vie sur la terre, le ciel et l'enfer sont en attente pour nous.
+[03] score=156.338898 abs_score=156.338898 lang=eng_Latn token=▁Earth pos=15 sentence=Many of God’s children are confused about the existence of Heaven and Earth.
+[04] score=155.993347 abs_score=155.993347 lang=fra_Latn token=▁terre pos=22 sentence=69 Ne sais-tu pas qu'Allah sait ce qu'il y a dans le ciel et sur la terre?
+[05] score=154.648407 abs_score=154.648407 lang=swe_Latn token=▁jorden pos=12 sentence=O Gud, du som har all makt i himlen och på jorden,
+[06] score=154.585724 abs_score=154.585724 lang=fra_Latn token=▁terre pos=22 sentence=Beaucoup d’enfants de Dieu sont confus quant à l’existence du ciel et de la terre.
+[07] score=151.861313 abs_score=151.861313 lang=swe_Latn token=▁jorden pos=12 sentence=Likaledes: Mig är given all makt i himmelen och på jorden.
+[08] score=151.545715 abs_score=151.545715 lang=eng_Latn token=▁earth pos=3 sentence=And all the earth shall know that Israel has a God;
+[09] score=150.822891 abs_score=150.822891 lang=swe_Latn token=▁jorden pos=28 sentence=Och allt är ett intet i jämförelse med att ha till vår herre den Herre som råder över alla skatter i himmelen och på jorden.
+[10] score=149.654984 abs_score=149.654984 lang=pol_Latn token=▁ziemi pos=11 sentence=[11] »Lecz jak wysoko jest niebo nad ziemią, tak wielka jest dobroć Jego dla tych, którzy się Go boją.
+[11] score=149.425217 abs_score=149.425217 lang=swe_Latn token=▁jorden pos=35 sentence=En av de stora orsaker [som leder till att ha kärlek för Allah] är den specifika kunskapen som kommer genom att reflektera över skapelsen av himlarna och jorden och vad Allah har skapat.
+[12] score=149.353745 abs_score=149.353745 lang=swe_Latn token=▁jorden pos=13 sentence=(men) en är allen, som råder över himmelen och jorden.
+[13] score=148.912186 abs_score=148.912186 lang=swe_Latn token=▁jorden pos=9 sentence=[37:5] Herren över himlarna och jorden och allt som är däremellan och alla soluppgångars Herre.
+[14] score=148.802139 abs_score=148.802139 lang=ita_Latn token=▁terra pos=12 sentence=Incomincerete a vivere la vita del cielo sulla terra."
+[15] score=148.316116 abs_score=148.316116 lang=swe_Latn token=▁jorden pos=22 sentence=Du är i sanning vår Herre, Du är medveten om allt som är i himlarna och på jorden.
+[16] score=147.973053 abs_score=147.973053 lang=swe_Latn token=▁jorden pos=14 sentence=Honom tillhör vad som finnes i himlarna och vad som finnes på jorden, vad däremellan är och
+[17] score=147.483490 abs_score=147.483490 lang=swe_Latn token=▁jorden pos=8 sentence=Han kallar på himmelen därovan och på jorden, för att döma sitt folk. »
+[18] score=147.469009 abs_score=147.469009 lang=swe_Latn token=▁jorden pos=14 sentence=och dog, inför ögonen på dem som är i himlen, på jorden och under jorden, om honom,
+[19] score=147.077438 abs_score=147.077438 lang=por_Latn token=▁Terra pos=18 sentence=Muitos dos filhos de Deus estão confusos sobre a existência do Céu e da Terra.
+[20] score=146.685944 abs_score=146.685944 lang=swe_Latn token=▁jorden pos=11 sentence=[21:22] Men om det i himlen eller på jorden hade funnits gudar vid sidan av Gud skulle världsalltets ordning ha brutit samman!
+Top by |z|:
+[01] score=165.924850 abs_score=165.924850 lang=eng_Latn token=▁earth pos=14 sentence=Under the Father’s direction, Jesus created the heavens and the earth.
+[02] score=160.744156 abs_score=160.744156 lang=fra_Latn token=▁terre pos=8 sentence=Après nous terminons la vie sur la terre, le ciel et l'enfer sont en attente pour nous.
+[03] score=156.338898 abs_score=156.338898 lang=eng_Latn token=▁Earth pos=15 sentence=Many of God’s children are confused about the existence of Heaven and Earth.
+[04] score=155.993347 abs_score=155.993347 lang=fra_Latn token=▁terre pos=22 sentence=69 Ne sais-tu pas qu'Allah sait ce qu'il y a dans le ciel et sur la terre?
+[05] score=154.648407 abs_score=154.648407 lang=swe_Latn token=▁jorden pos=12 sentence=O Gud, du som har all makt i himlen och på jorden,
+[06] score=154.585724 abs_score=154.585724 lang=fra_Latn token=▁terre pos=22 sentence=Beaucoup d’enfants de Dieu sont confus quant à l’existence du ciel et de la terre.
+[07] score=151.861313 abs_score=151.861313 lang=swe_Latn token=▁jorden pos=12 sentence=Likaledes: Mig är given all makt i himmelen och på jorden.
+[08] score=151.545715 abs_score=151.545715 lang=eng_Latn token=▁earth pos=3 sentence=And all the earth shall know that Israel has a God;
+[09] score=150.822891 abs_score=150.822891 lang=swe_Latn token=▁jorden pos=28 sentence=Och allt är ett intet i jämförelse med att ha till vår herre den Herre som råder över alla skatter i himmelen och på jorden.
+[10] score=149.654984 abs_score=149.654984 lang=pol_Latn token=▁ziemi pos=11 sentence=[11] »Lecz jak wysoko jest niebo nad ziemią, tak wielka jest dobroć Jego dla tych, którzy się Go boją.
+[11] score=149.425217 abs_score=149.425217 lang=swe_Latn token=▁jorden pos=35 sentence=En av de stora orsaker [som leder till att ha kärlek för Allah] är den specifika kunskapen som kommer genom att reflektera över skapelsen av himlarna och jorden och vad Allah har skapat.
+[12] score=149.353745 abs_score=149.353745 lang=swe_Latn token=▁jorden pos=13 sentence=(men) en är allen, som råder över himmelen och jorden.
+[13] score=148.912186 abs_score=148.912186 lang=swe_Latn token=▁jorden pos=9 sentence=[37:5] Herren över himlarna och jorden och allt som är däremellan och alla soluppgångars Herre.
+[14] score=148.802139 abs_score=148.802139 lang=ita_Latn token=▁terra pos=12 sentence=Incomincerete a vivere la vita del cielo sulla terra."
+[15] score=148.316116 abs_score=148.316116 lang=swe_Latn token=▁jorden pos=22 sentence=Du är i sanning vår Herre, Du är medveten om allt som är i himlarna och på jorden.
+[16] score=147.973053 abs_score=147.973053 lang=swe_Latn token=▁jorden pos=14 sentence=Honom tillhör vad som finnes i himlarna och vad som finnes på jorden, vad däremellan är och
+[17] score=147.483490 abs_score=147.483490 lang=swe_Latn token=▁jorden pos=8 sentence=Han kallar på himmelen därovan och på jorden, för att döma sitt folk. »
+[18] score=147.469009 abs_score=147.469009 lang=swe_Latn token=▁jorden pos=14 sentence=och dog, inför ögonen på dem som är i himlen, på jorden och under jorden, om honom,
+[19] score=147.077438 abs_score=147.077438 lang=por_Latn token=▁Terra pos=18 sentence=Muitos dos filhos de Deus estão confusos sobre a existência do Céu e da Terra.
+[20] score=146.685944 abs_score=146.685944 lang=swe_Latn token=▁jorden pos=11 sentence=[21:22] Men om det i himlen eller på jorden hade funnits gudar vid sidan av Gud skulle världsalltets ordning ha brutit samman!

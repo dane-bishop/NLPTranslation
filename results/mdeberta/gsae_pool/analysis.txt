@@ -1,0 +1,982 @@
+Loaded SAE checkpoint from weights/mdeberta/gsae_pool/model.pt
+Saving analysis output to results/mdeberta/gsae_pool/analysis.txt
+Using sentence-level pooled analysis to match training-time pooling.
+[collect] processed batch 0
+[collect] processed batch 10
+[collect] processed batch 20
+[collect] processed batch 30
+[collect] processed batch 40
+[collect] processed batch 50
+[collect] processed batch 60
+[collect] processed batch 70
+[collect] processed batch 80
+[collect] processed batch 90
+
+=== GLOBAL STATS ===
+num rows: 3200
+latent dim: 6140
+mean recon loss per token: 0.022279
+std recon loss per token:  0.011164
+top 10 feature max z:      [0.000274, 0.000265, 0.000248, 0.000246, 0.000245, 0.000242, 0.000242, 0.000232, 0.000224, 0.000223]
+top 10 feature mean z:     [0.000112, 0.000109, 9.1e-05, 9.1e-05, 9e-05, 9e-05, 8.9e-05, 8.9e-05, 8.9e-05, 8.8e-05]
+top 10 feature mean |z|:   [0.000112, 0.000109, 0.000104, 9.1e-05, 9.1e-05, 9e-05, 9e-05, 8.9e-05, 8.9e-05, 8.9e-05]
+
+=== PER-LANGUAGE SUMMARY ===
+eng_Latn: num_rows=320 mean_recon=0.024606
+fra_Latn: num_rows=320 mean_recon=0.019223
+deu_Latn: num_rows=320 mean_recon=0.021558
+nld_Latn: num_rows=320 mean_recon=0.023201
+swe_Latn: num_rows=320 mean_recon=0.020676
+spa_Latn: num_rows=320 mean_recon=0.022806
+ita_Latn: num_rows=320 mean_recon=0.022153
+por_Latn: num_rows=320 mean_recon=0.022494
+pol_Latn: num_rows=320 mean_recon=0.023179
+ces_Latn: num_rows=320 mean_recon=0.022890
+
+=== TOP FEATURES BY MAX Z ===
+feature=2070 max_z=0.000274 mean_z=0.000060 mean_abs_z=0.000060 max_abs_z=0.000274
+feature=3628 max_z=0.000265 mean_z=0.000076 mean_abs_z=0.000076 max_abs_z=0.000265
+feature= 146 max_z=0.000248 mean_z=0.000090 mean_abs_z=0.000090 max_abs_z=0.000248
+feature= 273 max_z=0.000246 mean_z=0.000070 mean_abs_z=0.000070 max_abs_z=0.000246
+feature=3873 max_z=0.000245 mean_z=0.000090 mean_abs_z=0.000090 max_abs_z=0.000245
+feature=5668 max_z=0.000242 mean_z=0.000055 mean_abs_z=0.000055 max_abs_z=0.000242
+feature=1915 max_z=0.000242 mean_z=0.000070 mean_abs_z=0.000070 max_abs_z=0.000242
+feature= 430 max_z=0.000232 mean_z=0.000112 mean_abs_z=0.000112 max_abs_z=0.000232
+feature=  98 max_z=0.000224 mean_z=0.000066 mean_abs_z=0.000066 max_abs_z=0.000224
+feature=3148 max_z=0.000223 mean_z=0.000109 mean_abs_z=0.000109 max_abs_z=0.000223
+feature=5094 max_z=0.000223 mean_z=0.000091 mean_abs_z=0.000091 max_abs_z=0.000223
+feature=1657 max_z=0.000222 mean_z=0.000059 mean_abs_z=0.000059 max_abs_z=0.000222
+feature=3411 max_z=0.000218 mean_z=0.000088 mean_abs_z=0.000088 max_abs_z=0.000218
+feature=2890 max_z=0.000218 mean_z=0.000043 mean_abs_z=0.000043 max_abs_z=0.000218
+feature=4120 max_z=0.000216 mean_z=0.000073 mean_abs_z=0.000073 max_abs_z=0.000216
+feature=3425 max_z=0.000216 mean_z=0.000073 mean_abs_z=0.000073 max_abs_z=0.000216
+feature=1935 max_z=0.000214 mean_z=0.000077 mean_abs_z=0.000077 max_abs_z=0.000214
+feature=2669 max_z=0.000214 mean_z=0.000072 mean_abs_z=0.000072 max_abs_z=0.000214
+feature=5452 max_z=0.000214 mean_z=0.000061 mean_abs_z=0.000061 max_abs_z=0.000214
+feature=5874 max_z=0.000210 mean_z=0.000059 mean_abs_z=0.000059 max_abs_z=0.000210
+
+=== TOP FEATURES BY MEAN Z ===
+feature= 430 mean_z=0.000112 max_z=0.000232 mean_abs_z=0.000112 max_abs_z=0.000232
+feature=3148 mean_z=0.000109 max_z=0.000223 mean_abs_z=0.000109 max_abs_z=0.000223
+feature=3932 mean_z=0.000091 max_z=0.000194 mean_abs_z=0.000091 max_abs_z=0.000194
+feature=5094 mean_z=0.000091 max_z=0.000223 mean_abs_z=0.000091 max_abs_z=0.000223
+feature=3873 mean_z=0.000090 max_z=0.000245 mean_abs_z=0.000090 max_abs_z=0.000245
+feature= 146 mean_z=0.000090 max_z=0.000248 mean_abs_z=0.000090 max_abs_z=0.000248
+feature= 532 mean_z=0.000089 max_z=0.000179 mean_abs_z=0.000089 max_abs_z=0.000179
+feature=5295 mean_z=0.000089 max_z=0.000182 mean_abs_z=0.000089 max_abs_z=0.000182
+feature=4718 mean_z=0.000089 max_z=0.000182 mean_abs_z=0.000089 max_abs_z=0.000182
+feature=3411 mean_z=0.000088 max_z=0.000218 mean_abs_z=0.000088 max_abs_z=0.000218
+feature=4397 mean_z=0.000087 max_z=0.000204 mean_abs_z=0.000087 max_abs_z=0.000204
+feature=3621 mean_z=0.000086 max_z=0.000179 mean_abs_z=0.000086 max_abs_z=0.000179
+feature=5833 mean_z=0.000085 max_z=0.000182 mean_abs_z=0.000085 max_abs_z=0.000182
+feature=5837 mean_z=0.000085 max_z=0.000199 mean_abs_z=0.000085 max_abs_z=0.000199
+feature=5718 mean_z=0.000085 max_z=0.000199 mean_abs_z=0.000085 max_abs_z=0.000199
+feature=5417 mean_z=0.000084 max_z=0.000193 mean_abs_z=0.000084 max_abs_z=0.000193
+feature=1602 mean_z=0.000083 max_z=0.000185 mean_abs_z=0.000083 max_abs_z=0.000185
+feature= 322 mean_z=0.000081 max_z=0.000183 mean_abs_z=0.000081 max_abs_z=0.000183
+feature=4391 mean_z=0.000080 max_z=0.000192 mean_abs_z=0.000080 max_abs_z=0.000192
+feature= 401 mean_z=0.000080 max_z=0.000181 mean_abs_z=0.000080 max_abs_z=0.000181
+
+=== TOP FEATURES BY MEAN |Z| ===
+feature= 430 mean_abs_z=0.000112 max_abs_z=0.000232 mean_z=0.000112 max_z=0.000232
+feature=3148 mean_abs_z=0.000109 max_abs_z=0.000223 mean_z=0.000109 max_z=0.000223
+feature=5919 mean_abs_z=0.000104 max_abs_z=0.000211 mean_z=-0.000104 max_z=-0.000000
+feature=3932 mean_abs_z=0.000091 max_abs_z=0.000194 mean_z=0.000091 max_z=0.000194
+feature=5094 mean_abs_z=0.000091 max_abs_z=0.000223 mean_z=0.000091 max_z=0.000223
+feature=3873 mean_abs_z=0.000090 max_abs_z=0.000245 mean_z=0.000090 max_z=0.000245
+feature= 146 mean_abs_z=0.000090 max_abs_z=0.000248 mean_z=0.000090 max_z=0.000248
+feature=1751 mean_abs_z=0.000089 max_abs_z=0.000182 mean_z=-0.000089 max_z=-0.000000
+feature= 532 mean_abs_z=0.000089 max_abs_z=0.000179 mean_z=0.000089 max_z=0.000179
+feature=5295 mean_abs_z=0.000089 max_abs_z=0.000182 mean_z=0.000089 max_z=0.000182
+feature=4718 mean_abs_z=0.000089 max_abs_z=0.000182 mean_z=0.000089 max_z=0.000182
+feature=3411 mean_abs_z=0.000088 max_abs_z=0.000218 mean_z=0.000088 max_z=0.000218
+feature=4397 mean_abs_z=0.000087 max_abs_z=0.000204 mean_z=0.000087 max_z=0.000204
+feature=3621 mean_abs_z=0.000086 max_abs_z=0.000179 mean_z=0.000086 max_z=0.000179
+feature=5833 mean_abs_z=0.000085 max_abs_z=0.000182 mean_z=0.000085 max_z=0.000182
+feature=5837 mean_abs_z=0.000085 max_abs_z=0.000199 mean_z=0.000085 max_z=0.000199
+feature=5718 mean_abs_z=0.000085 max_abs_z=0.000199 mean_z=0.000085 max_z=0.000199
+feature=5417 mean_abs_z=0.000084 max_abs_z=0.000193 mean_z=0.000084 max_z=0.000193
+feature=1602 mean_abs_z=0.000083 max_abs_z=0.000185 mean_z=0.000083 max_z=0.000185
+feature=1403 mean_abs_z=0.000082 max_abs_z=0.000189 mean_z=-0.000082 max_z=-0.000000
+
+=== TOP ACTIVATING EXAMPLES ===
+
+--- Feature 2070 ---
+Top by z:
+[01] score=0.000274 abs_score=0.000274 lang=por_Latn sentence=Eles só querem ver você de volta como Gandalf.”
+[02] score=0.000271 abs_score=0.000271 lang=ita_Latn sentence=Il Signore infatti non respinge per sempre;
+[03] score=0.000268 abs_score=0.000268 lang=ces_Latn sentence=U pánů je to něco podobného.
+[04] score=0.000267 abs_score=0.000267 lang=nld_Latn sentence=Dat is $ 1 miljoen voor elk onopgelost wiskundig probleem!
+[05] score=0.000266 abs_score=0.000266 lang=spa_Latn sentence=Vuestro mundo está cubierto por la oscuridad."
+[06] score=0.000265 abs_score=0.000265 lang=ita_Latn sentence=L Eterno benedice il popolo suo con la pace».
+[07] score=0.000265 abs_score=0.000265 lang=eng_Latn sentence=A 2002 paper by Brown et al. caught my attention.
+[08] score=0.000264 abs_score=0.000264 lang=ces_Latn sentence=Přesto se ale považují za investory."
+[09] score=0.000263 abs_score=0.000263 lang=ces_Latn sentence=Přidejme tedy 150 na tuhle stranu také, co dostaneme?
+[10] score=0.000263 abs_score=0.000263 lang=nld_Latn sentence=2001 – het boek I Will Be Your Friend en het album “Worship”
+[11] score=0.000260 abs_score=0.000260 lang=pol_Latn sentence=Pytali oni czy jest Eliaszem lub prorokiem.
+[12] score=0.000259 abs_score=0.000259 lang=eng_Latn sentence=• only 257 did not find effects.)
+[13] score=0.000258 abs_score=0.000258 lang=eng_Latn sentence=That’s our first of 13 reasons you should eat like an Israeli.
+[14] score=0.000257 abs_score=0.000257 lang=deu_Latn sentence="Ob ich mit 4.800 Frauen geschlafen habe?
+[15] score=0.000257 abs_score=0.000257 lang=pol_Latn sentence=Odpowiedziałem: Tak, bo jest Pan członkiem SARP.
+[16] score=0.000257 abs_score=0.000257 lang=deu_Latn sentence=Wählen Sie Kemppi, and you know.
+[17] score=0.000256 abs_score=0.000256 lang=eng_Latn sentence=Said, "The church is the voice.
+[18] score=0.000256 abs_score=0.000256 lang=eng_Latn sentence=We are afraid of God's surprises; we are afraid of God's surprises!
+[19] score=0.000254 abs_score=0.000254 lang=spa_Latn sentence=modelo que te ha sido mostrado en el monte”.
+[20] score=0.000254 abs_score=0.000254 lang=pol_Latn sentence=Bo przecież już posmakowaliście dobroci Pana.”
+Top by |z|:
+[01] score=0.000274 abs_score=0.000274 lang=por_Latn sentence=Eles só querem ver você de volta como Gandalf.”
+[02] score=0.000271 abs_score=0.000271 lang=ita_Latn sentence=Il Signore infatti non respinge per sempre;
+[03] score=0.000268 abs_score=0.000268 lang=ces_Latn sentence=U pánů je to něco podobného.
+[04] score=0.000267 abs_score=0.000267 lang=nld_Latn sentence=Dat is $ 1 miljoen voor elk onopgelost wiskundig probleem!
+[05] score=0.000266 abs_score=0.000266 lang=spa_Latn sentence=Vuestro mundo está cubierto por la oscuridad."
+[06] score=0.000265 abs_score=0.000265 lang=ita_Latn sentence=L Eterno benedice il popolo suo con la pace».
+[07] score=0.000265 abs_score=0.000265 lang=eng_Latn sentence=A 2002 paper by Brown et al. caught my attention.
+[08] score=0.000264 abs_score=0.000264 lang=ces_Latn sentence=Přesto se ale považují za investory."
+[09] score=0.000263 abs_score=0.000263 lang=ces_Latn sentence=Přidejme tedy 150 na tuhle stranu také, co dostaneme?
+[10] score=0.000263 abs_score=0.000263 lang=nld_Latn sentence=2001 – het boek I Will Be Your Friend en het album “Worship”
+[11] score=0.000260 abs_score=0.000260 lang=pol_Latn sentence=Pytali oni czy jest Eliaszem lub prorokiem.
+[12] score=0.000259 abs_score=0.000259 lang=eng_Latn sentence=• only 257 did not find effects.)
+[13] score=0.000258 abs_score=0.000258 lang=eng_Latn sentence=That’s our first of 13 reasons you should eat like an Israeli.
+[14] score=0.000257 abs_score=0.000257 lang=deu_Latn sentence="Ob ich mit 4.800 Frauen geschlafen habe?
+[15] score=0.000257 abs_score=0.000257 lang=pol_Latn sentence=Odpowiedziałem: Tak, bo jest Pan członkiem SARP.
+[16] score=0.000257 abs_score=0.000257 lang=deu_Latn sentence=Wählen Sie Kemppi, and you know.
+[17] score=0.000256 abs_score=0.000256 lang=eng_Latn sentence=Said, "The church is the voice.
+[18] score=0.000256 abs_score=0.000256 lang=eng_Latn sentence=We are afraid of God's surprises; we are afraid of God's surprises!
+[19] score=0.000254 abs_score=0.000254 lang=spa_Latn sentence=modelo que te ha sido mostrado en el monte”.
+[20] score=0.000254 abs_score=0.000254 lang=pol_Latn sentence=Bo przecież już posmakowaliście dobroci Pana.”
+
+--- Feature 3628 ---
+Top by z:
+[01] score=0.000265 abs_score=0.000265 lang=ces_Latn sentence=„Měl tedy několik falešných klíčů.
+[02] score=0.000260 abs_score=0.000260 lang=eng_Latn sentence=In any place, at any time, you will have the impression that half of the 800 000 000 of Chinese accompany you.
+[03] score=0.000256 abs_score=0.000256 lang=nld_Latn sentence=Zij gedenkt hem met dankbaarheid.
+[04] score=0.000256 abs_score=0.000256 lang=ces_Latn sentence=U pánů je to něco podobného.
+[05] score=0.000256 abs_score=0.000256 lang=nld_Latn sentence=Zullen zij dan geen dank betuigen?”
+[06] score=0.000254 abs_score=0.000254 lang=ces_Latn sentence=Přesto se ale považují za investory."
+[07] score=0.000254 abs_score=0.000254 lang=ces_Latn sentence=Přidejme tedy 150 na tuhle stranu také, co dostaneme?
+[08] score=0.000249 abs_score=0.000249 lang=deu_Latn sentence=Rede zu den Söhnen Israels, daß sie aufbrechen.
+[09] score=0.000248 abs_score=0.000248 lang=nld_Latn sentence=Wij bekommeren ons enkel om het verwelkomen van de waarheid."
+[10] score=0.000247 abs_score=0.000247 lang=nld_Latn sentence=Net als John West verwerpen we meer dan we accepteren.
+[11] score=0.000247 abs_score=0.000247 lang=por_Latn sentence=Cada um receberá de teu Senhor seu quinhão.
+[12] score=0.000247 abs_score=0.000247 lang=spa_Latn sentence=La Misericordia de Dios se manifiesta en la Eucaristía.
+[13] score=0.000246 abs_score=0.000246 lang=eng_Latn sentence=That’s our first of 13 reasons you should eat like an Israeli.
+[14] score=0.000246 abs_score=0.000246 lang=eng_Latn sentence=“No, no, Mr Robert, I mean the man you interviewed.
+[15] score=0.000246 abs_score=0.000246 lang=pol_Latn sentence=Czcijcie waszego Pana!
+[16] score=0.000245 abs_score=0.000245 lang=pol_Latn sentence=Zaprawdę, Tyś jest Panem wszystkich światów.
+[17] score=0.000245 abs_score=0.000245 lang=eng_Latn sentence=“I thank god my mother became better in two things.
+[18] score=0.000244 abs_score=0.000244 lang=pol_Latn sentence=bacz Groby Pańskie w Parafiach naszego dekanatu.
+[19] score=0.000244 abs_score=0.000244 lang=spa_Latn sentence=Ellos perdieron de vista lo que es el mundo".
+[20] score=0.000244 abs_score=0.000244 lang=eng_Latn sentence=Surprisingly, we all felt great peace.”
+Top by |z|:
+[01] score=0.000265 abs_score=0.000265 lang=ces_Latn sentence=„Měl tedy několik falešných klíčů.
+[02] score=0.000260 abs_score=0.000260 lang=eng_Latn sentence=In any place, at any time, you will have the impression that half of the 800 000 000 of Chinese accompany you.
+[03] score=0.000256 abs_score=0.000256 lang=nld_Latn sentence=Zij gedenkt hem met dankbaarheid.
+[04] score=0.000256 abs_score=0.000256 lang=ces_Latn sentence=U pánů je to něco podobného.
+[05] score=0.000256 abs_score=0.000256 lang=nld_Latn sentence=Zullen zij dan geen dank betuigen?”
+[06] score=0.000254 abs_score=0.000254 lang=ces_Latn sentence=Přesto se ale považují za investory."
+[07] score=0.000254 abs_score=0.000254 lang=ces_Latn sentence=Přidejme tedy 150 na tuhle stranu také, co dostaneme?
+[08] score=0.000249 abs_score=0.000249 lang=deu_Latn sentence=Rede zu den Söhnen Israels, daß sie aufbrechen.
+[09] score=0.000248 abs_score=0.000248 lang=nld_Latn sentence=Wij bekommeren ons enkel om het verwelkomen van de waarheid."
+[10] score=0.000247 abs_score=0.000247 lang=nld_Latn sentence=Net als John West verwerpen we meer dan we accepteren.
+[11] score=0.000247 abs_score=0.000247 lang=por_Latn sentence=Cada um receberá de teu Senhor seu quinhão.
+[12] score=0.000247 abs_score=0.000247 lang=spa_Latn sentence=La Misericordia de Dios se manifiesta en la Eucaristía.
+[13] score=0.000246 abs_score=0.000246 lang=eng_Latn sentence=That’s our first of 13 reasons you should eat like an Israeli.
+[14] score=0.000246 abs_score=0.000246 lang=eng_Latn sentence=“No, no, Mr Robert, I mean the man you interviewed.
+[15] score=0.000246 abs_score=0.000246 lang=pol_Latn sentence=Czcijcie waszego Pana!
+[16] score=0.000245 abs_score=0.000245 lang=pol_Latn sentence=Zaprawdę, Tyś jest Panem wszystkich światów.
+[17] score=0.000245 abs_score=0.000245 lang=eng_Latn sentence=“I thank god my mother became better in two things.
+[18] score=0.000244 abs_score=0.000244 lang=pol_Latn sentence=bacz Groby Pańskie w Parafiach naszego dekanatu.
+[19] score=0.000244 abs_score=0.000244 lang=spa_Latn sentence=Ellos perdieron de vista lo que es el mundo".
+[20] score=0.000244 abs_score=0.000244 lang=eng_Latn sentence=Surprisingly, we all felt great peace.”
+
+--- Feature 146 ---
+Top by z:
+[01] score=0.000248 abs_score=0.000248 lang=nld_Latn sentence=Je kunt duizend keer herhalen dat een glas buiten jezelf bestaat.
+[02] score=0.000236 abs_score=0.000236 lang=nld_Latn sentence=1978 – Water gevonden op de maan!
+[03] score=0.000234 abs_score=0.000234 lang=eng_Latn sentence=Let’s see what just 20 short years have done for: Terrorist
+[04] score=0.000232 abs_score=0.000232 lang=eng_Latn sentence=Moreover, since 1995 Oktoberfest has had its own logo!
+[05] score=0.000231 abs_score=0.000231 lang=por_Latn sentence=Sabe da fidelidade de seu Senhor,
+[06] score=0.000231 abs_score=0.000231 lang=eng_Latn sentence=Strike the chains off every slave you see."
+[07] score=0.000231 abs_score=0.000231 lang=nld_Latn sentence=en de vrucht die ik voortbracht werd de zon.
+[08] score=0.000231 abs_score=0.000231 lang=nld_Latn sentence=Net als John West verwerpen we meer dan we accepteren.
+[09] score=0.000231 abs_score=0.000231 lang=por_Latn sentence=1º A Ressurreição de Nosso Senhor.
+[10] score=0.000230 abs_score=0.000230 lang=spa_Latn sentence=Carver, respondió: "De un viejo libro."
+[11] score=0.000230 abs_score=0.000230 lang=swe_Latn sentence=[52:14] Detta är Elden som ni inte brukade tro på.
+[12] score=0.000228 abs_score=0.000228 lang=eng_Latn sentence=I willingly invoke on every family the blessing of the Lord.”
+[13] score=0.000228 abs_score=0.000228 lang=eng_Latn sentence=“I thank god my mother became better in two things.
+[14] score=0.000228 abs_score=0.000228 lang=por_Latn sentence=“Não houve menos que dez mil mudanças naquela restrição!”
+[15] score=0.000228 abs_score=0.000228 lang=spa_Latn sentence=Él pidió que la Presencia de Dios los acompaña.
+[16] score=0.000228 abs_score=0.000228 lang=nld_Latn sentence=Dus dit jaar heb ik besloten dat ik heel jong ben."
+[17] score=0.000227 abs_score=0.000227 lang=swe_Latn sentence=Ser han vad han vill se, precis som jag och Los Angeles?
+[18] score=0.000226 abs_score=0.000226 lang=eng_Latn sentence=Said, "The church is the voice.
+[19] score=0.000226 abs_score=0.000226 lang=eng_Latn sentence=The whole country was sure: with Castro comes peace.
+[20] score=0.000226 abs_score=0.000226 lang=ces_Latn sentence=Čistí oddaní Pána nečisté zásady nepřijímají.
+Top by |z|:
+[01] score=0.000248 abs_score=0.000248 lang=nld_Latn sentence=Je kunt duizend keer herhalen dat een glas buiten jezelf bestaat.
+[02] score=0.000236 abs_score=0.000236 lang=nld_Latn sentence=1978 – Water gevonden op de maan!
+[03] score=0.000234 abs_score=0.000234 lang=eng_Latn sentence=Let’s see what just 20 short years have done for: Terrorist
+[04] score=0.000232 abs_score=0.000232 lang=eng_Latn sentence=Moreover, since 1995 Oktoberfest has had its own logo!
+[05] score=0.000231 abs_score=0.000231 lang=por_Latn sentence=Sabe da fidelidade de seu Senhor,
+[06] score=0.000231 abs_score=0.000231 lang=eng_Latn sentence=Strike the chains off every slave you see."
+[07] score=0.000231 abs_score=0.000231 lang=nld_Latn sentence=en de vrucht die ik voortbracht werd de zon.
+[08] score=0.000231 abs_score=0.000231 lang=nld_Latn sentence=Net als John West verwerpen we meer dan we accepteren.
+[09] score=0.000231 abs_score=0.000231 lang=por_Latn sentence=1º A Ressurreição de Nosso Senhor.
+[10] score=0.000230 abs_score=0.000230 lang=spa_Latn sentence=Carver, respondió: "De un viejo libro."
+[11] score=0.000230 abs_score=0.000230 lang=swe_Latn sentence=[52:14] Detta är Elden som ni inte brukade tro på.
+[12] score=0.000228 abs_score=0.000228 lang=eng_Latn sentence=I willingly invoke on every family the blessing of the Lord.”
+[13] score=0.000228 abs_score=0.000228 lang=eng_Latn sentence=“I thank god my mother became better in two things.
+[14] score=0.000228 abs_score=0.000228 lang=por_Latn sentence=“Não houve menos que dez mil mudanças naquela restrição!”
+[15] score=0.000228 abs_score=0.000228 lang=spa_Latn sentence=Él pidió que la Presencia de Dios los acompaña.
+[16] score=0.000228 abs_score=0.000228 lang=nld_Latn sentence=Dus dit jaar heb ik besloten dat ik heel jong ben."
+[17] score=0.000227 abs_score=0.000227 lang=swe_Latn sentence=Ser han vad han vill se, precis som jag och Los Angeles?
+[18] score=0.000226 abs_score=0.000226 lang=eng_Latn sentence=Said, "The church is the voice.
+[19] score=0.000226 abs_score=0.000226 lang=eng_Latn sentence=The whole country was sure: with Castro comes peace.
+[20] score=0.000226 abs_score=0.000226 lang=ces_Latn sentence=Čistí oddaní Pána nečisté zásady nepřijímají.
+
+--- Feature 273 ---
+Top by z:
+[01] score=0.000246 abs_score=0.000246 lang=nld_Latn sentence=72 Nu, zij keerde terug naar haar goden.
+[02] score=0.000244 abs_score=0.000244 lang=spa_Latn sentence=Los siervos de Dios han de dar amplia prueba de su ministerio.
+[03] score=0.000243 abs_score=0.000243 lang=eng_Latn sentence=The first indication offered by the apostle is that we are God’s co-workers.
+[04] score=0.000242 abs_score=0.000242 lang=eng_Latn sentence=Paradise is open to all God’s creatures."
+[05] score=0.000240 abs_score=0.000240 lang=fra_Latn sentence=Il conclut: "Je déteste les Juifs afin de mériter une récompense divine." [2]
+[06] score=0.000240 abs_score=0.000240 lang=por_Latn sentence=pela vinda de seu Senhor.
+[07] score=0.000238 abs_score=0.000238 lang=fra_Latn sentence=Mais la bonté d’une personne se répand dans toutes les directions. »
+[08] score=0.000238 abs_score=0.000238 lang=nld_Latn sentence=Wij bekommeren ons enkel om het verwelkomen van de waarheid."
+[09] score=0.000237 abs_score=0.000237 lang=fra_Latn sentence=Les enfants de Dieu seront tirés dans toutes les directions.
+[10] score=0.000237 abs_score=0.000237 lang=ces_Latn sentence=U pánů je to něco podobného.
+[11] score=0.000237 abs_score=0.000237 lang=eng_Latn sentence=A 2002 paper by Brown et al. caught my attention.
+[12] score=0.000237 abs_score=0.000237 lang=ces_Latn sentence=Přesto se ale považují za investory."
+[13] score=0.000236 abs_score=0.000236 lang=fra_Latn sentence=la vérité se manifesta et ce qu'ils firent fût vain.
+[14] score=0.000236 abs_score=0.000236 lang=eng_Latn sentence=In any place, at any time, you will have the impression that half of the 800 000 000 of Chinese accompany you.
+[15] score=0.000234 abs_score=0.000234 lang=spa_Latn sentence=el Compasivo, el Misericordioso.
+[16] score=0.000234 abs_score=0.000234 lang=ces_Latn sentence=To je jen dočasné rozdělení.“
+[17] score=0.000234 abs_score=0.000234 lang=eng_Latn sentence=E-233 We have all kinds of witnesses.
+[18] score=0.000233 abs_score=0.000233 lang=spa_Latn sentence=La Misericordia de Dios se manifiesta en la Eucaristía.
+[19] score=0.000233 abs_score=0.000233 lang=deu_Latn sentence=Gesegnet sei der, der Augenblicke der Unentschlossenheit durchlebt.“
+[20] score=0.000232 abs_score=0.000232 lang=spa_Latn sentence=Ellos perdieron de vista lo que es el mundo".
+Top by |z|:
+[01] score=0.000246 abs_score=0.000246 lang=nld_Latn sentence=72 Nu, zij keerde terug naar haar goden.
+[02] score=0.000244 abs_score=0.000244 lang=spa_Latn sentence=Los siervos de Dios han de dar amplia prueba de su ministerio.
+[03] score=0.000243 abs_score=0.000243 lang=eng_Latn sentence=The first indication offered by the apostle is that we are God’s co-workers.
+[04] score=0.000242 abs_score=0.000242 lang=eng_Latn sentence=Paradise is open to all God’s creatures."
+[05] score=0.000240 abs_score=0.000240 lang=fra_Latn sentence=Il conclut: "Je déteste les Juifs afin de mériter une récompense divine." [2]
+[06] score=0.000240 abs_score=0.000240 lang=por_Latn sentence=pela vinda de seu Senhor.
+[07] score=0.000238 abs_score=0.000238 lang=fra_Latn sentence=Mais la bonté d’une personne se répand dans toutes les directions. »
+[08] score=0.000238 abs_score=0.000238 lang=nld_Latn sentence=Wij bekommeren ons enkel om het verwelkomen van de waarheid."
+[09] score=0.000237 abs_score=0.000237 lang=fra_Latn sentence=Les enfants de Dieu seront tirés dans toutes les directions.
+[10] score=0.000237 abs_score=0.000237 lang=ces_Latn sentence=U pánů je to něco podobného.
+[11] score=0.000237 abs_score=0.000237 lang=eng_Latn sentence=A 2002 paper by Brown et al. caught my attention.
+[12] score=0.000237 abs_score=0.000237 lang=ces_Latn sentence=Přesto se ale považují za investory."
+[13] score=0.000236 abs_score=0.000236 lang=fra_Latn sentence=la vérité se manifesta et ce qu'ils firent fût vain.
+[14] score=0.000236 abs_score=0.000236 lang=eng_Latn sentence=In any place, at any time, you will have the impression that half of the 800 000 000 of Chinese accompany you.
+[15] score=0.000234 abs_score=0.000234 lang=spa_Latn sentence=el Compasivo, el Misericordioso.
+[16] score=0.000234 abs_score=0.000234 lang=ces_Latn sentence=To je jen dočasné rozdělení.“
+[17] score=0.000234 abs_score=0.000234 lang=eng_Latn sentence=E-233 We have all kinds of witnesses.
+[18] score=0.000233 abs_score=0.000233 lang=spa_Latn sentence=La Misericordia de Dios se manifiesta en la Eucaristía.
+[19] score=0.000233 abs_score=0.000233 lang=deu_Latn sentence=Gesegnet sei der, der Augenblicke der Unentschlossenheit durchlebt.“
+[20] score=0.000232 abs_score=0.000232 lang=spa_Latn sentence=Ellos perdieron de vista lo que es el mundo".
+
+--- Feature 3873 ---
+Top by z:
+[01] score=0.000245 abs_score=0.000245 lang=spa_Latn sentence=el Altísimo es misericordioso.
+[02] score=0.000245 abs_score=0.000245 lang=nld_Latn sentence=Heb je ooit getwijfeld dan of je terug zou kunnen komen van die blessure?
+[03] score=0.000243 abs_score=0.000243 lang=deu_Latn sentence="Das ist für uns die plausibelste Erkrankungsursache".
+[04] score=0.000243 abs_score=0.000243 lang=ces_Latn sentence=On je, v pravdě, Odpouštějící, Milosrdný.
+[05] score=0.000241 abs_score=0.000241 lang=ita_Latn sentence=Il Signore infatti non respinge per sempre;
+[06] score=0.000239 abs_score=0.000239 lang=fra_Latn sentence=Les enfants de Dieu seront tirés dans toutes les directions.
+[07] score=0.000238 abs_score=0.000238 lang=eng_Latn sentence=E-233 We have all kinds of witnesses.
+[08] score=0.000236 abs_score=0.000236 lang=deu_Latn sentence=In diesem Fall verlange der Herr von uns, „uns um die Familie zu kümmern“.
+[09] score=0.000235 abs_score=0.000235 lang=spa_Latn sentence=A dios lo que es de dios →
+[10] score=0.000235 abs_score=0.000235 lang=pol_Latn sentence=Chorwacja: „Czy UE utopi tutaj nasze kolejne miliardy?”
+[11] score=0.000235 abs_score=0.000235 lang=deu_Latn sentence=Ich gebe es hin für das Leben der Welt“.
+[12] score=0.000235 abs_score=0.000235 lang=ita_Latn sentence=L’ira del Signore si accese contro il suo popolo,
+[13] score=0.000234 abs_score=0.000234 lang=pol_Latn sentence=Słowa Pana Boga Naszego (z objawień Zofii Nosko):
+[14] score=0.000234 abs_score=0.000234 lang=por_Latn sentence=A exemplo de seu Senhor,
+[15] score=0.000234 abs_score=0.000234 lang=ita_Latn sentence=Tu sei, in verità, Colui Che Sempre Perdona, il Misericordiosissimo.
+[16] score=0.000234 abs_score=0.000234 lang=fra_Latn sentence=Il conclut: "Je déteste les Juifs afin de mériter une récompense divine." [2]
+[17] score=0.000234 abs_score=0.000234 lang=ces_Latn sentence=Ovládá nějaké temné umění, Nede, na to přísahám.“
+[18] score=0.000233 abs_score=0.000233 lang=fra_Latn sentence=« Je crois que tu es le Christ, le Fils de Dieu »
+[19] score=0.000233 abs_score=0.000233 lang=ita_Latn sentence=E confida nell’Eccelso, nel Misericordioso,
+[20] score=0.000233 abs_score=0.000233 lang=eng_Latn sentence=“No, no, Mr Robert, I mean the man you interviewed.
+Top by |z|:
+[01] score=0.000245 abs_score=0.000245 lang=spa_Latn sentence=el Altísimo es misericordioso.
+[02] score=0.000245 abs_score=0.000245 lang=nld_Latn sentence=Heb je ooit getwijfeld dan of je terug zou kunnen komen van die blessure?
+[03] score=0.000243 abs_score=0.000243 lang=deu_Latn sentence="Das ist für uns die plausibelste Erkrankungsursache".
+[04] score=0.000243 abs_score=0.000243 lang=ces_Latn sentence=On je, v pravdě, Odpouštějící, Milosrdný.
+[05] score=0.000241 abs_score=0.000241 lang=ita_Latn sentence=Il Signore infatti non respinge per sempre;
+[06] score=0.000239 abs_score=0.000239 lang=fra_Latn sentence=Les enfants de Dieu seront tirés dans toutes les directions.
+[07] score=0.000238 abs_score=0.000238 lang=eng_Latn sentence=E-233 We have all kinds of witnesses.
+[08] score=0.000236 abs_score=0.000236 lang=deu_Latn sentence=In diesem Fall verlange der Herr von uns, „uns um die Familie zu kümmern“.
+[09] score=0.000235 abs_score=0.000235 lang=spa_Latn sentence=A dios lo que es de dios →
+[10] score=0.000235 abs_score=0.000235 lang=pol_Latn sentence=Chorwacja: „Czy UE utopi tutaj nasze kolejne miliardy?”
+[11] score=0.000235 abs_score=0.000235 lang=deu_Latn sentence=Ich gebe es hin für das Leben der Welt“.
+[12] score=0.000235 abs_score=0.000235 lang=ita_Latn sentence=L’ira del Signore si accese contro il suo popolo,
+[13] score=0.000234 abs_score=0.000234 lang=pol_Latn sentence=Słowa Pana Boga Naszego (z objawień Zofii Nosko):
+[14] score=0.000234 abs_score=0.000234 lang=por_Latn sentence=A exemplo de seu Senhor,
+[15] score=0.000234 abs_score=0.000234 lang=ita_Latn sentence=Tu sei, in verità, Colui Che Sempre Perdona, il Misericordiosissimo.
+[16] score=0.000234 abs_score=0.000234 lang=fra_Latn sentence=Il conclut: "Je déteste les Juifs afin de mériter une récompense divine." [2]
+[17] score=0.000234 abs_score=0.000234 lang=ces_Latn sentence=Ovládá nějaké temné umění, Nede, na to přísahám.“
+[18] score=0.000233 abs_score=0.000233 lang=fra_Latn sentence=« Je crois que tu es le Christ, le Fils de Dieu »
+[19] score=0.000233 abs_score=0.000233 lang=ita_Latn sentence=E confida nell’Eccelso, nel Misericordioso,
+[20] score=0.000233 abs_score=0.000233 lang=eng_Latn sentence=“No, no, Mr Robert, I mean the man you interviewed.
+
+--- Feature 5668 ---
+Top by z:
+[01] score=0.000242 abs_score=0.000242 lang=ces_Latn sentence=U pánů je to něco podobného.
+[02] score=0.000233 abs_score=0.000233 lang=ces_Latn sentence=To je jen dočasné rozdělení.“
+[03] score=0.000229 abs_score=0.000229 lang=spa_Latn sentence=Ellos perdieron de vista lo que es el mundo".
+[04] score=0.000229 abs_score=0.000229 lang=spa_Latn sentence=hablan en nombre de Dios.
+[05] score=0.000229 abs_score=0.000229 lang=eng_Latn sentence=We are afraid of God's surprises; we are afraid of God's surprises!
+[06] score=0.000227 abs_score=0.000227 lang=ces_Latn sentence=Přidejme tedy 150 na tuhle stranu také, co dostaneme?
+[07] score=0.000226 abs_score=0.000226 lang=pol_Latn sentence=To znaczyło: „Życie jest walką”.
+[08] score=0.000224 abs_score=0.000224 lang=eng_Latn sentence=Said, "The church is the voice.
+[09] score=0.000224 abs_score=0.000224 lang=eng_Latn sentence=Paradise is open to all God’s creatures."
+[10] score=0.000224 abs_score=0.000224 lang=pol_Latn sentence=Zaprawdę, Tyś jest Panem wszystkich światów.
+[11] score=0.000222 abs_score=0.000222 lang=eng_Latn sentence=But “the Lord will be the hope of His people, and the strength of the children of Israel.”
+[12] score=0.000221 abs_score=0.000221 lang=deu_Latn sentence=Er könnte recht haben, und wir könnten eines Tages eine einzige Weltwährung haben.
+[13] score=0.000221 abs_score=0.000221 lang=ces_Latn sentence=Pána v saku poslouchat nebudou, ten je nudný.
+[14] score=0.000220 abs_score=0.000220 lang=deu_Latn sentence=Rede zu den Söhnen Israels, daß sie aufbrechen.
+[15] score=0.000219 abs_score=0.000219 lang=spa_Latn sentence=Aunque para ser exactos, son las habilidades mágicas de los elegidos”.
+[16] score=0.000218 abs_score=0.000218 lang=eng_Latn sentence=Pharaoh’s daughter finds him and adopts him.
+[17] score=0.000217 abs_score=0.000217 lang=spa_Latn sentence=el Compasivo, el Misericordioso.
+[18] score=0.000217 abs_score=0.000217 lang=ces_Latn sentence=Přesto se ale považují za investory."
+[19] score=0.000215 abs_score=0.000215 lang=spa_Latn sentence=“Son las cosas de Dios”, agregó.
+[20] score=0.000214 abs_score=0.000214 lang=ces_Latn sentence=„Měl tedy několik falešných klíčů.
+Top by |z|:
+[01] score=0.000242 abs_score=0.000242 lang=ces_Latn sentence=U pánů je to něco podobného.
+[02] score=0.000233 abs_score=0.000233 lang=ces_Latn sentence=To je jen dočasné rozdělení.“
+[03] score=0.000229 abs_score=0.000229 lang=spa_Latn sentence=Ellos perdieron de vista lo que es el mundo".
+[04] score=0.000229 abs_score=0.000229 lang=spa_Latn sentence=hablan en nombre de Dios.
+[05] score=0.000229 abs_score=0.000229 lang=eng_Latn sentence=We are afraid of God's surprises; we are afraid of God's surprises!
+[06] score=0.000227 abs_score=0.000227 lang=ces_Latn sentence=Přidejme tedy 150 na tuhle stranu také, co dostaneme?
+[07] score=0.000226 abs_score=0.000226 lang=pol_Latn sentence=To znaczyło: „Życie jest walką”.
+[08] score=0.000224 abs_score=0.000224 lang=eng_Latn sentence=Said, "The church is the voice.
+[09] score=0.000224 abs_score=0.000224 lang=eng_Latn sentence=Paradise is open to all God’s creatures."
+[10] score=0.000224 abs_score=0.000224 lang=pol_Latn sentence=Zaprawdę, Tyś jest Panem wszystkich światów.
+[11] score=0.000222 abs_score=0.000222 lang=eng_Latn sentence=But “the Lord will be the hope of His people, and the strength of the children of Israel.”
+[12] score=0.000221 abs_score=0.000221 lang=deu_Latn sentence=Er könnte recht haben, und wir könnten eines Tages eine einzige Weltwährung haben.
+[13] score=0.000221 abs_score=0.000221 lang=ces_Latn sentence=Pána v saku poslouchat nebudou, ten je nudný.
+[14] score=0.000220 abs_score=0.000220 lang=deu_Latn sentence=Rede zu den Söhnen Israels, daß sie aufbrechen.
+[15] score=0.000219 abs_score=0.000219 lang=spa_Latn sentence=Aunque para ser exactos, son las habilidades mágicas de los elegidos”.
+[16] score=0.000218 abs_score=0.000218 lang=eng_Latn sentence=Pharaoh’s daughter finds him and adopts him.
+[17] score=0.000217 abs_score=0.000217 lang=spa_Latn sentence=el Compasivo, el Misericordioso.
+[18] score=0.000217 abs_score=0.000217 lang=ces_Latn sentence=Přesto se ale považují za investory."
+[19] score=0.000215 abs_score=0.000215 lang=spa_Latn sentence=“Son las cosas de Dios”, agregó.
+[20] score=0.000214 abs_score=0.000214 lang=ces_Latn sentence=„Měl tedy několik falešných klíčů.
+
+--- Feature 1915 ---
+Top by z:
+[01] score=0.000242 abs_score=0.000242 lang=eng_Latn sentence=Said, "The church is the voice.
+[02] score=0.000232 abs_score=0.000232 lang=ces_Latn sentence=Přidejme tedy 150 na tuhle stranu také, co dostaneme?
+[03] score=0.000231 abs_score=0.000231 lang=eng_Latn sentence=“No, no, Mr Robert, I mean the man you interviewed.
+[04] score=0.000230 abs_score=0.000230 lang=deu_Latn sentence=Wählen Sie Kemppi, and you know.
+[05] score=0.000229 abs_score=0.000229 lang=fra_Latn sentence=138 Père, nous venons ce matin comme Tes humbles enfants.
+[06] score=0.000228 abs_score=0.000228 lang=swe_Latn sentence=[70:7] Medan vi ser det mycket nära.
+[07] score=0.000227 abs_score=0.000227 lang=nld_Latn sentence=Iedereen, Chris kan je nu helpen.
+[08] score=0.000226 abs_score=0.000226 lang=ita_Latn sentence=Tu sei, in verità, Colui Che Sempre Perdona, il Misericordiosissimo.
+[09] score=0.000226 abs_score=0.000226 lang=ces_Latn sentence=A on mi odpověděl: Ne, prostě maluj.
+[10] score=0.000225 abs_score=0.000225 lang=nld_Latn sentence=De rest wordt door het London Development Agency bijgepast.
+[11] score=0.000224 abs_score=0.000224 lang=eng_Latn sentence=“At first, I refused to call [our son] Google.
+[12] score=0.000224 abs_score=0.000224 lang=nld_Latn sentence=Net als John West verwerpen we meer dan we accepteren.
+[13] score=0.000223 abs_score=0.000223 lang=deu_Latn sentence=91Daß sie dem Erbarmer ein Kind zuschreiben.
+[14] score=0.000222 abs_score=0.000222 lang=deu_Latn sentence="Bis 22 Wochen ist es eine Frucht, kein Kind.
+[15] score=0.000222 abs_score=0.000222 lang=eng_Latn sentence=That’s our first of 13 reasons you should eat like an Israeli.
+[16] score=0.000221 abs_score=0.000221 lang=pol_Latn sentence=Przestrzegali nakazu PANA, tak jak PAN rozkazał przez Mojżesza.
+[17] score=0.000221 abs_score=0.000221 lang=spa_Latn sentence=el Compasivo, el Misericordioso.
+[18] score=0.000220 abs_score=0.000220 lang=deu_Latn sentence=Gesegnet sei der, der Augenblicke der Unentschlossenheit durchlebt.“
+[19] score=0.000220 abs_score=0.000220 lang=nld_Latn sentence=en de vrucht die ik voortbracht werd de zon.
+[20] score=0.000219 abs_score=0.000219 lang=deu_Latn sentence=Ich gebe es hin für das Leben der Welt“.
+Top by |z|:
+[01] score=0.000242 abs_score=0.000242 lang=eng_Latn sentence=Said, "The church is the voice.
+[02] score=0.000232 abs_score=0.000232 lang=ces_Latn sentence=Přidejme tedy 150 na tuhle stranu také, co dostaneme?
+[03] score=0.000231 abs_score=0.000231 lang=eng_Latn sentence=“No, no, Mr Robert, I mean the man you interviewed.
+[04] score=0.000230 abs_score=0.000230 lang=deu_Latn sentence=Wählen Sie Kemppi, and you know.
+[05] score=0.000229 abs_score=0.000229 lang=fra_Latn sentence=138 Père, nous venons ce matin comme Tes humbles enfants.
+[06] score=0.000228 abs_score=0.000228 lang=swe_Latn sentence=[70:7] Medan vi ser det mycket nära.
+[07] score=0.000227 abs_score=0.000227 lang=nld_Latn sentence=Iedereen, Chris kan je nu helpen.
+[08] score=0.000226 abs_score=0.000226 lang=ita_Latn sentence=Tu sei, in verità, Colui Che Sempre Perdona, il Misericordiosissimo.
+[09] score=0.000226 abs_score=0.000226 lang=ces_Latn sentence=A on mi odpověděl: Ne, prostě maluj.
+[10] score=0.000225 abs_score=0.000225 lang=nld_Latn sentence=De rest wordt door het London Development Agency bijgepast.
+[11] score=0.000224 abs_score=0.000224 lang=eng_Latn sentence=“At first, I refused to call [our son] Google.
+[12] score=0.000224 abs_score=0.000224 lang=nld_Latn sentence=Net als John West verwerpen we meer dan we accepteren.
+[13] score=0.000223 abs_score=0.000223 lang=deu_Latn sentence=91Daß sie dem Erbarmer ein Kind zuschreiben.
+[14] score=0.000222 abs_score=0.000222 lang=deu_Latn sentence="Bis 22 Wochen ist es eine Frucht, kein Kind.
+[15] score=0.000222 abs_score=0.000222 lang=eng_Latn sentence=That’s our first of 13 reasons you should eat like an Israeli.
+[16] score=0.000221 abs_score=0.000221 lang=pol_Latn sentence=Przestrzegali nakazu PANA, tak jak PAN rozkazał przez Mojżesza.
+[17] score=0.000221 abs_score=0.000221 lang=spa_Latn sentence=el Compasivo, el Misericordioso.
+[18] score=0.000220 abs_score=0.000220 lang=deu_Latn sentence=Gesegnet sei der, der Augenblicke der Unentschlossenheit durchlebt.“
+[19] score=0.000220 abs_score=0.000220 lang=nld_Latn sentence=en de vrucht die ik voortbracht werd de zon.
+[20] score=0.000219 abs_score=0.000219 lang=deu_Latn sentence=Ich gebe es hin für das Leben der Welt“.
+
+--- Feature 430 ---
+Top by z:
+[01] score=0.000232 abs_score=0.000232 lang=ita_Latn sentence=Il loro Signore hanno abbandonato,
+[02] score=0.000232 abs_score=0.000232 lang=pol_Latn sentence=Spójrz na swego pana!”
+[03] score=0.000230 abs_score=0.000230 lang=ita_Latn sentence=bene riceveranno il compenso presso il loro Signore.
+[04] score=0.000229 abs_score=0.000229 lang=ita_Latn sentence=A che serve il giardino al tuo signore?
+[05] score=0.000228 abs_score=0.000228 lang=ita_Latn sentence=Entreranno nella gioia del loro Signore.
+[06] score=0.000228 abs_score=0.000228 lang=por_Latn sentence=A mão do Senhor manifestar-se-á aos seus servos».
+[07] score=0.000227 abs_score=0.000227 lang=por_Latn sentence=A mão do Senhor manifestar-se-á aos seus servos».
+[08] score=0.000227 abs_score=0.000227 lang=ita_Latn sentence=(8) e aspira al tuo Signore.
+[09] score=0.000227 abs_score=0.000227 lang=por_Latn sentence=e de Aarão, o ungido do SENHOR.
+[10] score=0.000227 abs_score=0.000227 lang=ita_Latn sentence=Questi li decide il loro signore.
+[11] score=0.000226 abs_score=0.000226 lang=ita_Latn sentence=con gli occhi del suo Signore:
+[12] score=0.000226 abs_score=0.000226 lang=por_Latn sentence=Conhecendo o seu Senhor,
+[13] score=0.000225 abs_score=0.000225 lang=ita_Latn sentence=Ritorneranno poi tutti verso il loro Signore» (Cor.
+[14] score=0.000225 abs_score=0.000225 lang=por_Latn sentence=interesse), Mas persevera, pela causa do teu Senhor.''
+[15] score=0.000225 abs_score=0.000225 lang=ita_Latn sentence=A lui erano stati affidati i cavalli del suo signore.
+[16] score=0.000225 abs_score=0.000225 lang=por_Latn sentence=Imediatamente chamou pelo seu senhor (Clame ao Senhor!).
+[17] score=0.000225 abs_score=0.000225 lang=ita_Latn sentence=venivan sorreggendo il lor signore;
+[18] score=0.000224 abs_score=0.000224 lang=spa_Latn sentence=Serán evidencia del triunfo de Dios sobre Satanás.
+[19] score=0.000224 abs_score=0.000224 lang=ita_Latn sentence=un beneficio dal suo signore e lo vuole poi nascondere].
+[20] score=0.000224 abs_score=0.000224 lang=por_Latn sentence=pública pelo seu senhor[13].
+Top by |z|:
+[01] score=0.000232 abs_score=0.000232 lang=ita_Latn sentence=Il loro Signore hanno abbandonato,
+[02] score=0.000232 abs_score=0.000232 lang=pol_Latn sentence=Spójrz na swego pana!”
+[03] score=0.000230 abs_score=0.000230 lang=ita_Latn sentence=bene riceveranno il compenso presso il loro Signore.
+[04] score=0.000229 abs_score=0.000229 lang=ita_Latn sentence=A che serve il giardino al tuo signore?
+[05] score=0.000228 abs_score=0.000228 lang=ita_Latn sentence=Entreranno nella gioia del loro Signore.
+[06] score=0.000228 abs_score=0.000228 lang=por_Latn sentence=A mão do Senhor manifestar-se-á aos seus servos».
+[07] score=0.000227 abs_score=0.000227 lang=por_Latn sentence=A mão do Senhor manifestar-se-á aos seus servos».
+[08] score=0.000227 abs_score=0.000227 lang=ita_Latn sentence=(8) e aspira al tuo Signore.
+[09] score=0.000227 abs_score=0.000227 lang=por_Latn sentence=e de Aarão, o ungido do SENHOR.
+[10] score=0.000227 abs_score=0.000227 lang=ita_Latn sentence=Questi li decide il loro signore.
+[11] score=0.000226 abs_score=0.000226 lang=ita_Latn sentence=con gli occhi del suo Signore:
+[12] score=0.000226 abs_score=0.000226 lang=por_Latn sentence=Conhecendo o seu Senhor,
+[13] score=0.000225 abs_score=0.000225 lang=ita_Latn sentence=Ritorneranno poi tutti verso il loro Signore» (Cor.
+[14] score=0.000225 abs_score=0.000225 lang=por_Latn sentence=interesse), Mas persevera, pela causa do teu Senhor.''
+[15] score=0.000225 abs_score=0.000225 lang=ita_Latn sentence=A lui erano stati affidati i cavalli del suo signore.
+[16] score=0.000225 abs_score=0.000225 lang=por_Latn sentence=Imediatamente chamou pelo seu senhor (Clame ao Senhor!).
+[17] score=0.000225 abs_score=0.000225 lang=ita_Latn sentence=venivan sorreggendo il lor signore;
+[18] score=0.000224 abs_score=0.000224 lang=spa_Latn sentence=Serán evidencia del triunfo de Dios sobre Satanás.
+[19] score=0.000224 abs_score=0.000224 lang=ita_Latn sentence=un beneficio dal suo signore e lo vuole poi nascondere].
+[20] score=0.000224 abs_score=0.000224 lang=por_Latn sentence=pública pelo seu senhor[13].
+
+--- Feature 98 ---
+Top by z:
+[01] score=0.000224 abs_score=0.000224 lang=por_Latn sentence=Eles só querem ver você de volta como Gandalf.”
+[02] score=0.000223 abs_score=0.000223 lang=nld_Latn sentence=Dat is $ 1 miljoen voor elk onopgelost wiskundig probleem!
+[03] score=0.000223 abs_score=0.000223 lang=pol_Latn sentence=Czeka na swojego pana
+[04] score=0.000221 abs_score=0.000221 lang=spa_Latn sentence=Vuestro mundo está cubierto por la oscuridad."
+[05] score=0.000221 abs_score=0.000221 lang=pol_Latn sentence=Pytali oni czy jest Eliaszem lub prorokiem.
+[06] score=0.000218 abs_score=0.000218 lang=spa_Latn sentence=modelo que te ha sido mostrado en el monte”.
+[07] score=0.000217 abs_score=0.000217 lang=nld_Latn sentence=2001 – het boek I Will Be Your Friend en het album “Worship”
+[08] score=0.000216 abs_score=0.000216 lang=spa_Latn sentence=El nombre de ese Dios es Abraxas."
+[09] score=0.000214 abs_score=0.000214 lang=pol_Latn sentence=[10 historycznie znaczących protestów politycznych]
+[10] score=0.000214 abs_score=0.000214 lang=ces_Latn sentence=Což nebudou vděčni?
+[11] score=0.000213 abs_score=0.000213 lang=spa_Latn sentence=“¡Esto procede de Allah!.”
+[12] score=0.000213 abs_score=0.000213 lang=pol_Latn sentence=To znaczyło: „Życie jest walką”.
+[13] score=0.000212 abs_score=0.000212 lang=ita_Latn sentence=L Eterno benedice il popolo suo con la pace».
+[14] score=0.000212 abs_score=0.000212 lang=swe_Latn sentence=Varför cancer är mer dödligt om du är svart
+[15] score=0.000212 abs_score=0.000212 lang=swe_Latn sentence=Kommer förbindelserna mellan Oakland och vår poliskår förbättra nu?
+[16] score=0.000210 abs_score=0.000210 lang=por_Latn sentence=Nihon só apoia algumas escolas no Japão?
+[17] score=0.000209 abs_score=0.000209 lang=pol_Latn sentence=Czcijcie waszego Pana!
+[18] score=0.000209 abs_score=0.000209 lang=swe_Latn sentence=Nu behöver de mig, nummer ett på streaming
+[19] score=0.000208 abs_score=0.000208 lang=swe_Latn sentence=Är det att människan lever ut vad Gud har och är?
+[20] score=0.000208 abs_score=0.000208 lang=ita_Latn sentence=Metti la mano sui luoghi se ti piace."
+Top by |z|:
+[01] score=0.000224 abs_score=0.000224 lang=por_Latn sentence=Eles só querem ver você de volta como Gandalf.”
+[02] score=0.000223 abs_score=0.000223 lang=nld_Latn sentence=Dat is $ 1 miljoen voor elk onopgelost wiskundig probleem!
+[03] score=0.000223 abs_score=0.000223 lang=pol_Latn sentence=Czeka na swojego pana
+[04] score=0.000221 abs_score=0.000221 lang=spa_Latn sentence=Vuestro mundo está cubierto por la oscuridad."
+[05] score=0.000221 abs_score=0.000221 lang=pol_Latn sentence=Pytali oni czy jest Eliaszem lub prorokiem.
+[06] score=0.000218 abs_score=0.000218 lang=spa_Latn sentence=modelo que te ha sido mostrado en el monte”.
+[07] score=0.000217 abs_score=0.000217 lang=nld_Latn sentence=2001 – het boek I Will Be Your Friend en het album “Worship”
+[08] score=0.000216 abs_score=0.000216 lang=spa_Latn sentence=El nombre de ese Dios es Abraxas."
+[09] score=0.000214 abs_score=0.000214 lang=pol_Latn sentence=[10 historycznie znaczących protestów politycznych]
+[10] score=0.000214 abs_score=0.000214 lang=ces_Latn sentence=Což nebudou vděčni?
+[11] score=0.000213 abs_score=0.000213 lang=spa_Latn sentence=“¡Esto procede de Allah!.”
+[12] score=0.000213 abs_score=0.000213 lang=pol_Latn sentence=To znaczyło: „Życie jest walką”.
+[13] score=0.000212 abs_score=0.000212 lang=ita_Latn sentence=L Eterno benedice il popolo suo con la pace».
+[14] score=0.000212 abs_score=0.000212 lang=swe_Latn sentence=Varför cancer är mer dödligt om du är svart
+[15] score=0.000212 abs_score=0.000212 lang=swe_Latn sentence=Kommer förbindelserna mellan Oakland och vår poliskår förbättra nu?
+[16] score=0.000210 abs_score=0.000210 lang=por_Latn sentence=Nihon só apoia algumas escolas no Japão?
+[17] score=0.000209 abs_score=0.000209 lang=pol_Latn sentence=Czcijcie waszego Pana!
+[18] score=0.000209 abs_score=0.000209 lang=swe_Latn sentence=Nu behöver de mig, nummer ett på streaming
+[19] score=0.000208 abs_score=0.000208 lang=swe_Latn sentence=Är det att människan lever ut vad Gud har och är?
+[20] score=0.000208 abs_score=0.000208 lang=ita_Latn sentence=Metti la mano sui luoghi se ti piace."
+
+--- Feature 3148 ---
+Top by z:
+[01] score=0.000223 abs_score=0.000223 lang=pol_Latn sentence=IKEA na Białorusi będzie trudne
+[02] score=0.000221 abs_score=0.000221 lang=por_Latn sentence="A vida sem um amigo é morte sem testemunha."
+[03] score=0.000220 abs_score=0.000220 lang=por_Latn sentence=O zelo do Senhor dos Exércitos fará isso."
+[04] score=0.000220 abs_score=0.000220 lang=fra_Latn sentence=C’est une victoire pour la ville et l’environnement. »
+[05] score=0.000219 abs_score=0.000219 lang=deu_Latn sentence=Wandelt in Heiligkeit, allem Leid ein Ende zu bereiten."
+[06] score=0.000218 abs_score=0.000218 lang=pol_Latn sentence=**Tylko dla krajów EU6
+[07] score=0.000218 abs_score=0.000218 lang=deu_Latn sentence="Das ist für uns die plausibelste Erkrankungsursache".
+[08] score=0.000217 abs_score=0.000217 lang=spa_Latn sentence=Entonces no hay más respuestas, solo mejores y mejores mentiras".
+[09] score=0.000217 abs_score=0.000217 lang=ita_Latn sentence=E’ in realtà una battaglia tra la verità di Dio e le menzogne di Satana!
+[10] score=0.000217 abs_score=0.000217 lang=deu_Latn sentence="Das ist der unüberlegte Brexit, den wir alle befürchtet haben - ein Sprung in die Dunkelheit."
+[11] score=0.000217 abs_score=0.000217 lang=nld_Latn sentence=Nu is het de beurt aan niet-Palestijnse Arabische journalisten om deze hitte te voelen.
+[12] score=0.000217 abs_score=0.000217 lang=pol_Latn sentence=tej Ziemi, ponieważ jest ona zaprzeczeniem pojedynczej pełnej Prawdy (czyli Boga).
+[13] score=0.000217 abs_score=0.000217 lang=nld_Latn sentence=1) Yantai; Binnenkort moet de definitieve beslissing vallen.
+[14] score=0.000216 abs_score=0.000216 lang=ces_Latn sentence=Je třeba připravit 15% řešení tímto způsobem:
+[15] score=0.000216 abs_score=0.000216 lang=swe_Latn sentence=”Hur vore det att hjälpa några amerikanska företag först?”
+[16] score=0.000216 abs_score=0.000216 lang=ces_Latn sentence=K – Koordinace s Evropskou Unií ➞⟩
+[17] score=0.000216 abs_score=0.000216 lang=spa_Latn sentence=¿Cuáles son los efectos visibles del EGF?
+[18] score=0.000216 abs_score=0.000216 lang=deu_Latn sentence=Zu zerstören kann die gedankenlose Tat eines einzelnen Tages sein."
+[19] score=0.000216 abs_score=0.000216 lang=nld_Latn sentence=Voor dezelfde reden is het verboden om te vasten op “de dag van de twijfel”.
+[20] score=0.000216 abs_score=0.000216 lang=ces_Latn sentence=Je to - stručně - námořní policie s civilními povinnostmi.
+Top by |z|:
+[01] score=0.000223 abs_score=0.000223 lang=pol_Latn sentence=IKEA na Białorusi będzie trudne
+[02] score=0.000221 abs_score=0.000221 lang=por_Latn sentence="A vida sem um amigo é morte sem testemunha."
+[03] score=0.000220 abs_score=0.000220 lang=por_Latn sentence=O zelo do Senhor dos Exércitos fará isso."
+[04] score=0.000220 abs_score=0.000220 lang=fra_Latn sentence=C’est une victoire pour la ville et l’environnement. »
+[05] score=0.000219 abs_score=0.000219 lang=deu_Latn sentence=Wandelt in Heiligkeit, allem Leid ein Ende zu bereiten."
+[06] score=0.000218 abs_score=0.000218 lang=pol_Latn sentence=**Tylko dla krajów EU6
+[07] score=0.000218 abs_score=0.000218 lang=deu_Latn sentence="Das ist für uns die plausibelste Erkrankungsursache".
+[08] score=0.000217 abs_score=0.000217 lang=spa_Latn sentence=Entonces no hay más respuestas, solo mejores y mejores mentiras".
+[09] score=0.000217 abs_score=0.000217 lang=ita_Latn sentence=E’ in realtà una battaglia tra la verità di Dio e le menzogne di Satana!
+[10] score=0.000217 abs_score=0.000217 lang=deu_Latn sentence="Das ist der unüberlegte Brexit, den wir alle befürchtet haben - ein Sprung in die Dunkelheit."
+[11] score=0.000217 abs_score=0.000217 lang=nld_Latn sentence=Nu is het de beurt aan niet-Palestijnse Arabische journalisten om deze hitte te voelen.
+[12] score=0.000217 abs_score=0.000217 lang=pol_Latn sentence=tej Ziemi, ponieważ jest ona zaprzeczeniem pojedynczej pełnej Prawdy (czyli Boga).
+[13] score=0.000217 abs_score=0.000217 lang=nld_Latn sentence=1) Yantai; Binnenkort moet de definitieve beslissing vallen.
+[14] score=0.000216 abs_score=0.000216 lang=ces_Latn sentence=Je třeba připravit 15% řešení tímto způsobem:
+[15] score=0.000216 abs_score=0.000216 lang=swe_Latn sentence=”Hur vore det att hjälpa några amerikanska företag först?”
+[16] score=0.000216 abs_score=0.000216 lang=ces_Latn sentence=K – Koordinace s Evropskou Unií ➞⟩
+[17] score=0.000216 abs_score=0.000216 lang=spa_Latn sentence=¿Cuáles son los efectos visibles del EGF?
+[18] score=0.000216 abs_score=0.000216 lang=deu_Latn sentence=Zu zerstören kann die gedankenlose Tat eines einzelnen Tages sein."
+[19] score=0.000216 abs_score=0.000216 lang=nld_Latn sentence=Voor dezelfde reden is het verboden om te vasten op “de dag van de twijfel”.
+[20] score=0.000216 abs_score=0.000216 lang=ces_Latn sentence=Je to - stručně - námořní policie s civilními povinnostmi.
+
+--- Feature 5094 ---
+Top by z:
+[01] score=0.000223 abs_score=0.000223 lang=spa_Latn sentence=A dios lo que es de dios →
+[02] score=0.000223 abs_score=0.000223 lang=pol_Latn sentence=Który troskliwie się patrzył na swojego pana.
+[03] score=0.000222 abs_score=0.000222 lang=swe_Latn sentence=Den [tidigare uppenbarelsen] gav Vi till vägledning för Israels barn,(23)
+[04] score=0.000222 abs_score=0.000222 lang=ita_Latn sentence=E le piaghe del tuo Signore?
+[05] score=0.000221 abs_score=0.000221 lang=swe_Latn sentence=Kompositören av (In The) Morning Of My Life är Bee Gees.
+[06] score=0.000220 abs_score=0.000220 lang=pol_Latn sentence=Słowa Pana Boga Naszego (z objawień Zofii Nosko):
+[07] score=0.000220 abs_score=0.000220 lang=swe_Latn sentence="Nu betyder det att det finns något unikt om Ambien?
+[08] score=0.000220 abs_score=0.000220 lang=pol_Latn sentence=Słowa Pana Boga Naszego (z objawień Zofii Nosko):
+[09] score=0.000219 abs_score=0.000219 lang=por_Latn sentence=“Ó Senhor nosso!
+[10] score=0.000218 abs_score=0.000218 lang=ces_Latn sentence=25 Oni odpověděli: „Tys nám zachránil život!
+[11] score=0.000217 abs_score=0.000217 lang=ces_Latn sentence=A toto je vskutku Pána lidstva seslání (Šu‘ará´:192)
+[12] score=0.000217 abs_score=0.000217 lang=ita_Latn sentence=E confida nell’Eccelso, nel Misericordioso,
+[13] score=0.000217 abs_score=0.000217 lang=spa_Latn sentence="Él designo (H6213) la luna para los tiempos [mo'ed]."
+[14] score=0.000216 abs_score=0.000216 lang=ces_Latn sentence=Modlitba Pána je opravdu shrnutím celého evangelia (Tertulián, O modlitbě)
+[15] score=0.000216 abs_score=0.000216 lang=fra_Latn sentence=Il conclut: "Je déteste les Juifs afin de mériter une récompense divine." [2]
+[16] score=0.000214 abs_score=0.000214 lang=spa_Latn sentence="No", contestó, "Hablaba de otro tiempo, otra era".
+[17] score=0.000214 abs_score=0.000214 lang=por_Latn sentence=“Ó Senhor Nosso!
+[18] score=0.000214 abs_score=0.000214 lang=por_Latn sentence=Sob as bençãos de Nossa Senhora,
+[19] score=0.000213 abs_score=0.000213 lang=ita_Latn sentence=Quale dunque dei benefici del Vostro Signore negherete?
+[20] score=0.000213 abs_score=0.000213 lang=ita_Latn sentence=Conscio, in pace: con quella pace che soltanto la presenza di Dio dà».
+Top by |z|:
+[01] score=0.000223 abs_score=0.000223 lang=spa_Latn sentence=A dios lo que es de dios →
+[02] score=0.000223 abs_score=0.000223 lang=pol_Latn sentence=Który troskliwie się patrzył na swojego pana.
+[03] score=0.000222 abs_score=0.000222 lang=swe_Latn sentence=Den [tidigare uppenbarelsen] gav Vi till vägledning för Israels barn,(23)
+[04] score=0.000222 abs_score=0.000222 lang=ita_Latn sentence=E le piaghe del tuo Signore?
+[05] score=0.000221 abs_score=0.000221 lang=swe_Latn sentence=Kompositören av (In The) Morning Of My Life är Bee Gees.
+[06] score=0.000220 abs_score=0.000220 lang=pol_Latn sentence=Słowa Pana Boga Naszego (z objawień Zofii Nosko):
+[07] score=0.000220 abs_score=0.000220 lang=swe_Latn sentence="Nu betyder det att det finns något unikt om Ambien?
+[08] score=0.000220 abs_score=0.000220 lang=pol_Latn sentence=Słowa Pana Boga Naszego (z objawień Zofii Nosko):
+[09] score=0.000219 abs_score=0.000219 lang=por_Latn sentence=“Ó Senhor nosso!
+[10] score=0.000218 abs_score=0.000218 lang=ces_Latn sentence=25 Oni odpověděli: „Tys nám zachránil život!
+[11] score=0.000217 abs_score=0.000217 lang=ces_Latn sentence=A toto je vskutku Pána lidstva seslání (Šu‘ará´:192)
+[12] score=0.000217 abs_score=0.000217 lang=ita_Latn sentence=E confida nell’Eccelso, nel Misericordioso,
+[13] score=0.000217 abs_score=0.000217 lang=spa_Latn sentence="Él designo (H6213) la luna para los tiempos [mo'ed]."
+[14] score=0.000216 abs_score=0.000216 lang=ces_Latn sentence=Modlitba Pána je opravdu shrnutím celého evangelia (Tertulián, O modlitbě)
+[15] score=0.000216 abs_score=0.000216 lang=fra_Latn sentence=Il conclut: "Je déteste les Juifs afin de mériter une récompense divine." [2]
+[16] score=0.000214 abs_score=0.000214 lang=spa_Latn sentence="No", contestó, "Hablaba de otro tiempo, otra era".
+[17] score=0.000214 abs_score=0.000214 lang=por_Latn sentence=“Ó Senhor Nosso!
+[18] score=0.000214 abs_score=0.000214 lang=por_Latn sentence=Sob as bençãos de Nossa Senhora,
+[19] score=0.000213 abs_score=0.000213 lang=ita_Latn sentence=Quale dunque dei benefici del Vostro Signore negherete?
+[20] score=0.000213 abs_score=0.000213 lang=ita_Latn sentence=Conscio, in pace: con quella pace che soltanto la presenza di Dio dà».
+
+--- Feature 1657 ---
+Top by z:
+[01] score=0.000222 abs_score=0.000222 lang=ces_Latn sentence=Přesto se ale považují za investory."
+[02] score=0.000221 abs_score=0.000221 lang=ces_Latn sentence=U pánů je to něco podobného.
+[03] score=0.000216 abs_score=0.000216 lang=ces_Latn sentence=Přidejme tedy 150 na tuhle stranu také, co dostaneme?
+[04] score=0.000214 abs_score=0.000214 lang=nld_Latn sentence=Dat is $ 1 miljoen voor elk onopgelost wiskundig probleem!
+[05] score=0.000213 abs_score=0.000213 lang=pol_Latn sentence=To znaczyło: „Życie jest walką”.
+[06] score=0.000211 abs_score=0.000211 lang=pol_Latn sentence=Zaprawdę, Tyś jest Panem wszystkich światów.
+[07] score=0.000208 abs_score=0.000208 lang=por_Latn sentence=Eles só querem ver você de volta como Gandalf.”
+[08] score=0.000208 abs_score=0.000208 lang=nld_Latn sentence=Zij gedenkt hem met dankbaarheid.
+[09] score=0.000208 abs_score=0.000208 lang=ces_Latn sentence=A on mi odpověděl: Ne, prostě maluj.
+[10] score=0.000208 abs_score=0.000208 lang=nld_Latn sentence=Net als John West verwerpen we meer dan we accepteren.
+[11] score=0.000208 abs_score=0.000208 lang=pol_Latn sentence=Pytali oni czy jest Eliaszem lub prorokiem.
+[12] score=0.000206 abs_score=0.000206 lang=nld_Latn sentence=1978 – Water gevonden op de maan!
+[13] score=0.000205 abs_score=0.000205 lang=pol_Latn sentence=Przestrzegali nakazu PANA, tak jak PAN rozkazał przez Mojżesza.
+[14] score=0.000205 abs_score=0.000205 lang=ces_Latn sentence=Pána v saku poslouchat nebudou, ten je nudný.
+[15] score=0.000205 abs_score=0.000205 lang=deu_Latn sentence=Rede zu den Söhnen Israels, daß sie aufbrechen.
+[16] score=0.000203 abs_score=0.000203 lang=nld_Latn sentence=Je kunt duizend keer herhalen dat een glas buiten jezelf bestaat.
+[17] score=0.000202 abs_score=0.000202 lang=nld_Latn sentence=en de vrucht die ik voortbracht werd de zon.
+[18] score=0.000202 abs_score=0.000202 lang=nld_Latn sentence=Ik heb het niet over 42 dode dieren.
+[19] score=0.000201 abs_score=0.000201 lang=spa_Latn sentence=Pero como muchas personas, mi primo Nick ni siquiera ha comenzado.
+[20] score=0.000201 abs_score=0.000201 lang=eng_Latn sentence=Moreover, together with Mary we must look at so many young saints.
+Top by |z|:
+[01] score=0.000222 abs_score=0.000222 lang=ces_Latn sentence=Přesto se ale považují za investory."
+[02] score=0.000221 abs_score=0.000221 lang=ces_Latn sentence=U pánů je to něco podobného.
+[03] score=0.000216 abs_score=0.000216 lang=ces_Latn sentence=Přidejme tedy 150 na tuhle stranu také, co dostaneme?
+[04] score=0.000214 abs_score=0.000214 lang=nld_Latn sentence=Dat is $ 1 miljoen voor elk onopgelost wiskundig probleem!
+[05] score=0.000213 abs_score=0.000213 lang=pol_Latn sentence=To znaczyło: „Życie jest walką”.
+[06] score=0.000211 abs_score=0.000211 lang=pol_Latn sentence=Zaprawdę, Tyś jest Panem wszystkich światów.
+[07] score=0.000208 abs_score=0.000208 lang=por_Latn sentence=Eles só querem ver você de volta como Gandalf.”
+[08] score=0.000208 abs_score=0.000208 lang=nld_Latn sentence=Zij gedenkt hem met dankbaarheid.
+[09] score=0.000208 abs_score=0.000208 lang=ces_Latn sentence=A on mi odpověděl: Ne, prostě maluj.
+[10] score=0.000208 abs_score=0.000208 lang=nld_Latn sentence=Net als John West verwerpen we meer dan we accepteren.
+[11] score=0.000208 abs_score=0.000208 lang=pol_Latn sentence=Pytali oni czy jest Eliaszem lub prorokiem.
+[12] score=0.000206 abs_score=0.000206 lang=nld_Latn sentence=1978 – Water gevonden op de maan!
+[13] score=0.000205 abs_score=0.000205 lang=pol_Latn sentence=Przestrzegali nakazu PANA, tak jak PAN rozkazał przez Mojżesza.
+[14] score=0.000205 abs_score=0.000205 lang=ces_Latn sentence=Pána v saku poslouchat nebudou, ten je nudný.
+[15] score=0.000205 abs_score=0.000205 lang=deu_Latn sentence=Rede zu den Söhnen Israels, daß sie aufbrechen.
+[16] score=0.000203 abs_score=0.000203 lang=nld_Latn sentence=Je kunt duizend keer herhalen dat een glas buiten jezelf bestaat.
+[17] score=0.000202 abs_score=0.000202 lang=nld_Latn sentence=en de vrucht die ik voortbracht werd de zon.
+[18] score=0.000202 abs_score=0.000202 lang=nld_Latn sentence=Ik heb het niet over 42 dode dieren.
+[19] score=0.000201 abs_score=0.000201 lang=spa_Latn sentence=Pero como muchas personas, mi primo Nick ni siquiera ha comenzado.
+[20] score=0.000201 abs_score=0.000201 lang=eng_Latn sentence=Moreover, together with Mary we must look at so many young saints.
+
+--- Feature 3411 ---
+Top by z:
+[01] score=0.000218 abs_score=0.000218 lang=eng_Latn sentence=Moreover, since 1995 Oktoberfest has had its own logo!
+[02] score=0.000216 abs_score=0.000216 lang=ces_Latn sentence=U pánů je to něco podobného.
+[03] score=0.000215 abs_score=0.000215 lang=spa_Latn sentence=hablan en nombre de Dios.
+[04] score=0.000212 abs_score=0.000212 lang=eng_Latn sentence=A 2002 paper by Brown et al. caught my attention.
+[05] score=0.000211 abs_score=0.000211 lang=eng_Latn sentence=Now your goal is sector 13).
+[06] score=0.000210 abs_score=0.000210 lang=eng_Latn sentence=by the sacrifice of God's Son.
+[07] score=0.000210 abs_score=0.000210 lang=pol_Latn sentence=Który troskliwie się patrzył na swojego pana.
+[08] score=0.000210 abs_score=0.000210 lang=spa_Latn sentence=Él es el Perdonador, el Misericordioso'.
+[09] score=0.000210 abs_score=0.000210 lang=ces_Latn sentence=Rabín odpověděl: „Je pravdivé.
+[10] score=0.000209 abs_score=0.000209 lang=eng_Latn sentence=“At first, I refused to call [our son] Google.
+[11] score=0.000209 abs_score=0.000209 lang=por_Latn sentence=Dize-lhes: “Sim, por meu Senhor!
+[12] score=0.000209 abs_score=0.000209 lang=por_Latn sentence=É as montanhas estão desabando,
+[13] score=0.000208 abs_score=0.000208 lang=ita_Latn sentence=che la Chiesa rivolge al suo Signore,
+[14] score=0.000208 abs_score=0.000208 lang=eng_Latn sentence=It is then in the Church that God’s call is discerned.
+[15] score=0.000208 abs_score=0.000208 lang=eng_Latn sentence="Doctor, you will continue to work with Oz...
+[16] score=0.000207 abs_score=0.000207 lang=spa_Latn sentence=Hospitalidad de Un perdonador misericordiosísimo.»
+[17] score=0.000207 abs_score=0.000207 lang=ces_Latn sentence=„Měl tedy několik falešných klíčů.
+[18] score=0.000207 abs_score=0.000207 lang=fra_Latn sentence=«Ensuite, ils nous ont séparés des hommes.
+[19] score=0.000207 abs_score=0.000207 lang=swe_Latn sentence=Nu behöver de mig, nummer ett på streaming
+[20] score=0.000207 abs_score=0.000207 lang=ita_Latn sentence=Col sacrificio del Figlio di Dio.
+Top by |z|:
+[01] score=0.000218 abs_score=0.000218 lang=eng_Latn sentence=Moreover, since 1995 Oktoberfest has had its own logo!
+[02] score=0.000216 abs_score=0.000216 lang=ces_Latn sentence=U pánů je to něco podobného.
+[03] score=0.000215 abs_score=0.000215 lang=spa_Latn sentence=hablan en nombre de Dios.
+[04] score=0.000212 abs_score=0.000212 lang=eng_Latn sentence=A 2002 paper by Brown et al. caught my attention.
+[05] score=0.000211 abs_score=0.000211 lang=eng_Latn sentence=Now your goal is sector 13).
+[06] score=0.000210 abs_score=0.000210 lang=eng_Latn sentence=by the sacrifice of God's Son.
+[07] score=0.000210 abs_score=0.000210 lang=pol_Latn sentence=Który troskliwie się patrzył na swojego pana.
+[08] score=0.000210 abs_score=0.000210 lang=spa_Latn sentence=Él es el Perdonador, el Misericordioso'.
+[09] score=0.000210 abs_score=0.000210 lang=ces_Latn sentence=Rabín odpověděl: „Je pravdivé.
+[10] score=0.000209 abs_score=0.000209 lang=eng_Latn sentence=“At first, I refused to call [our son] Google.
+[11] score=0.000209 abs_score=0.000209 lang=por_Latn sentence=Dize-lhes: “Sim, por meu Senhor!
+[12] score=0.000209 abs_score=0.000209 lang=por_Latn sentence=É as montanhas estão desabando,
+[13] score=0.000208 abs_score=0.000208 lang=ita_Latn sentence=che la Chiesa rivolge al suo Signore,
+[14] score=0.000208 abs_score=0.000208 lang=eng_Latn sentence=It is then in the Church that God’s call is discerned.
+[15] score=0.000208 abs_score=0.000208 lang=eng_Latn sentence="Doctor, you will continue to work with Oz...
+[16] score=0.000207 abs_score=0.000207 lang=spa_Latn sentence=Hospitalidad de Un perdonador misericordiosísimo.»
+[17] score=0.000207 abs_score=0.000207 lang=ces_Latn sentence=„Měl tedy několik falešných klíčů.
+[18] score=0.000207 abs_score=0.000207 lang=fra_Latn sentence=«Ensuite, ils nous ont séparés des hommes.
+[19] score=0.000207 abs_score=0.000207 lang=swe_Latn sentence=Nu behöver de mig, nummer ett på streaming
+[20] score=0.000207 abs_score=0.000207 lang=ita_Latn sentence=Col sacrificio del Figlio di Dio.
+
+--- Feature 2890 ---
+Top by z:
+[01] score=0.000218 abs_score=0.000218 lang=ita_Latn sentence=Il Signore infatti non respinge per sempre;
+[02] score=0.000214 abs_score=0.000214 lang=por_Latn sentence=do dia do Juízo do Senhor.
+[03] score=0.000206 abs_score=0.000206 lang=por_Latn sentence=Nihon só apoia algumas escolas no Japão?
+[04] score=0.000206 abs_score=0.000206 lang=ces_Latn sentence=U pánů je to něco podobného.
+[05] score=0.000206 abs_score=0.000206 lang=por_Latn sentence=Eles só querem ver você de volta como Gandalf.”
+[06] score=0.000205 abs_score=0.000205 lang=spa_Latn sentence=El nombre de ese Dios es Abraxas."
+[07] score=0.000205 abs_score=0.000205 lang=spa_Latn sentence=Vuestro mundo está cubierto por la oscuridad."
+[08] score=0.000205 abs_score=0.000205 lang=por_Latn sentence=Ainda restarão 12 aspectos de sua alma.
+[09] score=0.000203 abs_score=0.000203 lang=ita_Latn sentence=L Eterno benedice il popolo suo con la pace».
+[10] score=0.000203 abs_score=0.000203 lang=nld_Latn sentence=2001 – het boek I Will Be Your Friend en het album “Worship”
+[11] score=0.000203 abs_score=0.000203 lang=swe_Latn sentence=[52:14] Detta är Elden som ni inte brukade tro på.
+[12] score=0.000201 abs_score=0.000201 lang=pol_Latn sentence=Bo przecież już posmakowaliście dobroci Pana.”
+[13] score=0.000200 abs_score=0.000200 lang=nld_Latn sentence=Dat is $ 1 miljoen voor elk onopgelost wiskundig probleem!
+[14] score=0.000199 abs_score=0.000199 lang=ita_Latn sentence=Sappi che il tuo Signore,
+[15] score=0.000198 abs_score=0.000198 lang=nld_Latn sentence=1978 – Water gevonden op de maan!
+[16] score=0.000197 abs_score=0.000197 lang=spa_Latn sentence=Y conozco esta parte de su cuerpo mejor que tú.”
+[17] score=0.000196 abs_score=0.000196 lang=ces_Latn sentence=Přidejme tedy 150 na tuhle stranu také, co dostaneme?
+[18] score=0.000195 abs_score=0.000195 lang=ces_Latn sentence=A on mi odpověděl: Ne, prostě maluj.
+[19] score=0.000195 abs_score=0.000195 lang=ita_Latn sentence=La mano del Signore si farà manifesta ai suoi servi».
+[20] score=0.000193 abs_score=0.000193 lang=por_Latn sentence=pela vinda de seu Senhor.
+Top by |z|:
+[01] score=0.000218 abs_score=0.000218 lang=ita_Latn sentence=Il Signore infatti non respinge per sempre;
+[02] score=0.000214 abs_score=0.000214 lang=por_Latn sentence=do dia do Juízo do Senhor.
+[03] score=0.000206 abs_score=0.000206 lang=por_Latn sentence=Nihon só apoia algumas escolas no Japão?
+[04] score=0.000206 abs_score=0.000206 lang=ces_Latn sentence=U pánů je to něco podobného.
+[05] score=0.000206 abs_score=0.000206 lang=por_Latn sentence=Eles só querem ver você de volta como Gandalf.”
+[06] score=0.000205 abs_score=0.000205 lang=spa_Latn sentence=El nombre de ese Dios es Abraxas."
+[07] score=0.000205 abs_score=0.000205 lang=spa_Latn sentence=Vuestro mundo está cubierto por la oscuridad."
+[08] score=0.000205 abs_score=0.000205 lang=por_Latn sentence=Ainda restarão 12 aspectos de sua alma.
+[09] score=0.000203 abs_score=0.000203 lang=ita_Latn sentence=L Eterno benedice il popolo suo con la pace».
+[10] score=0.000203 abs_score=0.000203 lang=nld_Latn sentence=2001 – het boek I Will Be Your Friend en het album “Worship”
+[11] score=0.000203 abs_score=0.000203 lang=swe_Latn sentence=[52:14] Detta är Elden som ni inte brukade tro på.
+[12] score=0.000201 abs_score=0.000201 lang=pol_Latn sentence=Bo przecież już posmakowaliście dobroci Pana.”
+[13] score=0.000200 abs_score=0.000200 lang=nld_Latn sentence=Dat is $ 1 miljoen voor elk onopgelost wiskundig probleem!
+[14] score=0.000199 abs_score=0.000199 lang=ita_Latn sentence=Sappi che il tuo Signore,
+[15] score=0.000198 abs_score=0.000198 lang=nld_Latn sentence=1978 – Water gevonden op de maan!
+[16] score=0.000197 abs_score=0.000197 lang=spa_Latn sentence=Y conozco esta parte de su cuerpo mejor que tú.”
+[17] score=0.000196 abs_score=0.000196 lang=ces_Latn sentence=Přidejme tedy 150 na tuhle stranu také, co dostaneme?
+[18] score=0.000195 abs_score=0.000195 lang=ces_Latn sentence=A on mi odpověděl: Ne, prostě maluj.
+[19] score=0.000195 abs_score=0.000195 lang=ita_Latn sentence=La mano del Signore si farà manifesta ai suoi servi».
+[20] score=0.000193 abs_score=0.000193 lang=por_Latn sentence=pela vinda de seu Senhor.
+
+--- Feature 4120 ---
+Top by z:
+[01] score=0.000216 abs_score=0.000216 lang=spa_Latn sentence=modelo que te ha sido mostrado en el monte”.
+[02] score=0.000214 abs_score=0.000214 lang=nld_Latn sentence=Zijn zij het niet die de leugenaars zijn?
+[03] score=0.000211 abs_score=0.000211 lang=eng_Latn sentence=But I will trust him and talk to him if he has Sesame Credit.”
+[04] score=0.000210 abs_score=0.000210 lang=eng_Latn sentence=But “the Lord will be the hope of His people, and the strength of the children of Israel.”
+[05] score=0.000208 abs_score=0.000208 lang=ces_Latn sentence=Synové Izraele však jednali v Hospodinových očích zle...
+[06] score=0.000208 abs_score=0.000208 lang=nld_Latn sentence=Hoe jelking 100 keer te begrijpen?
+[07] score=0.000207 abs_score=0.000207 lang=eng_Latn sentence=That’s what the Son of God did to mankind.
+[08] score=0.000205 abs_score=0.000205 lang=pol_Latn sentence=Jeśli przemówisz do Niego, On wyda Swoją wodę.
+[09] score=0.000205 abs_score=0.000205 lang=deu_Latn sentence=Aber nicht in Texas (11/29).
+[10] score=0.000204 abs_score=0.000204 lang=por_Latn sentence=“Não houve menos que dez mil mudanças naquela restrição!”
+[11] score=0.000203 abs_score=0.000203 lang=nld_Latn sentence=Zullen zij dan geen dank betuigen?”
+[12] score=0.000202 abs_score=0.000202 lang=ita_Latn sentence=Conosciamo il mistero che sta dietro il nome di Dio?”.
+[13] score=0.000202 abs_score=0.000202 lang=spa_Latn sentence=Pero quizás Boaz verá ese día".
+[14] score=0.000202 abs_score=0.000202 lang=ces_Latn sentence=To je jen dočasné rozdělení.“
+[15] score=0.000202 abs_score=0.000202 lang=swe_Latn sentence=O Allah, över himmel och jord!”
+[16] score=0.000201 abs_score=0.000201 lang=eng_Latn sentence=God’s glory and peace on earth are inseparable.
+[17] score=0.000201 abs_score=0.000201 lang=eng_Latn sentence=Never use it before the denomination as in Quid 10.
+[18] score=0.000199 abs_score=0.000199 lang=swe_Latn sentence=Jag kan vara Chelsea-tränare eller inte.
+[19] score=0.000199 abs_score=0.000199 lang=deu_Latn sentence=Wir alle müssen darüber nachdenken, wie wir ein wenig ärmer werden können."
+[20] score=0.000198 abs_score=0.000198 lang=deu_Latn sentence=220 über das Diesseits und das Jenseits.
+Top by |z|:
+[01] score=0.000216 abs_score=0.000216 lang=spa_Latn sentence=modelo que te ha sido mostrado en el monte”.
+[02] score=0.000214 abs_score=0.000214 lang=nld_Latn sentence=Zijn zij het niet die de leugenaars zijn?
+[03] score=0.000211 abs_score=0.000211 lang=eng_Latn sentence=But I will trust him and talk to him if he has Sesame Credit.”
+[04] score=0.000210 abs_score=0.000210 lang=eng_Latn sentence=But “the Lord will be the hope of His people, and the strength of the children of Israel.”
+[05] score=0.000208 abs_score=0.000208 lang=ces_Latn sentence=Synové Izraele však jednali v Hospodinových očích zle...
+[06] score=0.000208 abs_score=0.000208 lang=nld_Latn sentence=Hoe jelking 100 keer te begrijpen?
+[07] score=0.000207 abs_score=0.000207 lang=eng_Latn sentence=That’s what the Son of God did to mankind.
+[08] score=0.000205 abs_score=0.000205 lang=pol_Latn sentence=Jeśli przemówisz do Niego, On wyda Swoją wodę.
+[09] score=0.000205 abs_score=0.000205 lang=deu_Latn sentence=Aber nicht in Texas (11/29).
+[10] score=0.000204 abs_score=0.000204 lang=por_Latn sentence=“Não houve menos que dez mil mudanças naquela restrição!”
+[11] score=0.000203 abs_score=0.000203 lang=nld_Latn sentence=Zullen zij dan geen dank betuigen?”
+[12] score=0.000202 abs_score=0.000202 lang=ita_Latn sentence=Conosciamo il mistero che sta dietro il nome di Dio?”.
+[13] score=0.000202 abs_score=0.000202 lang=spa_Latn sentence=Pero quizás Boaz verá ese día".
+[14] score=0.000202 abs_score=0.000202 lang=ces_Latn sentence=To je jen dočasné rozdělení.“
+[15] score=0.000202 abs_score=0.000202 lang=swe_Latn sentence=O Allah, över himmel och jord!”
+[16] score=0.000201 abs_score=0.000201 lang=eng_Latn sentence=God’s glory and peace on earth are inseparable.
+[17] score=0.000201 abs_score=0.000201 lang=eng_Latn sentence=Never use it before the denomination as in Quid 10.
+[18] score=0.000199 abs_score=0.000199 lang=swe_Latn sentence=Jag kan vara Chelsea-tränare eller inte.
+[19] score=0.000199 abs_score=0.000199 lang=deu_Latn sentence=Wir alle müssen darüber nachdenken, wie wir ein wenig ärmer werden können."
+[20] score=0.000198 abs_score=0.000198 lang=deu_Latn sentence=220 über das Diesseits und das Jenseits.
+
+--- Feature 3425 ---
+Top by z:
+[01] score=0.000216 abs_score=0.000216 lang=ita_Latn sentence=L Eterno benedice il popolo suo con la pace».
+[02] score=0.000215 abs_score=0.000215 lang=fra_Latn sentence=Il sera appelé Fils de Dieu.”
+[03] score=0.000213 abs_score=0.000213 lang=por_Latn sentence=Eles só querem ver você de volta como Gandalf.”
+[04] score=0.000211 abs_score=0.000211 lang=ita_Latn sentence=La mano del Signore si farà manifesta ai suoi servi».
+[05] score=0.000210 abs_score=0.000210 lang=swe_Latn sentence=Nu behöver de mig, nummer ett på streaming
+[06] score=0.000209 abs_score=0.000209 lang=ita_Latn sentence=Il Signore infatti non respinge per sempre;
+[07] score=0.000208 abs_score=0.000208 lang=fra_Latn sentence=la vérité se manifesta et ce qu'ils firent fût vain.
+[08] score=0.000207 abs_score=0.000207 lang=ces_Latn sentence=Ty však již svou odměnu od Pána obdržely.
+[09] score=0.000206 abs_score=0.000206 lang=spa_Latn sentence=Vuestro mundo está cubierto por la oscuridad."
+[10] score=0.000205 abs_score=0.000205 lang=ita_Latn sentence=Per adempiere il suo proposito finale—cioè, diventare come Dio—cercherà allora di salire al posto di Dio.
+[11] score=0.000205 abs_score=0.000205 lang=eng_Latn sentence=God’s glory and peace on earth are inseparable.
+[12] score=0.000204 abs_score=0.000204 lang=fra_Latn sentence=Les enfants de Dieu seront tirés dans toutes les directions.
+[13] score=0.000203 abs_score=0.000203 lang=eng_Latn sentence=Our world is not yet God's world,
+[14] score=0.000203 abs_score=0.000203 lang=spa_Latn sentence=El juicio de Dios está sobre esta nación.
+[15] score=0.000202 abs_score=0.000202 lang=pol_Latn sentence=To znaczyło: „Życie jest walką”.
+[16] score=0.000202 abs_score=0.000202 lang=nld_Latn sentence=en de vrucht die ik voortbracht werd de zon.
+[17] score=0.000202 abs_score=0.000202 lang=ces_Latn sentence=Přesto se ale považují za investory."
+[18] score=0.000202 abs_score=0.000202 lang=pol_Latn sentence=Który troskliwie się patrzył na swojego pana.
+[19] score=0.000202 abs_score=0.000202 lang=ita_Latn sentence=Allora sei un ladro--non puoi entrare nel Regno di Dio.
+[20] score=0.000201 abs_score=0.000201 lang=swe_Latn sentence=Kommer förbindelserna mellan Oakland och vår poliskår förbättra nu?
+Top by |z|:
+[01] score=0.000216 abs_score=0.000216 lang=ita_Latn sentence=L Eterno benedice il popolo suo con la pace».
+[02] score=0.000215 abs_score=0.000215 lang=fra_Latn sentence=Il sera appelé Fils de Dieu.”
+[03] score=0.000213 abs_score=0.000213 lang=por_Latn sentence=Eles só querem ver você de volta como Gandalf.”
+[04] score=0.000211 abs_score=0.000211 lang=ita_Latn sentence=La mano del Signore si farà manifesta ai suoi servi».
+[05] score=0.000210 abs_score=0.000210 lang=swe_Latn sentence=Nu behöver de mig, nummer ett på streaming
+[06] score=0.000209 abs_score=0.000209 lang=ita_Latn sentence=Il Signore infatti non respinge per sempre;
+[07] score=0.000208 abs_score=0.000208 lang=fra_Latn sentence=la vérité se manifesta et ce qu'ils firent fût vain.
+[08] score=0.000207 abs_score=0.000207 lang=ces_Latn sentence=Ty však již svou odměnu od Pána obdržely.
+[09] score=0.000206 abs_score=0.000206 lang=spa_Latn sentence=Vuestro mundo está cubierto por la oscuridad."
+[10] score=0.000205 abs_score=0.000205 lang=ita_Latn sentence=Per adempiere il suo proposito finale—cioè, diventare come Dio—cercherà allora di salire al posto di Dio.
+[11] score=0.000205 abs_score=0.000205 lang=eng_Latn sentence=God’s glory and peace on earth are inseparable.
+[12] score=0.000204 abs_score=0.000204 lang=fra_Latn sentence=Les enfants de Dieu seront tirés dans toutes les directions.
+[13] score=0.000203 abs_score=0.000203 lang=eng_Latn sentence=Our world is not yet God's world,
+[14] score=0.000203 abs_score=0.000203 lang=spa_Latn sentence=El juicio de Dios está sobre esta nación.
+[15] score=0.000202 abs_score=0.000202 lang=pol_Latn sentence=To znaczyło: „Życie jest walką”.
+[16] score=0.000202 abs_score=0.000202 lang=nld_Latn sentence=en de vrucht die ik voortbracht werd de zon.
+[17] score=0.000202 abs_score=0.000202 lang=ces_Latn sentence=Přesto se ale považují za investory."
+[18] score=0.000202 abs_score=0.000202 lang=pol_Latn sentence=Który troskliwie się patrzył na swojego pana.
+[19] score=0.000202 abs_score=0.000202 lang=ita_Latn sentence=Allora sei un ladro--non puoi entrare nel Regno di Dio.
+[20] score=0.000201 abs_score=0.000201 lang=swe_Latn sentence=Kommer förbindelserna mellan Oakland och vår poliskår förbättra nu?
+
+--- Feature 1935 ---
+Top by z:
+[01] score=0.000214 abs_score=0.000214 lang=swe_Latn sentence=Jag kan vara Chelsea-tränare eller inte.
+[02] score=0.000190 abs_score=0.000190 lang=eng_Latn sentence=by the sacrifice of God's Son.
+[03] score=0.000187 abs_score=0.000187 lang=eng_Latn sentence=Let’s see what just 20 short years have done for: Terrorist
+[04] score=0.000183 abs_score=0.000183 lang=deu_Latn sentence="Bis 22 Wochen ist es eine Frucht, kein Kind.
+[05] score=0.000182 abs_score=0.000182 lang=nld_Latn sentence=72 Nu, zij keerde terug naar haar goden.
+[06] score=0.000182 abs_score=0.000182 lang=por_Latn sentence=Ó povo de Bahá!
+[07] score=0.000182 abs_score=0.000182 lang=spa_Latn sentence=Pero quizás Boaz verá ese día".
+[08] score=0.000182 abs_score=0.000182 lang=pol_Latn sentence=Bójcie się waszego Pana,
+[09] score=0.000181 abs_score=0.000181 lang=fra_Latn sentence="Oui, Kadhafi pourrait vivre dans un trou.
+[10] score=0.000179 abs_score=0.000179 lang=pol_Latn sentence=Bójcie się waszego Pana,
+[11] score=0.000179 abs_score=0.000179 lang=eng_Latn sentence=Moreover, since 1995 Oktoberfest has had its own logo!
+[12] score=0.000178 abs_score=0.000178 lang=eng_Latn sentence=A 2002 paper by Brown et al. caught my attention.
+[13] score=0.000176 abs_score=0.000176 lang=eng_Latn sentence=E-233 We have all kinds of witnesses.
+[14] score=0.000176 abs_score=0.000176 lang=ita_Latn sentence=(8) e aspira al tuo Signore.
+[15] score=0.000176 abs_score=0.000176 lang=eng_Latn sentence=Good News: You baptized seven people today in the river.
+[16] score=0.000176 abs_score=0.000176 lang=pol_Latn sentence=Słowa Pana Boga Naszego (z objawień Zofii Nosko):
+[17] score=0.000175 abs_score=0.000175 lang=eng_Latn sentence=Mr. Jackson: She was not with me at that first experience, no.
+[18] score=0.000175 abs_score=0.000175 lang=swe_Latn sentence=# 10 Gör din chef fysisk kontakt?
+[19] score=0.000175 abs_score=0.000175 lang=ita_Latn sentence=Mt 17,23; 26,22) e li porta davanti al loro signore.
+[20] score=0.000175 abs_score=0.000175 lang=eng_Latn sentence=We should be able to save them from those culprits – the European Commission.
+Top by |z|:
+[01] score=0.000214 abs_score=0.000214 lang=swe_Latn sentence=Jag kan vara Chelsea-tränare eller inte.
+[02] score=0.000190 abs_score=0.000190 lang=eng_Latn sentence=by the sacrifice of God's Son.
+[03] score=0.000187 abs_score=0.000187 lang=eng_Latn sentence=Let’s see what just 20 short years have done for: Terrorist
+[04] score=0.000183 abs_score=0.000183 lang=deu_Latn sentence="Bis 22 Wochen ist es eine Frucht, kein Kind.
+[05] score=0.000182 abs_score=0.000182 lang=nld_Latn sentence=72 Nu, zij keerde terug naar haar goden.
+[06] score=0.000182 abs_score=0.000182 lang=por_Latn sentence=Ó povo de Bahá!
+[07] score=0.000182 abs_score=0.000182 lang=spa_Latn sentence=Pero quizás Boaz verá ese día".
+[08] score=0.000182 abs_score=0.000182 lang=pol_Latn sentence=Bójcie się waszego Pana,
+[09] score=0.000181 abs_score=0.000181 lang=fra_Latn sentence="Oui, Kadhafi pourrait vivre dans un trou.
+[10] score=0.000179 abs_score=0.000179 lang=pol_Latn sentence=Bójcie się waszego Pana,
+[11] score=0.000179 abs_score=0.000179 lang=eng_Latn sentence=Moreover, since 1995 Oktoberfest has had its own logo!
+[12] score=0.000178 abs_score=0.000178 lang=eng_Latn sentence=A 2002 paper by Brown et al. caught my attention.
+[13] score=0.000176 abs_score=0.000176 lang=eng_Latn sentence=E-233 We have all kinds of witnesses.
+[14] score=0.000176 abs_score=0.000176 lang=ita_Latn sentence=(8) e aspira al tuo Signore.
+[15] score=0.000176 abs_score=0.000176 lang=eng_Latn sentence=Good News: You baptized seven people today in the river.
+[16] score=0.000176 abs_score=0.000176 lang=pol_Latn sentence=Słowa Pana Boga Naszego (z objawień Zofii Nosko):
+[17] score=0.000175 abs_score=0.000175 lang=eng_Latn sentence=Mr. Jackson: She was not with me at that first experience, no.
+[18] score=0.000175 abs_score=0.000175 lang=swe_Latn sentence=# 10 Gör din chef fysisk kontakt?
+[19] score=0.000175 abs_score=0.000175 lang=ita_Latn sentence=Mt 17,23; 26,22) e li porta davanti al loro signore.
+[20] score=0.000175 abs_score=0.000175 lang=eng_Latn sentence=We should be able to save them from those culprits – the European Commission.
+
+--- Feature 2669 ---
+Top by z:
+[01] score=0.000214 abs_score=0.000214 lang=eng_Latn sentence=“No, no, Mr Robert, I mean the man you interviewed.
+[02] score=0.000207 abs_score=0.000207 lang=spa_Latn sentence=Es lo que es bi-llâh, en Allah, con Allah, por Allah.
+[03] score=0.000205 abs_score=0.000205 lang=deu_Latn sentence=Gesegnet sei der, der Augenblicke der Unentschlossenheit durchlebt.“
+[04] score=0.000205 abs_score=0.000205 lang=fra_Latn sentence=138 Père, nous venons ce matin comme Tes humbles enfants.
+[05] score=0.000203 abs_score=0.000203 lang=por_Latn sentence=Cada um receberá de teu Senhor seu quinhão.
+[06] score=0.000202 abs_score=0.000202 lang=eng_Latn sentence=“At first, I refused to call [our son] Google.
+[07] score=0.000201 abs_score=0.000201 lang=spa_Latn sentence=hablan en nombre de Dios.
+[08] score=0.000201 abs_score=0.000201 lang=nld_Latn sentence=Zij gedenkt hem met dankbaarheid.
+[09] score=0.000200 abs_score=0.000200 lang=nld_Latn sentence=De rest wordt door het London Development Agency bijgepast.
+[10] score=0.000200 abs_score=0.000200 lang=eng_Latn sentence=“I thank god my mother became better in two things.
+[11] score=0.000199 abs_score=0.000199 lang=eng_Latn sentence=Our world is not yet God's world,
+[12] score=0.000199 abs_score=0.000199 lang=fra_Latn sentence=Veille sur ton petit frère. »
+[13] score=0.000199 abs_score=0.000199 lang=nld_Latn sentence=Net als John West verwerpen we meer dan we accepteren.
+[14] score=0.000199 abs_score=0.000199 lang=ces_Latn sentence=„Měl tedy několik falešných klíčů.
+[15] score=0.000198 abs_score=0.000198 lang=eng_Latn sentence=the power of the first Adam must die before him,
+[16] score=0.000198 abs_score=0.000198 lang=eng_Latn sentence=Said, "The church is the voice.
+[17] score=0.000197 abs_score=0.000197 lang=deu_Latn sentence=91Daß sie dem Erbarmer ein Kind zuschreiben.
+[18] score=0.000197 abs_score=0.000197 lang=spa_Latn sentence=Él pidió que la Presencia de Dios los acompaña.
+[19] score=0.000196 abs_score=0.000196 lang=eng_Latn sentence=The first indication offered by the apostle is that we are God’s co-workers.
+[20] score=0.000196 abs_score=0.000196 lang=por_Latn sentence=do dia do Juízo do Senhor.
+Top by |z|:
+[01] score=0.000214 abs_score=0.000214 lang=eng_Latn sentence=“No, no, Mr Robert, I mean the man you interviewed.
+[02] score=0.000207 abs_score=0.000207 lang=spa_Latn sentence=Es lo que es bi-llâh, en Allah, con Allah, por Allah.
+[03] score=0.000205 abs_score=0.000205 lang=deu_Latn sentence=Gesegnet sei der, der Augenblicke der Unentschlossenheit durchlebt.“
+[04] score=0.000205 abs_score=0.000205 lang=fra_Latn sentence=138 Père, nous venons ce matin comme Tes humbles enfants.
+[05] score=0.000203 abs_score=0.000203 lang=por_Latn sentence=Cada um receberá de teu Senhor seu quinhão.
+[06] score=0.000202 abs_score=0.000202 lang=eng_Latn sentence=“At first, I refused to call [our son] Google.
+[07] score=0.000201 abs_score=0.000201 lang=spa_Latn sentence=hablan en nombre de Dios.
+[08] score=0.000201 abs_score=0.000201 lang=nld_Latn sentence=Zij gedenkt hem met dankbaarheid.
+[09] score=0.000200 abs_score=0.000200 lang=nld_Latn sentence=De rest wordt door het London Development Agency bijgepast.
+[10] score=0.000200 abs_score=0.000200 lang=eng_Latn sentence=“I thank god my mother became better in two things.
+[11] score=0.000199 abs_score=0.000199 lang=eng_Latn sentence=Our world is not yet God's world,
+[12] score=0.000199 abs_score=0.000199 lang=fra_Latn sentence=Veille sur ton petit frère. »
+[13] score=0.000199 abs_score=0.000199 lang=nld_Latn sentence=Net als John West verwerpen we meer dan we accepteren.
+[14] score=0.000199 abs_score=0.000199 lang=ces_Latn sentence=„Měl tedy několik falešných klíčů.
+[15] score=0.000198 abs_score=0.000198 lang=eng_Latn sentence=the power of the first Adam must die before him,
+[16] score=0.000198 abs_score=0.000198 lang=eng_Latn sentence=Said, "The church is the voice.
+[17] score=0.000197 abs_score=0.000197 lang=deu_Latn sentence=91Daß sie dem Erbarmer ein Kind zuschreiben.
+[18] score=0.000197 abs_score=0.000197 lang=spa_Latn sentence=Él pidió que la Presencia de Dios los acompaña.
+[19] score=0.000196 abs_score=0.000196 lang=eng_Latn sentence=The first indication offered by the apostle is that we are God’s co-workers.
+[20] score=0.000196 abs_score=0.000196 lang=por_Latn sentence=do dia do Juízo do Senhor.
+
+--- Feature 5452 ---
+Top by z:
+[01] score=0.000214 abs_score=0.000214 lang=ces_Latn sentence=To je jen dočasné rozdělení.“
+[02] score=0.000204 abs_score=0.000204 lang=ces_Latn sentence=Synové Izraele však jednali v Hospodinových očích zle...
+[03] score=0.000203 abs_score=0.000203 lang=fra_Latn sentence=Il conclut: "Je déteste les Juifs afin de mériter une récompense divine." [2]
+[04] score=0.000202 abs_score=0.000202 lang=spa_Latn sentence=“¡Esto procede de Allah!.”
+[05] score=0.000202 abs_score=0.000202 lang=spa_Latn sentence=El juicio de Dios está sobre esta nación.
+[06] score=0.000202 abs_score=0.000202 lang=ita_Latn sentence=L Eterno benedice il popolo suo con la pace».
+[07] score=0.000202 abs_score=0.000202 lang=spa_Latn sentence=Vuestro mundo está cubierto por la oscuridad."
+[08] score=0.000201 abs_score=0.000201 lang=pol_Latn sentence=Który troskliwie się patrzył na swojego pana.
+[09] score=0.000201 abs_score=0.000201 lang=eng_Latn sentence=Paradise is open to all God’s creatures."
+[10] score=0.000201 abs_score=0.000201 lang=eng_Latn sentence=God’s glory and peace on earth are inseparable.
+[11] score=0.000200 abs_score=0.000200 lang=deu_Latn sentence=Gesegnet sei der, der Augenblicke der Unentschlossenheit durchlebt.“
+[12] score=0.000199 abs_score=0.000199 lang=eng_Latn sentence=“Africans wants money and food before they start to work.
+[13] score=0.000199 abs_score=0.000199 lang=spa_Latn sentence=El nombre de ese Dios es Abraxas."
+[14] score=0.000199 abs_score=0.000199 lang=spa_Latn sentence=modelo que te ha sido mostrado en el monte”.
+[15] score=0.000197 abs_score=0.000197 lang=spa_Latn sentence=el Compasivo, el Misericordioso.
+[16] score=0.000197 abs_score=0.000197 lang=spa_Latn sentence=Los siervos de Dios han de dar amplia prueba de su ministerio.
+[17] score=0.000197 abs_score=0.000197 lang=spa_Latn sentence=Alá dice la verdad.
+[18] score=0.000197 abs_score=0.000197 lang=spa_Latn sentence=158: Si no que Allah lo elevó hacia Él, salvándolo de sus enemigos.
+[19] score=0.000196 abs_score=0.000196 lang=por_Latn sentence=do dia do Juízo do Senhor.
+[20] score=0.000196 abs_score=0.000196 lang=ces_Latn sentence=Přesto se ale považují za investory."
+Top by |z|:
+[01] score=0.000214 abs_score=0.000214 lang=ces_Latn sentence=To je jen dočasné rozdělení.“
+[02] score=0.000204 abs_score=0.000204 lang=ces_Latn sentence=Synové Izraele však jednali v Hospodinových očích zle...
+[03] score=0.000203 abs_score=0.000203 lang=fra_Latn sentence=Il conclut: "Je déteste les Juifs afin de mériter une récompense divine." [2]
+[04] score=0.000202 abs_score=0.000202 lang=spa_Latn sentence=“¡Esto procede de Allah!.”
+[05] score=0.000202 abs_score=0.000202 lang=spa_Latn sentence=El juicio de Dios está sobre esta nación.
+[06] score=0.000202 abs_score=0.000202 lang=ita_Latn sentence=L Eterno benedice il popolo suo con la pace».
+[07] score=0.000202 abs_score=0.000202 lang=spa_Latn sentence=Vuestro mundo está cubierto por la oscuridad."
+[08] score=0.000201 abs_score=0.000201 lang=pol_Latn sentence=Który troskliwie się patrzył na swojego pana.
+[09] score=0.000201 abs_score=0.000201 lang=eng_Latn sentence=Paradise is open to all God’s creatures."
+[10] score=0.000201 abs_score=0.000201 lang=eng_Latn sentence=God’s glory and peace on earth are inseparable.
+[11] score=0.000200 abs_score=0.000200 lang=deu_Latn sentence=Gesegnet sei der, der Augenblicke der Unentschlossenheit durchlebt.“
+[12] score=0.000199 abs_score=0.000199 lang=eng_Latn sentence=“Africans wants money and food before they start to work.
+[13] score=0.000199 abs_score=0.000199 lang=spa_Latn sentence=El nombre de ese Dios es Abraxas."
+[14] score=0.000199 abs_score=0.000199 lang=spa_Latn sentence=modelo que te ha sido mostrado en el monte”.
+[15] score=0.000197 abs_score=0.000197 lang=spa_Latn sentence=el Compasivo, el Misericordioso.
+[16] score=0.000197 abs_score=0.000197 lang=spa_Latn sentence=Los siervos de Dios han de dar amplia prueba de su ministerio.
+[17] score=0.000197 abs_score=0.000197 lang=spa_Latn sentence=Alá dice la verdad.
+[18] score=0.000197 abs_score=0.000197 lang=spa_Latn sentence=158: Si no que Allah lo elevó hacia Él, salvándolo de sus enemigos.
+[19] score=0.000196 abs_score=0.000196 lang=por_Latn sentence=do dia do Juízo do Senhor.
+[20] score=0.000196 abs_score=0.000196 lang=ces_Latn sentence=Přesto se ale považují za investory."
+
+--- Feature 5874 ---
+Top by z:
+[01] score=0.000210 abs_score=0.000210 lang=spa_Latn sentence=►▣►19 Ellos combatirán contra ti,
+[02] score=0.000207 abs_score=0.000207 lang=ita_Latn sentence=Tutta la verità sul Signore degli Anelli[edit]
+[03] score=0.000207 abs_score=0.000207 lang=pol_Latn sentence=[10 historycznie znaczących protestów politycznych]
+[04] score=0.000205 abs_score=0.000205 lang=ita_Latn sentence=Col sacrificio del Figlio di Dio.
+[05] score=0.000203 abs_score=0.000203 lang=eng_Latn sentence=Paradise is open to all God’s creatures."
+[06] score=0.000203 abs_score=0.000203 lang=eng_Latn sentence=How to Know God’s Work of Judgment and Chastisement in the Last Days
+[07] score=0.000202 abs_score=0.000202 lang=eng_Latn sentence=Now your goal is sector 13).
+[08] score=0.000201 abs_score=0.000201 lang=spa_Latn sentence=el Compasivo, el Misericordioso.
+[09] score=0.000201 abs_score=0.000201 lang=spa_Latn sentence=Vuestro mundo está cubierto por la oscuridad."
+[10] score=0.000201 abs_score=0.000201 lang=nld_Latn sentence=Dus dit jaar heb ik besloten dat ik heel jong ben."
+[11] score=0.000201 abs_score=0.000201 lang=pol_Latn sentence=Znajdują to w islamie”.
+[12] score=0.000200 abs_score=0.000200 lang=ces_Latn sentence=To je jen dočasné rozdělení.“
+[13] score=0.000200 abs_score=0.000200 lang=spa_Latn sentence=“¡Esto procede de Allah!.”
+[14] score=0.000200 abs_score=0.000200 lang=spa_Latn sentence=(¿El tren? ¡45 GBP!)
+[15] score=0.000199 abs_score=0.000199 lang=spa_Latn sentence=hablan en nombre de Dios.
+[16] score=0.000199 abs_score=0.000199 lang=spa_Latn sentence=El nombre de ese Dios es Abraxas."
+[17] score=0.000199 abs_score=0.000199 lang=ita_Latn sentence=L’uomo fa uno spirito solo con il suo Signore (cfr.
+[18] score=0.000198 abs_score=0.000198 lang=ita_Latn sentence=L Eterno benedice il popolo suo con la pace».
+[19] score=0.000198 abs_score=0.000198 lang=ita_Latn sentence=Quale dunque dei benefici del Vostro Signore negherete?
+[20] score=0.000197 abs_score=0.000197 lang=ces_Latn sentence=Pána v saku poslouchat nebudou, ten je nudný.
+Top by |z|:
+[01] score=0.000210 abs_score=0.000210 lang=spa_Latn sentence=►▣►19 Ellos combatirán contra ti,
+[02] score=0.000207 abs_score=0.000207 lang=ita_Latn sentence=Tutta la verità sul Signore degli Anelli[edit]
+[03] score=0.000207 abs_score=0.000207 lang=pol_Latn sentence=[10 historycznie znaczących protestów politycznych]
+[04] score=0.000205 abs_score=0.000205 lang=ita_Latn sentence=Col sacrificio del Figlio di Dio.
+[05] score=0.000203 abs_score=0.000203 lang=eng_Latn sentence=Paradise is open to all God’s creatures."
+[06] score=0.000203 abs_score=0.000203 lang=eng_Latn sentence=How to Know God’s Work of Judgment and Chastisement in the Last Days
+[07] score=0.000202 abs_score=0.000202 lang=eng_Latn sentence=Now your goal is sector 13).
+[08] score=0.000201 abs_score=0.000201 lang=spa_Latn sentence=el Compasivo, el Misericordioso.
+[09] score=0.000201 abs_score=0.000201 lang=spa_Latn sentence=Vuestro mundo está cubierto por la oscuridad."
+[10] score=0.000201 abs_score=0.000201 lang=nld_Latn sentence=Dus dit jaar heb ik besloten dat ik heel jong ben."
+[11] score=0.000201 abs_score=0.000201 lang=pol_Latn sentence=Znajdują to w islamie”.
+[12] score=0.000200 abs_score=0.000200 lang=ces_Latn sentence=To je jen dočasné rozdělení.“
+[13] score=0.000200 abs_score=0.000200 lang=spa_Latn sentence=“¡Esto procede de Allah!.”
+[14] score=0.000200 abs_score=0.000200 lang=spa_Latn sentence=(¿El tren? ¡45 GBP!)
+[15] score=0.000199 abs_score=0.000199 lang=spa_Latn sentence=hablan en nombre de Dios.
+[16] score=0.000199 abs_score=0.000199 lang=spa_Latn sentence=El nombre de ese Dios es Abraxas."
+[17] score=0.000199 abs_score=0.000199 lang=ita_Latn sentence=L’uomo fa uno spirito solo con il suo Signore (cfr.
+[18] score=0.000198 abs_score=0.000198 lang=ita_Latn sentence=L Eterno benedice il popolo suo con la pace».
+[19] score=0.000198 abs_score=0.000198 lang=ita_Latn sentence=Quale dunque dei benefici del Vostro Signore negherete?
+[20] score=0.000197 abs_score=0.000197 lang=ces_Latn sentence=Pána v saku poslouchat nebudou, ten je nudný.

@@ -1,0 +1,37 @@
+{
+  "backbone_name": "facebook/nllb-200-distilled-600M",
+  "encoder_only": true,
+  "langs": [
+    "eng_Latn",
+    "fra_Latn",
+    "deu_Latn",
+    "nld_Latn",
+    "swe_Latn",
+    "spa_Latn",
+    "ita_Latn",
+    "por_Latn",
+    "pol_Latn",
+    "ces_Latn"
+  ],
+  "pairs": [
+    "eng_Latn-fra_Latn",
+    "eng_Latn-fra_Latn",
+    "deu_Latn-eng_Latn",
+    "eng_Latn-nld_Latn",
+    "eng_Latn-swe_Latn",
+    "eng_Latn-spa_Latn",
+    "eng_Latn-ita_Latn",
+    "eng_Latn-por_Latn",
+    "eng_Latn-pol_Latn",
+    "ces_Latn-eng_Latn"
+  ],
+  "batch_size": 32,
+  "max_length": 128,
+  "num_batches": 100,
+  "points_per_lang_cap": 320,
+  "shuffle_buffer_size": 10000,
+  "stream_shuffle_seed": 18,
+  "random_seed": 18,
+  "layer_indices": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+  "output_path": "artifacts/language_embeddings/nllb_encoder_all_layers.npz"
+}
