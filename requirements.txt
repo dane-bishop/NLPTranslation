@@ -3,6 +3,8 @@ plotly
 torch
 torchvision
 transformers
+einops
+opentsne
 datasets==3.6.0
 matplotlib
 scikit-learn
