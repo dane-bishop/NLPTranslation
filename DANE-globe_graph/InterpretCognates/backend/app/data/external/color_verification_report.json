@@ -1,0 +1,340 @@
+{
+  "generated": "2026-02-25T03:59:15.112621Z",
+  "summary": {
+    "languages_verified": 33,
+    "languages_perfect": 33,
+    "languages_with_issues": 0,
+    "total_mismatch_count": 0,
+    "fixes_applied": 5,
+    "overall_confidence": "HIGH"
+  },
+  "per_language": {
+    "arb_Arab": {
+      "name": "Arabic",
+      "accuracy_pct": 100.0,
+      "correct": 11,
+      "total": 11,
+      "mismatches": [],
+      "missing_colors": []
+    },
+    "ben_Beng": {
+      "name": "Bengali",
+      "accuracy_pct": 100.0,
+      "correct": 11,
+      "total": 11,
+      "mismatches": [],
+      "missing_colors": []
+    },
+    "ces_Latn": {
+      "name": "Czech",
+      "accuracy_pct": 100.0,
+      "correct": 11,
+      "total": 11,
+      "mismatches": [],
+      "missing_colors": []
+    },
+    "dan_Latn": {
+      "name": "Danish",
+      "accuracy_pct": 100.0,
+      "correct": 11,
+      "total": 11,
+      "mismatches": [],
+      "missing_colors": []
+    },
+    "deu_Latn": {
+      "name": "German",
+      "accuracy_pct": 100.0,
+      "correct": 11,
+      "total": 11,
+      "mismatches": [],
+      "missing_colors": []
+    },
+    "ell_Grek": {
+      "name": "Greek",
+      "accuracy_pct": 100.0,
+      "correct": 11,
+      "total": 11,
+      "mismatches": [],
+      "missing_colors": []
+    },
+    "est_Latn": {
+      "name": "Estonian",
+      "accuracy_pct": 100.0,
+      "correct": 11,
+      "total": 11,
+      "mismatches": [],
+      "missing_colors": []
+    },
+    "fin_Latn": {
+      "name": "Finnish",
+      "accuracy_pct": 100.0,
+      "correct": 11,
+      "total": 11,
+      "mismatches": [],
+      "missing_colors": []
+    },
+    "fra_Latn": {
+      "name": "French",
+      "accuracy_pct": 100.0,
+      "correct": 11,
+      "total": 11,
+      "mismatches": [],
+      "missing_colors": []
+    },
+    "heb_Hebr": {
+      "name": "Hebrew",
+      "accuracy_pct": 100.0,
+      "correct": 11,
+      "total": 11,
+      "mismatches": [],
+      "missing_colors": []
+    },
+    "hin_Deva": {
+      "name": "Hindi",
+      "accuracy_pct": 100.0,
+      "correct": 11,
+      "total": 11,
+      "mismatches": [],
+      "missing_colors": []
+    },
+    "hrv_Latn": {
+      "name": "Croatian",
+      "accuracy_pct": 100.0,
+      "correct": 11,
+      "total": 11,
+      "mismatches": [],
+      "missing_colors": []
+    },
+    "hun_Latn": {
+      "name": "Hungarian",
+      "accuracy_pct": 100.0,
+      "correct": 11,
+      "total": 11,
+      "mismatches": [],
+      "missing_colors": []
+    },
+    "ind_Latn": {
+      "name": "Indonesian",
+      "accuracy_pct": 100.0,
+      "correct": 11,
+      "total": 11,
+      "mismatches": [],
+      "missing_colors": []
+    },
+    "ita_Latn": {
+      "name": "Italian",
+      "accuracy_pct": 100.0,
+      "correct": 11,
+      "total": 11,
+      "mismatches": [],
+      "missing_colors": []
+    },
+    "jpn_Jpan": {
+      "name": "Japanese",
+      "accuracy_pct": 100.0,
+      "correct": 11,
+      "total": 11,
+      "mismatches": [],
+      "missing_colors": []
+    },
+    "kor_Hang": {
+      "name": "Korean",
+      "accuracy_pct": 100.0,
+      "correct": 11,
+      "total": 11,
+      "mismatches": [],
+      "missing_colors": []
+    },
+    "nld_Latn": {
+      "name": "Dutch",
+      "accuracy_pct": 100.0,
+      "correct": 11,
+      "total": 11,
+      "mismatches": [],
+      "missing_colors": []
+    },
+    "nob_Latn": {
+      "name": "Norwegian Bokmål",
+      "accuracy_pct": 100.0,
+      "correct": 11,
+      "total": 11,
+      "mismatches": [],
+      "missing_colors": []
+    },
+    "pes_Arab": {
+      "name": "Persian",
+      "accuracy_pct": 100.0,
+      "correct": 11,
+      "total": 11,
+      "mismatches": [],
+      "missing_colors": []
+    },
+    "pol_Latn": {
+      "name": "Polish",
+      "accuracy_pct": 100.0,
+      "correct": 11,
+      "total": 11,
+      "mismatches": [],
+      "missing_colors": []
+    },
+    "por_Latn": {
+      "name": "Portuguese",
+      "accuracy_pct": 100.0,
+      "correct": 11,
+      "total": 11,
+      "mismatches": [],
+      "missing_colors": []
+    },
+    "ron_Latn": {
+      "name": "Romanian",
+      "accuracy_pct": 100.0,
+      "correct": 11,
+      "total": 11,
+      "mismatches": [],
+      "missing_colors": []
+    },
+    "rus_Cyrl": {
+      "name": "Russian",
+      "accuracy_pct": 100.0,
+      "correct": 11,
+      "total": 11,
+      "mismatches": [],
+      "missing_colors": []
+    },
+    "spa_Latn": {
+      "name": "Spanish",
+      "accuracy_pct": 100.0,
+      "correct": 11,
+      "total": 11,
+      "mismatches": [],
+      "missing_colors": []
+    },
+    "swe_Latn": {
+      "name": "Swedish",
+      "accuracy_pct": 100.0,
+      "correct": 11,
+      "total": 11,
+      "mismatches": [],
+      "missing_colors": []
+    },
+    "swh_Latn": {
+      "name": "Swahili",
+      "accuracy_pct": 100.0,
+      "correct": 11,
+      "total": 11,
+      "mismatches": [],
+      "missing_colors": []
+    },
+    "tam_Taml": {
+      "name": "Tamil",
+      "accuracy_pct": 100.0,
+      "correct": 11,
+      "total": 11,
+      "mismatches": [],
+      "missing_colors": []
+    },
+    "tha_Thai": {
+      "name": "Thai",
+      "accuracy_pct": 100.0,
+      "correct": 11,
+      "total": 11,
+      "mismatches": [],
+      "missing_colors": []
+    },
+    "tur_Latn": {
+      "name": "Turkish",
+      "accuracy_pct": 100.0,
+      "correct": 11,
+      "total": 11,
+      "mismatches": [],
+      "missing_colors": []
+    },
+    "ukr_Cyrl": {
+      "name": "Ukrainian",
+      "accuracy_pct": 100.0,
+      "correct": 11,
+      "total": 11,
+      "mismatches": [],
+      "missing_colors": []
+    },
+    "vie_Latn": {
+      "name": "Vietnamese",
+      "accuracy_pct": 100.0,
+      "correct": 11,
+      "total": 11,
+      "mismatches": [],
+      "missing_colors": []
+    },
+    "zho_Hans": {
+      "name": "Chinese (Simplified)",
+      "accuracy_pct": 100.0,
+      "correct": 11,
+      "total": 11,
+      "mismatches": [],
+      "missing_colors": []
+    }
+  },
+  "fixes_applied": [
+    {
+      "lang": "tir_Ethi",
+      "color": "yellow",
+      "current": "&ቢጫ",
+      "corrected": "ቢጫ",
+      "reason": "Spurious '&' prefix (data artifact)"
+    },
+    {
+      "lang": "tir_Ethi",
+      "color": "blue",
+      "current": "&ሰማያዊ",
+      "corrected": "ሰማያዊ",
+      "reason": "Spurious '&' prefix (data artifact)"
+    },
+    {
+      "lang": "tir_Ethi",
+      "color": "brown",
+      "current": "&ቡናማ",
+      "corrected": "ቡናማ",
+      "reason": "Spurious '&' prefix (data artifact)"
+    },
+    {
+      "lang": "tir_Ethi",
+      "color": "grey",
+      "current": "&ግራጫ",
+      "corrected": "ግራጫ",
+      "reason": "Spurious '&' prefix (data artifact)"
+    },
+    {
+      "lang": "khm_Khmr",
+      "color": "yellow",
+      "current": "លើង",
+      "corrected": "លឿង",
+      "reason": "Misspelling: លើង means 'to raise'; correct Khmer for yellow is លឿង"
+    }
+  ],
+  "linguistic_notes": [
+    {
+      "lang": "vie_Latn",
+      "color": "blue",
+      "note": "Vietnamese 'xanh' covers both blue and green (grue). 'xanh dương' is specifically blue, but 'xanh' alone is standard."
+    },
+    {
+      "lang": "grn_Latn",
+      "colors": [
+        "green",
+        "blue"
+      ],
+      "note": "Guarani 'hovy' is used for both green and blue (grue language)."
+    },
+    {
+      "lang": "gle_Latn",
+      "color": "green",
+      "note": "Irish 'glas' covers green-grey-blue range; 'uaine' is more specifically green, but 'glas' is the traditional basic term."
+    },
+    {
+      "lang": "mri_Latn",
+      "color": "purple",
+      "note": "Maori 'mawhero' typically means pink, not purple. 'waiporoporo' or 'papura' may be more accurate for purple. Not auto-fixed due to lower confidence."
+    }
+  ],
+  "methodology": "Translations verified against well-known standard translations for 32 major world languages across all 11 Berlin & Kay basic color terms. Verification based on standard dictionary forms. Only high-confidence corrections were applied automatically."
+}

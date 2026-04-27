@@ -1,0 +1,53 @@
+---
+pid: 15677
+cwd: "/Users/kylemathewson/InterpretCognates/backend"
+command: "cd /Users/kylemathewson/InterpretCognates/backend && source venv/bin/activate && python -m app.scripts.precompute --offset-only"
+started_at: 2026-02-25T07:42:04.528Z
+running_for_seconds: 555   
+---
+/Users/kylemathewson/InterpretCognates/backend/venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+/Users/kylemathewson/InterpretCognates/backend/venv/lib/python3.9/site-packages/sklearn/utils/extmath.py:335: RuntimeWarning: divide by zero encountered in matmul
+  Q, _ = normalizer(A @ Q)
+/Users/kylemathewson/InterpretCognates/backend/venv/lib/python3.9/site-packages/sklearn/utils/extmath.py:335: RuntimeWarning: overflow encountered in matmul
+  Q, _ = normalizer(A @ Q)
+/Users/kylemathewson/InterpretCognates/backend/venv/lib/python3.9/site-packages/sklearn/utils/extmath.py:335: RuntimeWarning: invalid value encountered in matmul
+  Q, _ = normalizer(A @ Q)
+/Users/kylemathewson/InterpretCognates/backend/venv/lib/python3.9/site-packages/sklearn/utils/extmath.py:336: RuntimeWarning: divide by zero encountered in matmul
+  Q, _ = normalizer(A.T @ Q)
+/Users/kylemathewson/InterpretCognates/backend/venv/lib/python3.9/site-packages/sklearn/utils/extmath.py:336: RuntimeWarning: overflow encountered in matmul
+  Q, _ = normalizer(A.T @ Q)
+/Users/kylemathewson/InterpretCognates/backend/venv/lib/python3.9/site-packages/sklearn/utils/extmath.py:336: RuntimeWarning: invalid value encountered in matmul
+  Q, _ = normalizer(A.T @ Q)
+/Users/kylemathewson/InterpretCognates/backend/venv/lib/python3.9/site-packages/sklearn/utils/extmath.py:340: RuntimeWarning: divide by zero encountered in matmul
+  Q, _ = qr_normalizer(A @ Q)
+/Users/kylemathewson/InterpretCognates/backend/venv/lib/python3.9/site-packages/sklearn/utils/extmath.py:340: RuntimeWarning: overflow encountered in matmul
+  Q, _ = qr_normalizer(A @ Q)
+/Users/kylemathewson/InterpretCognates/backend/venv/lib/python3.9/site-packages/sklearn/utils/extmath.py:340: RuntimeWarning: invalid value encountered in matmul
+  Q, _ = qr_normalizer(A @ Q)
+/Users/kylemathewson/InterpretCognates/backend/venv/lib/python3.9/site-packages/sklearn/utils/extmath.py:533: RuntimeWarning: divide by zero encountered in matmul
+  B = Q.T @ M
+/Users/kylemathewson/InterpretCognates/backend/venv/lib/python3.9/site-packages/sklearn/utils/extmath.py:533: RuntimeWarning: overflow encountered in matmul
+  B = Q.T @ M
+/Users/kylemathewson/InterpretCognates/backend/venv/lib/python3.9/site-packages/sklearn/utils/extmath.py:533: RuntimeWarning: invalid value encountered in matmul
+  B = Q.T @ M
+/Users/kylemathewson/InterpretCognates/backend/venv/lib/python3.9/site-packages/sklearn/utils/extmath.py:547: RuntimeWarning: divide by zero encountered in matmul
+  U = Q @ Uhat
+/Users/kylemathewson/InterpretCognates/backend/venv/lib/python3.9/site-packages/sklearn/utils/extmath.py:547: RuntimeWarning: overflow encountered in matmul
+  U = Q @ Uhat
+/Users/kylemathewson/InterpretCognates/backend/venv/lib/python3.9/site-packages/sklearn/utils/extmath.py:547: RuntimeWarning: invalid value encountered in matmul
+  U = Q @ Uhat
+Re-running offset invariance only...
+
+============================================================
+  6/8  Semantic Offset Invariance
+============================================================
+  -> Saved offset_invariance.json (344.9 KB)
+  Elapsed: 0.0s
+Done.
+
+---
+exit_code: 0
+elapsed_ms: 556591
+ended_at: 2026-02-25T07:51:21.119Z
+---

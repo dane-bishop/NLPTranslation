@@ -1,0 +1,10 @@
+matplotlib>=3.7
+numpy>=1.24
+scipy>=1.10
+seaborn>=0.12
+adjustText>=0.8
+scikit-learn>=1.3
+torch
+transformers
+sentencepiece
+safetensors

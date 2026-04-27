@@ -1,0 +1,655 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Word Explorer — InterpretCognates</title>
+  <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --fg: #1c1c1c;
+      --fg-muted: #4a4a4a;
+      --fg-dim: #7a7a7a;
+      --bg: #ffffff;
+      --bg-card: #f8f9fa;
+      --border: #e2e8f0;
+      --accent: #4f46e5;
+      --accent-light: #eef2ff;
+      --sans: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      --mono: "SF Mono", "Fira Code", Menlo, Consolas, monospace;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--sans);
+      font-size: 16px;
+      line-height: 1.65;
+      color: var(--fg);
+      background: var(--bg);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .page {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+    }
+
+    header {
+      text-align: center;
+      padding: 48px 0 32px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 32px;
+    }
+
+    header .overline {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--fg-dim);
+      margin-bottom: 12px;
+    }
+
+    header h1 {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    header p {
+      color: var(--fg-muted);
+      max-width: 560px;
+      margin: 0 auto;
+      font-size: 15px;
+    }
+
+    .controls {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      align-items: end;
+    }
+
+    .controls label {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--fg-muted);
+    }
+
+    .controls input {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-size: 16px;
+      font-family: var(--sans);
+      width: 100%;
+      transition: border-color 0.15s;
+    }
+
+    .controls input:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.12);
+    }
+
+    .field-word { flex: 0 0 200px; }
+    .field-context { flex: 1 1 300px; }
+
+    .controls button {
+      border: none;
+      border-radius: 8px;
+      background: var(--accent);
+      color: white;
+      font-weight: 600;
+      font-size: 15px;
+      padding: 10px 24px;
+      cursor: pointer;
+      transition: background 0.15s;
+      white-space: nowrap;
+    }
+
+    .controls button:hover { background: #4338ca; }
+    .controls button:disabled { background: #94a3b8; cursor: not-allowed; }
+
+    .section {
+      margin-top: 32px;
+    }
+
+    .section h2 {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section-note {
+      font-size: 14px;
+      color: var(--fg-muted);
+      margin-bottom: 16px;
+    }
+
+    .stats-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .stat-badge {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 16px;
+      text-align: center;
+      min-width: 120px;
+    }
+
+    .stat-badge .val {
+      display: block;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .stat-badge .lbl {
+      font-size: 11px;
+      color: var(--fg-dim);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .translations-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .family-group {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px 14px;
+    }
+
+    .family-header {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 6px;
+      padding-bottom: 4px;
+      border-bottom: 2px solid var(--border);
+    }
+
+    .trans-line {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 3px 0;
+      font-size: 14px;
+    }
+
+    .trans-lang {
+      color: var(--fg-dim);
+      font-size: 12px;
+      min-width: 80px;
+    }
+
+    .trans-word {
+      font-weight: 600;
+      color: var(--fg);
+      text-align: right;
+    }
+
+    .chart-container {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      margin-top: 8px;
+    }
+
+    .loading {
+      text-align: center;
+      padding: 40px;
+      color: var(--fg-dim);
+      font-style: italic;
+    }
+
+    .loading .spinner {
+      display: inline-block;
+      width: 28px;
+      height: 28px;
+      border: 3px solid var(--border);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin-bottom: 12px;
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .error-msg {
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+      color: #b91c1c;
+      padding: 12px 16px;
+      border-radius: 8px;
+      font-size: 14px;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-top: 8px;
+      font-size: 13px;
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .back-link:hover { text-decoration: underline; }
+
+    .toggle-row {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 8px;
+    }
+
+    .toggle-btn {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      color: var(--fg-muted);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 5px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .toggle-btn.active {
+      background: var(--accent);
+      color: white;
+      border-color: var(--accent);
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <header>
+    <div class="overline">InterpretCognates</div>
+    <h1>Cross-Lingual Word Explorer</h1>
+    <p>
+      Translate any English word into 30 diverse languages, embed each translation
+      in NLLB-200's encoder, and visualize the resulting conceptual manifold.
+    </p>
+    <a href="/legacy" class="back-link">&larr; Full interactive tool</a>
+  </header>
+
+  <div class="controls">
+    <label class="field-word">
+      Word
+      <input id="wordInput" value="fair" placeholder="e.g. fair, justice, river" />
+    </label>
+    <label class="field-context">
+      Context template
+      <input id="contextInput" value="The concept of {word} is important." />
+    </label>
+    <button id="runBtn">Analyze</button>
+  </div>
+
+  <div id="status"></div>
+
+  <div class="section" id="statsSection" style="display:none">
+    <h2>Manifold Statistics</h2>
+    <div id="stats" class="stats-row"></div>
+  </div>
+
+  <div class="section" id="translationsSection" style="display:none">
+    <h2>Translations</h2>
+    <p class="section-note">
+      Each translation was produced by NLLB-200 and then re-embedded in the carrier sentence.
+    </p>
+    <div id="translations" class="translations-grid"></div>
+  </div>
+
+  <div class="section" id="scatterSection" style="display:none">
+    <h2>Concept Manifold (3D PCA)</h2>
+    <p class="section-note">
+      Each point is one language's translation embedded by the NLLB-200 encoder.
+      Colors represent language families. Tight clustering = high cross-lingual convergence.
+    </p>
+    <div class="toggle-row">
+      <button id="pcaRawBtn" class="toggle-btn active">Language Clusters</button>
+      <button id="pcaCenteredBtn" class="toggle-btn">Mean-Centered</button>
+    </div>
+    <div class="toggle-row">
+      <span style="font-size:12px;color:var(--fg-dim);margin-right:6px">Labels:</span>
+      <button class="toggle-btn label-btn active" data-mode="lang">Language</button>
+      <button class="toggle-btn label-btn" data-mode="word">Translation</button>
+      <button class="toggle-btn label-btn" data-mode="both">Both</button>
+    </div>
+    <div class="chart-container">
+      <div id="scatter"></div>
+    </div>
+  </div>
+
+  <div class="section" id="simSection" style="display:none">
+    <h2>Cross-Language Similarity Matrix</h2>
+    <p class="section-note">
+      Pairwise cosine similarity between encoder embeddings. Languages sorted by family.
+    </p>
+    <div class="chart-container">
+      <div id="similarity"></div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+// ── Language data ──────────────────────────────────────────────────
+const FAMILIES = [
+  { family: "IE: Romance", langs: [
+    { code: "spa_Latn", name: "Spanish" }, { code: "fra_Latn", name: "French" },
+    { code: "ita_Latn", name: "Italian" }, { code: "por_Latn", name: "Portuguese" },
+    { code: "ron_Latn", name: "Romanian" }, { code: "cat_Latn", name: "Catalan" },
+    { code: "glg_Latn", name: "Galician" },
+  ]},
+  { family: "IE: Germanic", langs: [
+    { code: "deu_Latn", name: "German" }, { code: "nld_Latn", name: "Dutch" },
+    { code: "swe_Latn", name: "Swedish" }, { code: "afr_Latn", name: "Afrikaans" },
+  ]},
+  { family: "IE: Slavic", langs: [
+    { code: "rus_Cyrl", name: "Russian" }, { code: "pol_Latn", name: "Polish" },
+    { code: "ces_Latn", name: "Czech" }, { code: "bul_Cyrl", name: "Bulgarian" },
+  ]},
+  { family: "IE: Indo-Iranian", langs: [
+    { code: "hin_Deva", name: "Hindi" }, { code: "pes_Arab", name: "Persian" },
+    { code: "ben_Beng", name: "Bengali" },
+  ]},
+  { family: "IE: Hellenic", langs: [{ code: "ell_Grek", name: "Greek" }] },
+  { family: "IE: Baltic", langs: [{ code: "lit_Latn", name: "Lithuanian" }] },
+  { family: "IE: Celtic", langs: [{ code: "gle_Latn", name: "Irish" }] },
+  { family: "IE: Armenian", langs: [{ code: "hye_Armn", name: "Armenian" }] },
+  { family: "IE: Albanian", langs: [{ code: "als_Latn", name: "Albanian" }] },
+  { family: "Sino-Tibetan", langs: [{ code: "zho_Hans", name: "Chinese" }] },
+  { family: "Japonic & Koreanic", langs: [
+    { code: "jpn_Jpan", name: "Japanese" }, { code: "kor_Hang", name: "Korean" },
+  ]},
+  { family: "Afro-Asiatic", langs: [
+    { code: "arb_Arab", name: "Arabic" }, { code: "heb_Hebr", name: "Hebrew" },
+    { code: "amh_Ethi", name: "Amharic" },
+  ]},
+  { family: "Dravidian", langs: [
+    { code: "tam_Taml", name: "Tamil" }, { code: "tel_Telu", name: "Telugu" },
+  ]},
+  { family: "Turkic", langs: [
+    { code: "tur_Latn", name: "Turkish" }, { code: "kaz_Cyrl", name: "Kazakh" },
+  ]},
+  { family: "Austroasiatic", langs: [{ code: "vie_Latn", name: "Vietnamese" }] },
+  { family: "Tai-Kadai", langs: [{ code: "tha_Thai", name: "Thai" }] },
+  { family: "Austronesian", langs: [
+    { code: "ind_Latn", name: "Indonesian" }, { code: "tgl_Latn", name: "Tagalog" },
+  ]},
+  { family: "Niger-Congo", langs: [
+    { code: "swh_Latn", name: "Swahili" }, { code: "yor_Latn", name: "Yoruba" },
+  ]},
+  { family: "Uralic", langs: [{ code: "fin_Latn", name: "Finnish" }] },
+];
+
+const LANG_MAP = new Map();
+FAMILIES.forEach(g => g.langs.forEach(l => LANG_MAP.set(l.code, { ...l, family: g.family })));
+
+const TARGET_LANGS = FAMILIES.flatMap(g => g.langs.map(l => l.code));
+
+function langName(code) { const e = LANG_MAP.get(code); return e ? e.name : code; }
+function langFamily(code) { const e = LANG_MAP.get(code); return e ? e.family : "Unknown"; }
+
+const FAMILY_COLORS = {
+  "IE: Romance": "#6366f1", "IE: Germanic": "#4f46e5", "IE: Slavic": "#4338ca",
+  "IE: Indo-Iranian": "#7c3aed", "IE: Hellenic": "#3730a3", "IE: Baltic": "#a5b4fc",
+  "IE: Celtic": "#818cf8", "IE: Armenian": "#5b21b6", "IE: Albanian": "#8b5cf6",
+  "Sino-Tibetan": "#e53e3e", "Japonic & Koreanic": "#dd6b20",
+  "Afro-Asiatic": "#d69e2e", "Dravidian": "#38a169", "Turkic": "#319795",
+  "Austroasiatic": "#2b6cb0", "Tai-Kadai": "#3182ce", "Austronesian": "#805ad5",
+  "Niger-Congo": "#b7791f", "Uralic": "#c53030", "Unknown": "#718096",
+};
+
+// ── State ──────────────────────────────────────────────────────────
+let lastData = null;
+let pcaMode = "raw";
+let labelMode = "lang";
+
+// ── DOM refs ───────────────────────────────────────────────────────
+const wordInput = document.getElementById("wordInput");
+const contextInput = document.getElementById("contextInput");
+const runBtn = document.getElementById("runBtn");
+const statusEl = document.getElementById("status");
+
+// ── Run analysis ───────────────────────────────────────────────────
+wordInput.addEventListener("keydown", e => { if (e.key === "Enter") runBtn.click(); });
+
+runBtn.addEventListener("click", async () => {
+  const word = wordInput.value.trim();
+  if (!word) return;
+
+  runBtn.disabled = true;
+  runBtn.textContent = "Analyzing…";
+  statusEl.innerHTML = `<div class="loading"><div class="spinner"></div><br>Translating "${word}" into ${TARGET_LANGS.length} languages and computing embeddings…<br><span style="font-size:12px">(This may take 30–60 seconds on first run while the model loads.)</span></div>`;
+  hideSections();
+
+  try {
+    const resp = await fetch("/api/analyze", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        concept: word,
+        source_lang: "eng_Latn",
+        target_langs: TARGET_LANGS.filter(c => c !== "eng_Latn"),
+        context_template: contextInput.value.trim(),
+        isotropy_corrected: false,
+      }),
+    });
+
+    if (!resp.ok) throw new Error(`API error ${resp.status}`);
+    lastData = await resp.json();
+    statusEl.innerHTML = "";
+    renderAll();
+  } catch (err) {
+    statusEl.innerHTML = `<div class="error-msg">Error: ${err.message}</div>`;
+  } finally {
+    runBtn.disabled = false;
+    runBtn.textContent = "Analyze";
+  }
+});
+
+function hideSections() {
+  ["statsSection", "translationsSection", "scatterSection", "simSection"]
+    .forEach(id => document.getElementById(id).style.display = "none");
+}
+
+// ── Render all sections ────────────────────────────────────────────
+function renderAll() {
+  if (!lastData) return;
+  renderStats();
+  renderTranslations();
+  renderScatter();
+  renderSimilarity();
+  ["statsSection", "translationsSection", "scatterSection", "simSection"]
+    .forEach(id => document.getElementById(id).style.display = "");
+}
+
+// ── Stats ──────────────────────────────────────────────────────────
+function renderStats() {
+  const m = lastData.similarity_matrix;
+  const n = m.length;
+  let sum = 0, count = 0, min = 1, max = 0;
+  for (let i = 0; i < n; i++) {
+    for (let j = i + 1; j < n; j++) {
+      const v = m[i][j];
+      sum += v; count++;
+      if (v < min) min = v;
+      if (v > max) max = v;
+    }
+  }
+  const mean = sum / count;
+  let varSum = 0;
+  for (let i = 0; i < n; i++)
+    for (let j = i + 1; j < n; j++)
+      varSum += (m[i][j] - mean) ** 2;
+  const std = Math.sqrt(varSum / count);
+
+  document.getElementById("stats").innerHTML = [
+    badge(n, "Languages"),
+    badge(mean.toFixed(4), "Mean Similarity"),
+    badge(std.toFixed(4), "Std Dev"),
+    badge(min.toFixed(4), "Min"),
+    badge(max.toFixed(4), "Max"),
+    badge(count, "Pairs"),
+  ].join("");
+}
+
+function badge(val, lbl) {
+  return `<div class="stat-badge"><span class="val">${val}</span><span class="lbl">${lbl}</span></div>`;
+}
+
+// ── Translations ───────────────────────────────────────────────────
+function renderTranslations() {
+  const el = document.getElementById("translations");
+  const grouped = {};
+  lastData.translations.forEach(t => {
+    const fam = langFamily(t.lang);
+    if (!grouped[fam]) grouped[fam] = [];
+    grouped[fam].push(t);
+  });
+
+  const familyOrder = FAMILIES.map(f => f.family);
+  const sorted = familyOrder.filter(f => grouped[f]);
+  Object.keys(grouped).forEach(f => { if (!sorted.includes(f)) sorted.push(f); });
+
+  el.innerHTML = sorted.map(fam => {
+    const color = FAMILY_COLORS[fam] || FAMILY_COLORS.Unknown;
+    const items = grouped[fam].map(t =>
+      `<div class="trans-line"><span class="trans-lang">${langName(t.lang)}</span><span class="trans-word">${t.text}</span></div>`
+    ).join("");
+    return `<div class="family-group"><div class="family-header" style="border-bottom-color:${color};color:${color}">${fam}</div>${items}</div>`;
+  }).join("");
+}
+
+// ── 3D PCA Scatter ─────────────────────────────────────────────────
+function renderScatter() {
+  const points = pcaMode === "centered" && lastData.embedding_points_centered
+    ? lastData.embedding_points_centered
+    : lastData.embedding_points;
+
+  const words = lastData.translated_words || [];
+  const byFamily = {};
+  points.forEach((p, i) => {
+    const fam = langFamily(p.label);
+    if (!byFamily[fam]) byFamily[fam] = { x: [], y: [], z: [], text: [], hover: [] };
+    const g = byFamily[fam];
+    g.x.push(p.x); g.y.push(p.y); g.z.push(p.z || 0);
+    const name = langName(p.label);
+    const word = words[i] || "";
+    g.text.push(labelMode === "word" ? word : labelMode === "both" ? `${name}: ${word}` : name);
+    g.hover.push(`<b>${name}</b><br>${fam}<br>${word}`);
+  });
+
+  const traces = Object.entries(byFamily).map(([fam, g]) => ({
+    type: "scatter3d", mode: "markers+text",
+    x: g.x, y: g.y, z: g.z, text: g.text,
+    textposition: "top center",
+    textfont: { size: labelMode === "lang" ? 10 : 8 },
+    hovertext: g.hover, hoverinfo: "text",
+    marker: { size: 7, color: FAMILY_COLORS[fam] || FAMILY_COLORS.Unknown, opacity: 0.9 },
+    name: fam,
+  }));
+
+  Plotly.newPlot("scatter", traces, {
+    margin: { l: 0, r: 0, t: 10, b: 0 },
+    scene: {
+      xaxis: { title: "PC1", showgrid: true, zeroline: false, gridcolor: "#f1f5f9" },
+      yaxis: { title: "PC2", showgrid: true, zeroline: false, gridcolor: "#f1f5f9" },
+      zaxis: { title: "PC3", showgrid: true, zeroline: false, gridcolor: "#f1f5f9" },
+      camera: { eye: { x: 1.4, y: 1.4, z: 1.0 } },
+      bgcolor: "white",
+    },
+    legend: { orientation: "h", y: -0.05, font: { size: 10 } },
+    height: 560,
+    paper_bgcolor: "white",
+    plot_bgcolor: "white",
+  }, { responsive: true, displayModeBar: false });
+}
+
+// ── Similarity Heatmap ─────────────────────────────────────────────
+function renderSimilarity() {
+  const codes = lastData.labels;
+  const matrix = lastData.similarity_matrix;
+
+  const sorted = codes
+    .map((code, i) => ({ code, i, family: langFamily(code), name: langName(code) }))
+    .sort((a, b) => a.family.localeCompare(b.family) || a.name.localeCompare(b.name));
+
+  const names = sorted.map(d => d.name);
+  const sortedMatrix = sorted.map(ri => sorted.map(ci => matrix[ri.i][ci.i]));
+
+  const n = names.length;
+  const cellPx = Math.max(16, Math.min(24, Math.floor(700 / n)));
+  const height = Math.max(500, n * cellPx + 200);
+  const labelPx = Math.max(100, Math.max(...names.map(s => s.length)) * 7 + 20);
+
+  Plotly.newPlot("similarity", [{
+    z: sortedMatrix, x: names, y: names,
+    type: "heatmap",
+    colorscale: [[0, "#f7f7f7"], [0.25, "#c9b4d8"], [0.5, "#8c6bb1"], [0.75, "#6a3d9a"], [1, "#2d004b"]],
+    zmin: 0, zmax: 1,
+    hoverongaps: false,
+    hovertemplate: "<b>%{y}</b> × <b>%{x}</b><br>similarity: %{z:.3f}<extra></extra>",
+    colorbar: { thickness: 14, len: 0.5, y: 0.5 },
+  }], {
+    height,
+    margin: { l: labelPx, r: 20, t: 10, b: labelPx },
+    xaxis: { tickangle: -45, tickfont: { size: 10 } },
+    yaxis: { tickfont: { size: 10 }, autorange: "reversed" },
+    paper_bgcolor: "white",
+    plot_bgcolor: "white",
+  }, { responsive: true, displayModeBar: false });
+}
+
+// ── PCA toggle ─────────────────────────────────────────────────────
+document.getElementById("pcaRawBtn").addEventListener("click", function() {
+  pcaMode = "raw";
+  this.classList.add("active");
+  document.getElementById("pcaCenteredBtn").classList.remove("active");
+  if (lastData) renderScatter();
+});
+
+document.getElementById("pcaCenteredBtn").addEventListener("click", function() {
+  pcaMode = "centered";
+  this.classList.add("active");
+  document.getElementById("pcaRawBtn").classList.remove("active");
+  if (lastData) renderScatter();
+});
+
+document.querySelectorAll(".label-btn").forEach(btn => {
+  btn.addEventListener("click", function() {
+    document.querySelectorAll(".label-btn").forEach(b => b.classList.remove("active"));
+    this.classList.add("active");
+    labelMode = this.dataset.mode;
+    if (lastData) renderScatter();
+  });
+});
+</script>
+</body>
+</html>

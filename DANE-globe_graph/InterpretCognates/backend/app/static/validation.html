@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Validation &amp; Literature Tests — InterpretCognates</title>
+    <link rel="stylesheet" href="/static/validation.css" />
+    <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+  </head>
+  <body>
+    <header class="hero">
+      <nav class="pageNavRow">
+        <a href="/" class="navLink">Main Analysis</a>
+        <a href="/swadesh" class="navLink">Swadesh Detail</a>
+        <a href="/validation" class="navLink active">Validation Tests</a>
+      </nav>
+      <h1>Validation &amp; Literature Tests</h1>
+      <p class="subtitle">
+        Tests against external benchmarks from cognitive science and historical
+        linguistics. Each experiment validates a specific hypothesis about
+        cross-lingual semantic structure.
+      </p>
+    </header>
+
+    <div class="warningBanner">
+      <strong>⚠ Compute Warning:</strong> These experiments are computationally
+      expensive. Each test embeds thousands of words and may take 2–5 minutes.
+      Results are not cached across page reloads.
+    </div>
+
+    <main>
+
+      <!-- Panel 1: Isotropy Correction -->
+      <section class="experimentCard" id="panel-isotropy">
+        <div class="cardHeader">
+          <span class="panelNumber">1</span>
+          <div>
+            <h2>Isotropy Correction Test</h2>
+            <p class="cardDesc">
+              Does the Swadesh convergence ranking hold under isotropy (ABTT)
+              correction? A stable ranking indicates the signal is geometric,
+              not an artifact of anisotropy.
+            </p>
+          </div>
+        </div>
+        <div class="cardActions">
+          <button class="runBtn" id="btn-isotropy" onclick="runIsotropy()">
+            Run Test
+          </button>
+          <span class="timeEstimate">~2–5 min</span>
+        </div>
+        <div class="resultsArea" id="results-isotropy"></div>
+      </section>
+
+      <!-- Panel 2: Swadesh vs Non-Swadesh -->
+      <section class="experimentCard" id="panel-comparison">
+        <div class="cardHeader">
+          <span class="panelNumber">2</span>
+          <div>
+            <h2>Swadesh vs Non-Swadesh Comparison</h2>
+            <p class="cardDesc">
+              Does core vocabulary (Swadesh) converge significantly more than
+              culturally-specific vocabulary? A significant difference supports
+              the cultural stability hypothesis.
+            </p>
+          </div>
+        </div>
+        <div class="cardActions">
+          <button class="runBtn" id="btn-comparison" onclick="runComparison()">
+            Run Test
+          </button>
+          <span class="timeEstimate">~2–5 min</span>
+        </div>
+        <div class="resultsArea" id="results-comparison"></div>
+      </section>
+
+      <!-- Panel 3: Colexification -->
+      <section class="experimentCard" id="panel-colexification">
+        <div class="cardHeader">
+          <span class="panelNumber">3</span>
+          <div>
+            <h2>Colexification Test (CLICS²)</h2>
+            <p class="cardDesc">
+              Do concept pairs that are frequently colexified across languages
+              (e.g., hand–arm) show higher embedding similarity than
+              never-colexified pairs? Tests universal conceptual associations.
+            </p>
+          </div>
+        </div>
+        <div class="cardActions">
+          <button class="runBtn" id="btn-colexification" onclick="runColexification()">
+            Run Test
+          </button>
+          <span class="timeEstimate">~2–5 min</span>
+        </div>
+        <div class="resultsArea" id="results-colexification"></div>
+      </section>
+
+      <!-- Panel 4: Conceptual Store -->
+      <section class="experimentCard" id="panel-conceptual-store">
+        <div class="cardHeader">
+          <span class="panelNumber">4</span>
+          <div>
+            <h2>Conceptual Store Metric</h2>
+            <p class="cardDesc">
+              Does mean-centering (subtracting per-language means) reorganize
+              the embedding space from language clusters to concept clusters?
+              The conceptual store hypothesis (Correia et al., 2014) predicts a
+              ≥2× improvement in between/within concept distance ratio.
+            </p>
+          </div>
+        </div>
+        <div class="cardActions">
+          <button class="runBtn" id="btn-conceptual-store" onclick="runConceptualStore()">
+            Run Test
+          </button>
+          <span class="timeEstimate">~2–5 min</span>
+        </div>
+        <div class="resultsArea" id="results-conceptual-store"></div>
+      </section>
+
+      <!-- Panel 5: Phylogenetic Distance & Mantel Test -->
+      <section class="experimentCard" id="panel-phylogenetic">
+        <div class="cardHeader">
+          <span class="panelNumber">5</span>
+          <div>
+            <h2>Phylogenetic Distance &amp; Mantel Test</h2>
+            <p class="cardDesc">
+              Do embedding distances between languages correlate with
+              phylogenetic (phonetic) distance? Includes Mantel test against
+              approximate ASJP LDND distances, conceptual maps per language
+              family, MDS projection, dendrogram, and 3D PCA of language
+              centroids.
+            </p>
+          </div>
+        </div>
+        <div class="cardActions">
+          <button class="runBtn" id="btn-phylogenetic" onclick="runPhylogenetic()">
+            Run Test
+          </button>
+          <span class="timeEstimate">~2–5 min</span>
+        </div>
+        <div class="resultsArea" id="results-phylogenetic"></div>
+      </section>
+
+      <!-- Panel 6: Semantic Offset Invariance -->
+      <section class="experimentCard" id="panel-offset">
+        <div class="cardHeader">
+          <span class="panelNumber">6</span>
+          <div>
+            <h2>Semantic Offset Invariance</h2>
+            <p class="cardDesc">
+              Are semantic relationships translationally invariant? For concept
+              pairs like man→woman, we compute the offset vector in each
+              language independently and measure whether these offsets are
+              parallel across languages. High consistency means the
+              relationship is a universal property of the conceptual space,
+              not language-specific.
+            </p>
+          </div>
+        </div>
+        <div class="cardActions">
+          <button class="runBtn" id="runOffsetBtn" onclick="runOffset()">
+            Run Test (~3 min)
+          </button>
+          <span class="timeEstimate">~3 min</span>
+        </div>
+        <div class="resultsArea" id="offsetResult"></div>
+      </section>
+
+    </main>
+
+    <script src="/static/validation.js"></script>
+  </body>
+</html>

@@ -1,0 +1,782 @@
+{
+  "pair_records": [
+    {
+      "concept_a": "foot",
+      "concept_b": "leg",
+      "frequency": 52,
+      "similarity": 0.5538728499243445
+    },
+    {
+      "concept_a": "bark",
+      "concept_b": "skin",
+      "frequency": 49,
+      "similarity": 0.4902545021358111
+    },
+    {
+      "concept_a": "arm",
+      "concept_b": "hand",
+      "frequency": 48,
+      "similarity": 0.35115253566004706
+    },
+    {
+      "concept_a": "man",
+      "concept_b": "person",
+      "frequency": 41,
+      "similarity": 0.3427673231625388
+    },
+    {
+      "concept_a": "river",
+      "concept_b": "water",
+      "frequency": 39,
+      "similarity": 0.46637378210294334
+    },
+    {
+      "concept_a": "few",
+      "concept_b": "small",
+      "frequency": 30,
+      "similarity": 0.5447362213270038
+    },
+    {
+      "concept_a": "big",
+      "concept_b": "wide",
+      "frequency": 27,
+      "similarity": 0.5589970989641568
+    },
+    {
+      "concept_a": "drink",
+      "concept_b": "eat",
+      "frequency": 26,
+      "similarity": 0.3026056063513384
+    },
+    {
+      "concept_a": "narrow",
+      "concept_b": "small",
+      "frequency": 24,
+      "similarity": 0.5369982450989121
+    },
+    {
+      "concept_a": "big",
+      "concept_b": "many",
+      "frequency": 23,
+      "similarity": 0.38469462804760496
+    },
+    {
+      "concept_a": "far",
+      "concept_b": "long",
+      "frequency": 19,
+      "similarity": 0.26600553496932305
+    },
+    {
+      "concept_a": "blood",
+      "concept_b": "red",
+      "frequency": 18,
+      "similarity": 0.29683307183127033
+    },
+    {
+      "concept_a": "moon",
+      "concept_b": "sun",
+      "frequency": 18,
+      "similarity": 0.35658640081578113
+    },
+    {
+      "concept_a": "bite",
+      "concept_b": "eat",
+      "frequency": 17,
+      "similarity": 0.3384207454344905
+    },
+    {
+      "concept_a": "big",
+      "concept_b": "thick",
+      "frequency": 16,
+      "similarity": 0.4564555252486087
+    },
+    {
+      "concept_a": "earth",
+      "concept_b": "sand",
+      "frequency": 16,
+      "similarity": 0.3650371603509213
+    },
+    {
+      "concept_a": "green",
+      "concept_b": "yellow",
+      "frequency": 16,
+      "similarity": 0.41814152759017675
+    },
+    {
+      "concept_a": "feather",
+      "concept_b": "hair",
+      "frequency": 16,
+      "similarity": 0.44258511647687737
+    },
+    {
+      "concept_a": "red",
+      "concept_b": "yellow",
+      "frequency": 14,
+      "similarity": 0.3554723047195597
+    },
+    {
+      "concept_a": "thick",
+      "concept_b": "wide",
+      "frequency": 14,
+      "similarity": 0.22127525159653197
+    },
+    {
+      "concept_a": "short",
+      "concept_b": "small",
+      "frequency": 13,
+      "similarity": 0.5010106449431562
+    },
+    {
+      "concept_a": "fire",
+      "concept_b": "tree",
+      "frequency": 12,
+      "similarity": 0.38875643792727316
+    },
+    {
+      "concept_a": "lake",
+      "concept_b": "river",
+      "frequency": 12,
+      "similarity": 0.24648991163740766
+    },
+    {
+      "concept_a": "big",
+      "concept_b": "long",
+      "frequency": 12,
+      "similarity": 0.365967869124514
+    },
+    {
+      "concept_a": "bone",
+      "concept_b": "leg",
+      "frequency": 12,
+      "similarity": 0.3173863540093104
+    },
+    {
+      "concept_a": "feather",
+      "concept_b": "leaf",
+      "frequency": 12,
+      "similarity": 0.4247244864385179
+    },
+    {
+      "concept_a": "mountain",
+      "concept_b": "stone",
+      "frequency": 11,
+      "similarity": 0.33348986950326476
+    },
+    {
+      "concept_a": "eye",
+      "concept_b": "seed",
+      "frequency": 11,
+      "similarity": 0.37686378397840137
+    },
+    {
+      "concept_a": "die",
+      "concept_b": "kill",
+      "frequency": 10,
+      "similarity": 0.2516922719301061
+    },
+    {
+      "concept_a": "egg",
+      "concept_b": "seed",
+      "frequency": 10,
+      "similarity": 0.416360265397011
+    },
+    {
+      "concept_a": "hair",
+      "concept_b": "leaf",
+      "frequency": 10,
+      "similarity": 0.3164346948371711
+    },
+    {
+      "concept_a": "near",
+      "concept_b": "short",
+      "frequency": 9,
+      "similarity": 0.36348340665617734
+    },
+    {
+      "concept_a": "heart",
+      "concept_b": "liver",
+      "frequency": 9,
+      "similarity": 0.4382822642512355
+    },
+    {
+      "concept_a": "cold",
+      "concept_b": "wind",
+      "frequency": 8,
+      "similarity": 0.44910093814345964
+    },
+    {
+      "concept_a": "big",
+      "concept_b": "old",
+      "frequency": 8,
+      "similarity": 0.26338937159971143
+    },
+    {
+      "concept_a": "come",
+      "concept_b": "walk",
+      "frequency": 7,
+      "similarity": 0.3914172050166637
+    },
+    {
+      "concept_a": "ear",
+      "concept_b": "hear",
+      "frequency": 7,
+      "similarity": 0.2923880687630768
+    },
+    {
+      "concept_a": "hair",
+      "concept_b": "head",
+      "frequency": 7,
+      "similarity": 0.3404929996170896
+    },
+    {
+      "concept_a": "mouth",
+      "concept_b": "tooth",
+      "frequency": 7,
+      "similarity": 0.25315433719479447
+    },
+    {
+      "concept_a": "black",
+      "concept_b": "green",
+      "frequency": 7,
+      "similarity": 0.4282340593371831
+    },
+    {
+      "concept_a": "claw",
+      "concept_b": "foot",
+      "frequency": 7,
+      "similarity": 0.30177881721909167
+    },
+    {
+      "concept_a": "fire",
+      "concept_b": "red",
+      "frequency": 7,
+      "similarity": 0.27095557918362584
+    },
+    {
+      "concept_a": "lake",
+      "concept_b": "water",
+      "frequency": 7,
+      "similarity": 0.338341050219874
+    },
+    {
+      "concept_a": "ash",
+      "concept_b": "fire",
+      "frequency": 6,
+      "similarity": 0.23278587993155134
+    },
+    {
+      "concept_a": "fire",
+      "concept_b": "hot",
+      "frequency": 6,
+      "similarity": 0.38643919058302617
+    },
+    {
+      "concept_a": "few",
+      "concept_b": "narrow",
+      "frequency": 6,
+      "similarity": 0.3581004387943457
+    },
+    {
+      "concept_a": "white",
+      "concept_b": "yellow",
+      "frequency": 6,
+      "similarity": 0.3741953833728817
+    },
+    {
+      "concept_a": "drink",
+      "concept_b": "water",
+      "frequency": 6,
+      "similarity": 0.3203875260784271
+    },
+    {
+      "concept_a": "give",
+      "concept_b": "hear",
+      "frequency": 6,
+      "similarity": 0.4396483965799318
+    },
+    {
+      "concept_a": "drink",
+      "concept_b": "give",
+      "frequency": 6,
+      "similarity": 0.46491297096648115
+    },
+    {
+      "concept_a": "give",
+      "concept_b": "say",
+      "frequency": 6,
+      "similarity": 0.33313405735695617
+    },
+    {
+      "concept_a": "eat",
+      "concept_b": "tree",
+      "frequency": 6,
+      "similarity": 0.33861314183008584
+    },
+    {
+      "concept_a": "claw",
+      "concept_b": "hand",
+      "frequency": 6,
+      "similarity": 0.35838680392038735
+    },
+    {
+      "concept_a": "black",
+      "concept_b": "night",
+      "frequency": 5,
+      "similarity": 0.24803361106426158
+    },
+    {
+      "concept_a": "few",
+      "concept_b": "short",
+      "frequency": 5,
+      "similarity": 0.3903341453971592
+    },
+    {
+      "concept_a": "narrow",
+      "concept_b": "thin",
+      "frequency": 5,
+      "similarity": 0.4413986272634344
+    },
+    {
+      "concept_a": "good",
+      "concept_b": "new",
+      "frequency": 5,
+      "similarity": 0.2682329958423655
+    },
+    {
+      "concept_a": "dry",
+      "concept_b": "empty",
+      "frequency": 5,
+      "similarity": 0.3010056160443218
+    },
+    {
+      "concept_a": "bone",
+      "concept_b": "seed",
+      "frequency": 5,
+      "similarity": 0.31326320534902263
+    },
+    {
+      "concept_a": "egg",
+      "concept_b": "name",
+      "frequency": 5,
+      "similarity": 0.3065884766426492
+    },
+    {
+      "concept_a": "egg",
+      "concept_b": "tooth",
+      "frequency": 5,
+      "similarity": 0.41070940139445855
+    },
+    {
+      "concept_a": "full",
+      "concept_b": "many",
+      "frequency": 5,
+      "similarity": 0.3286857531531483
+    },
+    {
+      "concept_a": "short",
+      "concept_b": "wide",
+      "frequency": 5,
+      "similarity": 0.3352537975243643
+    },
+    {
+      "concept_a": "claw",
+      "concept_b": "leg",
+      "frequency": 5,
+      "similarity": 0.23755220741244917
+    },
+    {
+      "concept_a": "ash",
+      "concept_b": "white",
+      "frequency": 4,
+      "similarity": 0.24012783359973988
+    },
+    {
+      "concept_a": "wet",
+      "concept_b": "wide",
+      "frequency": 0,
+      "similarity": 0.31476085215595595
+    },
+    {
+      "concept_a": "tongue",
+      "concept_b": "tooth",
+      "frequency": 0,
+      "similarity": 0.42552762219669127
+    },
+    {
+      "concept_a": "thin",
+      "concept_b": "wet",
+      "frequency": 0,
+      "similarity": 0.27865475342206075
+    },
+    {
+      "concept_a": "thick",
+      "concept_b": "wet",
+      "frequency": 0,
+      "similarity": 0.25653435775996947
+    },
+    {
+      "concept_a": "thick",
+      "concept_b": "thin",
+      "frequency": 0,
+      "similarity": 0.25996435438910276
+    },
+    {
+      "concept_a": "sun",
+      "concept_b": "wind",
+      "frequency": 0,
+      "similarity": 0.24240407622452323
+    },
+    {
+      "concept_a": "sun",
+      "concept_b": "water",
+      "frequency": 0,
+      "similarity": 0.3697900860867602
+    },
+    {
+      "concept_a": "stone",
+      "concept_b": "wind",
+      "frequency": 0,
+      "similarity": 0.38320074098330015
+    },
+    {
+      "concept_a": "star",
+      "concept_b": "wind",
+      "frequency": 0,
+      "similarity": 0.26859959801460837
+    },
+    {
+      "concept_a": "star",
+      "concept_b": "water",
+      "frequency": 0,
+      "similarity": 0.37197131108730397
+    },
+    {
+      "concept_a": "star",
+      "concept_b": "stone",
+      "frequency": 0,
+      "similarity": 0.239115002730214
+    },
+    {
+      "concept_a": "stand",
+      "concept_b": "swim",
+      "frequency": 0,
+      "similarity": 0.27328181647239846
+    },
+    {
+      "concept_a": "smoke",
+      "concept_b": "wind",
+      "frequency": 0,
+      "similarity": 0.31156295643630605
+    },
+    {
+      "concept_a": "smoke",
+      "concept_b": "water",
+      "frequency": 0,
+      "similarity": 0.2652095260349571
+    },
+    {
+      "concept_a": "smoke",
+      "concept_b": "sun",
+      "frequency": 0,
+      "similarity": 0.3070882084310477
+    },
+    {
+      "concept_a": "smoke",
+      "concept_b": "stone",
+      "frequency": 0,
+      "similarity": 0.2535298093624994
+    },
+    {
+      "concept_a": "smoke",
+      "concept_b": "star",
+      "frequency": 0,
+      "similarity": 0.27459896128651096
+    },
+    {
+      "concept_a": "small",
+      "concept_b": "wide",
+      "frequency": 0,
+      "similarity": 0.24712931148126616
+    },
+    {
+      "concept_a": "small",
+      "concept_b": "thick",
+      "frequency": 0,
+      "similarity": 0.2918661950116462
+    },
+    {
+      "concept_a": "skin",
+      "concept_b": "tongue",
+      "frequency": 0,
+      "similarity": 0.3092715247725764
+    },
+    {
+      "concept_a": "skin",
+      "concept_b": "tail",
+      "frequency": 0,
+      "similarity": 0.26498524020326897
+    },
+    {
+      "concept_a": "sit",
+      "concept_b": "swim",
+      "frequency": 0,
+      "similarity": 0.3346370221875238
+    },
+    {
+      "concept_a": "short",
+      "concept_b": "wet",
+      "frequency": 0,
+      "similarity": 0.21967578187901923
+    },
+    {
+      "concept_a": "short",
+      "concept_b": "thin",
+      "frequency": 0,
+      "similarity": 0.4256096991664129
+    },
+    {
+      "concept_a": "see",
+      "concept_b": "swim",
+      "frequency": 0,
+      "similarity": 0.4783987154563268
+    },
+    {
+      "concept_a": "see",
+      "concept_b": "stand",
+      "frequency": 0,
+      "similarity": 0.3835965398144215
+    },
+    {
+      "concept_a": "say",
+      "concept_b": "swim",
+      "frequency": 0,
+      "similarity": 0.21421605422564433
+    },
+    {
+      "concept_a": "say",
+      "concept_b": "stand",
+      "frequency": 0,
+      "similarity": 0.18909232297264938
+    },
+    {
+      "concept_a": "sand",
+      "concept_b": "wind",
+      "frequency": 0,
+      "similarity": 0.2204101247356293
+    },
+    {
+      "concept_a": "sand",
+      "concept_b": "star",
+      "frequency": 0,
+      "similarity": 0.19024635143313848
+    },
+    {
+      "concept_a": "sand",
+      "concept_b": "smoke",
+      "frequency": 0,
+      "similarity": 0.2211115744942469
+    },
+    {
+      "concept_a": "round",
+      "concept_b": "wet",
+      "frequency": 0,
+      "similarity": 0.24742584617425364
+    },
+    {
+      "concept_a": "round",
+      "concept_b": "thin",
+      "frequency": 0,
+      "similarity": 0.516723225514094
+    },
+    {
+      "concept_a": "round",
+      "concept_b": "thick",
+      "frequency": 0,
+      "similarity": 0.4165923559496589
+    },
+    {
+      "concept_a": "round",
+      "concept_b": "small",
+      "frequency": 0,
+      "similarity": 0.4242371916770935
+    },
+    {
+      "concept_a": "river",
+      "concept_b": "wind",
+      "frequency": 0,
+      "similarity": 0.26909253117463267
+    },
+    {
+      "concept_a": "river",
+      "concept_b": "sun",
+      "frequency": 0,
+      "similarity": 0.21200838373273823
+    },
+    {
+      "concept_a": "river",
+      "concept_b": "stone",
+      "frequency": 0,
+      "similarity": 0.25656642643272454
+    },
+    {
+      "concept_a": "river",
+      "concept_b": "smoke",
+      "frequency": 0,
+      "similarity": 0.24815826244810793
+    },
+    {
+      "concept_a": "rain",
+      "concept_b": "wind",
+      "frequency": 0,
+      "similarity": 0.2746690663885563
+    },
+    {
+      "concept_a": "rain",
+      "concept_b": "water",
+      "frequency": 0,
+      "similarity": 0.40937557161277066
+    },
+    {
+      "concept_a": "rain",
+      "concept_b": "sun",
+      "frequency": 0,
+      "similarity": 0.40601491172474324
+    },
+    {
+      "concept_a": "rain",
+      "concept_b": "stone",
+      "frequency": 0,
+      "similarity": 0.3654097117853503
+    },
+    {
+      "concept_a": "rain",
+      "concept_b": "star",
+      "frequency": 0,
+      "similarity": 0.39557276940937586
+    }
+  ],
+  "spearman_rho": 0.39136239646859333,
+  "spearman_p": 2.5769713117402816e-05,
+  "num_pairs": 109,
+  "colexified_mean": 0.3622653781359663,
+  "colexified_std": 0.08314435047944595,
+  "non_colexified_mean": 0.30745197147572906,
+  "non_colexified_std": 0.08081206744624232,
+  "U_statistic": 1954.0,
+  "p_value": 0.0006121328541855588,
+  "colexified_sims": [
+    0.5538728499243445,
+    0.4902545021358111,
+    0.35115253566004706,
+    0.3427673231625388,
+    0.46637378210294334,
+    0.5447362213270038,
+    0.5589970989641568,
+    0.3026056063513384,
+    0.5369982450989121,
+    0.38469462804760496,
+    0.26600553496932305,
+    0.29683307183127033,
+    0.35658640081578113,
+    0.3384207454344905,
+    0.4564555252486087,
+    0.3650371603509213,
+    0.41814152759017675,
+    0.44258511647687737,
+    0.3554723047195597,
+    0.22127525159653197,
+    0.5010106449431562,
+    0.38875643792727316,
+    0.24648991163740766,
+    0.365967869124514,
+    0.3173863540093104,
+    0.4247244864385179,
+    0.33348986950326476,
+    0.37686378397840137,
+    0.2516922719301061,
+    0.416360265397011,
+    0.3164346948371711,
+    0.36348340665617734,
+    0.4382822642512355,
+    0.44910093814345964,
+    0.26338937159971143,
+    0.3914172050166637,
+    0.2923880687630768,
+    0.3404929996170896,
+    0.25315433719479447,
+    0.4282340593371831,
+    0.30177881721909167,
+    0.27095557918362584,
+    0.338341050219874,
+    0.23278587993155134,
+    0.38643919058302617,
+    0.3581004387943457,
+    0.3741953833728817,
+    0.3203875260784271,
+    0.4396483965799318,
+    0.46491297096648115,
+    0.33313405735695617,
+    0.33861314183008584,
+    0.35838680392038735,
+    0.24803361106426158,
+    0.3903341453971592,
+    0.4413986272634344,
+    0.2682329958423655,
+    0.3010056160443218,
+    0.31326320534902263,
+    0.3065884766426492,
+    0.41070940139445855,
+    0.3286857531531483,
+    0.3352537975243643,
+    0.23755220741244917,
+    0.24012783359973988
+  ],
+  "non_colexified_sims": [
+    0.31476085215595595,
+    0.42552762219669127,
+    0.27865475342206075,
+    0.25653435775996947,
+    0.25996435438910276,
+    0.24240407622452323,
+    0.3697900860867602,
+    0.38320074098330015,
+    0.26859959801460837,
+    0.37197131108730397,
+    0.239115002730214,
+    0.27328181647239846,
+    0.31156295643630605,
+    0.2652095260349571,
+    0.3070882084310477,
+    0.2535298093624994,
+    0.27459896128651096,
+    0.24712931148126616,
+    0.2918661950116462,
+    0.3092715247725764,
+    0.26498524020326897,
+    0.3346370221875238,
+    0.21967578187901923,
+    0.4256096991664129,
+    0.4783987154563268,
+    0.3835965398144215,
+    0.21421605422564433,
+    0.18909232297264938,
+    0.2204101247356293,
+    0.19024635143313848,
+    0.2211115744942469,
+    0.24742584617425364,
+    0.516723225514094,
+    0.4165923559496589,
+    0.4242371916770935,
+    0.26909253117463267,
+    0.21200838373273823,
+    0.25656642643272454,
+    0.24815826244810793,
+    0.2746690663885563,
+    0.40937557161277066,
+    0.40601491172474324,
+    0.3654097117853503,
+    0.39557276940937586
+  ],
+  "colexified_count": 65,
+  "non_colexified_count": 44
+}
