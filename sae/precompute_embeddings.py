@@ -1,4 +1,5 @@
 import argparse
+import math
 import json
 import os
 from pathlib import Path
@@ -6,6 +7,8 @@ from pathlib import Path
 import numpy as np
 import torch
 import torch.nn as nn
+from einops import rearrange, reduce
+from openTSNE import TSNE
 from datasets import load_dataset
 from tqdm import tqdm
 
@@ -14,24 +17,22 @@ from train import TrainingConf
 from backbone import MLLMBackbone
 from dataset import BalancedFLORESDataset
 
+seed = 37
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 sae_constructors = {"vanilla": SAE, "gated": GatedSparseAutoEncoder}
 
-def pool_hidden_states(
-    hidden: torch.Tensor,        
-    attention_mask: torch.Tensor, 
-    reduction: str = "mean",
-) -> torch.Tensor:                
-    if reduction == "mean":
-        mask = attention_mask.unsqueeze(-1).float()
-        return (hidden * mask).sum(1) / mask.sum(1).clamp(min=1e-9)
-    elif reduction == "cls":
-        return hidden[:, 0, :]
-    elif reduction == "last":
-        lengths = attention_mask.sum(dim=1) - 1
-        return hidden[torch.arange(hidden.size(0)), lengths]
-    else:
-        raise ValueError(f"Unknown reduction: {reduction}")
+def get_tokens(backbone: MLLMBackbone, acts: dict[str, torch.Tensor], batch_langs: list[str]):
+    input_ids = acts["input_ids"].cpu()
+    valid_mask = acts["valid_mask"].cpu()
+
+    valid_tokens = []
+    for idx in range(input_ids.shape[1]):
+        if valid_mask[0, idx]:
+            tok_id = int(input_ids[0, idx].item())
+            tok_str = backbone.tokenizer.convert_ids_to_tokens([tok_id])[0]
+            valid_tokens.append(tok_str)
+
+    return valid_tokens
 
 def main():
     parser = argparse.ArgumentParser()
@@ -39,6 +40,7 @@ def main():
     parser.add_argument("--output_dir",    default="./cached_embeddings")
     parser.add_argument("--num_sentences", type=int, default=500,
                         help="Sentences per language")
+    parser.add_argument("--topk", type=int, default=10, help="Num sentences for each feature to keep")
     args = parser.parse_args()
 
     with open(args.config_path) as stream:
@@ -61,10 +63,12 @@ def main():
         print(f"WARNING: weight file not found at {weight_path}; using random SAE weights.")
     sae.eval()
 
-    batch_size = conf.batch_size 
+    batch_size = 1 
     layer_idx = conf.layer_idx
 
-    all_activations  = []
+    token_cache = []
+    all_activations = []
+    reduced_activations = []
     sentences = []
     lang_tags = []
 
@@ -90,15 +94,37 @@ def main():
         x = x - x.mean(dim=0, keepdim=True)
         with torch.no_grad():
             z,_ = sae.encode(x)
+            
 
-        all_activations.append(z.cpu().float().numpy())
+        z = z.cpu().float().numpy()
+        token_cache.append(get_tokens(backbone, backbone_acts, batch['lang']))
+        all_activations.append(z)
+        reduced_activations.append(reduce(z, "t f -> f", conf.reduction))
         sentences.extend(texts)
         lang_tags.extend(batch['lang'])
 
-    activations  = np.concatenate(all_activations,  axis=0) 
-    np.save(out_dir / "activations.npy",  activations)
+    reduced_acts = np.stack(reduced_activations, axis=0)
+    topk_sent = np.argpartition(reduced_acts, -args.topk, axis=0)[-args.topk:].T
+    topk_sentence_lookup = []
+    for n in range(topk_sent.shape[0]):
+        sentence_indices = topk_sent[n]
+        current_feat_table = []
+        for i in sentence_indices:
+            sentence_feats = all_activations[i]
+            tk_idx = np.argmax(sentence_feats[:,n], axis=0)
+            top_token = token_cache[i][np.argmax(sentence_feats[:,n], axis=0)]
+            current_feat_table.append((int(i), top_token))
+        topk_sentence_lookup.append(current_feat_table)
+
+    sentence_projections = TSNE(perplexity=math.sqrt(reduced_acts.shape[0]), metric="cosine", random_state=seed, verbose=True).fit(reduced_acts)
+    feature_projections = TSNE(perplexity=math.sqrt(reduced_acts.shape[1]), metric="cosine", random_state=seed, verbose=True).fit(reduced_acts.T)
+    np.save(out_dir / "sentence_projections.npy",  sentence_projections)
+    np.save(out_dir / "feature_projections.npy",  feature_projections)
     with open(out_dir / "sentences.json", "w", encoding="utf-8") as stream:
         json.dump(sentences, stream, ensure_ascii=False, indent=2)
+
+    with open(out_dir / "topk_sentence_lookup.json", "w", encoding="utf-8") as stream:
+        json.dump(topk_sentence_lookup, stream, indent=2)
 
     metadata = {
         "config": cfg,
