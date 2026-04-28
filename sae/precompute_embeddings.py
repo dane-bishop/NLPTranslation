@@ -34,6 +34,43 @@ def get_tokens(backbone: MLLMBackbone, acts: dict[str, torch.Tensor], batch_lang
 
     return valid_tokens
 
+
+def get_sentence_activations(backbone, sae, dataloader, num_sentences, conf):
+    step = 0
+    activations = []
+    lang_tags = []
+    token_cache = []
+    sentences = []
+    for batch in dataloader:
+        texts = batch["text"]
+        backbone_acts = backbone.extract_layer_activations(
+            texts=texts,
+            layer_idx=conf.layer_idx,
+            max_length=128,
+            encoder_only=conf.encoder_only)
+        
+        x = backbone_acts["token_activations"]
+        if x.numel() == 0:
+            continue
+
+        x = x - x.mean(dim=0, keepdim=True)
+        with torch.no_grad():
+            z,_ = sae.encode(x)
+            
+        
+        z = z.cpu().float().squeeze()
+        z = torch.nn.functional.pad(z, (0, 0, 0, 128 - z.shape[0]))
+
+        token_cache.append(get_tokens(backbone, backbone_acts, batch['lang']))
+        activations.append(z)
+        sentences.extend(texts)
+        lang_tags.extend(batch['lang'])
+        step += 1
+        if step >= num_sentences:
+            break
+
+    return activations, token_cache, sentences, lang_tags
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("config_path")
@@ -66,79 +103,59 @@ def main():
     batch_size = 1 
     layer_idx = conf.layer_idx
 
-    token_cache = []
-    all_activations = []
-    feature_representations = []
-    reduced_activations = []
-    sentences = []
-    lang_tags = []
-
+    
     dataset = BalancedFLORESDataset(langs=conf.langs)
     dataloader = torch.utils.data.DataLoader(dataset, batch_size=batch_size, shuffle=False)
 
+    activations, token_cache, sentences, lang_tags = get_sentence_activations(backbone, sae, dataloader, args.num_sentences, conf)
+         
+    acts_tensor = torch.stack(activations, dim=0)
 
-    for step, batch in enumerate(dataloader):
-        texts = batch["text"]
-        backbone_acts = backbone.extract_layer_activations(
-            texts=texts,
-            layer_idx=layer_idx,
-            max_length=128,
-            encoder_only=conf.encoder_only)
-        
-        x = backbone_acts["token_activations"]
-        if x.numel() == 0:
-            continue
+    max_per_feature = acts_tensor.amax(dim=(0, 1))  
+    alive_mask = max_per_feature > max_per_feature.mean() * 0.1        
+    alive_indices = alive_mask.nonzero(as_tuple=True)[0]  
 
-        x = x - x.mean(dim=0, keepdim=True)
-        with torch.no_grad():
-            z,_ = sae.encode(x)
-            
-        
-        z = z.cpu().float().squeeze()
-        if z.shape[0] > args.topk:
-            fr = torch.topk(z, args.topk, 0).values.numpy()
-        else:
-            continue
+    acts_alive = acts_tensor[:, :, alive_mask]
 
+    feature_topk_res = torch.topk(acts_alive, dim=0, k=args.topk)
 
-        token_cache.append(get_tokens(backbone, backbone_acts, batch['lang']))
-        #all_activations.append(z.numpy)
-        feature_representations.append(fr)
-        reduced_activations.append(reduce(z, "t f -> f", "mean").numpy())
-        sentences.extend(texts)
-        lang_tags.extend(batch['lang'])
+    feat_topk_indices = feature_topk_res.indices  
+    feat_topk_values  = feature_topk_res.values   
 
-    reduced_acts = np.stack(reduced_activations, axis=0)
-    feature_representations = np.stack(feature_representations, axis = 0)
-    topk_sent = np.argpartition(reduced_acts, -args.topk, axis=0)[-args.topk:].T
+    num_features = acts_tensor.shape[2]
     topk_sentence_lookup = []
-    for n in range(topk_sent.shape[0]):
-        sentence_indices = topk_sent[n]
+
+    for feat_idx in range(acts_alive.shape[2]):
+        feat_values  = feat_topk_values[:, :, feat_idx]   
+        feat_indices = feat_topk_indices[:, :, feat_idx]  
         current_feat_table = []
-        for i in sentence_indices:
-            sentence_feats = feature_representations[i,...]
-            tk_idx = np.argmax(sentence_feats[:,n], axis=0)
-            top_token = token_cache[i][np.argmax(sentence_feats[:,n], axis=0)]
-            current_feat_table.append((int(i), top_token))
+        for rank in range(args.topk):
+            token_list = token_cache[feat_indices[rank, 0].item()]  
+            n_real_tokens = len(token_list)
+
+            real_feat_values = feat_values[rank, :n_real_tokens]
+            if real_feat_values.numel() == 0:
+                continue
+
+            best_token_pos = real_feat_values.argmax().item()
+            sentence_idx   = feat_indices[rank, best_token_pos].item()
+
+            token_list = token_cache[sentence_idx]
+            top_token  = token_list[best_token_pos] if best_token_pos < len(token_list) else "[PAD]"
+
+            current_feat_table.append((int(sentence_idx), top_token))
+
+
         topk_sentence_lookup.append(current_feat_table)
     
-    #nonzero_mask   = feature_representations > 0            # [N, F]
-    #fire_counts    = nonzero_mask.sum(axis=0)    # [F]  how many sentences each feature fires on
-    #fire_freq      = fire_counts / feature_representations.shape[0]
-    #active_mask    = (fire_counts >= 5) & (fire_freq >= 0.01)
-    #active_indices = np.where(active_mask)[0]    # feature indices that pass
 
-    sentence_projections = TSNE(perplexity=30, metric="cosine", random_state=seed, verbose=True).fit(reduced_acts)
+    sentence_topk_res = torch.topk(acts_tensor, dim=-1, k=args.topk)
 
-    #min_sentences  = args.min_active_sentences   # e.g. 5, add to argparse
-    #freq_threshold = args.freq_threshold         # e.g. 0.01 (1% of sentences)
-
-    feature_representations = torch.topk(torch.tensor(feature_representations),args.num_sentences,dim=0).values.numpy()
-    #print(feature_representations.shape)
-
-    feature_projections = TSNE(perplexity=30, metric="cosine", random_state=seed, verbose=True).fit(rearrange(feature_representations,"s n f -> f (n s)"))
+    sentence_projections = TSNE(perplexity=30, metric="cosine", random_state=seed, verbose=True).fit(rearrange(sentence_topk_res.values, "s t f -> s (t f)").numpy())
+    feature_projections = TSNE(perplexity=30, metric="cosine", random_state=seed, verbose=True).fit(rearrange(feat_topk_values, "s t f -> f (s t)").numpy())
     np.save(out_dir / "sentence_projections.npy",  sentence_projections)
     np.save(out_dir / "feature_projections.npy",  feature_projections)
+    np.save(out_dir / "alive_feature_indices.npy", alive_indices.numpy())
     with open(out_dir / "sentences.json", "w", encoding="utf-8") as stream:
         json.dump(sentences, stream, ensure_ascii=False, indent=2)
 
@@ -150,7 +167,7 @@ def main():
         "lang_tags": lang_tags, 
         "num_sentences": len(sentences),
         "layer_idx": layer_idx,
-        #"reduction": reduction,
+       #"reduction": reduction,
     }
     with open(out_dir / "metadata.json", "w") as stream:
         json.dump(metadata, stream, indent=2)

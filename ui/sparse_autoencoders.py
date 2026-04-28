@@ -82,6 +82,7 @@ def load_data(cache_dir: str):
     p = Path(cache_dir)
     sentence_proj = np.load(p / "sentence_projections.npy")   # [N, 2]
     feature_proj  = np.load(p / "feature_projections.npy")    # [F, 2]
+    alive_idx = np.load(p / "alive_feature_indices.npy")
     with open(p / "sentences.json", encoding="utf-8") as f:
         sentences = json.load(f)
     with open(p / "topk_sentence_lookup.json", encoding="utf-8") as f:
@@ -89,7 +90,7 @@ def load_data(cache_dir: str):
     with open(p / "metadata.json") as f:
         meta = json.load(f)
     lang_tags = meta.get("lang_tags", ["unknown"] * len(sentences))
-    return sentence_proj, feature_proj, sentences, lang_tags, topk_lookup, meta
+    return sentence_proj, feature_proj, sentences, lang_tags, topk_lookup, alive_idx, meta
 
 
 def _base_layout(height: int = 500) -> dict:
@@ -139,6 +140,7 @@ def build_feature_plot(
     coords: np.ndarray,
     topk_lookup: list,
     selected_feat: Optional[int],
+    alive_idx
 ) -> go.Figure:
     n = coords.shape[0]
 
@@ -149,7 +151,8 @@ def build_feature_plot(
 
     df = pd.DataFrame({
         "x": coords[:, 0], "y": coords[:, 1],
-        "feature": list(range(n)),
+        "feature": [int(alive_idx[f]) for f in range(n)],  # original idx, for hover label
+        "local_idx": list(range(n)),                        # alive-local idx, for click handling
         "active":  ["active" if (f < len(topk_lookup) and topk_lookup[f]) else "dead"
                     for f in range(n)],
         "preview": [token_preview(f) for f in range(n)],
@@ -157,8 +160,9 @@ def build_feature_plot(
     fig = px.scatter(df, x="x", y="y", color="active",
                      color_discrete_map={"active": "#7DF9C4", "dead": "#2a2f3f"},
                      hover_data={"feature": True, "preview": True,
-                                 "active": False, "x": False, "y": False},
-                     custom_data=["feature"])
+                                 "active": False, "x": False, "y": False,
+                                 "local_idx": False},
+                     custom_data=["local_idx"])  # click returns local index
     fig.update_traces(marker=dict(size=5, opacity=0.85, line=dict(width=0)))
     if selected_feat is not None and selected_feat < n:
         fig.add_trace(go.Scatter(
@@ -202,8 +206,10 @@ def render_feature_detail(
     topk_lookup: list,
     sentences: list[str],
     lang_tags: list[str],
+    alive_idx=None,
 ):
-    st.markdown(f'<div class="feature-header">Feature {feature_idx}</div>', unsafe_allow_html=True)
+    orig_idx = int(alive_idx[feature_idx]) if alive_idx is not None and feature_idx < len(alive_idx) else feature_idx
+    st.markdown(f'<div class="feature-header">Feature {orig_idx} (local idx {feature_idx})</div>', unsafe_allow_html=True)
 
     if feature_idx >= len(topk_lookup) or not topk_lookup[feature_idx]:
         st.markdown('<div class="dead-feature">No activating sentences for this feature.</div>',
@@ -246,7 +252,7 @@ def render_tab(cache_dir: str = "./cached_embeddings"):
         search_query = st.text_input("Filter sentences", placeholder="e.g. bank, river ...")
 
     try:
-        sentence_proj, feature_proj, sentences, lang_tags, topk_lookup, meta = \
+        sentence_proj, feature_proj, sentences, lang_tags, topk_lookup, alive_idx, meta = \
             load_data(cache_dir_input)
     except FileNotFoundError as e:
         st.error(f"Cache not found: {e}\n\nRun `precompute_embeddings.py` first.")
@@ -344,7 +350,7 @@ def render_tab(cache_dir: str = "./cached_embeddings"):
                 "</span>", unsafe_allow_html=True,
             )
             sel_feat = st.session_state["sel_feature"]
-            fig = build_feature_plot(feature_proj, topk_lookup, sel_feat)
+            fig = build_feature_plot(feature_proj, topk_lookup, sel_feat, alive_idx)
             clicked = st.plotly_chart(fig, use_container_width=True,
                                       on_select="rerun", selection_mode="points",
                                       key="feat_scatter")
@@ -357,17 +363,22 @@ def render_tab(cache_dir: str = "./cached_embeddings"):
                         st.rerun()
             active_count = sum(1 for f in topk_lookup if f)
             st.caption(f"{active_count} active / {n_features} total features")
-
+        
+        n_alive = len(topk_lookup)
+        clamped = min(st.session_state["sel_feature"], n_alive - 1)
         with col_detail:
             st.markdown("#### Feature inspector")
             feat_idx = st.number_input(
                 "Feature index (or click plot)",
-                min_value=0, max_value=n_features - 1,
-                value=st.session_state["sel_feature"],
+                min_value=0, max_value=n_alive - 1,
+                value=clamped,
                 step=1, key="feat_input",
             )
-            st.session_state["sel_feature"] = feat_idx
-            render_feature_detail(feat_idx, topk_lookup, sentences, lang_tags)
+            if "sel_feature" not in st.session_state:
+                st.session_state["sel_feature"] = 0
+            else:
+                st.session_state["sel_feature"] = min(st.session_state["sel_feature"], len(topk_lookup) - 1)
+            render_feature_detail(feat_idx, topk_lookup, sentences, lang_tags, alive_idx)
 
     # ── Stats ─────────────────────────────────────────────────────────────────
     with st.expander("Global feature statistics", expanded=False):
