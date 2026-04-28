@@ -31,10 +31,10 @@ class TrainingConf:
     layer_idx: int
     encoder_only: bool
     pool_features: bool
-    reduction: str
     sparsity_weight: float
     print_every: int
     weight_path: str
+    reduction: str = "mean"
     activation: str = "gelu"
     topk: int = None
 
@@ -65,7 +65,7 @@ def train(conf: TrainingConf):
     model_constructor = sae_constructors[conf.sae_type]
 
     #autoencoder = model_constructor(conf.model_hidden_size,conf.sae_hidden_size,activation=activation_lookup[conf.activation]).to(device)
-    autoencoder = model_constructor(conf.model_hidden_size,conf.sae_hidden_size).to(device)
+    autoencoder = model_constructor(conf.model_hidden_size,conf.sae_hidden_size,activation=torch.nn.ReLU()).to(device)
 
 
     pair_configs = conf.pairs
