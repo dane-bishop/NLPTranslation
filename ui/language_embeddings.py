@@ -24,7 +24,7 @@ from cluster import ClusterConf, collect_embeddings, collate_records, run_tsne
 from dataset import BalancedNLLBDataset
 
 
-CONFIG_PATH = ROOT_DIR / "mllm" / "configs" / "cluster.json"
+CONFIG_PATH = ROOT_DIR / "configs" / "eval" / "cluster.json"
 SESSION_KEY = "language_embeddings_cluster_conf"
 LANGUAGE_LABELS = {
     "eng_Latn": "English",
