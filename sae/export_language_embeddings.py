@@ -11,13 +11,13 @@ from tqdm import tqdm
 
 from backbone import MLLMBackbone
 from dataset import BalancedNLLBDataset
+from datasets import get_dataset_config_names
+
 
 
 @dataclass
 class ExportConf:
     backbone_name: str
-    pairs: list[str]
-    langs: list[str]
     batch_size: int
     max_steps: int
     layer_idx: int
@@ -26,6 +26,8 @@ class ExportConf:
     reduction: str
     output_csv: str
     output_npy: str | None = None
+    pairs: list[str] | None = None
+    langs: list[str] | None = None
 
 
 def collate_records(batch):
@@ -60,7 +62,14 @@ def export_language_embeddings(conf: ExportConf):
     torch.manual_seed(37)
 
     backbone = MLLMBackbone(device, conf.backbone_name)
-    dataset = BalancedNLLBDataset(conf.pairs, conf.langs)
+    if conf.pairs and conf.langs:
+        pairs = conf.pairs
+        langs = conf.langs
+    else:
+        pairs, langs = build_all_language_streams()
+
+    print(f"Using {len(langs)} language streams")
+    dataset = BalancedNLLBDataset(pairs, langs)
     loader = DataLoader(dataset, batch_size=conf.batch_size, collate_fn=collate_records)
 
     # Store example embeddings by language
@@ -131,6 +140,42 @@ def export_language_embeddings(conf: ExportConf):
     print(f"Saved CSV to: {out_csv}")
     if conf.output_npy:
         print(f"Saved NPY to: {out_npy}")
+
+
+def build_all_language_streams():
+    """
+    Build one stream per language automatically from the available
+    allenai/nllb pair configs.
+
+    Preference:
+    1. Use an English-pivot pair if available for that language
+    2. Otherwise use the first available pair we see
+    """
+    configs = get_dataset_config_names("allenai/nllb", trust_remote_code=True)
+
+    lang_to_pair = {}
+
+    # Prefer English-pivot configs first
+    sorted_configs = sorted(
+        configs,
+        key=lambda c: (0 if "eng_Latn" in c else 1, c)
+    )
+
+    for cfg in sorted_configs:
+        if "-" not in cfg:
+            continue
+
+        a, b = cfg.split("-")
+
+        if a not in lang_to_pair:
+            lang_to_pair[a] = cfg
+        if b not in lang_to_pair:
+            lang_to_pair[b] = cfg
+
+    langs = sorted(lang_to_pair.keys())
+    pairs = [lang_to_pair[lang] for lang in langs]
+
+    return pairs, langs
 
 
 def main():
