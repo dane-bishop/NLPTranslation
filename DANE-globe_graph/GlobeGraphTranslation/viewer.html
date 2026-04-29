@@ -434,11 +434,17 @@
         edgeLayer = L.layerGroup().addTo(map);
         nodeLayer = L.layerGroup().addTo(map);
 
-        setStatus('<div>Fetching <code>graph_data.json</code>…</div>');
+        setStatus('<div>Loading graph…</div>');
 
-        const res = await fetch('./graph_data.json');
-        if (!res.ok) throw new Error(`graph_data.json HTTP ${res.status}`);
-        const data = await res.json();
+        let data;
+        if (window.__STREAMLIT_GRAPH_DATA__ !== undefined && window.__STREAMLIT_GRAPH_DATA__ !== null) {
+          data = window.__STREAMLIT_GRAPH_DATA__;
+        } else {
+          setStatus('<div>Fetching <code>graph_data.json</code>…</div>');
+          const res = await fetch('./graph_data.json');
+          if (!res.ok) throw new Error(`graph_data.json HTTP ${res.status}`);
+          data = await res.json();
+        }
 
         allNodes = data.nodes || [];
         allEdges = data.edges || [];
