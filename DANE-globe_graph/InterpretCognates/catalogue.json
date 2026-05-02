@@ -1,0 +1,11 @@
+{
+  "id": "InterpretCognates",
+  "title": "InterpretCognates",
+  "oneLiner": "Interpretability of Translational Invariants",
+  "demoUrl": "https://kylemath.github.io/InterpretCognates",
+  "screenshot": "https://raw.githubusercontent.com/kylemath/InterpretCognates/main/screenshot.png",
+  "kind": "project",
+  "categories": ["linguistics", "AI", "interpret"],
+  "tags": ["linguistics", "AI", "interpret"],
+  "status": "published"
+}

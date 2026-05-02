@@ -9,6 +9,8 @@ pg = st.navigation([
     st.Page("sentence_embeddings.py", title="Sentence Embeddings"),
     st.Page("sparse_autoencoders.py", title="Sparse Autoencoders"),
     st.Page("idioms.py", title="Idioms"),
+    st.Page("globe_graph_map.py", title="Language similarity map (globe graph)"),
+    st.Page("nllb_circle_visualization.py", title="NLLB-200 Circle Visualization"),
 ])
 
 st.sidebar.title("Embedding Explorer")

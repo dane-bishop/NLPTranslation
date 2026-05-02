@@ -1,0 +1,101 @@
+\section{Discussion}
+
+\subsection{Structural Parallels with Cognitive Models}
+
+The geometric structure we observe in NLLB-200's encoder bears striking parallels to architectures proposed in the cognitive science of bilingualism.
+The conceptual store experiment, in which mean-centering per language improves the between-concept to within-concept variance ratio by a factor of $\ConceptualStoreImprovement{}\times$, provides direct geometric evidence for a language-neutral semantic core.
+This finding mirrors Correia et al.'s fMRI results showing that semantic representations in the anterior temporal lobe can be decoded across languages, localizing a language-independent conceptual hub in biological neural tissue \citep{correia2014}.
+In both systems---biological and artificial---meaning appears to be organized along axes that are invariant to the language of expression, with language-specific information superimposed as a removable offset.
+A parallel convergence emerges from \citet{deniz2025}, who used naturalistic fMRI with voxelwise encoding models to show that Chinese--English bilinguals rely on largely shared semantic brain representations that are nonetheless systematically \emph{modulated} by language---their ``primary semantic tuning shift dimension'' describes how voxelwise tuning rotates between languages while preserving coarse semantic cluster identity.
+This is the neural analogue of our mean-centering result: the shared conceptual geometry persists after the language-specific shift is removed.
+
+The architecture of NLLB-200 also maps naturally onto the Bilingual Interactive Activation Plus (BIA+) model of visual word recognition \citep{dijkstra2002}.
+In BIA+, a language-nonselective identification system activates lexical candidates from all known languages simultaneously, while a separate task-decision system gates output to a single language.
+NLLB-200's shared encoder plays the role of the identification system: it maps inputs from all \NumLanguages{} languages into a common representational space without language-specific gating.
+The forced BOS token on the decoder side, which specifies the target language, functions as the task-decision system, imposing language constraints only at generation time.
+This architectural correspondence suggests that the encoder's language-neutral geometry is not an incidental byproduct of training but a functional analogue of the nonselective access mechanism that BIA+ posits for human bilinguals.
+A similar logic applies to the Revised Hierarchical Model \citep{kroll2010}, in which proficient bilinguals develop direct conceptual links that bypass lexical mediation---precisely the kind of shared semantic structure our mean-centering analysis reveals.
+
+The offset invariance result, with a mean cosine similarity of $\OffsetMeanConsistency{}$ across \OffsetNumPairs{} concept pairs, extends Mikolov et al.'s \citeyearpar{mikolov2013} observation that monolingual word embeddings encode relational structure as linear offsets.
+Our finding demonstrates that this regularity holds not only within a single language but across typologically diverse languages simultaneously, consistent with the hypothesis that NLLB-200 encodes a language-universal relational geometry.
+
+The layer-wise trajectory analysis (Section~\ref{sec:results}) adds a developmental dimension to these structural parallels.
+The gradual emergence of language-universal semantic structure across the encoder stack---with surface features dominating lower layers and abstract semantics dominating upper layers---mirrors hierarchical processing in the human language network, where primary auditory cortex encodes acoustic features, posterior temporal regions encode phonological and lexical information, and the anterior temporal lobe hub integrates meaning across modalities and languages \citep{correia2014}.
+The phase transition we observe in the Conceptual Store Metric around layer~\LayerwisePhaseTrans{} parallels the functional shift from language-specific to language-general processing described by \citet{voita2019} and \citet{tenney2019}, who showed that syntactic and semantic information localizes to distinct layers in Transformer encoders.
+
+Additionally, the color circle analysis reveals structure beyond the two-dimensional warm--cool opposition: a third principal component naturally separates achromatic terms (white, black, grey) by luminance (Figure~\ref{fig:color}b), consistent with the privileged status of the lightness axis in perceptual color space.
+The full three-dimensional structure---with the hue circle in the PC1--PC2 plane and luminance along PC3---can also be explored interactively on the project website.
+
+\subsection{Limitations}
+
+Several limitations temper the strength of our conclusions.
+
+\paragraph{Carrier sentence confound.}
+All contextual embeddings were extracted using a single English-derived carrier sentence (``I saw a \{word\} near the river''), translated into each target language.
+This template presupposes specific syntactic structures (SVO word order, definite/indefinite articles, spatial prepositions) that are far from universal.
+When translated into languages with different word orders, case systems, or zero-article grammars, the carrier sentence's structure---not just the target word---varies systematically with typological distance.
+Our decontextualized baseline analysis (Section~\ref{sec:results}) provides direct reassurance: the Spearman correlation between contextualized and decontextualized convergence rankings is $\rho = \CarrierBaselineRho{}$, indicating that the carrier sentence does not drive the main convergence patterns.
+Nevertheless, averaging over multiple carrier templates drawn from diverse typological profiles would further strengthen this control.
+
+\paragraph{Conceptual store improvement.}
+The $\ConceptualStoreImprovement{}\times$ improvement in concept separability after mean-centering, while in the predicted direction, falls short of the $2\times$ threshold informally predicted from cognitive parallels with \citet{correia2014}.
+This may reflect the limited expressiveness of the 600M-parameter distilled model compared to the full 3.3B-parameter NLLB-200, or the homogenizing effect of a single carrier template on per-language variance.
+The improvement factor should be interpreted as evidence for partial factoring of language identity from conceptual content, not as confirmation of a clean conceptual store.
+
+\paragraph{Tokenization artifacts.}
+The SentencePiece tokenizer segments words differently across scripts and languages, producing variable numbers of subword tokens per concept.
+Mean-pooling these tokens produces vectors of different ``granularity'': a concept tokenized into a single subword retains more localized information than one split into four subwords whose mean-pool blurs fine-grained features.
+This tokenization asymmetry may systematically advantage languages whose scripts are better represented in the training data.
+
+\paragraph{Raw cosine unreliable.}
+Our isotropy validation (Section~\ref{sec:results}) confirms that raw cosine similarity in the NLLB-200 encoder space is inflated and poorly calibrated.
+The raw convergence scores cluster in a narrow range ($\sim$0.43--0.89) that obscures meaningful variation; only after ABTT correction does the full dynamic range emerge.
+A sensitivity analysis over the correction hyperparameter $k$ confirms that the convergence ranking is stable across a wide range of values (all Spearman $\rho > \IsotropyMinRho{}$; Figure~\ref{fig:isotropy_validation}c), validating the choice of $k=3$.
+Analyses that rely on raw cosine similarity without isotropy correction should be interpreted with caution.
+
+\paragraph{Non-Swadesh selection bias.}
+Our initial non-Swadesh comparison vocabulary was heavily skewed toward loanwords of Greek, Latin, or European origin (e.g., \textit{telephone}, \textit{democracy}, \textit{university}, \textit{hotel}), which share surface forms across many languages by virtue of cultural borrowing rather than independent coinage.
+To address this, we constructed a controlled baseline of frequency-matched, non-loanword concrete nouns (Section~\ref{sec:results}), which yields a comparison consistent with the cultural-stability hypothesis.
+Translations for the non-Swadesh vocabulary were generated by a language model rather than verified by native speakers, introducing some noise; future work should use expert-verified translations for stronger guarantees.
+
+\paragraph{ASJP coverage.}
+The Mantel test is restricted to \MantelNumLangs{} languages for which both ASJP and NLLB-200 data are available, excluding many low-resource languages in NLLB-200's roster.
+The correlation ($\rho = \MantelRho{}$, $p = \MantelP{}$) may differ for the full set of 200 languages if ASJP coverage were extended.
+
+\paragraph{Additional limitations.}
+All experiments use a single model checkpoint; we have not validated whether the patterns generalize across architectures or scales \citep{nllbteam2022}.
+The Mantel correlation, while significant, is modest, explaining approximately $\MantelRho{}^2 \approx 2\%$ of the variance in pairwise language distances.
+Our layer-wise trajectory analysis (Section~\ref{sec:results}) reveals that semantic structure emerges gradually across the encoder stack, with a phase transition in the Conceptual Store Metric, but a systematic per-head decomposition across layers remains a direction for future work.
+Finally, NLLB-200 was trained on parallel corpora, not through embodied language acquisition.
+The cognitive parallels we draw are structural analogies, not claims of mechanistic identity \citep{thierry2007}.
+
+\subsection{Broader Implications}
+
+Despite these caveats, the convergence of evidence across our six experiments points toward a substantive conclusion: NLLB-200 has internalized aspects of conceptual structure that transcend individual languages.
+The colexification result is particularly telling.
+The graded positive correlation between colexification frequency and embedding similarity ($\rho_s = \ColexSpearmanRho{}$, $p = \ColexSpearmanP{}$) shows that the model has not merely learned a binary colexified/non-colexified distinction but has internalized a continuous scale of conceptual association that mirrors cross-linguistic cognitive patterns \citep{list2018}.
+This echoes recent neuroscience findings of a universal language network whose functional topography is preserved across typologically distant languages \citep{malikmoraleda2022}.
+
+The phylogenetic correlation, while modest, demonstrates that translation co-occurrence statistics alone---without any explicit genealogical supervision---are sufficient to partially recapitulate thousands of years of language divergence.
+This is consistent with the view that statistical regularities in parallel text carry a phylogenetic signal, much as cognate frequency in the Swadesh list carries one for historical linguists.
+
+\subsection{Future Work}
+
+Several promising directions emerge from this work.
+
+\paragraph{Computational ATL layer.}
+The conceptual store metric can be viewed as a computational analogue of the anterior temporal lobe (ATL), which neuroimaging studies identify as a language-independent semantic hub \citep{correia2014}.
+\citet{deniz2025} provide an especially tractable target for this comparison: their voxelwise encoding models were trained on fastText embeddings with the same cross-lingual alignment procedure used in related multilingual NLP work, meaning their model weights could in principle be projected onto NLLB-200's encoder space to test for geometric correspondence.
+Future work could formalize this analogy by training probes \citep{hewitt2019} that map encoder representations to fMRI activation patterns, testing whether the geometric structure we observe in silico corresponds to the representational geometry measured in vivo.
+
+\paragraph{Per-head cross-attention decomposition.}
+Our analyses treat the encoder as a black box, examining only its output representations.
+A finer-grained analysis could decompose the encoder's behavior across its attention heads \citep{voita2019,clark2019}, identifying which heads encode language-universal semantic information and which encode language-specific features.
+The per-family offset consistency patterns observed in Figure~\ref{fig:offset}(b) suggest that language-family information is encoded in specific subspaces; attention-head analysis could localize this encoding.
+
+\paragraph{RHM asymmetry.}
+The Revised Hierarchical Model \citep{kroll2010} predicts asymmetric translation behavior: L1$\to$L2 translation proceeds via conceptual mediation, while L2$\to$L1 translation can bypass the conceptual level via direct lexical links.
+Our experiments use a symmetric embedding extraction procedure; future work could test whether NLLB-200's encoder exhibits asymmetric representational structure by comparing embeddings extracted with L1 vs.\ L2 carrier sentences.
+
+Taken together, these findings support the interpretation that modern multilingual Transformers are not merely mapping between surface forms but have learned something about the deep structure of human language \citep{chang2022}.
+If confirmed across models and scales, this would position large-scale translation models as computational testbeds for theories of language universals---systems in which hypotheses about shared conceptual structure can be tested with a precision and breadth that is difficult to achieve in human behavioral or neuroimaging experiments.

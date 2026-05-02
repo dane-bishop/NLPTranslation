@@ -1,0 +1,79 @@
+\section{Methods}
+\label{sec:methods}
+
+\subsection{Model and Data}
+
+We probe the internal representations of NLLB-200, a massively multilingual neural machine translation system comprising 600M parameters in its distilled variant \citep{nllbteam2022}.
+NLLB-200 employs an encoder-decoder Transformer architecture \citep{vaswani2017} with a shared encoder across all 200 supported languages, making it a natural test bed for investigating whether cross-lingual semantic structure emerges from translation-oriented training alone.
+
+As our lexical probe we adopt the Swadesh core vocabulary list \citep{swadesh1952}, a standard tool in historical linguistics designed to capture culturally stable, universally attested concepts such as kinship terms, body parts, natural phenomena, and basic actions.
+We embed all \NumConcepts{} Swadesh items across \NumLanguages{} languages supported by NLLB-200 (excluding a small set of languages whose encoder embeddings are degenerate outliers in our extraction pipeline), yielding a concept-by-language embedding matrix that serves as the basis for all downstream analyses.
+
+To obtain contextual embeddings rather than decontextualized token representations, we place each target word in a fixed carrier sentence of the form \textit{``I saw a \{word\} near the river''}, translated into each target language.
+This choice is motivated by the observation that Transformer encoder representations are highly context-dependent \citep{devlin2019}: a bare word input would yield an embedding dominated by positional and start-of-sequence artifacts rather than lexical semantics.
+The carrier sentence provides a minimal, semantically neutral context that activates the target word's lexical representation while minimizing confounds from sentential semantics.
+We then extract the encoder hidden states corresponding only to the target word's subword tokens, discarding activations from the carrier context.
+When a word is split into multiple subword tokens by the SentencePiece tokenizer, we mean-pool their activations to produce a single vector per concept--language pair.
+Agglutinative and polysynthetic languages tend to produce longer subword sequences, as morphological markers (case, evidentiality, tense) are segmented into additional tokens whose mean-pooling may attenuate fine-grained lexical features.
+We note that this carrier sentence is English-derived and imposes structural assumptions (SVO order, articles, spatial prepositions) that are not typologically universal; we assess this confound in Sections~\ref{sec:results} and~5.
+To support reproducibility, we release the full analysis code and the derived experiment outputs (JSON summaries, figures, and macro tables) used to build the paper; the pipeline can also be rerun from model weights and the included corpora.
+
+To assess the impact of the carrier sentence on our results, we additionally extract decontextualized embeddings by embedding each target word in isolation, without any surrounding context.
+This bare-word baseline tests whether the convergence patterns we report in Section~\ref{sec:results} are driven by the carrier sentence's syntactic scaffold or by the target word's intrinsic lexical representation.
+
+\subsection{Embedding Extraction and Correction}
+
+Raw contextual embeddings from large language models are known to occupy a narrow cone in representation space, exhibiting low isotropy that can inflate cosine similarity scores and obscure meaningful geometric structure \citep{mu2018,rajaee2022}.
+We extract mean-pooled encoder hidden states from the final Transformer layer and apply a two-stage correction procedure.
+
+\begin{figure*}[htbp]
+    \centering
+    \includegraphics[width=\textwidth,height=0.88\textheight,keepaspectratio]{figures/fig_water_manifold.pdf}
+    \caption{Embedding geometry for the concept ``water'' across 29 languages. (a) 3D PCA projection colored by language family shows tight clustering despite orthographic diversity. (b) Pairwise similarity heatmap reveals that same-family languages (e.g., Romance, Slavic) cluster, but cross-family similarity remains high ($>0.93$ for most pairs).}
+    \label{fig:water_manifold}
+  \end{figure*}
+  
+First, we perform All-But-The-Top (ABTT) isotropy correction \citep{mu2018}: we subtract the global mean embedding computed over all concept--language pairs, then project out the top $k=3$ principal components of the centered matrix.
+This removes the dominant directions that encode frequency- and language-identity information rather than semantics, yielding a more isotropic embedding space in which cosine similarity more faithfully reflects semantic relatedness.
+The choice of $k=3$ is validated by a sensitivity analysis across a range of $k$ values (Section~\ref{sec:results}), which confirms that the convergence ranking is robust to this hyperparameter.
+
+Second, for analyses that require disentangling concept-level structure from language-level clustering, we apply per-language mean-centering: we subtract each language's centroid (its mean embedding across all \NumConcepts{} concepts) before computing PCA or pairwise distances.
+This correction factors out the systematic offset that each language occupies in the shared space and exposes the residual conceptual geometry shared across languages.
+
+\subsection{Experiments}
+
+We design six complementary experiments that probe distinct facets of the multilingual representation geometry, moving from broad lexical convergence patterns to fine-grained relational structure.
+
+\paragraph{Swadesh Convergence Ranking.}
+For each of the \NumConcepts{} Swadesh concepts we compute the mean pairwise cosine similarity across all $\binom{\NumLanguages{}}{2}$ language pairs, producing a per-concept convergence score.
+Ranking concepts by this score reveals which meanings are encoded most uniformly across languages and which exhibit the greatest cross-lingual dispersion.
+
+\paragraph{Phylogenetic Correlation.}
+We test whether the geometry of the embedding space recapitulates known genetic relationships among languages.
+We construct a language-by-language embedding distance matrix by averaging concept-level cosine distances over all Swadesh items, and compare it to the ASJP phonetic distance matrix \citep{jaeger2018} using the Mantel test with \MantelPermutations{} permutations to assess statistical significance.
+
+\paragraph{Colexification Proximity.}
+Colexification---the phenomenon whereby a single word form covers multiple concepts---reflects deep semantic associations that recur across unrelated languages \citep{list2018}.
+We test whether NLLB-200's representations internalize these associations by comparing the cosine similarity of concept pairs that are colexified in the CLICS\textsuperscript{3} database \citep{rzymski2020} to those that are not, using a Mann-Whitney $U$ test with Cohen's $d$ as the effect size measure.
+
+\paragraph{Conceptual Store Metric.}
+Inspired by neuroscientific evidence for language-independent conceptual representations \citep{correia2014}, we quantify the degree to which concepts cluster by meaning rather than by language.
+We compute the ratio of mean between-concept cosine distance to mean within-concept cosine distance, both on raw embeddings and after per-language mean-centering, and report the improvement factor.
+
+\paragraph{Color Circle.}
+We project the cross-lingual centroids of the 11 basic color terms identified by \citet{berlin1969} into a two-dimensional PCA space.
+If the model has learned perceptually grounded color semantics from translation data alone, the resulting arrangement should recover the warm--cool opposition and the circular topology observed in human color perception.
+
+\paragraph{Offset Invariance.}
+Following the analogy-based reasoning paradigm introduced by \citet{mikolov2013}, we examine whether semantic relationships are encoded as consistent vector offsets across languages.
+For \OffsetNumPairs{} concept pairs (e.g., \textit{fire}--\textit{water}, \textit{sun}--\textit{moon}), we compute the per-language offset vector and measure its cosine similarity to the centroid offset averaged over all languages \citep{chang2022}.
+High cross-lingual consistency indicates that the model represents relational meaning in a language-invariant manner.
+
+We supplement these six experiments with a validation analysis that assesses the robustness of our embedding corrections.
+
+\paragraph{Isotropy Correction Validation.}
+To verify that our ABTT correction does not distort the convergence signal, we compare the full Swadesh ranking under raw and corrected embeddings.
+We compute the Spearman rank correlation $\rho$ between the two orderings and visually inspect the top-20 concepts under each regime.
+A high correlation indicates that isotropy correction preserves the relative ordering of concepts while rescaling absolute similarity values to a more interpretable range.
+
+To disentangle orthographic from semantic contributions to embedding convergence, we additionally regress convergence scores against mean orthographic and phonological similarity of each concept's word forms across Latin-script languages, reporting $R^2$ alongside the Swadesh convergence ranking.

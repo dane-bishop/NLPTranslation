@@ -1,0 +1,1296 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>InterpretCognates — Probing Conceptual Universals in a 200-Language Neural Translator</title>
+  <link rel="stylesheet" href="blog.css" />
+  <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+</head>
+<body>
+<article class="article">
+
+  <!-- ════════════════════════════════════════════════════════════ -->
+  <!-- HEADER                                                      -->
+  <!-- ════════════════════════════════════════════════════════════ -->
+  <header class="article-header">
+    <div class="overline">InterpretCognates Research</div>
+    <h1>Probing Conceptual Universals in a 200-Language Neural Translator</h1>
+    <p class="subtitle">
+      Does a neural machine translation model trained on 200 languages develop a
+      language-neutral conceptual store? We probe NLLB-200's encoder geometry using
+      Swadesh core vocabulary, phylogenetic distance matrices, colexification patterns,
+      and semantic offset invariance to find out.
+    </p>
+    <p class="meta">February 2026 &middot; InterpretCognates Project &middot; Kyle Mathewson</p>
+  </header>
+
+  <!-- ════════════════════════════════════════════════════════════ -->
+  <!-- TABLE OF CONTENTS                                           -->
+  <!-- ════════════════════════════════════════════════════════════ -->
+  <nav class="toc">
+    <h2>Contents</h2>
+    <ol>
+      <li><a href="#introduction">Introduction</a></li>
+      <li><a href="#model-method">Model &amp; Method</a></li>
+      <li><a href="#conceptual-manifold">The Conceptual Manifold</a></li>
+      <li><a href="#swadesh-convergence">Swadesh Convergence Ranking</a></li>
+      <li><a href="#phylogenetic">Phylogenetic Structure</a></li>
+      <li><a href="#validation">Validation Tests</a>
+        <ol style="margin-top:4px;font-size:0.9em">
+          <li><a href="#val-isotropy">Isotropy Correction</a></li>
+          <li><a href="#val-comparison">Swadesh vs. Non-Swadesh</a></li>
+          <li><a href="#val-colexification">Colexification (CLICS&sup3;)</a></li>
+          <li><a href="#val-conceptual-store">Conceptual Store Metric</a></li>
+          <li><a href="#val-offset">Semantic Offset Invariance</a></li>
+          <li><a href="#val-color">Berlin &amp; Kay Color Circle</a></li>
+          <li><a href="#val-color-layers">Layer-wise Color Evolution</a></li>
+          <li><a href="#val-carrier">Carrier Sentence Robustness</a></li>
+          <li><a href="#val-layerwise">Layer-wise Emergence</a></li>
+          <li><a href="#val-controlled">Controlled Swadesh Comparison</a></li>
+        </ol>
+      </li>
+      <li><a href="#discussion">Discussion</a></li>
+      <li><a href="#explorer">Interactive Explorer</a></li>
+    </ol>
+  </nav>
+
+  <!-- ════════════════════════════════════════════════════════════ -->
+  <!-- 1. INTRODUCTION                                             -->
+  <!-- ════════════════════════════════════════════════════════════ -->
+  <section class="prose" id="introduction">
+    <h2>1. Introduction</h2>
+
+    <p>
+      What does it mean for a neural network to "understand" a concept across languages?
+      When Meta's NLLB-200 translates "water" from English into Yoruba, Hindi, and Japanese,
+      does its encoder construct a unified, language-neutral representation of the concept &mdash;
+      or does it merely learn language-labeled clusters that <em>look</em> universal from the outside?
+    </p>
+
+    <p>
+      This question sits at the intersection of two literatures that have largely developed in parallel.
+      In NLP interpretability, Chang, Tu, and Bergen (2022) demonstrated that multilingual model embeddings
+      can be decomposed into <em>language-sensitive axes</em> (encoding vocabulary, script, and language identity)
+      and <em>language-neutral axes</em> (encoding part-of-speech, token position, and universal syntactic structure).
+      In cognitive science, Correia et al. (2014) used fMRI multivariate decoding to show that the human
+      anterior temporal lobe supports a language-independent conceptual hub &mdash; a classifier trained
+      to recognize Dutch words could decode which English word a bilingual had heard.
+    </p>
+
+    <p>
+      InterpretCognates bridges these literatures by probing NLLB-200's internal geometry with tools
+      drawn from both traditions. The project occupies a genuinely novel scientific niche: prior
+      mechanistic interpretability work on multilingual models covers at most 88 languages (Chang et al., 2022);
+      we operate on 200, with translation supervision rather than masked LM pretraining, using an
+      encoder-decoder architecture that the geometry literature has almost entirely overlooked. The
+      external validation resources we bring to bear &mdash; ASJP v20 phonetic distances, CLICS&sup3;
+      colexification data, Berlin &amp; Kay color universals &mdash; have never been tested against
+      NLLB's representation space.
+    </p>
+
+    <p>
+      The foundational architecture in the psycholinguistics literature is Dijkstra and van Heuven's
+      BIA+ model (2002), which proposes that bilinguals maintain a single integrated lexicon accessed
+      in a language-nonselective, parallel fashion. NLLB's shared-encoder architecture is the direct
+      computational implementation of this finding: the same weights process all 200 languages
+      simultaneously, with language selection deferred to the decoder's forced BOS token. This
+      architectural mapping provides the interpretive framework for every encoder-level analysis we run.
+    </p>
+
+    <p>The core questions we address:</p>
+    <ol>
+      <li>Does NLLB's encoder contain a geometrically isolable, language-neutral conceptual store?</li>
+      <li>Does NLLB's representation space implicitly encode the phylogenetic tree of human languages?</li>
+      <li>Does the embedding space reflect universal conceptual associations independent of language?</li>
+      <li>Are semantic relationships between concepts (man&rarr;woman, big&rarr;small) translationally invariant across 135 languages?</li>
+    </ol>
+  </section>
+
+  <hr class="section-divider" />
+
+  <!-- ════════════════════════════════════════════════════════════ -->
+  <!-- 2. MODEL & METHOD                                           -->
+  <!-- ════════════════════════════════════════════════════════════ -->
+  <section class="prose" id="model-method">
+    <h2>2. Model &amp; Method</h2>
+
+    <p>
+      We use <code>facebook/nllb-200-distilled-600M</code>, the 600M-parameter distilled dense variant of NLLB-200
+      (NLLB Team et al., 2022). The distillation from a sparse mixture-of-experts to a dense model is significant:
+      it means every attention head and every FFN neuron participates in processing every language, making the model
+      particularly amenable to mechanistic analysis. The model is a shared-encoder, encoder-decoder transformer
+      with 12 encoder layers and 16 attention heads per layer, covering 200 languages across dozens of scripts.
+    </p>
+
+    <h3>Swadesh Stimulus Corpus</h3>
+    <p>
+      Our primary stimulus set is the Swadesh 100-item list &mdash; 101 core vocabulary concepts
+      (body parts, basic natural phenomena, low numerals, kinship terms) with translations in 135
+      NLLB-supported languages spanning 19 language families. Swadesh (1952) predicted that these
+      items are culturally stable and resistant to borrowing, making them markers of genealogical
+      relationship across millennia. J&auml;ger (2018) formalized this into the ASJP database
+      covering ~7,000 languages.
+    </p>
+
+    <h3>Embedding Extraction</h3>
+    <p>
+      For each word in each language, we use a <em>word-in-context</em> extraction strategy
+      following standard transformer probing methodology (Hewitt &amp; Manning, 2019; Tenney et al., 2019).
+      Each target word is placed inside a fixed carrier sentence &mdash;
+      <code>"I saw a {word} near the river."</code> &mdash; which is translated into the target language
+      and run through the NLLB encoder with the appropriate source-language BCP-47 code set
+      via the tokenizer (<code>tokenizer.src_lang = lang_code</code>). From the encoder's last hidden
+      states, we extract only the activations corresponding to the target word's subword tokens and
+      mean-pool them, yielding a contextually disambiguated 1024-dimensional embedding. This avoids
+      the degenerate representations that bare-word inputs can produce in encoder-decoder models.
+    </p>
+
+    <h3>Isotropy Correction (ABTT)</h3>
+    <p>
+      Rajaee and Pilehvar (2022) showed that multilingual transformer embedding spaces are severely
+      anisotropic &mdash; representations cluster in a narrow cone, biasing cosine similarity toward
+      frequent token patterns rather than genuine semantic proximity. We apply All-But-The-Top (ABTT)
+      post-processing: subtract the global mean, then remove the top-<em>k</em> principal components
+      (with <em>k</em>=3) before computing cosine similarity. Every quantitative similarity claim
+      in this report uses isotropy-corrected vectors unless otherwise noted.
+    </p>
+
+    <h3>Language Mean-Centering</h3>
+    <p>
+      Chang et al. (2022) demonstrated that raw embeddings are dominated by language-sensitive variance.
+      The language-neutral axes &mdash; which carry actual semantic content &mdash; only emerge after
+      per-language mean subtraction. We subtract each language's centroid vector from all of that
+      language's embeddings before PCA projection, transforming the visualization from language-family
+      clusters to concept-meaning clusters. The ratio of between-concept to within-concept distance
+      before and after centering quantifies the strength of the conceptual store.
+    </p>
+  </section>
+
+  <hr class="section-divider" />
+
+  <!-- ════════════════════════════════════════════════════════════ -->
+  <!-- 3. THE CONCEPTUAL MANIFOLD                                  -->
+  <!-- ════════════════════════════════════════════════════════════ -->
+  <section class="prose" id="conceptual-manifold">
+    <h2>3. The Conceptual Manifold</h2>
+
+    <p>
+      To build intuition, we begin with a single concept: <strong>"water"</strong>. The carrier
+      sentence <code>"I drink {water}."</code> places the target word in sentence-final position
+      with high cloze probability, then the word is replaced by its translation in each of 30
+      typologically diverse languages. For each translation, the full sentence is encoded, but
+      only the hidden states corresponding to the target word's subword tokens are extracted and
+      mean-pooled. These word-in-context embeddings are then projected into 3D via PCA. The result
+      is a <em>conceptual manifold</em> &mdash; the geometric surface in NLLB's 1024-dimensional
+      space along which the concept "water" is represented across languages.
+    </p>
+
+    <h3>Translations</h3>
+    <div id="sampleTranslations" class="translation-grid">
+      <div class="loading-placeholder"><span class="spinner"></span> Loading pre-computed data&hellip;</div>
+    </div>
+
+    <h3>Embedding Geometry</h3>
+    <p>
+      Each target word is embedded inside the carrier sentence shown below, with
+      <code>{word}</code> replaced by the translation in each language.
+      The 3D PCA scatter plot shows each language's embedding of "water" as a point.
+      Points cluster by language family &mdash; Romance languages huddle together, as do
+      Slavic, Turkic, and Niger-Congo languages &mdash; confirming the language-sensitive
+      variance that Chang et al. (2022) identified.
+    </p>
+    <div id="carrierSentence" class="carrier-sentence"></div>
+  </section>
+
+  <div class="figure">
+    <div class="figure-inner">
+      <div id="scatterRaw" class="chart">
+        <div class="loading-placeholder"><span class="spinner"></span> Loading&hellip;</div>
+      </div>
+    </div>
+    <p class="figure-caption">
+      <strong>Figure 1.</strong> 3D PCA of NLLB encoder embeddings for "water" across 29 languages.
+      Each language's translation is embedded inside the carrier sentence above and projected into 3D.
+      Clustering by language family reflects the model's language-sensitive encoding.
+    </p>
+  </div>
+
+  <section class="prose">
+    <h3>Embedding Geometry Statistics</h3>
+    <p>
+      The embedding cloud for a single concept reveals key geometric properties of the manifold.
+      We quantify the distribution of pairwise cosine similarities across all 29 language embeddings
+      to characterize how tightly the concept is represented. Higher mean similarity and lower
+      variance indicate stronger conceptual convergence.
+    </p>
+  </section>
+
+  <div id="manifoldStats" class="stat-row" style="max-width:var(--figure-col);margin:8px auto 24px">
+    <div class="loading-placeholder" style="min-height:auto;padding:12px"><span class="spinner"></span> Loading&hellip;</div>
+  </div>
+
+  <section class="prose">
+    <h3>Cross-Language Similarity</h3>
+    <p>
+      The cosine similarity matrix below quantifies how similar each pair of language embeddings
+      is for the concept "water." High similarity between typologically distant languages (e.g.,
+      Finnish and Japanese) is evidence that the model represents the concept at a level deeper
+      than surface form.
+    </p>
+  </section>
+
+  <div class="figure">
+    <div class="figure-inner">
+      <div id="similarityHeatmap" class="chart">
+        <div class="loading-placeholder"><span class="spinner"></span> Loading&hellip;</div>
+      </div>
+    </div>
+    <p class="figure-caption">
+      <strong>Figure 2.</strong> Isotropy-corrected cosine similarity matrix for "water" across 29 languages.
+      Darker colors indicate higher semantic similarity in NLLB's encoder space.
+    </p>
+  </div>
+
+  <hr class="section-divider" />
+
+  <!-- ════════════════════════════════════════════════════════════ -->
+  <!-- 4. SWADESH CONVERGENCE RANKING                              -->
+  <!-- ════════════════════════════════════════════════════════════ -->
+  <section class="prose" id="swadesh-convergence">
+    <h2>4. Swadesh Convergence Ranking</h2>
+
+    <p>
+      With single-concept intuition established, we scale up to the full Swadesh 100-item list.
+      For each of the 101 core vocabulary concepts, we embed every translation across all 135
+      languages (producing over 13,000 embeddings total), then compute the mean pairwise cosine similarity
+      across all language pairs. Concepts with high mean similarity converge strongly across
+      languages &mdash; their representations are close in NLLB's embedding space regardless of
+      which language expresses them.
+    </p>
+
+    <p>
+      Swadesh's cultural stability hypothesis (1952) predicts that these core vocabulary items
+      should converge more than culturally specific vocabulary. The scatter plot below tests this
+      prediction by placing every concept along two axes: how phonetically similar its translations
+      are across Latin-script languages (x-axis) and how strongly it converges in NLLB's embedding
+      space (y-axis). Concepts that converge strongly despite low phonetic similarity are the
+      strongest candidates for genuine conceptual universals.
+    </p>
+  </section>
+
+  <div class="figure">
+    <div class="figure-inner convergence-scatter-outer">
+      <div id="convergenceScatter" class="chart convergence-scatter-chart">
+        <div class="loading-placeholder"><span class="spinner"></span> Loading&hellip;</div>
+      </div>
+    </div>
+    <p class="figure-caption">
+      <strong>Figure 3.</strong> Every Swadesh concept plotted by mean cross-lingual phonetic
+      similarity (x-axis) vs. embedding convergence (y-axis, isotropy-corrected).
+      Points colored by semantic category. Concepts in the upper-left quadrant converge
+      strongly in embedding space <em>despite</em> low surface-form similarity &mdash; the
+      strongest candidates for genuine conceptual universals.
+    </p>
+  </div>
+
+  <section class="prose">
+    <h3>Category Summary</h3>
+    <p>
+      Grouping Swadesh concepts by semantic category reveals which types of concepts
+      are most universally represented. For each category the chart below shows NLLB
+      embedding convergence alongside orthographic and phonetic similarity among Latin-script
+      translations. Categories where embedding convergence clearly exceeds surface-form
+      similarity provide the strongest evidence that the model's universality reflects
+      semantic structure rather than shared word form.
+    </p>
+  </section>
+
+  <div class="figure">
+    <div class="figure-inner">
+      <div id="categorySummary" class="chart chart-medium">
+        <div class="loading-placeholder"><span class="spinner"></span> Loading&hellip;</div>
+      </div>
+      <div id="categorySummaryAllItems" class="figure-3c-scroll" aria-label="All tested items">
+        <div class="loading-placeholder"><span class="spinner"></span> Loading&hellip;</div>
+      </div>
+    </div>
+    <p class="figure-caption">
+      <strong>Figure 3c.</strong> Mean scores by Swadesh semantic category, comparing three
+      dimensions: NLLB embedding convergence (colored bars), orthographic similarity among
+      Latin-script translations (light grey), and approximate phonetic similarity (light blue).
+      Categories whose embedding convergence substantially exceeds their surface-form similarity
+      show the strongest evidence for language-neutral conceptual representation.
+    </p>
+  </div>
+
+  <section class="prose">
+    <h3>The Polysemy Confound</h3>
+    <p>
+      Inspection of the bottom-ranked items reveals a pattern: concepts with the lowest cross-lingual
+      convergence are disproportionately polysemous. "Bark" (tree bark vs. dog bark vs. to bark),
+      "lie" (to recline vs. to tell a falsehood), "see" (visual perception vs. to understand) &mdash;
+      low convergence for these items may reflect translation ambiguity rather than cultural instability.
+      The word-in-context extraction strategy partially mitigates this: the fixed carrier sentence
+      provides a mild noun-sense bias, and the encoder contextualizes each word against its sentential
+      frame. However, a single carrier sentence cannot fully disambiguate all senses, so polysemy
+      remains a confound. Controlling for it (e.g., via WordNet sense counts as a covariate) is
+      essential before interpreting the bottom of the ranking as evidence against conceptual universality.
+    </p>
+
+    <h3>Variance Decomposition: Surface Form vs. Semantic Universals</h3>
+    <p>
+      A key methodological risk: high cross-lingual convergence could reflect cognate overlap
+      (shared surface forms from common etymological origins) rather than genuine conceptual
+      universality. To disentangle these, we regress embedding convergence on orthographic
+      similarity (mean pairwise normalized Levenshtein distance across 21 Latin-script languages)
+      and approximate phonetic similarity (same metric on phonetically normalized forms).
+    </p>
+    <p>
+      The residual for each concept &mdash; its <em>semantic surplus</em> &mdash; measures
+      the degree to which it converges <em>beyond</em> what shared surface form would predict.
+      Concepts above the regression line are the strongest candidates for genuine conceptual
+      universals. The complement of R&sup2; gives the variance attributable to deeper semantic
+      structure, providing a principled answer to: is this real semantics, or just shared spelling?
+    </p>
+  </section>
+
+  <div id="decompStats" class="stat-row" style="max-width:var(--figure-col);margin:8px auto 24px">
+    <div class="loading-placeholder" style="min-height:auto;padding:12px"><span class="spinner"></span> Loading&hellip;</div>
+  </div>
+
+  <div class="figure">
+    <div class="figure-inner figure-row">
+      <div id="decompScatterOrtho" class="chart chart-short">
+        <div class="loading-placeholder"><span class="spinner"></span> Loading&hellip;</div>
+      </div>
+      <div id="decompScatterPhon" class="chart chart-short">
+        <div class="loading-placeholder"><span class="spinner"></span> Loading&hellip;</div>
+      </div>
+    </div>
+    <p class="figure-caption">
+      <strong>Figure 4.</strong> Variance decomposition of Swadesh embedding convergence against
+      surface-form similarity. <em>Left:</em> embedding convergence vs. orthographic similarity
+      (mean pairwise Levenshtein, 21 Latin-script languages). <em>Right:</em> embedding convergence
+      vs. approximate phonetic similarity. Each point is a Swadesh concept colored by semantic
+      category. Points <em>above</em> the regression line show positive <em>semantic surplus</em>
+      &mdash; convergence unexplained by shared word form. The complement of R&sup2; quantifies
+      how much variance is attributable to genuine conceptual structure.
+    </p>
+  </div>
+
+  <section class="prose">
+    <h3>Methodology Notes</h3>
+  </section>
+  <div class="method-grid">
+    <div class="method-card">
+      <h4>Embedding Convergence</h4>
+      <p>
+        For each concept, we embed its translation in all 135 languages using word-in-context
+        extraction: the target word is placed in a carrier sentence, encoded by NLLB-200, and
+        only the target word's subword token activations are mean-pooled. The convergence score
+        is the mean pairwise cosine similarity across all language pairs (780+ pairs). Higher
+        values indicate the model represents the concept similarly regardless of language.
+      </p>
+    </div>
+    <div class="method-card">
+      <h4>Orthographic Similarity</h4>
+      <p>
+        Computed as 1 minus normalized Levenshtein distance between word forms, restricted to
+        the 21 Latin-script languages (210 pairs) to avoid meaningless cross-script comparisons.
+        Measures surface-form overlap from shared etymological origins.
+      </p>
+    </div>
+    <div class="method-card">
+      <h4>Semantic Surplus</h4>
+      <p>
+        The residual from regressing embedding convergence on orthographic similarity. Positive
+        surplus means the concept converges <em>more</em> than surface form would predict &mdash;
+        evidence for language-universal conceptual structure.
+      </p>
+    </div>
+    <div class="method-card">
+      <h4>Phonetic Dimension</h4>
+      <p>
+        A third decomposition axis using ASJP phonetic transcriptions separates phonetic
+        convergence from both orthographic and purely semantic components. Per-word ASJP data
+        integration is planned for the full analysis.
+      </p>
+    </div>
+  </div>
+
+  <hr class="section-divider" />
+
+  <!-- ════════════════════════════════════════════════════════════ -->
+  <!-- 5. PHYLOGENETIC STRUCTURE                                   -->
+  <!-- ════════════════════════════════════════════════════════════ -->
+  <section class="prose" id="phylogenetic">
+    <h2>5. Phylogenetic Structure</h2>
+
+    <p>
+      If NLLB's encoder genuinely captures something about the relationships between languages,
+      its embedding distance matrix should correlate with independently established measures
+      of linguistic relatedness.       We test this by computing a language pairwise
+      cosine distance matrix averaged over all Swadesh concepts, then examining whether the
+      resulting structure recovers known phylogenetic relationships.
+    </p>
+
+    <p>
+      The phylogenetic correlation experiment bridges three literatures simultaneously. If
+      NLLB's cosine distance matrix over Swadesh vocabulary correlates significantly with
+      ASJP phonetic distances, the result speaks to NLP researchers (geometry of multilingual
+      models), cognitive scientists (universal language network), and historical linguists
+      (computational phylogenetics). No single prior paper has attempted this. We use a
+      Mantel test &mdash; correlating the upper triangles of two distance matrices via
+      Spearman rank correlation with a permutation test for significance.
+    </p>
+
+    <div class="hypothesis-box">
+      <div class="hypothesis-label">Hypothesis 3 &mdash; The Phylogenetic Correlation</div>
+      <p>
+        NLLB's cosine distance matrix, averaged over the 101 Swadesh-list concepts across 135
+        languages, will yield a statistically significant positive Mantel correlation (Spearman
+        &rho; &gt; 0.3, p &lt; 0.01) with the ASJP pairwise phonetic distance matrix &mdash;
+        demonstrating that a neural translation model has implicitly learned the phylogenetic
+        structure of world languages from translation co-occurrence statistics alone.
+      </p>
+    </div>
+
+    <h3>3D PCA Projection</h3>
+    <p>
+      Principal Component Analysis projects the language centroid vectors into three dimensions,
+      preserving the dominant axes of variation. If the model has learned phylogenetic
+      structure, languages from the same family should cluster together &mdash; and the
+      relative positions of families should roughly mirror their known genealogical relationships.
+      Toggle between raw embeddings (showing language-family clustering) and mean-centered
+      embeddings (revealing deeper structural relationships).
+    </p>
+  </section>
+
+  <div class="figure">
+    <div class="figure-inner">
+      <div class="vizToggle" id="phyloToggles" style="margin-bottom:8px;display:flex;gap:8px;flex-wrap:wrap;justify-content:center">
+        <button id="phyloPcaRawBtn" class="toggleBtn small active" onclick="setPhyloPcaMode('raw')">Language Clusters (Raw)</button>
+        <button id="phyloPcaCenteredBtn" class="toggleBtn small" onclick="setPhyloPcaMode('centered')">Concept Clusters (Mean-Centered)</button>
+        <span style="width:16px"></span>
+        <span style="font-size:13px;color:var(--fg-dim,#64748b);align-self:center">Labels:</span>
+        <button id="phyloLabelLangBtn" class="toggleBtn small active" onclick="setPhyloLabel('lang')">Language</button>
+        <button id="phyloLabelFamilyBtn" class="toggleBtn small" onclick="setPhyloLabel('family')">Family</button>
+        <button id="phyloLabelBothBtn" class="toggleBtn small" onclick="setPhyloLabel('both')">Both</button>
+      </div>
+      <div id="mdsPlot" class="chart">
+        <div class="loading-placeholder"><span class="spinner"></span> Loading&hellip;</div>
+      </div>
+    </div>
+    <p class="figure-caption">
+      <strong>Figure 5.</strong> 3D PCA projection of NLLB language centroids across 80+ languages.
+      Points colored by language family. Proximity reflects average conceptual similarity over
+      the full Swadesh vocabulary. Toggle between raw (language-family clustering) and mean-centered
+      (concept-structure) views.
+    </p>
+  </div>
+
+  <section class="prose">
+    <h3>Hierarchical Clustering</h3>
+    <p>
+      The dendrogram below shows hierarchical clustering of languages by their NLLB embedding
+      distances. The tree structure can be compared against the known phylogenetic tree of
+      human languages to assess how well the model's learned geometry recapitulates established
+      genealogical relationships.
+    </p>
+  </section>
+
+  <div class="figure">
+    <div class="figure-inner dendro-scroll-outer">
+      <div id="dendrogram" class="chart chart-tall">
+        <div class="loading-placeholder"><span class="spinner"></span> Loading&hellip;</div>
+      </div>
+    </div>
+    <p class="figure-caption">
+      <strong>Figure 6.</strong> Hierarchical clustering dendrogram based on
+      NLLB embedding distances averaged over Swadesh vocabulary. Leaf labels colored by language family. Scroll horizontally to see all leaves.
+    </p>
+  </div>
+
+  <section class="prose">
+    <h3>Mantel Test</h3>
+    <p>
+      The Mantel test asks a simple question: <strong>do languages that sound alike
+      also get encoded alike?</strong> For every pair of the 88 languages with both NLLB and ASJP data,
+      we have two numbers:
+    </p>
+    <ol>
+      <li><strong>X-axis &mdash; ASJP Phonetic Distance:</strong> how different the two
+        languages' core vocabulary sounds, based on the Automated Similarity Judgement
+        Programme taxonomy. Higher = more phonetically distant.</li>
+      <li><strong>Y-axis &mdash; NLLB Embedding Distance:</strong> how far apart the two
+        languages' Swadesh-word embeddings are inside NLLB's encoder (cosine distance,
+        averaged over all concepts). Higher = the model represents them more differently.</li>
+    </ol>
+    <p>
+      If the model has implicitly learned genealogical relationships, we expect a positive
+      correlation: closely related languages (low ASJP distance) should also be close in
+      embedding space (low embedding distance).
+    </p>
+
+    <h4>Reading the scatter plot</h4>
+    <p>
+      ASJP distances are computed from real ASJP v20 word lists (Wichmann et al., 2022):
+      for each pair of languages, we calculate the mean Normalized Levenshtein Distance
+      across all shared 40-item Swadesh words in ASJP phonetic transcription. This produces
+      a continuous distribution reflecting genuine phonetic similarity.
+    </p>
+    <ul>
+      <li><strong style="color:#2563eb">Closely related pairs</strong> (low ASJP distance):
+        language pairs within the same branch, e.g., French&ndash;Spanish (both Romance) or
+        Russian&ndash;Polish (both Slavic). These share recent common ancestors and
+        retain many cognate word forms.</li>
+      <li><strong style="color:#f59e0b">Moderately related pairs</strong> (mid ASJP distance):
+        pairs from different branches of the same macro-family, e.g., English&ndash;Russian
+        (Germanic vs. Slavic) or Spanish&ndash;Hindi (Romance vs. Indo-Iranian).</li>
+      <li><strong style="color:#dc2626">Unrelated pairs</strong> (high ASJP distance):
+        pairs from entirely different language families, e.g., English&ndash;Chinese or
+        Swahili&ndash;Finnish.</li>
+    </ul>
+    <p>
+      A positive correlation across the full range confirms that NLLB's encoder has
+      implicitly learned phonetic/genealogical relationships from translation
+      co-occurrence statistics alone.
+    </p>
+  </section>
+
+  <div id="mantelResults" class="prose">
+    <div class="stat-row" id="mantelStats">
+      <div class="loading-placeholder"><span class="spinner"></span> Loading&hellip;</div>
+    </div>
+  </div>
+
+  <div class="figure">
+    <div class="figure-inner">
+      <div class="vizToggle" id="mantelColorToggles" style="margin-bottom:8px;display:flex;gap:8px;flex-wrap:wrap;justify-content:center">
+        <span style="font-size:13px;color:var(--fg-dim,#64748b);align-self:center">Color by:</span>
+        <button class="toggleBtn small active" data-mode="pairType" onclick="_drawMantelScatter('pairType')">Pair Relationship</button>
+        <button class="toggleBtn small" data-mode="geoArea" onclick="_drawMantelScatter('geoArea')">Geographic Area</button>
+        <button class="toggleBtn small" data-mode="sharedFamily" onclick="_drawMantelScatter('sharedFamily')">Shared Family</button>
+        <button class="toggleBtn small" data-mode="allFamilies" onclick="_drawMantelScatter('allFamilies')">All Families</button>
+      </div>
+      <div id="mantelScatter" class="chart">
+        <div class="loading-placeholder"><span class="spinner"></span> Loading&hellip;</div>
+      </div>
+    </div>
+    <p class="figure-caption">
+      <strong>Figure 7a.</strong> Mantel test scatter plot with per-cluster regression lines
+      and Spearman correlations. Each point is one language pair. Dashed lines show the
+      linear trend within each cluster. Toggle views to explore geographic and family-level
+      structure.
+    </p>
+  </div>
+
+  <div class="figure">
+    <div class="figure-inner">
+      <div id="mantelBoxPlot" class="chart chart-short">
+        <div class="loading-placeholder"><span class="spinner"></span> Loading&hellip;</div>
+      </div>
+    </div>
+    <p class="figure-caption">
+      <strong>Figure 7b.</strong> Distribution of NLLB embedding distances by geographic
+      relationship type. Same-family pairs have the tightest (lowest) embedding distances.
+      Cross-region pairs are most distant but show the widest spread &mdash; the model
+      distinguishes some cross-family pairs much more than others, suggesting it captures
+      areal and typological similarities beyond strict genealogy.
+    </p>
+  </div>
+
+  <section class="prose">
+    <h3>Conceptual Maps by Language Family</h3>
+    <p>
+      Each point in the concept map represents a Swadesh concept positioned by its average
+      embedding across all languages in a selected family. PCA is fitted on overall centroids
+      so that per-family maps share the same coordinate space, enabling direct visual comparison
+      of how different language families organize the same conceptual inventory.
+    </p>
+    <p>
+      If all families produce similar concept maps, the conceptual structure is truly
+      language-universal. Systematic differences between families may reveal culture-specific
+      or typology-specific semantic biases encoded by the model.
+    </p>
+  </section>
+
+  <div class="figure">
+    <div class="figure-inner">
+      <div class="map-controls concept-map-controls" id="conceptMapControls">
+        <select id="conceptMapSelect">
+          <option value="overall">Overall (all languages)</option>
+          <option value="all-families">All Families (overlay)</option>
+        </select>
+        <span class="map-control-sep">Color by:</span>
+        <select id="conceptMapColorBy">
+          <option value="category">Semantic Category</option>
+          <option value="family">Language Family</option>
+        </select>
+        <label>
+          <input type="checkbox" id="conceptMapOverlay" checked />
+          Show average (grey)
+        </label>
+        <label>
+          <input type="checkbox" id="conceptMapHulls" />
+          Convex hulls
+        </label>
+        <span class="map-control-sep">View:</span>
+        <select id="conceptMapProjection">
+          <option value="pc12">PC1 vs PC2</option>
+          <option value="pc13">PC1 vs PC3</option>
+          <option value="pc23">PC2 vs PC3</option>
+          <option value="3d">3D</option>
+        </select>
+      </div>
+      <div id="conceptMapPlot" class="chart">
+        <div class="loading-placeholder"><span class="spinner"></span> Loading&hellip;</div>
+      </div>
+      <div id="conceptMap3D" class="chart" style="display:none">
+        <div class="loading-placeholder"><span class="spinner"></span> Loading&hellip;</div>
+      </div>
+    </div>
+    <p class="figure-caption">
+      <strong>Figure 7b.</strong> 2D PCA concept map of Swadesh vocabulary. Select a language
+      family or &ldquo;All Families&rdquo; to compare how different language families organize
+      the conceptual space. Color by semantic category (body parts, nature, actions&hellip;)
+      or by language family. Grey dots show the overall average positioning for reference.
+    </p>
+  </div>
+
+  <hr class="section-divider" />
+
+  <!-- ════════════════════════════════════════════════════════════ -->
+  <!-- 6. VALIDATION TESTS                                         -->
+  <!-- ════════════════════════════════════════════════════════════ -->
+  <section class="prose" id="validation">
+    <h2>6. Validation Tests</h2>
+
+    <p>
+      The experiments above establish that NLLB's encoder contains structure that correlates with
+      known linguistic and cognitive universals. The following validation tests probe this structure
+      from multiple independent angles, each testing a specific hypothesis against external benchmarks
+      from cognitive science and historical linguistics.
+    </p>
+
+    <!-- ── 6.1 Isotropy Correction ── -->
+    <h3 id="val-isotropy">6.1 Isotropy Correction Test</h3>
+    <p>
+      Does the Swadesh convergence ranking hold under isotropy (ABTT) correction? Rajaee and
+      Pilehvar (2022) showed that multilingual transformer embeddings are severely anisotropic,
+      meaning raw cosine similarity is dominated by frequency artifacts rather than genuine
+      semantic proximity. If our convergence ranking changes dramatically after isotropy correction,
+      the signal is an artifact; if it remains stable (high Spearman &rho;), the structure is
+      genuinely geometric.
+    </p>
+  </section>
+
+  <div id="isotropyResults" class="prose">
+    <div class="stat-row" id="isotropyStats">
+      <div class="loading-placeholder"><span class="spinner"></span> Loading&hellip;</div>
+    </div>
+  </div>
+
+  <div class="figure">
+    <div class="figure-inner figure-row">
+      <div id="isotropyScatter" class="chart chart-short">
+        <div class="loading-placeholder"><span class="spinner"></span> Loading&hellip;</div>
+      </div>
+      <div id="isotropyCompare" class="chart chart-short">
+        <div class="loading-placeholder"><span class="spinner"></span> Loading&hellip;</div>
+      </div>
+    </div>
+    <p class="figure-caption">
+      <strong>Figure 8.</strong> <em>Left:</em> Per-concept comparison of raw vs. isotropy-corrected
+      convergence scores. Points near the diagonal indicate stable ranking. <em>Right:</em> Top 20
+      concepts under isotropy correction with comparison bars.
+    </p>
+  </div>
+
+  <section class="prose">
+    <!-- ── 6.2 Swadesh vs Non-Swadesh ── -->
+    <h3 id="val-comparison">6.2 Swadesh vs. Non-Swadesh Comparison</h3>
+    <p>
+      Swadesh's cultural stability hypothesis predicts that core vocabulary converges more strongly
+      across languages than culturally specific vocabulary. We test this by comparing 101 Swadesh
+      concepts against 60 non-Swadesh concepts (e.g., "government," "university," "airport,"
+      "democracy") &mdash; modern, abstract, and culturally contingent terms. Both sets are
+      embedded across the same languages, and a one-sided Mann-Whitney U test evaluates
+      whether Swadesh concepts show significantly higher mean cross-lingual similarity.
+    </p>
+  </section>
+
+  <div id="comparisonResults" class="prose">
+    <div class="stat-row" id="comparisonStats">
+      <div class="loading-placeholder"><span class="spinner"></span> Loading&hellip;</div>
+    </div>
+  </div>
+
+  <div class="figure">
+    <div class="figure-inner figure-row">
+      <div id="comparisonBoxPlot" class="chart chart-short">
+        <div class="loading-placeholder"><span class="spinner"></span> Loading&hellip;</div>
+      </div>
+      <div id="comparisonHistogram" class="chart chart-short">
+        <div class="loading-placeholder"><span class="spinner"></span> Loading&hellip;</div>
+      </div>
+    </div>
+    <p class="figure-caption">
+      <strong>Figure 9.</strong> <em>Left:</em> Box plot comparison of convergence scores for Swadesh (core)
+      vs. non-Swadesh (culturally specific) vocabulary. <em>Right:</em> Overlapping histograms of both
+      distributions. A significant rightward shift of the Swadesh distribution supports the cultural
+      stability hypothesis.
+    </p>
+  </div>
+
+  <section class="prose">
+    <!-- ── 6.3 Colexification ── -->
+    <h3 id="val-colexification">6.3 CLICS&sup3; Colexification Test</h3>
+    <p>
+      Rzymski, Tresoldi et al.'s CLICS&sup3; (2019) database identifies concept pairs that are
+      lexified by a single word across many unrelated languages &mdash; revealing universal
+      conceptual adjacencies. We extract colexification pairs directly from the CLICS&sup3;
+      SQLite database, filtering to pairs attested in &ge;3 language families. If NLLB assigns
+      higher cosine similarity to frequently colexified pairs (e.g., "foot"&ndash;"leg" at 52 families,
+      "hand"&ndash;"arm" at 48 families) than to never-colexified pairs, this bridges typological
+      linguistics and neural representation analysis in a way no prior paper has attempted.
+    </p>
+  </section>
+
+  <div id="colexResults" class="prose">
+    <div class="stat-row" id="colexStats">
+      <div class="loading-placeholder"><span class="spinner"></span> Loading&hellip;</div>
+    </div>
+  </div>
+
+  <div class="figure">
+    <div class="figure-inner">
+      <div id="colexBoxPlot" class="chart chart-short">
+        <div class="loading-placeholder"><span class="spinner"></span> Loading&hellip;</div>
+      </div>
+    </div>
+    <p class="figure-caption">
+      <strong>Figure 10.</strong> Distribution of cross-lingual cosine similarity for colexified
+      vs. non-colexified concept pairs. Higher similarity for colexified pairs indicates the model
+      has internalized universal conceptual associations.
+    </p>
+  </div>
+
+  <section class="prose">
+    <!-- ── 6.4 Conceptual Store Metric ── -->
+    <h3 id="val-conceptual-store">6.4 Conceptual Store Metric</h3>
+    <p>
+      The conceptual store hypothesis (Correia et al., 2014) predicts that after removing
+      language-identity information, the ratio of between-concept distance to within-concept
+      distance should increase substantially. We compute this ratio on raw embeddings and
+      after per-language mean-centering. The prediction from the executive summary: at least
+      a 2&times; improvement factor after centering.
+    </p>
+
+    <div class="hypothesis-box">
+      <div class="hypothesis-label">Hypothesis 2 &mdash; The Mean-Centering Test</div>
+      <p>
+        Subtracting per-language mean vectors before PCA will reorganize the embedding space
+        from language-family clustering to concept-meaning clustering. The ratio of between-concept
+        distance to within-concept distance will increase by at least a factor of two after
+        mean-centering &mdash; the first geometric operationalization of the conceptual store
+        hypothesis in a neural translation model.
+      </p>
+    </div>
+  </section>
+
+  <div id="storeResults" class="prose">
+    <div class="stat-row" id="storeStats">
+      <div class="loading-placeholder"><span class="spinner"></span> Loading&hellip;</div>
+    </div>
+  </div>
+
+  <div id="storeImprovement" class="prose" style="display:none"></div>
+
+  <section class="prose">
+    <!-- ── 6.5 Semantic Offset Invariance ── -->
+    <h3 id="val-offset">6.5 Semantic Offset Invariance</h3>
+    <p>
+      This experiment tests a question that goes beyond first-order convergence (do translations
+      of the same concept cluster together?) to <em>second-order structure</em>: are relationships
+      between concepts preserved across languages? The hypothesis is that semantically fundamental
+      relationships &mdash; man&rarr;woman, big&rarr;small, I&rarr;we, eat&rarr;drink &mdash;
+      produce offset vectors that are translationally invariant: the direction from "man" to "woman"
+      in English embedding space should be parallel to the direction from "homme" to "femme" in
+      French embedding space.
+    </p>
+    <p>
+      Mean consistency close to 1.0 indicates high cross-lingual invariance &mdash; the relationship
+      is a universal property of the conceptual space. The per-family breakdown is analytically
+      important: invariance that holds across unrelated families (Indo-European, Sino-Tibetan,
+      Niger-Congo) is strong evidence for language-universal conceptual structure, while invariance
+      restricted to related families may reflect shared etymology. No prior paper has tested
+      semantic offset invariance across 135 languages in a translation model. The closest
+      precedent is Mikolov et al.'s (2013) word2vec analogy work, which operated within a single language.
+    </p>
+  </section>
+
+  <div id="offsetStats" class="prose">
+    <div class="stat-row" id="offsetStatBadges">
+      <div class="loading-placeholder"><span class="spinner"></span> Loading&hellip;</div>
+    </div>
+  </div>
+
+  <div class="figure">
+    <div class="figure-inner figure-row">
+      <div id="offsetDemoPCA" class="chart vector-offset-panel">
+        <div class="loading-placeholder"><span class="spinner"></span> Loading&hellip;</div>
+      </div>
+      <div id="offsetDemoQuiver" class="chart vector-offset-panel">
+        <div class="loading-placeholder"><span class="spinner"></span> Loading&hellip;</div>
+      </div>
+    </div>
+    <p class="figure-caption">
+      <strong>Figure 11a.</strong> <em>Left:</em> Joint PCA of concept embeddings for the 5
+      most translationally invariant pairs across 135 languages. Faint arrows show individual
+      language vectors; bold arrows show cross-lingual centroids. Concept clusters are visible
+      as grey clouds. <em>Right:</em> The same offset vectors translated to a common origin,
+      revealing that each semantic relationship produces a tight, language-universal direction
+      despite surface-form diversity.
+    </p>
+  </div>
+
+  <div class="figure">
+    <div class="figure-inner">
+      <div id="offsetDemoBar" class="chart">
+        <div class="loading-placeholder"><span class="spinner"></span> Loading&hellip;</div>
+      </div>
+    </div>
+    <p class="figure-caption">
+      <strong>Figure 11b.</strong> Cross-lingual consistency of all 22 semantic offset pairs.
+      Top-5 pairs are color-coded to match the PCA panels above. Error bars show standard
+      deviation across languages. High consistency (&gt;0.8) indicates a language-universal
+      relationship; lower values suggest culture- or family-specific encoding.
+    </p>
+  </div>
+
+  <div class="figure">
+    <div class="figure-inner">
+      <div id="offsetChart" class="chart">
+        <div class="loading-placeholder"><span class="spinner"></span> Loading&hellip;</div>
+      </div>
+    </div>
+  </div>
+
+  <section class="prose">
+    <h4>Per-Family Invariance Heatmap</h4>
+    <p>
+      The heatmap below decomposes offset invariance by language family. Each cell shows the
+      mean consistency of a semantic relationship within a specific language family. Uniform
+      warmth across families indicates the relationship is truly universal; cold spots in
+      specific families reveal where the model's encoding diverges from the cross-lingual norm.
+    </p>
+  </section>
+
+  <div class="figure">
+    <div class="figure-inner">
+      <div id="offsetFamilyHeatmap" class="chart chart-heatmap-tall">
+        <div class="loading-placeholder"><span class="spinner"></span> Loading&hellip;</div>
+      </div>
+    </div>
+    <p class="figure-caption">
+      <strong>Figure 12.</strong> Per-family breakdown of semantic offset invariance. Rows are
+      concept pairs; columns are language families. Warmer colors indicate higher consistency.
+      Universally warm rows (e.g., man&rarr;woman) represent relationships that are invariant
+      across all language families.
+    </p>
+  </div>
+
+  <section class="prose">
+    <!-- ── 6.6 Color Circle ── -->
+    <h3 id="val-color">6.6 Berlin &amp; Kay Color Circle</h3>
+    <p>
+      Berlin and Kay (1969) established that human color categorization follows universal
+      constraints: languages add color terms in a predictable order, and perceptually adjacent
+      colors (red/orange, blue/green) are categorized similarly across cultures. If NLLB's
+      embedding space captures these universals, the arrangement of color term centroids
+      (averaged across 30+ languages) should recover the perceptual color circle &mdash;
+      red adjacent to orange and purple, green adjacent to yellow and blue &mdash; regardless
+      of which languages contributed the terms.
+    </p>
+  </section>
+
+  <div class="figure">
+    <div class="figure-inner">
+      <div class="color-circle-controls" id="colorCircleControls">
+        <div class="color-toggle-row">
+          <span class="map-control-sep">Show:</span>
+          <label class="toggle-label"><input type="checkbox" id="colorShowLangs" checked /> All languages</label>
+          <label class="toggle-label"><input type="checkbox" id="colorShowMean" checked /> Mean centroids</label>
+          <label class="toggle-label"><input type="checkbox" id="colorShowFamilyMeans" /> Family means</label>
+          <label class="toggle-label"><input type="checkbox" id="colorShowLines" /> Lines to centroid</label>
+          <label class="toggle-label"><input type="checkbox" id="colorShowHulls" /> Convex hulls</label>
+        </div>
+        <div class="color-toggle-row">
+          <span class="map-control-sep">Color by:</span>
+          <button class="toggleBtn small active" id="colorByColor" onclick="setColorCircleMode('color')">Actual Color</button>
+          <button class="toggleBtn small" id="colorByFamily" onclick="setColorCircleMode('family')">Language Family</button>
+          <span style="width:16px"></span>
+          <span class="map-control-sep">Filter family:</span>
+          <select id="colorFamilyFilter">
+            <option value="all">All families</option>
+          </select>
+          <span style="width:16px"></span>
+          <span class="map-control-sep">View:</span>
+          <select id="colorProjection">
+            <option value="pc12">PC1 vs PC2</option>
+            <option value="pc13">PC1 vs PC3</option>
+            <option value="pc23">PC2 vs PC3</option>
+            <option value="3d">3D</option>
+          </select>
+        </div>
+      </div>
+      <div id="colorCircle" class="chart">
+        <div class="loading-placeholder"><span class="spinner"></span> Loading&hellip;</div>
+      </div>
+      <div id="colorCircle3D" class="chart" style="display:none">
+        <div class="loading-placeholder"><span class="spinner"></span> Loading&hellip;</div>
+      </div>
+    </div>
+    <p class="figure-caption">
+      <strong>Figure 13.</strong> 2D PCA projection of Berlin &amp; Kay color terms across 140+ languages.
+      Each small dot is one language&rsquo;s embedding of a color term; large dots show the cross-lingual
+      mean. Transparency reveals where languages agree (dense clusters) vs. diverge (scattered points).
+      Toggle overlays to explore family-level structure and the distribution of color term representations.
+    </p>
+  </div>
+
+  <section class="prose">
+    <h3 id="val-color-layers">6.6b Layer-wise Color Circle Evolution</h3>
+    <p>
+      The color circle in Figure 13 uses final-layer (layer 11) representations. But how does
+      this structure <em>emerge</em> across the encoder stack? The animation below shows
+      the same color term embeddings extracted from each of the 12 encoder layers, all projected
+      into the same PCA coordinate space (fit on the final-layer centroids). Use the slider to
+      scrub through layers manually, or press <strong>Animate</strong> to watch the
+      representational space self-organize in real time &mdash; scattered noise in early layers
+      coalescing into the tight, perceptually ordered color circle by the final layer.
+    </p>
+  </section>
+
+  <div class="figure">
+    <div class="figure-inner">
+      <div class="color-layer-controls" id="colorLayerControls" style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;justify-content:center;margin-bottom:8px">
+        <label style="font-size:13px;font-weight:600;color:var(--fg-dim,#64748b)">Encoder Layer:</label>
+        <input type="range" id="colorLayerSlider" min="0" max="11" value="11" style="width:220px;accent-color:#c45a2c" />
+        <span id="colorLayerLabel" style="font-size:14px;font-weight:700;font-variant-numeric:tabular-nums;min-width:52px">Layer 11</span>
+        <button class="toggleBtn small" id="colorLayerAnimateBtn" onclick="toggleColorLayerAnimation()" style="min-width:90px">&#9654; Animate</button>
+        <label style="font-size:12px;color:var(--fg-dim,#64748b)">
+          Speed:
+          <select id="colorLayerSpeed" style="font-size:12px">
+            <option value="1500">Slow</option>
+            <option value="800" selected>Medium</option>
+            <option value="350">Fast</option>
+          </select>
+        </label>
+      </div>
+      <div id="colorCircleLayers" class="chart">
+        <div class="loading-placeholder"><span class="spinner"></span> Loading&hellip;</div>
+      </div>
+    </div>
+    <p class="figure-caption">
+      <strong>Figure 13b.</strong> Layer-wise evolution of Berlin &amp; Kay color term
+      representations. All layers are projected into the same PCA space (fit on final-layer
+      centroids). Early layers show dispersed, unstructured points; by the final layer, color
+      terms self-organize into the perceptual color circle. The animation reveals a
+      <em>phase transition</em> around layers 5&ndash;7 where categorical structure snaps
+      into place &mdash; mirroring the conceptual store metric transition in Figure 15a.
+    </p>
+  </div>
+
+  <section class="prose">
+    <!-- ── 6.7 Carrier Sentence Robustness ── -->
+    <h3 id="val-carrier">6.7 Carrier Sentence Robustness</h3>
+    <p>
+      All preceding analyses embed target words inside a fixed carrier sentence. Does this
+      carrier drive our convergence findings, or would bare words produce the same ranking?
+      We repeat the full embedding extraction and convergence analysis using
+      <em>decontextualized</em> embeddings &mdash; target words embedded in isolation,
+      without any surrounding context.
+    </p>
+    <p>
+      If the carrier sentence is merely providing a consistent frame (as intended) rather
+      than imposing structure, the contextualized and decontextualized convergence rankings
+      should be highly correlated. A low correlation would suggest that the carrier sentence,
+      not semantics, drives the observed patterns.
+    </p>
+  </section>
+
+  <div id="carrierBaselineResults" class="prose">
+    <div class="stat-row" id="carrierBaselineStats">
+      <div class="loading-placeholder"><span class="spinner"></span> Loading&hellip;</div>
+    </div>
+  </div>
+
+  <div class="figure">
+    <div class="figure-inner figure-row">
+      <div id="carrierBaselineScatter" class="chart chart-short">
+        <div class="loading-placeholder"><span class="spinner"></span> Loading&hellip;</div>
+      </div>
+      <div id="carrierBaselineSlopegraph" class="chart chart-short">
+        <div class="loading-placeholder"><span class="spinner"></span> Loading&hellip;</div>
+      </div>
+    </div>
+    <p class="figure-caption">
+      <strong>Figure 14.</strong> <em>Left:</em> Scatter of contextualized vs. decontextualized
+      convergence scores. Points near the identity line indicate concepts whose convergence is
+      insensitive to the carrier sentence. <em>Right:</em> Top-20 concepts under each condition,
+      showing minimal reranking of the highest-convergence items.
+    </p>
+  </div>
+
+  <section class="prose">
+    <!-- ── 6.8 Layer-wise Emergence ── -->
+    <h3 id="val-layerwise">6.8 Layer-wise Emergence of Semantic Structure</h3>
+    <p>
+      All preceding analyses use representations from the final (12th) encoder layer. But
+      <em>where</em> in the encoder stack does cross-lingual semantic structure emerge? We
+      repeat the convergence analysis at each of the 12 encoder layers on a diverse 39-language
+      subset.
+    </p>
+    <p>
+      If semantic convergence builds gradually across layers &mdash; with surface-level features
+      dominating early layers and abstract semantics dominating later ones &mdash; this would
+      parallel the "NLP pipeline" effect documented by Tenney et al. (2019) and provide a
+      developmental lens on the conceptual store hypothesis.
+    </p>
+  </section>
+
+  <div id="layerwiseResults" class="prose">
+    <div class="stat-row" id="layerwiseStats">
+      <div class="loading-placeholder"><span class="spinner"></span> Loading&hellip;</div>
+    </div>
+  </div>
+
+  <div class="figure">
+    <div class="figure-inner figure-row">
+      <div id="layerwiseConvergence" class="chart chart-short">
+        <div class="loading-placeholder"><span class="spinner"></span> Loading&hellip;</div>
+      </div>
+      <div id="layerwiseCSM" class="chart chart-short">
+        <div class="loading-placeholder"><span class="spinner"></span> Loading&hellip;</div>
+      </div>
+    </div>
+    <p class="figure-caption">
+      <strong>Figure 15a.</strong> <em>Left:</em> Mean Swadesh convergence by encoder layer.
+      Convergence increases monotonically with a sharp rise around layer 1. <em>Right:</em>
+      Conceptual Store Metric (raw and mean-centered) by layer, showing a phase transition
+      at layer 6.
+    </p>
+  </div>
+
+  <div class="figure">
+    <div class="figure-inner">
+      <div id="layerwiseHeatmap" class="chart chart-tall">
+        <div class="loading-placeholder"><span class="spinner"></span> Loading&hellip;</div>
+      </div>
+    </div>
+    <p class="figure-caption">
+      <strong>Figure 15b.</strong> Per-concept convergence heatmap across encoder layers.
+      Rows are Swadesh concepts (sorted by final-layer convergence); columns are encoder
+      layers 0&ndash;11. Concrete, perceptually grounded concepts (top) achieve high
+      convergence earlier than abstract or polysemous concepts (bottom).
+    </p>
+  </div>
+
+  <section class="prose">
+    <!-- ── 6.9 Controlled Swadesh Comparison ── -->
+    <h3 id="val-controlled">6.9 Controlled Non-Swadesh Comparison</h3>
+    <p>
+      The original Swadesh vs. non-Swadesh comparison (Section 6.2) is confounded by
+      <strong>loanword bias</strong>: modern terms like <em>telephone</em>, <em>democracy</em>,
+      and <em>hotel</em> share surface forms across dozens of languages due to cultural
+      borrowing, inflating their apparent convergence. To obtain a properly controlled
+      comparison, we constructed a second non-Swadesh set of frequency-matched, non-loanword
+      concrete nouns with cross-linguistic orthographic diversity comparable to the Swadesh set.
+    </p>
+    <p>
+      Under this controlled baseline, Swadesh concepts exhibit convergence commensurate with
+      or exceeding that of the matched controls &mdash; consistent with the hypothesis that
+      culturally stable, universally attested concepts develop robust cross-lingual representations
+      <em>despite</em> maximal surface-form diversity.
+    </p>
+  </section>
+
+  <div id="controlledCompResults" class="prose">
+    <div class="stat-row" id="controlledCompStats">
+      <div class="loading-placeholder"><span class="spinner"></span> Loading&hellip;</div>
+    </div>
+  </div>
+
+  <div class="figure">
+    <div class="figure-inner figure-row">
+      <div id="controlledCompBox" class="chart chart-short">
+        <div class="loading-placeholder"><span class="spinner"></span> Loading&hellip;</div>
+      </div>
+      <div id="controlledCompHistogram" class="chart chart-short">
+        <div class="loading-placeholder"><span class="spinner"></span> Loading&hellip;</div>
+      </div>
+    </div>
+    <p class="figure-caption">
+      <strong>Figure 16.</strong> Controlled Swadesh vs. non-Swadesh comparison using
+      frequency-matched, non-loanword concrete nouns. <em>Left:</em> Box plot. <em>Right:</em>
+      Overlapping histograms. Unlike the loanword-confounded comparison, this controlled
+      baseline shows Swadesh concepts converging at least as strongly as matched controls.
+    </p>
+  </div>
+
+  <hr class="section-divider" />
+
+  <!-- ════════════════════════════════════════════════════════════ -->
+  <!-- 7. DISCUSSION                                               -->
+  <!-- ════════════════════════════════════════════════════════════ -->
+  <section class="prose" id="discussion">
+    <h2>7. Discussion</h2>
+
+    <p>
+      Taken together, these results constitute a coherent empirical story: NLLB-200's encoder
+      contains a language-neutral conceptual store, its geometry reflects universal conceptual
+      structure, and its representation of core vocabulary correlates with cross-cultural
+      cognitive universals. The BIA+ two-system architecture maps directly onto NLLB's
+      encoder-decoder split &mdash; the encoder functions as the language-nonselective
+      "word identification system," while the forced BOS token mechanism functions as the
+      "task-decision system" that imposes language constraints.
+    </p>
+
+    <p>
+      The mean-centering result is perhaps the most revelatory: subtracting per-language mean
+      vectors reorganizes the PCA from language-family clusters to concept-meaning clusters,
+      providing the first direct geometric test of whether a neural translation model develops
+      something functionally analogous to the anterior temporal lobe's conceptual hub. The
+      improvement in between/within concept distance ratio quantifies how much of the embedding
+      space is dedicated to language-identity information versus genuine conceptual content.
+    </p>
+
+    <p>
+      The phylogenetic correlation, if confirmed at statistically significant levels, would
+      be a landmark finding: a neural machine translation model has implicitly learned the
+      genealogical tree of human language from translation co-occurrence statistics alone,
+      without any training signal about linguistic phylogeny. This result speaks simultaneously
+      to the NLP community (the geometry encodes more than task-relevant features), to cognitive
+      scientists (computational models can develop language-network structure paralleling the
+      human brain), and to historical linguists (neural embedding distances may complement
+      traditional phonetic distance measures).
+    </p>
+
+    <h3>Limitations &amp; Cautions</h3>
+    <ul>
+      <li>
+        <strong>Tokenization artifacts.</strong> Cross-script comparisons are confounded by
+        SentencePiece tokenization: English-French cognate pairs share many subword tokens;
+        English-Japanese pairs share none. All attention entropy experiments should be restricted
+        to Latin-script language pairs until edit-distance is included as a covariate.
+      </li>
+      <li>
+        <strong>Cosine similarity without correction is unreliable.</strong> Every quantitative
+        similarity claim must use isotropy-corrected vectors. Raw cosine is appropriate only for
+        qualitative visualization, clearly labeled as such.
+      </li>
+      <li>
+        <strong>Non-Swadesh translations are AI-generated.</strong> The 60-concept non-Swadesh
+        corpus was compiled programmatically and should be spot-checked by native speakers before
+        publication claims depend on it.
+      </li>
+      <li>
+        <strong>ASJP coverage varies.</strong> The phylogenetic analysis uses real ASJP v20
+        word-level phonetic distances (Wichmann et al., 2022), but not all NLLB languages
+        have ASJP word lists. Languages without ASJP coverage are excluded from the Mantel test.
+      </li>
+      <li>
+        <strong>Fixed carrier sentence.</strong> All word-in-context embeddings use a single
+        translated carrier sentence. Our decontextualized baseline (Section 6.7) shows high
+        rank correlation (&rho; = 0.867), confirming that the carrier does not drive the main
+        patterns. Nevertheless, a multi-template approach with averaged embeddings would further
+        reduce frame-specific bias.
+      </li>
+    </ul>
+
+    <h3>Layer-wise Developmental Parallels</h3>
+    <p>
+      The layer-wise trajectory analysis adds a developmental dimension to these structural
+      parallels. Semantic convergence increases monotonically across the 12 encoder layers,
+      with a sharp rise around layer 1 and the Conceptual Store Metric exhibiting a phase
+      transition at layer 6. This mirrors hierarchical processing in the human language network,
+      where primary auditory cortex encodes acoustic features, posterior temporal regions encode
+      phonological and lexical information, and the anterior temporal lobe hub integrates meaning
+      across modalities and languages. Concrete, perceptually grounded concepts achieve high
+      cross-lingual convergence earlier in the encoder stack than abstract or polysemous concepts,
+      suggesting a hierarchy of representational abstraction.
+    </p>
+
+    <h3>Future Directions</h3>
+    <p>
+      Several promising directions emerge from this work:
+      per-head cross-attention decomposition (finding universal semantic alignment heads),
+      resource-level asymmetry testing (the RHM prediction that L1&rarr;L2 translation
+      proceeds via conceptual mediation while L2&rarr;L1 can bypass it), and scaling
+      analyses across model sizes (from 600M to the full 3.3B NLLB-200). The core empirical
+      story &mdash; Swadesh convergence, variance decomposition, phylogenetic correlation,
+      colexification, offset invariance, layer-wise emergence, and carrier-sentence
+      robustness &mdash; provides a comprehensive probe of the encoder's conceptual geometry.
+    </p>
+  </section>
+
+  <hr class="section-divider" />
+
+  <!-- ════════════════════════════════════════════════════════════ -->
+  <!-- 8. INTERACTIVE EXPLORER                                     -->
+  <!-- ════════════════════════════════════════════════════════════ -->
+  <section id="explorer">
+    <div class="explorer">
+      <h2>Interactive Concept Explorer</h2>
+      <p class="desc">
+        Explore any concept's cross-lingual geometry in real time. Enter a word,
+        select target languages, and see how NLLB-200 represents it across language families.
+      </p>
+      <div class="explorer-controls">
+        <label>
+          Concept
+          <input id="explorerConcept" value="fire" />
+        </label>
+        <label>
+          Source language
+          <input id="explorerSourceLang" value="eng_Latn" />
+        </label>
+        <label>
+          Context template
+          <input id="explorerTemplate" value="I saw a {word} near the river." />
+        </label>
+        <div class="full-span" style="display:flex;gap:12px;align-items:end">
+          <button class="explorer-btn" id="explorerRunBtn" onclick="runExplorer()">
+            Analyze Concept
+          </button>
+          <span id="explorerStatus" style="font-size:0.88rem;color:var(--fg-dim)"></span>
+        </div>
+      </div>
+      <div id="explorerTranslations" class="translation-grid" style="display:none"></div>
+      <div id="explorerScatter" class="chart" style="display:none"></div>
+      <div id="explorerSimilarity" class="chart" style="display:none"></div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════ -->
+  <!-- FOOTER                                                      -->
+  <!-- ════════════════════════════════════════════════════════════ -->
+  <footer class="article-footer">
+    <p>
+      InterpretCognates &mdash; An interdisciplinary project bridging NLP interpretability
+      and cognitive science. Built on Meta's NLLB-200 (600M distilled). Code and data
+      available in the project repository.
+    </p>
+    <p style="margin-top:8px">
+      <span style="color:var(--fg-dim)">Interactive Explorer and legacy pages require the full backend.</span>
+    </p>
+  </footer>
+
+</article>
+
+<script src="blog.js"></script>
+</body>
+</html>

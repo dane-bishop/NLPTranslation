@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Interpret Cognates</title>
+    <link rel="stylesheet" href="/static/styles.css" />
+    <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+  </head>
+  <body>
+    <main>
+      <section class="hero">
+        <h1>Interpret Cognates</h1>
+        <p>
+          An interactive essay-like probe into how multilingual neural networks map equivalent concepts
+          across languages.
+        </p>
+        <nav style="margin-top:14px;display:flex;gap:16px">
+          <a href="/explore" style="color:#4f46e5;text-decoration:none;font-size:0.9rem;font-weight:600">Word Explorer →</a>
+          <a href="/swadesh" style="color:#4f46e5;text-decoration:none;font-size:0.9rem;font-weight:600">Swadesh Analysis →</a>
+          <a href="/validation" style="color:#4f46e5;text-decoration:none;font-size:0.9rem;font-weight:600">Validation Tests →</a>
+        </nav>
+      </section>
+
+      <section class="controls">
+        <label>
+          Concept
+          <input id="concept" value="tree" />
+        </label>
+        <label>
+          Source language code
+          <input id="sourceLang" value="eng_Latn" />
+        </label>
+        <label>
+          Context template
+          <input id="contextTemplate" value="I saw a {word} near the river." />
+        </label>
+        <div class="langPickerHeader">
+          <strong>Target language picker</strong>
+          <div class="langActions">
+            <button id="preset10Btn" class="secondaryBtn" type="button">Cross-family 10</button>
+            <button id="preset30Btn" class="secondaryBtn" type="button">Diverse 30</button>
+            <button id="preset60Btn" class="secondaryBtn" type="button">Diverse 60</button>
+            <button id="presetAllBtn" class="secondaryBtn" type="button">All (~80)</button>
+            <button id="clearLangsBtn" class="secondaryBtn" type="button">Clear</button>
+          </div>
+          <input id="langSearch" placeholder="Filter by language, family, or code" />
+          <p id="selectedSummary">0 languages selected</p>
+          <div id="selectedChips" class="chipRow"></div>
+          <div id="langPicker" class="langPicker"></div>
+        </div>
+        <div class="toggleRow">
+          <label class="toggleLabel">
+            <input type="checkbox" id="isotropyToggle" />
+            Isotropy-corrected similarity (ABTT)
+          </label>
+        </div>
+        <button id="runBtn">Analyze Concept Geometry</button>
+      </section>
+
+      <section>
+        <h2>Translation Outputs</h2>
+        <div id="translations"></div>
+      </section>
+
+      <section>
+        <h2>Concept Manifold Cloud (PCA)</h2>
+        <div class="vizToggle">
+          <button id="pcaRawBtn" class="toggleBtn active">Language Clusters (Raw)</button>
+          <button id="pcaCenteredBtn" class="toggleBtn">Concept Clusters (Mean-Centered)</button>
+        </div>
+        <div class="vizToggle" style="margin-top:6px">
+          <span style="font-size:13px;color:#64748b;margin-right:8px">Labels:</span>
+          <button id="labelLangBtn" class="toggleBtn small active">Language</button>
+          <button id="labelWordBtn" class="toggleBtn small">Translation</button>
+          <button id="labelBothBtn" class="toggleBtn small">Both</button>
+        </div>
+        <div id="scatter"></div>
+      </section>
+
+      <section>
+        <h2>Cross-Language Similarity Matrix</h2>
+        <div id="similarity"></div>
+      </section>
+
+      <section>
+        <h2>Source Token Alignment Across Languages</h2>
+        <p class="sectionNote">
+          Each row is a language. Each column is a source token. Color shows mean alignment
+          weight — how strongly the model links that source token to the translation.
+          Languages are grouped and sorted by family.
+        </p>
+        <div id="attnUnified"></div>
+      </section>
+
+      <section>
+        <h2>Token-Pair Detail</h2>
+        <p class="sectionNote">
+          Select a language to see the full target-token × source-token alignment matrix for
+          that language.
+        </p>
+        <div class="detailControls">
+          <label>
+            Language
+            <select id="attnDetailSelect"><option value="">— run analysis first —</option></select>
+          </label>
+        </div>
+        <div id="attnDetail"></div>
+      </section>
+      <section class="experiments">
+        <h2>Scientific Experiments</h2>
+        <p class="sectionNote">
+          Run research experiments from the development roadmap. These use the full Swadesh corpus
+          and external validation data. Each experiment may take 1–5 minutes on first run.
+        </p>
+        <div class="experimentGrid">
+          <div class="experimentCard">
+            <h3>Swadesh Convergence</h3>
+            <p>Rank 100 core vocabulary concepts by cross-lingual embedding convergence — testing Swadesh's cultural stability hypothesis.</p>
+            <button id="runSwadeshBtn" class="experimentBtn">Run Experiment</button>
+            <div id="swadeshResult" class="experimentResult"></div>
+          </div>
+          <div class="experimentCard">
+            <h3>Color Circle (Berlin & Kay)</h3>
+            <p>Project 11 basic color term centroids into 2D PCA — testing whether NLLB recovers the universal perceptual color circle.</p>
+            <button id="runColorBtn" class="experimentBtn">Run Experiment</button>
+            <div id="colorResult" class="experimentResult"></div>
+          </div>
+          <div class="experimentCard">
+            <h3>Colexification (CLICS²)</h3>
+            <p>Compare cosine similarity of frequently colexified vs. never-colexified concept pairs — testing universal conceptual associations.</p>
+            <button id="runColexBtn" class="experimentBtn">Run Experiment</button>
+            <div id="colexResult" class="experimentResult"></div>
+          </div>
+          <div class="experimentCard">
+            <h3>Phylogenetic Distance</h3>
+            <p>Compute embedding distance matrix across 40 languages over Swadesh vocabulary — preparation for Mantel test against ASJP.</p>
+            <button id="runPhyloBtn" class="experimentBtn">Run Experiment</button>
+            <div id="phyloResult" class="experimentResult"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <script src="/static/app.js"></script>
+  </body>
+</html>

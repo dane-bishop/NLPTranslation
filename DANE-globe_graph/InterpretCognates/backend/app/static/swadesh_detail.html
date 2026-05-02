@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Swadesh Convergence — Full Analysis</title>
+    <link rel="stylesheet" href="/static/swadesh_detail.css" />
+    <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+  </head>
+  <body>
+    <header class="hero">
+      <div class="pageNavRow">
+        <a href="/" class="backLink">&#8592; Main</a>
+        <a href="/validation" class="backLink" style="margin-left:auto">Validation Tests &#8594;</a>
+      </div>
+      <h1>Swadesh Convergence Analysis</h1>
+      <p class="subtitle">
+        101 core vocabulary concepts ranked by cross-lingual embedding convergence
+        across 40 languages — testing whether a neural translation model's internal
+        representations reflect universal conceptual structure.
+      </p>
+      <div id="statsBar" class="statsBar"></div>
+    </header>
+
+    <nav class="controlsBar" id="controlsBar">
+      <div class="controlsInner">
+        <div class="controlGroup">
+          <button id="sortGroupBtn" class="ctrlBtn">Group by Category</button>
+        </div>
+        <div class="controlGroup">
+          <label class="toggleSwitch">
+            <input type="checkbox" id="showBarsToggle" checked />
+            <span>Comparison bars</span>
+          </label>
+        </div>
+        <div class="controlGroup">
+          <select id="categoryFilter">
+            <option value="all">All categories</option>
+          </select>
+        </div>
+        <div class="controlGroup">
+          <label class="toggleSwitch">
+            <input type="checkbox" id="isotropyToggle" />
+            <span>Isotropy corrected (ABTT)</span>
+          </label>
+        </div>
+      </div>
+    </nav>
+
+    <main>
+      <div id="loadingOverlay" class="loadingOverlay">
+        <div class="loadingCard">
+          <div class="spinner"></div>
+          <h2>Loading Swadesh Data</h2>
+          <p id="loadingMsg">Checking for cached experiment results...</p>
+          <button id="runFromDetailBtn" class="runBtn" style="display:none">
+            Run Experiment (~2-5 min)
+          </button>
+        </div>
+      </div>
+
+      <section id="conceptListSection" class="conceptListSection">
+        <div class="listHeader">
+          <span class="colRank">#</span>
+          <span class="colName">Concept</span>
+          <span class="colCategory">Category</span>
+          <span class="colBars">Similarity</span>
+          <span class="sortHeader active" data-sort="embedding">Embedding &#9660;</span>
+          <span class="sortHeader" data-sort="ortho">Ortho</span>
+          <span class="sortHeader" data-sort="phonetic">Phonetic</span>
+        </div>
+        <div id="conceptList"></div>
+      </section>
+
+      <section class="analysisSection">
+        <h2>Variance Decomposition</h2>
+        <p class="sectionDesc">
+          Does cross-lingual embedding convergence simply reflect shared surface forms
+          (cognates), or does it reveal deeper semantic universals? Points <em>above</em>
+          the trend line converge more than orthography alone would predict —
+          indicating genuine conceptual convergence independent of word form.
+        </p>
+        <div id="decompositionStats" class="decompositionStats"></div>
+        <div id="decompositionChart"></div>
+      </section>
+
+      <section class="analysisSection">
+        <h2>Category Summary</h2>
+        <p class="sectionDesc">
+          Mean convergence by semantic category. Which types of concepts are most
+          universally represented across languages?
+        </p>
+        <div id="categorySummary"></div>
+      </section>
+
+      <section class="methodSection">
+        <h2>Methodology</h2>
+        <div class="methodGrid">
+          <div class="methodCard">
+            <h3>Embedding Convergence</h3>
+            <p>
+              For each concept, we embed its translation in all 40 languages using NLLB-200's
+              encoder. The convergence score is the mean pairwise cosine similarity across
+              all language pairs (780 pairs). Higher values indicate the model represents
+              the concept similarly regardless of language.
+            </p>
+          </div>
+          <div class="methodCard">
+            <h3>Orthographic Similarity</h3>
+            <p>
+              Computed as 1 minus normalized Levenshtein distance between word forms,
+              restricted to the 21 Latin-script languages (210 pairs) to avoid meaningless
+              cross-script comparisons. Measures surface-form overlap from shared
+              etymological origins.
+            </p>
+          </div>
+          <div class="methodCard">
+            <h3>Semantic Surplus</h3>
+            <p>
+              The residual from regressing embedding convergence on orthographic similarity.
+              Positive surplus means the concept converges <em>more</em> than surface
+              form would predict — evidence for language-universal conceptual structure.
+              Negative surplus suggests semantic divergence despite shared forms.
+            </p>
+          </div>
+          <div class="methodCard">
+            <h3>Phonetic Dimension (Planned)</h3>
+            <p>
+              A third decomposition axis using ASJP phonetic transcriptions would
+              separate phonetic convergence from both orthographic and purely semantic
+              components. This requires per-word ASJP data not yet integrated.
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="/static/swadesh_detail.js"></script>
+  </body>
+</html>
