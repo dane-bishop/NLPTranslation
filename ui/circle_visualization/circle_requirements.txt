@@ -1,0 +1,7 @@
+numpy>=1.26,<2
+pandas>=2.2,<4
+matplotlib>=3.8,<4
+pycirclize>=1.10,<2
+plotly>=5.24,<6
+streamlit>=1.40,<2
+scikit-learn>=1.5,<2
