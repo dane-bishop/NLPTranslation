@@ -30,9 +30,9 @@
 	"layer_idx": 6,
 	"pool_features": false,
 	"reduction": "mean",
-	"sparsity_weight": 1e-1,
+	"sparsity_weight": 2.0,
 	"print_every": 20,
 	"activation": "silu",
-	"weight_path": "weights/mdeberta/gsae_mdeberta_big_latent.pt",
+	"weight_path": "weights/mdeberta/gsae_hs.pt",
 	"encoder_only": false
 }

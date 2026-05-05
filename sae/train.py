@@ -41,6 +41,9 @@ class TrainingConf:
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 sae_constructors = {"vanilla": SAE, "gated": GatedSparseAutoEncoder}
+activation_lookup = {"relu": torch.nn.ReLU(), 
+                     "gelu": torch.nn.GELU(approximate="tanh"), 
+                     "silu": torch.nn.SiLU()} 
 
 
 def collate_records(batch):
@@ -59,13 +62,12 @@ def update_sae(autoencoder: SAE | GatedSparseAutoEncoder, embeddings, optim, con
 
 def train(conf: TrainingConf):
     torch.manual_seed(37)
-    #activation_lookup = {"relu": torch.nn.functional.relu, "gelu": torch.nn.functional.gelu, "tk_relu": torch.nn.Sequential(*[torch.nn.ReLU(), TopK(conf.topk)]) ,"btk_relu": torch.nn.Sequential(*[torch.nn.ReLU(), BatchTopK(conf.topk)])} 
     backbone_name = conf.backbone_name #"facebook/nllb-200-distilled-600M"
     backbone = MLLMBackbone(device, backbone_name)
     model_constructor = sae_constructors[conf.sae_type]
 
-    #autoencoder = model_constructor(conf.model_hidden_size,conf.sae_hidden_size,activation=activation_lookup[conf.activation]).to(device)
-    autoencoder = model_constructor(conf.model_hidden_size,conf.sae_hidden_size,activation=torch.nn.ReLU()).to(device)
+    autoencoder = model_constructor(conf.model_hidden_size,conf.sae_hidden_size,activation=activation_lookup[conf.activation]).to(device)
+    print(conf.sae_hidden_size)
 
 
     pair_configs = conf.pairs

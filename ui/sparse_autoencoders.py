@@ -77,6 +77,22 @@ h1,h2,h3,h4 { font-family:'IBM Plex Mono',monospace; letter-spacing:-0.02em; }
 """
 
 
+def discover_models(root_dir: str) -> dict[str, Path]:
+    """
+    Scan *root_dir* for sub-directories that look like model caches.
+    A valid model directory must contain at least sentence_projections.npy
+    and sentences.json.  Returns {model_name: Path} sorted alphabetically.
+    """
+    root = Path(root_dir)
+    required = {"sentence_projections.npy", "sentences.json"}
+    models: dict[str, Path] = {}
+    if root.is_dir():
+        for child in sorted(root.iterdir()):
+            if child.is_dir() and required.issubset({f.name for f in child.iterdir()}):
+                models[child.name] = child
+    return models
+
+
 @st.cache_data(show_spinner="Loading data ...")
 def load_data(cache_dir: str):
     p = Path(cache_dir)
@@ -240,7 +256,45 @@ def render_tab(cache_dir: str = "./cached_embeddings"):
 
     with st.sidebar:
         st.markdown("### Settings")
-        cache_dir_input = st.text_input("Cache directory", value=cache_dir)
+        root_dir_input = st.text_input("Root embeddings directory", value=cache_dir)
+
+        # ── Model selector ────────────────────────────────────────────────────
+        models = discover_models(root_dir_input)
+        if models:
+            model_names = list(models.keys())
+
+            # Restore previous selection if it still exists in the new root
+            prev = st.session_state.get("selected_model", model_names[0])
+            default_idx = model_names.index(prev) if prev in model_names else 0
+
+            selected_model = st.radio(
+                "Model",
+                options=model_names,
+                index=default_idx,
+                key="model_radio",
+                help="Switch between available model embeddings. "
+                     "Each folder under the root directory is listed here.",
+            )
+
+            # Reset per-model UI state when the model changes
+            if st.session_state.get("selected_model") != selected_model:
+                st.session_state["selected_model"] = selected_model
+                st.session_state["sel_sentence"] = 0
+                st.session_state["sel_feature"] = 0
+                st.rerun()
+
+            st.session_state["selected_model"] = selected_model
+            active_cache_dir = str(models[selected_model])
+        else:
+            # No sub-directories found – treat root itself as the cache dir
+            st.info(
+                "No model sub-directories detected. Place each model's embeddings "
+                "in a sub-folder of the root directory (e.g. root/nllb, root/mmbert), "
+                "or point directly to a cache directory above."
+            )
+            active_cache_dir = root_dir_input
+
+        st.markdown("---")
         plot_mode = st.selectbox(
             "View",
             ["Sentences", "Features"],
@@ -253,17 +307,25 @@ def render_tab(cache_dir: str = "./cached_embeddings"):
 
     try:
         sentence_proj, feature_proj, sentences, lang_tags, topk_lookup, alive_idx, meta = \
-            load_data(cache_dir_input)
+            load_data(active_cache_dir)
     except FileNotFoundError as e:
         st.error(f"Cache not found: {e}\n\nRun `precompute_embeddings.py` first.")
         return
 
     unique_langs = sorted(set(lang_tags))
     lang_filter = st.sidebar.multiselect(
-        "Filter by language", options=unique_langs, default=unique_langs,
+        "Filter by language", options=unique_langs, default=unique_langs, key="lang_filter"
     )
 
-    st.markdown("# SAE Feature Explorer")
+    # ── Header ────────────────────────────────────────────────────────────────
+    active_model_label = st.session_state.get("selected_model", Path(active_cache_dir).name)
+    st.markdown(
+        f"# SAE Feature Explorer "
+        f"<span style='font-family:IBM Plex Mono;font-size:0.7rem;color:#5a6080;"
+        f"background:#161a24;border:1px solid #2a2f3f;border-radius:4px;"
+        f"padding:3px 8px;vertical-align:middle'>{active_model_label}</span>",
+        unsafe_allow_html=True,
+    )
     st.markdown(
         f"<span style='font-family:IBM Plex Mono;font-size:0.8rem;color:#5a6080'>"
         f"model: {meta['config'].get('backbone_name','?')} &nbsp;|&nbsp; "
@@ -290,11 +352,13 @@ def render_tab(cache_dir: str = "./cached_embeddings"):
     f_lang_tags = [lang_tags[i] for i in sent_indices]
     f_sent_proj = sentence_proj[sent_indices]
 
-    # Session state
+    # Session state defaults
     if "sel_sentence" not in st.session_state:
         st.session_state["sel_sentence"] = 0
     if "sel_feature" not in st.session_state:
         st.session_state["sel_feature"] = 0
+    if "lang_filter" not in st.session_state:
+        st.session_state["lang_filter"] = unique_langs
 
     col_plot, col_detail = st.columns([3, 2], gap="large")
 
@@ -307,17 +371,19 @@ def render_tab(cache_dir: str = "./cached_embeddings"):
                 "One point per sentence, coloured by language. Click to inspect."
                 "</span>", unsafe_allow_html=True,
             )
-            sel = st.session_state["sel_sentence"]
-            fig = build_sentence_plot(f_sent_proj, f_sentences, f_lang_tags, unique_langs, sel)
+            sel_global = st.session_state["sel_sentence"]
+            sel_local = sent_indices.index(sel_global) if sel_global in sent_indices else None
+            fig = build_sentence_plot(f_sent_proj, f_sentences, f_lang_tags, unique_langs, sel_local)
             clicked = st.plotly_chart(fig, use_container_width=True,
                                       on_select="rerun", selection_mode="points",
                                       key="sent_scatter")
             if clicked and clicked.get("selection", {}).get("points"):
                 pt = clicked["selection"]["points"][0]
                 if pt.get("customdata"):
-                    new = int(pt["customdata"][0])
-                    if new != st.session_state["sel_sentence"]:
-                        st.session_state["sel_sentence"] = new
+                    local_new = int(pt["customdata"][0])
+                    global_new = sent_indices[local_new]
+                    if global_new != st.session_state["sel_sentence"]:
+                        st.session_state["sel_sentence"] = global_new
                         st.rerun()
             legend_cols = st.columns(min(5, len(unique_langs)))
             for i, lang in enumerate(unique_langs):
@@ -332,10 +398,10 @@ def render_tab(cache_dir: str = "./cached_embeddings"):
             local_idx = st.number_input(
                 "Sentence index (or click plot)",
                 min_value=0, max_value=len(f_sentences) - 1,
-                value=min(st.session_state["sel_sentence"], len(f_sentences) - 1),
+                value=min(sel_local or 0, len(f_sentences) - 1),
                 step=1, key="sent_input",
             )
-            st.session_state["sel_sentence"] = local_idx
+            st.session_state["sel_sentence"] = sent_indices[local_idx]
             render_sentence_detail(f_sentences, f_lang_tags, local_idx)
 
     # ── FEATURE MODE ──────────────────────────────────────────────────────────
@@ -363,7 +429,7 @@ def render_tab(cache_dir: str = "./cached_embeddings"):
                         st.rerun()
             active_count = sum(1 for f in topk_lookup if f)
             st.caption(f"{active_count} active / {n_features} total features")
-        
+
         n_alive = len(topk_lookup)
         clamped = min(st.session_state["sel_feature"], n_alive - 1)
         with col_detail:
@@ -377,7 +443,9 @@ def render_tab(cache_dir: str = "./cached_embeddings"):
             if "sel_feature" not in st.session_state:
                 st.session_state["sel_feature"] = 0
             else:
-                st.session_state["sel_feature"] = min(st.session_state["sel_feature"], len(topk_lookup) - 1)
+                st.session_state["sel_feature"] = min(
+                    st.session_state["sel_feature"], len(topk_lookup) - 1
+                )
             render_feature_detail(feat_idx, topk_lookup, sentences, lang_tags, alive_idx)
 
     # ── Stats ─────────────────────────────────────────────────────────────────
@@ -400,7 +468,14 @@ def render_tab(cache_dir: str = "./cached_embeddings"):
 if __name__ == "__main__":
     import argparse
     parser = argparse.ArgumentParser()
-    parser.add_argument("--cache_dir", default="../artifacts/sae_features/nllb/")
+    parser.add_argument(
+        "--cache_dir",
+        default="../artifacts/sae_features/",
+        help="Root directory containing one sub-folder per model "
+             "(e.g. root/nllb, root/mmbert).  "
+             "Falls back to treating this path as a direct cache dir if no "
+             "sub-directories with the required files are found.",
+    )
     args, _ = parser.parse_known_args()
     st.set_page_config(page_title="SAE Feature Explorer", layout="wide",
                        initial_sidebar_state="expanded")
