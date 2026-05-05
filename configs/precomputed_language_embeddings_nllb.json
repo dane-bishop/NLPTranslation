@@ -33,5 +33,9 @@
   "stream_shuffle_seed": 18,
   "random_seed": 18,
   "layer_indices": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-  "output_path": "artifacts/language_embeddings/nllb_encoder_all_layers.npz"
+  "output_path": "artifacts/language_embeddings/nllb_encoder_all_layers.npz",
+  "umap_n_neighbors": 15,
+  "umap_min_dist": 0.1,
+  "umap_metric": "cosine",
+  "umap_n_components": 2
 }

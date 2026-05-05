@@ -49,6 +49,12 @@ def load_precomputed_config(config_path: str):
 
 
 @st.cache_data
+def load_precomputed_metadata(metadata_path: str):
+    with open(metadata_path, "r") as stream:
+        return json.load(stream)
+
+
+@st.cache_data
 def load_precomputed_artifact(artifact_path: str):
     data = np.load(artifact_path, allow_pickle=True)
     return {
@@ -104,7 +110,7 @@ def build_centroid_distance_frame(df: pd.DataFrame) -> pd.DataFrame:
     return pd.DataFrame(rows).sort_values("distance")
 
 
-def build_scatter_figure(df: pd.DataFrame, layer_idx: int):
+def build_scatter_figure(df: pd.DataFrame, layer_idx: int, projection_label: str):
     fig = px.scatter(
         df,
         x="x",
@@ -120,8 +126,8 @@ def build_scatter_figure(df: pd.DataFrame, layer_idx: int):
     )
     fig.update_layout(
         title=f"Precomputed Multilingual Sentence Embeddings — Layer {layer_idx}",
-        xaxis_title="t-SNE 1",
-        yaxis_title="t-SNE 2",
+        xaxis_title=f"{projection_label} 1",
+        yaxis_title=f"{projection_label} 2",
         legend_title_text="Language",
         height=860,
         margin={"l": 10, "r": 10, "t": 60, "b": 10},
@@ -147,6 +153,7 @@ selected_key = st.selectbox(
 selected_entry = artifact_entries[selected_key]
 config = load_precomputed_config(str(ROOT_DIR / selected_entry["config_path"]))
 artifact_path = ROOT_DIR / config["output_path"]
+metadata_path = artifact_path.with_suffix(".json")
 
 if not artifact_path.exists():
     st.error(f"Precomputed artifact not found: {artifact_path}")
@@ -157,6 +164,8 @@ if not artifact_path.exists():
     st.stop()
 
 artifact = load_precomputed_artifact(str(artifact_path))
+metadata = load_precomputed_metadata(str(metadata_path)) if metadata_path.exists() else {}
+projection_label = str(metadata.get("projection_method", "Projection")).upper()
 
 available_layers = [int(layer_idx) for layer_idx in artifact["layer_indices"]]
 available_langs = list(dict.fromkeys(artifact["langs"]))
@@ -200,7 +209,7 @@ metric_a.metric("Points", len(filtered_df))
 metric_b.metric("Languages", len(selected_langs))
 metric_c.metric("Layer", selected_layer)
 
-st.plotly_chart(build_scatter_figure(filtered_df, selected_layer), use_container_width=True)
+st.plotly_chart(build_scatter_figure(filtered_df, selected_layer, projection_label), use_container_width=True)
 
 tab_counts, tab_distances, tab_samples, tab_config = st.tabs(
     ["Counts", "Centroid Distances", "Sample Sentences", "Artifact Config"]

@@ -5,6 +5,15 @@ from collections import defaultdict
 from dataclasses import asdict, dataclass
 from pathlib import Path
 
+try:
+    import joblib
+    import umap
+except ImportError as exc:
+    raise ImportError(
+        "precompute_language_embeddings.py requires `joblib` and `umap-learn`. "
+        "Install them with `pip install joblib umap-learn` before running this script."
+    ) from exc
+
 import numpy as np
 import torch
 import torch.nn.functional as F
@@ -12,7 +21,7 @@ from torch.utils.data import DataLoader
 from tqdm import tqdm
 
 from backbone import MLLMBackbone
-from cluster import collate_records, run_tsne
+from cluster import collate_records
 from dataset import BalancedNLLBDataset
 from train import masked_mean_pool
 
@@ -32,6 +41,10 @@ class PrecomputedLanguageEmbeddingsConf:
     random_seed: int
     layer_indices: list[int]
     output_path: str
+    umap_n_neighbors: int = 15
+    umap_min_dist: float = 0.1
+    umap_metric: str = "cosine"
+    umap_n_components: int = 2
 
 
 def collect_text_rows(
@@ -68,7 +81,7 @@ def collect_text_rows(
 
 
 @torch.no_grad()
-def compute_layer_coords(
+def compute_layer_artifacts(
     backbone: MLLMBackbone,
     texts: list[str],
     batch_size: int,
@@ -76,6 +89,10 @@ def compute_layer_coords(
     layer_idx: int,
     encoder_only: bool,
     random_seed: int,
+    umap_n_neighbors: int,
+    umap_min_dist: float,
+    umap_metric: str,
+    umap_n_components: int,
 ):
     embeddings = []
 
@@ -93,11 +110,20 @@ def compute_layer_coords(
         )
         embs = masked_mean_pool(acts["layer_tensor"], acts["valid_mask"])
         embs = F.normalize(embs, p=2, dim=-1)
-        embeddings.append(embs.detach().cpu().numpy())
+        embeddings.append(embs.detach().cpu().numpy().astype(np.float32))
 
     embedding_matrix = np.concatenate(embeddings, axis=0)
-    coords = run_tsne(embedding_matrix, random_state=random_seed)
-    return coords.astype(np.float32)
+    reducer = umap.UMAP(
+        n_neighbors=umap_n_neighbors,
+        min_dist=umap_min_dist,
+        metric=umap_metric,
+        n_components=umap_n_components,
+        random_state=random_seed,
+        transform_seed=random_seed,
+        transform_mode="embedding",
+    )
+    coords = reducer.fit_transform(embedding_matrix)
+    return embedding_matrix.astype(np.float32), coords.astype(np.float32), reducer
 
 
 def main():
@@ -152,10 +178,14 @@ def main():
         "counts_langs": np.array(list(counts_by_lang.keys()), dtype=object),
         "counts_values": np.array(list(counts_by_lang.values()), dtype=np.int32),
     }
+    umap_paths_by_layer = {}
+
+    output_path = Path(conf.output_path)
+    output_path.parent.mkdir(parents=True, exist_ok=True)
 
     for layer_idx in conf.layer_indices:
         print(f"Computing coordinates for layer {layer_idx}")
-        coords = compute_layer_coords(
+        embedding_matrix, coords, reducer = compute_layer_artifacts(
             backbone=backbone,
             texts=texts,
             batch_size=conf.batch_size,
@@ -163,16 +193,26 @@ def main():
             layer_idx=layer_idx,
             encoder_only=conf.encoder_only,
             random_seed=conf.random_seed,
+            umap_n_neighbors=conf.umap_n_neighbors,
+            umap_min_dist=conf.umap_min_dist,
+            umap_metric=conf.umap_metric,
+            umap_n_components=conf.umap_n_components,
         )
         save_arrays[f"coords_layer_{layer_idx}"] = coords
+        save_arrays[f"embeddings_layer_{layer_idx}"] = embedding_matrix.astype(np.float16)
 
-    output_path = Path(conf.output_path)
-    output_path.parent.mkdir(parents=True, exist_ok=True)
+        reducer_path = output_path.parent / f"{output_path.stem}_layer_{layer_idx}.umap.joblib"
+        joblib.dump(reducer, reducer_path)
+        umap_paths_by_layer[str(layer_idx)] = str(reducer_path)
+
     np.savez_compressed(output_path, **save_arrays)
 
     metadata_path = output_path.with_suffix(".json")
+    metadata = asdict(conf)
+    metadata["projection_method"] = "umap"
+    metadata["umap_paths_by_layer"] = umap_paths_by_layer
     with open(metadata_path, "w") as stream:
-        json.dump(asdict(conf), stream, indent=2)
+        json.dump(metadata, stream, indent=2)
 
     print(f"Saved precomputed embeddings to {output_path}")
     print(f"Saved metadata to {metadata_path}")
