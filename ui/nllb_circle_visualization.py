@@ -16,8 +16,8 @@ from circle_visualization.nllb_geo_chord_investigate_lang import (
 )
 
 
-st.title("NLLB-200 Circle Visualization")
-st.write("Explore the top-k nearest languages from your exported NLLB embeddings.")
+st.title("NLLB-200 Language Embedding Similarity Visualization")
+st.write("In NLLB-200, 200 languages are embedded in the vector space. This visualization displays similar languages to the selected language in the dropdown.")
 
 
 @st.cache_data(show_spinner=False)
@@ -56,8 +56,9 @@ def _circle_positions(node_ids: list[str], radius: float = 1.0) -> dict[str, tup
 
 def _similarity_to_color(similarity: float, min_similarity: float, max_similarity: float) -> str:
     """
-    Map similarity to a cool->warm color.
-    Lower similarity = cooler color, higher similarity = warmer color.
+    Map similarity to a cool->warm color relative to the current view.
+    Lower similarity in the current selection = cooler color.
+    Higher similarity in the current selection = warmer color.
     """
     if max_similarity - min_similarity < 1e-12:
         t = 0.5
@@ -206,7 +207,7 @@ def build_interactive_circle_figure(
         )
     )
 
-    # Add a hidden marker trace only to show the similarity color legend
+    # Hidden marker trace to show a relative color legend matching the edge colors
     fig.add_trace(
         go.Scatter(
             x=[None],
@@ -220,9 +221,13 @@ def build_interactive_circle_figure(
                 "color": [0.5],
                 "size": 0.1,
                 "colorbar": {
-                    "title": {"text": "Similarity"},
-                    "tickvals": [0.0, 0.25, 0.5, 0.75, 1.0],
-                    "ticktext": ["0%", "25%", "50%", "75%", "100%"],
+                    "title": {"text": "Relative similarity\n(current view)"},
+                    "tickvals": [0.0, 0.5, 1.0],
+                    "ticktext": [
+                        f"Lowest\n({min_similarity:.3f})",
+                        "Middle",
+                        f"Highest\n({max_similarity:.3f})",
+                    ],
                     "len": 0.75,
                     "thickness": 18,
                     "x": 1.02,
@@ -235,7 +240,7 @@ def build_interactive_circle_figure(
 
     fig.update_layout(
         template="plotly_white",
-        margin={"l": 20, "r": 80, "t": 60, "b": 20},
+        margin={"l": 20, "r": 120, "t": 60, "b": 20},
         xaxis={"visible": False},
         yaxis={"visible": False, "scaleanchor": "x", "scaleratio": 1},
         plot_bgcolor="white",
@@ -251,6 +256,7 @@ def build_interactive_circle_figure(
         title={
             "text": f"{label_map.get(selected_lang, selected_lang)} and Top Similar Languages",
             "x": 0.5,
+            "xanchor": "center",
             "font": {"color": "#111111", "size": 20},
         },
     )
@@ -286,7 +292,7 @@ with left_col:
     k = st.slider(
         "Number of similar languages",
         min_value=1,
-        max_value=min(50, max_neighbors),
+        max_value=min(20, max_neighbors),
         value=min(10, max_neighbors),
     )
 
@@ -309,6 +315,10 @@ for _, row in edge_df.sort_values("distance").iterrows():
 with left_col:
     st.subheader("Nearest neighbors")
     st.dataframe(pd.DataFrame(neighbor_rows), use_container_width=True)
+    st.caption(
+        "Line colors are scaled relative to the similarities in the current selection. "
+        "Warm colors = more similar within this view, cool colors = less similar within this view."
+    )
 
 with right_col:
     fig = build_interactive_circle_figure(
