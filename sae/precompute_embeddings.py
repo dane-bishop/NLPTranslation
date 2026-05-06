@@ -39,9 +39,9 @@ def get_tokens(backbone: MLLMBackbone, acts: dict[str, torch.Tensor], batch_lang
 
 def get_sentence_activations(backbone, sae, dataloader, num_sentences, conf):
     step = 0
-    activations = []        # list of [actual_len, F] tensors — NO padding
-    activations_padded = [] # list of [128, F] tensors — for stacking into acts_tensor
-    token_lengths = []      # actual number of valid tokens per sentence
+    activations = []        
+    activations_padded = [] 
+    token_lengths = []      
     lang_tags = []
     token_cache = []
     sentences = []
@@ -120,28 +120,26 @@ def main():
     activations, activations_padded, token_lengths, token_cache, sentences, lang_tags = \
         get_sentence_activations(backbone, sae, dataloader, args.num_sentences, conf)
 
-    acts_tensor = torch.stack(activations_padded, dim=0)  # [S, 128, F]
-
+    acts_tensor = torch.stack(activations_padded, dim=0)  
     max_per_feature = acts_tensor.amax(dim=(0, 1))
     alive_mask = max_per_feature > max_per_feature.mean() * args.threshold_scale
     alive_indices = alive_mask.nonzero(as_tuple=True)[0]
 
-    acts_alive_padded = acts_tensor[:, :, alive_mask]  # [S, 128, F_alive]
-
+    acts_alive_padded = acts_tensor[:, :, alive_mask]  
     sentence_profiles = []
     for i, z_unpadded in enumerate(activations):
-        z_alive = z_unpadded[:, alive_mask]            # [actual_len, F_alive]
-        sentence_profiles.append(z_alive.amax(dim=0)) # [F_alive]
-    sentence_activation_profile = torch.stack(sentence_profiles, dim=0)  # [S, F_alive]
+        z_alive = z_unpadded[:, alive_mask]            
+        sentence_profiles.append(z_alive.amax(dim=0)) 
+    sentence_activation_profile = torch.stack(sentence_profiles, dim=0)  
 
     S, T, F_alive = acts_alive_padded.shape
-    acts_flat = acts_alive_padded.reshape(S * T, F_alive)  # [S*T, F_alive]
+    acts_flat = acts_alive_padded.reshape(S * T, F_alive)  
 
-    flat_topk = torch.topk(acts_flat, dim=0, k=args.topk)  # [topk, F_alive]
+    flat_topk = torch.topk(acts_flat, dim=0, k=args.topk)  
     flat_indices = flat_topk.indices
 
-    sent_indices_2d = flat_indices // T  # [topk, F_alive]
-    tok_indices_2d  = flat_indices % T   # [topk, F_alive]
+    sent_indices_2d = flat_indices // T  
+    tok_indices_2d  = flat_indices % T   
 
     topk_sentence_lookup = []
     for feat_idx in range(F_alive):
@@ -164,19 +162,20 @@ def main():
 
         topk_sentence_lookup.append(current_feat_table)
 
-    # ── Projections ───────────────────────────────────────────────────────────
     sentence_topk_res = torch.topk(acts_tensor, dim=-1, k=args.topk)
 
-    feature_embeddings = sentence_activation_profile.T.float().numpy()  # [F_alive, S]
+    feature_embeddings = sentence_activation_profile.T.float().numpy()  
     feature_embeddings = normalize(feature_embeddings, norm='l2')
+    sentence_embeddings = normalize(sentence_activation_profile.float().numpy(), norm='l2')
 
     feature_reducer  = umap.UMAP(n_neighbors=100, min_dist=0.01, metric="cosine")
     sentence_reducer = umap.UMAP(n_neighbors=30,  min_dist=0.05, metric="cosine")
 
     feature_projections  = feature_reducer.fit_transform(feature_embeddings)
-    sentence_projections = sentence_reducer.fit_transform(
-        rearrange(sentence_topk_res.values, "s t f -> s (t f)").numpy()
-    )
+    #sentence_projections = sentence_reducer.fit_transform(
+    #    rearrange(sentence_topk_res.values, "s t f -> s (t f)").numpy()
+    #)
+    sentence_projections = feature_reducer.fit_transform(sentence_embeddings)
 
     np.save(out_dir / "sentence_projections.npy", sentence_projections)
     np.save(out_dir / "feature_projections.npy",  feature_projections)

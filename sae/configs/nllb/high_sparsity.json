@@ -26,13 +26,13 @@
 	"batch_size": 16,
 	"lr": 1e-4,
 	"weight_decay": 1e-4,
-	"max_steps": 20000,
-	"layer_idx": 8,
+	"max_steps": 30000,
+	"layer_idx": 12,
 	"pool_features": false,
 	"reduction": "mean",
-	"sparsity_weight": 5.0,
+	"sparsity_weight": 1e-2,
 	"print_every": 20,
 	"activation": "relu",
-	"weight_path": "weights/nllb/gsae_high_sparsity.pt",
+	"weight_path": "weights/nllb/gsae_8k.pt",
 	"encoder_only": true
 }

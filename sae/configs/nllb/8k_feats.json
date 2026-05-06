@@ -22,7 +22,7 @@
 	"backbone_name": "facebook/nllb-200-distilled-600M",
 	"sae_type": "gated",
 	"model_hidden_size": 1024,
-	"sae_hidden_size": 6144,
+	"sae_hidden_size": 8196,
 	"batch_size": 16,
 	"lr": 1e-4,
 	"weight_decay": 1e-4,
@@ -33,6 +33,6 @@
 	"sparsity_weight": 1e-3,
 	"print_every": 20,
 	"activation": "relu",
-	"weight_path": "weights/nllb/gsae_larger_latent.pt",
+	"weight_path": "weights/nllb/gsae_high_sparsity.pt",
 	"encoder_only": true
 }
