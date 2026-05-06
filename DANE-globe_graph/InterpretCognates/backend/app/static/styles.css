@@ -1,0 +1,343 @@
+body {
+  margin: 0;
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  background: #fbfbfd;
+  color: #1f2937;
+}
+
+main {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 20px 32px 60px;
+}
+
+section {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin-top: 12px;
+}
+
+.hero {
+  background: linear-gradient(120deg, #f8fafc 0%, #eef2ff 100%);
+}
+
+h1,
+h2 {
+  margin-top: 0;
+  margin-bottom: 8px;
+}
+
+.controls {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.controls .langPickerHeader,
+.controls .toggleRow,
+.controls > button {
+  grid-column: 1 / -1;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 0.92rem;
+}
+
+input {
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  padding: 8px 10px;
+  font-size: 0.95rem;
+}
+
+button {
+  align-self: end;
+  border: none;
+  border-radius: 8px;
+  background: #4f46e5;
+  color: white;
+  font-weight: 600;
+  padding: 10px 12px;
+  cursor: pointer;
+}
+
+.secondaryBtn {
+  align-self: auto;
+  background: #e2e8f0;
+  color: #1e293b;
+}
+
+button:disabled {
+  background: #94a3b8;
+  cursor: not-allowed;
+}
+
+#scatter {
+  width: 100%;
+  min-height: 560px;
+}
+
+#similarity,
+.attentionChart {
+  width: 100%;
+  min-height: 400px;
+}
+
+.translationItem {
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  margin-top: 8px;
+  background: #f8fafc;
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  flex-wrap: wrap;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.langBadge {
+  display: inline-block;
+  border-radius: 6px;
+  padding: 2px 9px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: white;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.langPickerHeader {
+  border: 1px solid #dbeafe;
+  border-radius: 10px;
+  padding: 12px;
+  background: #f8fbff;
+}
+
+.langActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 8px 0;
+}
+
+.langPicker {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 10px;
+  margin-top: 8px;
+  max-height: 360px;
+  overflow: auto;
+}
+
+.langGroup {
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 8px;
+  background: white;
+}
+
+.langGroup h3 {
+  margin: 0 0 6px;
+  font-size: 0.92rem;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.familySwatch {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.langOption {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.chipRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.chip {
+  font-size: 0.8rem;
+  border-radius: 999px;
+  background: #dbeafe;
+  color: #1e3a8a;
+  padding: 4px 8px;
+}
+
+.sectionNote {
+  color: #64748b;
+  font-size: 0.9rem;
+  margin: -4px 0 10px;
+  line-height: 1.4;
+}
+
+.detailControls {
+  margin-bottom: 12px;
+}
+
+.detailControls label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-width: 340px;
+}
+
+select {
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  padding: 8px 10px;
+  font-size: 0.95rem;
+  background: white;
+  cursor: pointer;
+}
+
+.toggleRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.toggleLabel {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  color: #475569;
+  cursor: pointer;
+}
+
+.toggleLabel input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  accent-color: #4f46e5;
+}
+
+.vizToggle {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.toggleBtn {
+  background: #e2e8f0;
+  color: #475569;
+  font-size: 0.85rem;
+  padding: 6px 14px;
+  border-radius: 6px;
+  border: 1px solid #cbd5e1;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.15s ease;
+}
+
+.toggleBtn.active {
+  background: #4f46e5;
+  color: white;
+  border-color: #4f46e5;
+}
+
+.toggleBtn.small {
+  font-size: 0.78rem;
+  padding: 4px 10px;
+}
+
+.experiments {
+  margin-top: 20px;
+}
+
+.experimentGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+  margin-top: 12px;
+}
+
+.experimentCard {
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 16px;
+  background: #f8fafc;
+}
+
+.experimentCard h3 {
+  margin: 0 0 8px;
+  font-size: 1rem;
+  color: #1e293b;
+}
+
+.experimentCard p {
+  font-size: 0.88rem;
+  color: #64748b;
+  line-height: 1.5;
+  margin: 0 0 12px;
+}
+
+.experimentBtn {
+  background: #0f766e;
+  color: white;
+  font-size: 0.88rem;
+  padding: 8px 16px;
+  border-radius: 7px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.15s ease;
+}
+
+.experimentBtn:hover {
+  background: #115e59;
+}
+
+.experimentBtn:disabled {
+  background: #94a3b8;
+  cursor: not-allowed;
+}
+
+.experimentResult {
+  margin-top: 12px;
+  font-size: 0.88rem;
+  color: #334155;
+  line-height: 1.5;
+}
+
+.experimentResult .chart {
+  margin-top: 8px;
+  min-height: 300px;
+}
+
+.statHighlight {
+  display: inline-block;
+  background: #dbeafe;
+  color: #1e40af;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-weight: 600;
+  font-family: monospace;
+  font-size: 0.85rem;
+}
+
+.statRow {
+  display: flex;
+  justify-content: space-between;
+  padding: 4px 0;
+  border-bottom: 1px solid #f1f5f9;
+}

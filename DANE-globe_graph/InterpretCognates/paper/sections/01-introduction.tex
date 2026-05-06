@@ -1,0 +1,37 @@
+\section{Introduction}
+
+Do neural machine translation models learn language-universal concepts, or do they merely memorize surface-level correspondences between languages?
+This question sits at the intersection of NLP interpretability and a long-standing debate in cognitive science: whether multilingual speakers access a shared conceptual store or maintain language-specific representations \citep{dijkstra2002,correia2014,deniz2025}.
+Large-scale multilingual models now offer a unique empirical lens on this question.
+If a single encoder--decoder network can translate between hundreds of typologically diverse languages, its internal geometry must encode \emph{something} about meaning that transcends any individual language.
+
+NLLB-200 is a 3.3-billion-parameter encoder--decoder Transformer trained by Meta to translate directly between 200 languages, many of them low-resource \citep{nllbteam2022}.
+Its encoder maps sentences from all 200 languages into a shared representation space, making it a natural substrate for studying whether multilingual models converge on universal semantic structure.
+Unlike models trained primarily on high-resource Indo-European data, NLLB-200's breadth of typological coverage---spanning \NumLanguages{} languages in our experiments---provides a more stringent test of universality claims.
+
+In this paper we present six experiments that probe the conceptual geometry of NLLB-200's encoder representations, drawing on both NLP methodology and cognitive science theory.
+We embed single-word translations of \NumConcepts{} concepts from the Swadesh list \citep{swadesh1952} across \NumLanguages{} languages and ask whether the resulting representational space exhibits properties predicted by theories of bilingual lexical organization and cross-linguistic universals.
+
+Our key findings are as follows:
+
+\begin{enumerate}
+    \item \textbf{Phylogenetic correlation.}
+    Pairwise embedding distances between languages correlate significantly with genetic distances from the Automated Similarity Judgment Program \citep{jaeger2018}, with a Mantel test yielding $\rho = \MantelRho{}$ ($p = \MantelP{}$, $n = \MantelNumLangs{}$ languages).
+    The model's representation space thus partially recapitulates the phylogenetic tree of human languages.
+
+    \item \textbf{Colexification sensitivity.}
+    Concept pairs that are colexified in natural languages---i.e., lexified by the same word form, as catalogued in the CLICS\textsuperscript{3} database \citep{list2018,rzymski2020}---show significantly higher embedding similarity than non-colexified pairs ($U = \ColexU{}$, $p = \ColexP{}$, Cohen's $d = \ColexCohenD{}$).
+
+    \item \textbf{Conceptual store structure.}
+    Mean-centering embeddings per language, a procedure inspired by the language-neutral subspace hypothesis \citep{chang2022}, improves the ratio of between-concept to within-concept variance by a factor of $\ConceptualStoreImprovement{}\times$, consistent with a shared conceptual store overlaid with language-specific offsets.
+
+    \item \textbf{Offset invariance.}
+    Semantic difference vectors between concept pairs (e.g., \emph{fire}--\emph{water}) are highly consistent across languages, with a mean cosine similarity of $\OffsetMeanConsistency{}$ across \OffsetNumPairs{} pairs, suggesting that relational structure is preserved cross-lingually.
+\end{enumerate}
+
+Two additional experiments---Swadesh convergence ranking and universal color term geometry---provide converging evidence.
+A comparison against modern loanword-heavy vocabulary reveals that high embedding convergence can reflect orthographic borrowing rather than semantic universality, underscoring the importance of the external validation experiments.
+We further validate these findings through isotropy correction analysis, regression controls confirming that surface-form similarity explains less than 2\% of convergence variance, and a per-family offset consistency analysis that reveals how relational structure varies across language families.
+
+All experiments are implemented in the open-source \textsc{InterpretCognates} toolkit, which provides a fully reproducible pipeline from pre-computed embeddings to statistical tests and figures.
+Code and data are available at \url{https://github.com/kylemath/InterpretCognates}.

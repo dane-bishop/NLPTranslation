@@ -1,0 +1,5 @@
+build/
+scripts/.venv/
+__pycache__/
+*.pyc
+arxiv_submission/

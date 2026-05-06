@@ -1,0 +1,15 @@
+---
+pid: 22990
+cwd: "/Users/kylemathewson/InterpretCognates"
+command: "cd /Users/kylemathewson/InterpretCognates/docs && python3 -m http.server 8081"
+started_at: 2026-02-25T07:51:55.285Z
+running_for_seconds: 17    
+---
+::1 - - [25/Feb/2026 00:52:00] "GET / HTTP/1.1" 200 -
+::1 - - [25/Feb/2026 00:52:01] "GET /data/phylogenetic.json HTTP/1.1" 200 -
+
+---
+exit_code: unknown
+elapsed_ms: 17885
+ended_at: 2026-02-25T07:52:13.170Z
+---

@@ -1,0 +1,13 @@
+{
+  "backbone_name": "facebook/nllb-200-distilled-600M",
+  "pairs": [],
+  "langs": [],
+  "batch_size": 16,
+  "max_steps": 4000,
+  "layer_idx": 2,
+  "encoder_only": true,
+  "max_length": 128,
+  "reduction": "max",
+  "output_csv": "outputs/language_embeddings.csv",
+  "output_npy": "outputs/language_embeddings.npy"
+}

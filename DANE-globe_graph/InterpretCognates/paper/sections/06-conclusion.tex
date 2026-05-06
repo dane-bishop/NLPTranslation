@@ -1,0 +1,18 @@
+\section{Conclusion}
+
+We have presented a comprehensive suite of experiments probing the encoder representations of NLLB-200 across \NumLanguages{} languages and \NumConcepts{} Swadesh-list concepts, revealing structural parallels between the geometry of neural machine translation and cognitive theories of multilingual lexical organization.
+Pairwise embedding distances correlate significantly with phylogenetic distances ($\rho = \MantelRho{}$, $p = \MantelP{}$), colexified concept pairs are embedded more closely than non-colexified pairs ($d = \ColexCohenD{}$), mean-centering per language exposes a shared conceptual store with a $\ConceptualStoreImprovement{}\times$ improvement in concept separability, and semantic difference vectors are remarkably consistent across languages (mean cosine $\OffsetMeanConsistency{}$).
+Complementary analyses of Swadesh stability rankings and universal color terms provide converging evidence that the model encodes cross-linguistically stable semantic structure.
+A decontextualized baseline confirms that these patterns are not driven by the carrier sentence ($\rho = \CarrierBaselineRho{}$ between conditions), and a layer-wise trajectory analysis reveals the gradual emergence of language-universal semantic structure across the encoder stack, with a phase transition around layer~\LayerwiseEmergenceLayer{}.
+Regression controls confirm that orthographic similarity explains only $R^2 = \DecompRsqOrtho{}$ of convergence variance, isotropy validation shows near-perfect rank preservation ($\rho = \IsotropySpearmanRho{}$), and per-family disaggregation of offset consistency (Figure~\ref{fig:offset}b) reveals that relational structure is preserved even across typologically distant language families.
+
+These results bridge NLP interpretability and cognitive science by demonstrating that the internal geometry of a multilingual Transformer trained solely on parallel text exhibits properties predicted by the BIA+ model \citep{dijkstra2002}, the Revised Hierarchical Model \citep{kroll2010}, and neuroimaging studies of language-independent conceptual hubs \citep{correia2014}.
+
+Several directions remain open.
+Our layer-wise trajectory analysis has begun to reveal how language-specific and language-universal information separate across the encoder stack; a natural extension is per-head attention decomposition following \citet{voita2019}, which could localize the emergence of semantic universals to specific computational circuits.
+Cross-model comparisons with XLM-R \citep{conneau2020} and mBERT \citep{devlin2019} would test whether the geometric regularities we observe are architecture-specific or emerge broadly in multilingual pretraining.
+Extending the concept inventory to larger Swadesh sets and integrating typological features from WALS would strengthen the link between embedding geometry and linguistic typology.
+Formalizing the computational ATL analogy, per-head cross-attention decomposition, and testing RHM translation asymmetry in the encoder's representational structure are particularly promising avenues.
+
+The \textsc{InterpretCognates} toolkit and the full analysis pipeline---from embedding extraction through statistical testing to figure generation---are released as open-source software to facilitate replication and extension.
+We hope that this work illustrates the potential for neural translation models to serve as large-scale computational testbeds for theories of language universals, offering a bridge between the statistical patterns learned from parallel corpora and the conceptual structures that underlie human multilingual cognition.

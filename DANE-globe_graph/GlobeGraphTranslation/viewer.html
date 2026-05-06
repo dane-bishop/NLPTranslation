@@ -1,0 +1,545 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>GlobeGraphTranslation</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <style>
+      :root {
+        color-scheme: dark;
+      }
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        background: #1a2332;
+        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      }
+      /* Leaflet needs an explicit sized container */
+      #map {
+        position: fixed;
+        inset: 0;
+        z-index: 1;
+        width: 100%;
+        height: 100%;
+      }
+      .panel {
+        position: fixed;
+        z-index: 1000;
+        color: #e8eefc;
+        background: rgba(10, 14, 25, 0.85);
+        border: 1px solid rgba(200, 220, 255, 0.16);
+        border-radius: 14px;
+        backdrop-filter: blur(8px);
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.35);
+      }
+      .hud {
+        left: 12px;
+        top: 12px;
+        max-width: 420px;
+        padding: 12px 14px;
+      }
+      .controls {
+        right: 12px;
+        top: 12px;
+        width: 320px;
+        padding: 14px;
+        max-height: calc(100vh - 24px);
+        overflow: auto;
+      }
+      .title {
+        font-weight: 700;
+        margin-bottom: 6px;
+      }
+      .small {
+        opacity: 0.92;
+        font-size: 12px;
+        line-height: 1.4;
+      }
+      .control-group {
+        margin-top: 12px;
+      }
+      .control-group label {
+        display: block;
+        font-size: 12px;
+        margin-bottom: 6px;
+        opacity: 0.9;
+      }
+      .control-group select,
+      .control-group input[type="range"] {
+        width: 100%;
+      }
+      .control-group input[type="search"] {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 8px 10px;
+        border-radius: 10px;
+        border: 1px solid rgba(200, 220, 255, 0.16);
+        background: rgba(5, 8, 16, 0.55);
+        color: #e8eefc;
+        outline: none;
+      }
+      .control-row {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+      }
+      .btn {
+        border: 1px solid rgba(200, 220, 255, 0.16);
+        background: rgba(5, 8, 16, 0.55);
+        color: #e8eefc;
+        padding: 8px 10px;
+        border-radius: 10px;
+        cursor: pointer;
+        user-select: none;
+      }
+      .btn:active {
+        transform: translateY(1px);
+      }
+      .stats {
+        margin-top: 12px;
+        font-size: 12px;
+        line-height: 1.5;
+        opacity: 0.95;
+      }
+      .value-row {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+      }
+      .legend {
+        margin-top: 10px;
+        font-size: 11px;
+        opacity: 0.85;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map" role="application" aria-label="Language map"></div>
+
+    <div class="panel hud">
+      <div class="title">GlobeGraphTranslation</div>
+      <div class="small" id="hud-desc">
+        Pan & zoom • Click markers or lines for details<br />
+        Data: <code>graph_data.json</code><br />
+        <span style="color: #a8d4a8"
+          >Map: Leaflet + OpenStreetMap (no WebGL). Reliable alternative to deck.gl globe.</span
+        >
+      </div>
+      <div class="legend">Cyan dots = languages • Lines = selected relationships</div>
+    </div>
+
+    <div class="panel controls">
+      <div class="title">Filters</div>
+
+      <div class="control-group">
+        <label for="search">Find a language (name or code)</label>
+        <div class="control-row">
+          <input id="search" type="search" placeholder="e.g. English or eng_Latn" />
+          <button id="reset" class="btn" type="button" title="Clear selection and refit view">Reset</button>
+        </div>
+        <div class="small" style="margin-top:6px; opacity:0.85;">
+          Hover highlights • Click pins selection • Esc clears
+        </div>
+      </div>
+
+      <div class="control-group">
+        <label for="mode">Connection mode</label>
+        <select id="mode">
+          <option value="topk">Top-k nearest neighbors</option>
+          <option value="mutual">Mutual nearest neighbors</option>
+          <option value="same_family">Same family only</option>
+          <option value="cross_family">Cross-family only</option>
+        </select>
+      </div>
+
+      <div class="control-group">
+        <label for="family">Family filter</label>
+        <select id="family">
+          <option value="ALL">All families</option>
+        </select>
+      </div>
+
+      <div class="control-group">
+        <label for="topk">Top-k limit: <span id="topk-value">8</span></label>
+        <input id="topk" type="range" min="1" max="20" step="1" value="8" />
+      </div>
+
+      <div class="control-group">
+        <label for="sim">Minimum similarity: <span id="sim-value">0.000</span></label>
+        <input id="sim" type="range" min="0" max="1" step="0.001" value="0" />
+      </div>
+
+      <div class="stats" id="stats">Loading…</div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+      const ui = {
+        search: document.getElementById('search'),
+        reset: document.getElementById('reset'),
+        mode: document.getElementById('mode'),
+        family: document.getElementById('family'),
+        topk: document.getElementById('topk'),
+        topkValue: document.getElementById('topk-value'),
+        sim: document.getElementById('sim'),
+        simValue: document.getElementById('sim-value'),
+        stats: document.getElementById('stats')
+      };
+
+      let map = null;
+      let edgeLayer = null;
+      let nodeLayer = null;
+
+      let allNodes = [];
+      let allEdges = [];
+      let meta = {};
+      let nodeByCode = new Map();
+      let selectedCode = null;
+      let hoveredCode = null;
+      let lastFitAtMs = 0;
+      /** When true, ignore `mouseout` on features we are removing on purpose (avoids clearing hover mid-render). */
+      let ignorePointerOut = false;
+
+      function setStatus(html) {
+        ui.stats.innerHTML = html;
+      }
+
+      function clamp(v, lo, hi) {
+        return Math.max(lo, Math.min(hi, v));
+      }
+
+      function format3(x) {
+        return Number(x).toFixed(3);
+      }
+
+      function getSelectedFamilySet() {
+        const family = ui.family.value;
+        if (family === 'ALL') return null;
+        return new Set([family]);
+      }
+
+      function filterNodes(nodes, familySet) {
+        if (!familySet) return nodes;
+        return nodes.filter((n) => familySet.has(n.family));
+      }
+
+      function filterEdges(edges, visibleCodes) {
+        const mode = ui.mode.value;
+        const topk = Number(ui.topk.value);
+        const minSim = Number(ui.sim.value);
+
+        return edges.filter((e) => {
+          if (!visibleCodes.has(e.source) || !visibleCodes.has(e.target)) return false;
+          if (e.rank > topk) return false;
+          if (e.similarity < minSim) return false;
+
+          if (mode === 'mutual' && !e.mutual) return false;
+          if (mode === 'same_family' && !e.same_family) return false;
+          if (mode === 'cross_family' && e.same_family) return false;
+
+          return true;
+        });
+      }
+
+      function edgePopup(e) {
+        return (
+          `<strong>${e.source_name}</strong> (${e.source})<br/>` +
+          `→ <strong>${e.target_name}</strong> (${e.target})<br/>` +
+          `Families: ${e.source_family} / ${e.target_family}<br/>` +
+          `Similarity: ${format3(e.similarity)} · Distance: ${format3(e.distance)}<br/>` +
+          `Rank: ${e.rank}${e.mutual ? ' · mutual' : ''}`
+        );
+      }
+
+      function normalize(s) {
+        return String(s || '').trim().toLowerCase();
+      }
+
+      function getActiveCode() {
+        return selectedCode || hoveredCode;
+      }
+
+      function clearSelection({ refit = true } = {}) {
+        selectedCode = null;
+        hoveredCode = null;
+        if (refit) {
+          updateScene({ refit: true });
+        } else {
+          updateScene({ refit: false });
+        }
+      }
+
+      function edgeOpacity(sim) {
+        // Keep the same overall look; just make stronger links stand out.
+        const x = clamp(Number(sim) || 0, 0, 1);
+        return clamp(0.12 + 0.80 * x, 0.12, 0.92);
+      }
+
+      function nodeRadiusPx(deg) {
+        return clamp(4 + Math.sqrt(Math.max(0, deg)) * 0.9, 4, 11);
+      }
+
+      function computeDegree(visibleNodes, visibleEdges) {
+        const deg = new Map();
+        for (const n of visibleNodes) deg.set(n.code, 0);
+        for (const e of visibleEdges) {
+          if (deg.has(e.source)) deg.set(e.source, deg.get(e.source) + 1);
+          if (deg.has(e.target)) deg.set(e.target, deg.get(e.target) + 1);
+        }
+        return deg;
+      }
+
+      function applyEdgeThinning(edges) {
+        // Visual clarity: at low zoom, draw fewer edges to reduce clutter.
+        const z = map ? map.getZoom() : 2;
+        const factor = z <= 2 ? 0.45 : z === 3 ? 0.65 : z === 4 ? 0.85 : 1.0;
+        if (factor >= 0.999) return edges;
+        const keep = Math.max(1, Math.floor(Number(ui.topk.value) * factor));
+        return edges.filter((e) => e.rank <= keep);
+      }
+
+      function updateScene(opts = {}) {
+        if (!map || !edgeLayer || !nodeLayer) return;
+
+        const wantRefit = opts.refit === undefined ? true : Boolean(opts.refit);
+
+        const familySet = getSelectedFamilySet();
+        const nodes = filterNodes(allNodes, familySet);
+        const visibleCodes = new Set(nodes.map((n) => n.code));
+        const edgesBase = filterEdges(allEdges, visibleCodes);
+        const edges = applyEdgeThinning(edgesBase);
+        const degree = computeDegree(nodes, edges);
+
+        ui.topkValue.textContent = String(ui.topk.value);
+        ui.simValue.textContent = format3(ui.sim.value);
+
+        // Tear down layers first. Leaflet may emit `mouseout` on removed features; do not
+        // treat that as “user stopped hovering” or we clear `hoveredCode` before we paint.
+        ignorePointerOut = true;
+        edgeLayer.clearLayers();
+        nodeLayer.clearLayers();
+        ignorePointerOut = false;
+
+        const active = getActiveCode();
+        const hasActive = Boolean(active && visibleCodes.has(active));
+
+        for (const e of edges) {
+          const isActiveEdge = hasActive && (e.source === active || e.target === active);
+          const color = e.same_family ? '#ff9f7a' : '#ff6b6b';
+          const w = clamp(Number(e.weight) || 1, 0.5, 5);
+          const opacity = edgeOpacity(e.similarity) * (hasActive ? (isActiveEdge ? 1.0 : 0.08) : 1.0);
+          const weight = hasActive ? (isActiveEdge ? w : Math.max(0.4, w * 0.5)) : w;
+          L.polyline(
+            [
+              [e.source_lat, e.source_lon],
+              [e.target_lat, e.target_lon]
+            ],
+            { color, weight, opacity }
+          )
+            .bindPopup(edgePopup(e))
+            .on('mouseover', () => {
+              if (!selectedCode) {
+                // Highlight this edge’s neighborhood via either endpoint.
+                hoveredCode = e.source;
+                updateScene({ refit: false });
+              }
+            })
+            .on('mouseout', () => {
+              if (!selectedCode && !ignorePointerOut) {
+                hoveredCode = null;
+                updateScene({ refit: false });
+              }
+            })
+            .addTo(edgeLayer);
+        }
+
+        for (const n of nodes) {
+          const isActiveNode = hasActive && n.code === active;
+          const dim = hasActive && !isActiveNode;
+          L.circleMarker([n.lat, n.lon], {
+            radius: nodeRadiusPx(degree.get(n.code) || 0),
+            color: '#e8f4ff',
+            weight: isActiveNode ? 2 : 1,
+            fillColor: '#4ecdc4',
+            fillOpacity: dim ? 0.18 : (isActiveNode ? 1.0 : 0.92)
+          })
+            .bindPopup(`<strong>${n.name}</strong><br/>${n.code}<br/>${n.family}`)
+            .on('mouseover', () => {
+              if (!selectedCode) {
+                hoveredCode = n.code;
+                updateScene({ refit: false });
+              }
+            })
+            .on('mouseout', () => {
+              if (!selectedCode && !ignorePointerOut) {
+                hoveredCode = null;
+                updateScene({ refit: false });
+              }
+            })
+            .on('click', () => {
+              selectedCode = n.code;
+              hoveredCode = null;
+              updateScene({ refit: false });
+            })
+            .addTo(nodeLayer);
+        }
+
+        // Stats
+        const z = map ? map.getZoom() : '?';
+        ui.stats.innerHTML = [
+          `<div class="value-row"><span>Visible languages</span><strong>${nodes.length}</strong></div>`,
+          `<div class="value-row"><span>Visible edges</span><strong>${edges.length}</strong></div>`,
+          `<div class="value-row"><span>Mode</span><strong>${ui.mode.options[ui.mode.selectedIndex].text}</strong></div>`,
+          `<div class="value-row"><span>Zoom</span><strong>${z}</strong></div>`,
+          `<div class="value-row"><span>Selection</span><strong>${selectedCode ? selectedCode : (hoveredCode ? hoveredCode : 'None')}</strong></div>`
+        ].join('');
+
+        if (nodes.length && wantRefit) {
+          const now = Date.now();
+          // Avoid repeated fitBounds spam while dragging sliders.
+          if (now - lastFitAtMs > 800) {
+            lastFitAtMs = now;
+            const bounds = L.latLngBounds(nodes.map((n) => [n.lat, n.lon]));
+            map.fitBounds(bounds.pad(0.12));
+          }
+        }
+      }
+
+      function populateFamilyDropdown(families) {
+        for (const family of families) {
+          const option = document.createElement('option');
+          option.value = family;
+          option.textContent = family;
+          ui.family.appendChild(option);
+        }
+      }
+
+      async function main() {
+        if (typeof L === 'undefined') {
+          throw new Error('Leaflet failed to load from CDN');
+        }
+
+        map = L.map('map', { zoomControl: true }).setView([20, 0], 2);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+          maxZoom: 19
+        }).addTo(map);
+
+        edgeLayer = L.layerGroup().addTo(map);
+        nodeLayer = L.layerGroup().addTo(map);
+
+        setStatus('<div>Loading graph…</div>');
+
+        let data;
+        if (window.__STREAMLIT_GRAPH_DATA__ !== undefined && window.__STREAMLIT_GRAPH_DATA__ !== null) {
+          data = window.__STREAMLIT_GRAPH_DATA__;
+        } else {
+          setStatus('<div>Fetching <code>graph_data.json</code>…</div>');
+          const res = await fetch('./graph_data.json');
+          if (!res.ok) throw new Error(`graph_data.json HTTP ${res.status}`);
+          data = await res.json();
+        }
+
+        allNodes = data.nodes || [];
+        allEdges = data.edges || [];
+        meta = data.meta || {};
+        nodeByCode = new Map(allNodes.map((n) => [n.code, n]));
+
+        if (!allNodes.length) throw new Error('No nodes in graph_data.json');
+
+        populateFamilyDropdown(meta.families || []);
+
+        ui.topk.value = String(clamp(meta.default_top_k || 8, 1, 20));
+        ui.topkValue.textContent = ui.topk.value;
+        ui.sim.min = String(meta.min_similarity ?? 0);
+        ui.sim.max = String(meta.max_similarity ?? 1);
+        ui.sim.step = '0.001';
+        ui.sim.value = String(meta.min_similarity ?? 0);
+        ui.simValue.textContent = format3(ui.sim.value);
+
+        [ui.mode, ui.family, ui.topk, ui.sim].forEach((el) => {
+          el.addEventListener('input', updateScene);
+          el.addEventListener('change', updateScene);
+        });
+
+        // Search
+        function runSearch() {
+          const q = normalize(ui.search.value);
+          if (!q) return;
+          let best = null;
+          // Exact code match
+          if (nodeByCode.has(q)) best = nodeByCode.get(q);
+          // Prefix code match
+          if (!best) {
+            for (const n of allNodes) {
+              if (normalize(n.code).startsWith(q)) {
+                best = n;
+                break;
+              }
+            }
+          }
+          // Name includes
+          if (!best) {
+            for (const n of allNodes) {
+              if (normalize(n.name).includes(q)) {
+                best = n;
+                break;
+              }
+            }
+          }
+          if (!best) return;
+          selectedCode = best.code;
+          hoveredCode = null;
+          map.setView([best.lat, best.lon], Math.max(map.getZoom(), 4), { animate: true });
+          updateScene({ refit: false });
+        }
+
+        ui.search.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter') runSearch();
+          if (e.key === 'Escape') {
+            ui.search.value = '';
+            clearSelection({ refit: true });
+          }
+        });
+        ui.search.addEventListener('search', () => {
+          // Triggered by clicking the clear (x) on some browsers
+          if (!ui.search.value) clearSelection({ refit: true });
+        });
+        ui.reset.addEventListener('click', () => {
+          ui.search.value = '';
+          clearSelection({ refit: true });
+        });
+        window.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape') {
+            ui.search.value = '';
+            clearSelection({ refit: true });
+          }
+        });
+
+        // Hover-out behavior when leaving the map area
+        map.getContainer().addEventListener('mouseleave', () => {
+          if (!selectedCode) {
+            hoveredCode = null;
+            updateScene({ refit: false });
+          }
+        });
+
+        // Re-thin edges on zoom changes
+        map.on('zoomend', () => updateScene({ refit: false }));
+
+        updateScene({ refit: true });
+      }
+
+      main().catch((err) => {
+        const msg = err && (err.stack || err.message) ? err.stack || err.message : String(err);
+        setStatus(`<div><strong>Failed to load</strong></div><div class="small"><pre style="white-space:pre-wrap;">${msg}</pre></div>`);
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,199 @@
+{
+    "access_right": "open",
+    "communities": [
+        {
+            "identifier": "lexibank"
+        }
+    ],
+    "contributors": [
+        {
+            "name": "S\u00f8ren Wichmann",
+            "type": "Distributor"
+        },
+        {
+            "name": "S\u00f8ren Wichmann",
+            "type": "DataCurator"
+        },
+        {
+            "name": "S\u00f8ren Wichmann",
+            "type": "Editor"
+        },
+        {
+            "name": "S\u00f8ren Wichmann",
+            "type": "DataCollector"
+        },
+        {
+            "name": "Andr\u00e9 M\u00fcller",
+            "type": "DataCollector"
+        },
+        {
+            "name": "Ann-Katrin Wett",
+            "type": "DataCollector"
+        },
+        {
+            "name": "Viveka Velupillai",
+            "type": "DataCollector"
+        },
+        {
+            "name": "Julia Bischoffberger",
+            "type": "DataCollector"
+        },
+        {
+            "name": "Eric W. Holman",
+            "type": "Editor"
+        },
+        {
+            "name": "Cecil H. Brown",
+            "type": "DataCollector"
+        },
+        {
+            "name": "Cecil H. Brown",
+            "type": "Editor"
+        },
+        {
+            "name": "Sebastian Sauppe",
+            "type": "DataCollector"
+        },
+        {
+            "name": "Zarina Molochieva",
+            "type": "DataCollector"
+        },
+        {
+            "name": "Pamela Brown",
+            "type": "DataCollector"
+        },
+        {
+            "name": "Oleg Belyaev",
+            "type": "DataCollector"
+        },
+        {
+            "name": "Johann-Mattis List",
+            "type": "DataCollector"
+        },
+        {
+            "name": "Dmitry Egorov",
+            "type": "DataCollector"
+        },
+        {
+            "name": "Matthias Urban",
+            "type": "DataCollector"
+        },
+        {
+            "name": "Robert Mailhammer",
+            "type": "DataCollector"
+        },
+        {
+            "name": "Agustina Carrizo",
+            "type": "DataCollector"
+        },
+        {
+            "name": "Matthew S. Dryer",
+            "type": "DataCollector"
+        },
+        {
+            "name": "Evgenia Korovina",
+            "type": "DataCollector"
+        },
+        {
+            "name": "David Beck",
+            "type": "DataCollector"
+        },
+        {
+            "name": "Helen Geyer",
+            "type": "DataCollector"
+        },
+        {
+            "name": "Patience Epps",
+            "type": "DataCollector"
+        },
+        {
+            "name": "Anthony Grant",
+            "type": "DataCollector"
+        },
+        {
+            "name": "Arjan Mossel",
+            "type": "DataCollector"
+        },
+        {
+            "name": "Darja Appelganz",
+            "type": "DataCollector"
+        },
+        {
+            "name": "Dickson Pagente",
+            "type": "DataCollector"
+        },
+        {
+            "name": "Danli Wu",
+            "type": "DataCollector"
+        },
+        {
+            "name": "Guillaume Segerer",
+            "type": "DataCollector"
+        },
+        {
+            "name": "Ke Xu",
+            "type": "DataCollector"
+        },
+        {
+            "name": "Mark Donohue",
+            "type": "DataCollector"
+        },
+        {
+            "name": "Matthias Pache",
+            "type": "DataCollector"
+        },
+        {
+            "name": "Pengfei Chen",
+            "type": "DataCollector"
+        },
+        {
+            "name": "Paul Sidwell",
+            "type": "DataCollector"
+        },
+        {
+            "name": "Qibin Ran",
+            "type": "DataCollector"
+        },
+        {
+            "name": "Tessa de Mol-van Valen",
+            "type": "DataCollector"
+        },
+        {
+            "name": "Yuzhu Liang",
+            "type": "DataCollector"
+        },
+        {
+            "name": "Yue Sun",
+            "type": "DataCollector"
+        },
+        {
+            "name": "Robert Forkel",
+            "type": "Other"
+        },
+        {
+            "name": "Tiago Tresoldi",
+            "type": "Other"
+        }
+    ],
+    "keywords": [
+        "cldf:Wordlist",
+        "linguistics"
+    ],
+    "upload_type": "dataset",
+    "creators": [
+        {
+            "name": "S\u00f8ren Wichmann"
+        },
+        {
+            "name": "Eric W. Holman"
+        },
+        {
+            "name": "Cecil H. Brown"
+        }
+    ],
+    "title": "CLDF dataset derived from Wichmann et al.'s \"ASJP Database\" v20 from 2022",
+    "description": "<p>Cite the source of the dataset as:</p>\n\n<blockquote>\n<p>Wichmann, S\u00f8ren, Eric W. Holman, and Cecil H. Brown (eds.). 2022. The ASJP Database (version 20).</p>\n</blockquote>",
+    "license": {
+        "id": "CC-BY-4.0"
+    }
+}

@@ -1,0 +1,246 @@
+\begin{thebibliography}{28}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Berlin and Kay(1969)]{berlin1969}
+Brent Berlin and Paul Kay.
+\newblock \emph{Basic Color Terms: Their Universality and Evolution}.
+\newblock University of California Press, Berkeley, CA, 1969.
+
+\bibitem[Chang et~al.(2022)Chang, Tu, and Bergen]{chang2022}
+Tyler~A. Chang, Zhuowen Tu, and Benjamin~K. Bergen.
+\newblock The geometry of multilingual language model representations.
+\newblock In \emph{Proceedings of the 2022 Conference on Empirical Methods in
+  Natural Language Processing (EMNLP)}, pages 119--136. Association for
+  Computational Linguistics, 2022.
+\newblock \doi{10.18653/v1/2022.emnlp-main.9}.
+
+\bibitem[Chen et~al.(2025)Chen, Gong, Tseng, Gallant, Klein, and
+  Deniz]{deniz2025}
+Catherine Chen, Xue~L. Gong, Christine Tseng, Jack~L. Gallant, Daniel~L. Klein,
+  and Fatma Deniz.
+\newblock Bilingual language processing relies on shared semantic
+  representations that are modulated by each language.
+\newblock \emph{Proceedings of the National Academy of Sciences}, 2025.
+\newblock \doi{10.1073/pnas.2503721123}.
+
+\bibitem[Clark et~al.(2019)Clark, Khandelwal, Levy, and Manning]{clark2019}
+Kevin Clark, Urvashi Khandelwal, Omer Levy, and Christopher~D. Manning.
+\newblock What does {BERT} look at? {A}n analysis of {BERT}'s attention.
+\newblock In \emph{Proceedings of the 2019 ACL Workshop BlackboxNLP: Analyzing
+  and Interpreting Neural Networks for NLP}, pages 276--286. Association for
+  Computational Linguistics, 2019.
+\newblock \doi{10.18653/v1/W19-4828}.
+
+\bibitem[Conneau et~al.(2020)Conneau, Khandelwal, Goyal, Chaudhary, Wenzek,
+  Guzm{\'a}n, Grave, Ott, Zettlemoyer, and Stoyanov]{conneau2020}
+Alexis Conneau, Kartikay Khandelwal, Naman Goyal, Vishrav Chaudhary, Guillaume
+  Wenzek, Francisco Guzm{\'a}n, Edouard Grave, Myle Ott, Luke Zettlemoyer, and
+  Veselin Stoyanov.
+\newblock Unsupervised cross-lingual representation learning at scale.
+\newblock In \emph{Proceedings of the 58th Annual Meeting of the Association
+  for Computational Linguistics (ACL)}, pages 8440--8451. Association for
+  Computational Linguistics, 2020.
+\newblock \doi{10.18653/v1/2020.acl-main.747}.
+
+\bibitem[Correia et~al.(2014)Correia, Jansma, Bonte, and Hausfeld]{correia2014}
+Jo{\~a}o~M. Correia, Bernadette Jansma, Milene Bonte, and Lars Hausfeld.
+\newblock Brain-based translation: {fMRI} decoding of spoken words in
+  bilinguals reveals language-independent semantic representations in anterior
+  temporal lobe.
+\newblock \emph{Journal of Neuroscience}, 34\penalty0 (44):\penalty0
+  14580--14591, 2014.
+\newblock \doi{10.1523/JNEUROSCI.1302-14.2014}.
+
+\bibitem[Devlin et~al.(2019)Devlin, Chang, Lee, and Toutanova]{devlin2019}
+Jacob Devlin, Ming-Wei Chang, Kenton Lee, and Kristina Toutanova.
+\newblock {BERT}: Pre-training of deep bidirectional transformers for language
+  understanding.
+\newblock In \emph{Proceedings of the 2019 Conference of the North {A}merican
+  Chapter of the Association for Computational Linguistics: Human Language
+  Technologies (NAACL-HLT)}, volume~1, pages 4171--4186. Association for
+  Computational Linguistics, 2019.
+\newblock \doi{10.18653/v1/N19-1423}.
+
+\bibitem[Dijkstra and van Heuven(2002)]{dijkstra2002}
+Ton Dijkstra and Walter J.~B. van Heuven.
+\newblock The architecture of the bilingual word recognition system: From
+  identification to decision.
+\newblock \emph{Bilingualism: Language and Cognition}, 5\penalty0 (3):\penalty0
+  175--197, 2002.
+\newblock \doi{10.1017/S1366728902003012}.
+
+\bibitem[Foroutan et~al.(2022)Foroutan, Banaei, Aberer, and
+  Bosselut]{foroutan2022}
+Negar Foroutan, Mohammadreza Banaei, Karl Aberer, and Antoine Bosselut.
+\newblock Discovering language-neutral sub-networks in multilingual language
+  models.
+\newblock In \emph{Proceedings of the 2022 Conference on Empirical Methods in
+  Natural Language Processing (EMNLP)}, pages 7560--7575. Association for
+  Computational Linguistics, 2022.
+\newblock \doi{10.18653/v1/2022.emnlp-main.493}.
+
+\bibitem[Hewitt and Manning(2019)]{hewitt2019}
+John Hewitt and Christopher~D. Manning.
+\newblock A structural probe for finding syntax in word representations.
+\newblock In \emph{Proceedings of the 2019 Conference of the North {A}merican
+  Chapter of the Association for Computational Linguistics: Human Language
+  Technologies (NAACL-HLT)}, volume~1, pages 4129--4138. Association for
+  Computational Linguistics, 2019.
+\newblock \doi{10.18653/v1/N19-1419}.
+
+\bibitem[J{\"a}ger(2018)]{jaeger2018}
+Gerhard J{\"a}ger.
+\newblock Global-scale phylogenetic linguistic inference from lexical
+  resources.
+\newblock \emph{Scientific Data}, 5:\penalty0 180189, 2018.
+\newblock \doi{10.1038/sdata.2018.189}.
+
+\bibitem[Kroll and Stewart(1994)]{kroll1994}
+Judith~F. Kroll and Erika Stewart.
+\newblock Category interference in translation and picture naming: Evidence for
+  asymmetric connections between bilingual memory representations.
+\newblock \emph{Journal of Memory and Language}, 33\penalty0 (2):\penalty0
+  149--174, 1994.
+\newblock \doi{10.1006/jmla.1994.1008}.
+
+\bibitem[Kroll et~al.(2010)Kroll, van Hell, Tokowicz, and Green]{kroll2010}
+Judith~F. Kroll, Janet~G. van Hell, Natasha Tokowicz, and David~W. Green.
+\newblock The revised hierarchical model: A critical review and assessment.
+\newblock \emph{Bilingualism: Language and Cognition}, 13\penalty0
+  (3):\penalty0 373--381, 2010.
+\newblock \doi{10.1017/S136672890999009X}.
+
+\bibitem[List et~al.(2018)List, Greenhill, Anderson, Mayer, Tresoldi, and
+  Forkel]{list2018}
+Johann-Mattis List, Simon~J. Greenhill, Cormac Anderson, Thomas Mayer, Tiago
+  Tresoldi, and Robert Forkel.
+\newblock {CLICS\textsuperscript{2}}: An improved database of cross-linguistic
+  colexifications assembling lexical data with the help of cross-linguistic
+  data formats.
+\newblock \emph{Linguistic Typology}, 22\penalty0 (2):\penalty0 277--306, 2018.
+\newblock \doi{10.1515/lingty-2018-0010}.
+
+\bibitem[Malik-Moraleda et~al.(2022)Malik-Moraleda, Ayyash, Gall{\'e}e,
+  Affourtit, Hoffmann, Mineroff, Jouravlev, and Fedorenko]{malikmoraleda2022}
+Saima Malik-Moraleda, Dima Ayyash, Jeanne Gall{\'e}e, Josef Affourtit, Margaux
+  Hoffmann, Zachary Mineroff, Olessia Jouravlev, and Evelina Fedorenko.
+\newblock An investigation across 45 languages and 12 language families reveals
+  a universal language network.
+\newblock \emph{Nature Neuroscience}, 25\penalty0 (8):\penalty0 1014--1019,
+  2022.
+\newblock \doi{10.1038/s41593-022-01114-5}.
+
+\bibitem[Mikolov et~al.(2013)Mikolov, Chen, Corrado, and Dean]{mikolov2013}
+Tomas Mikolov, Kai Chen, Greg Corrado, and Jeffrey Dean.
+\newblock Efficient estimation of word representations in vector space.
+\newblock \emph{arXiv preprint arXiv:1301.3781}, 2013.
+\newblock \doi{10.48550/arXiv.1301.3781}.
+
+\bibitem[Miller(1995)]{miller1995}
+George~A. Miller.
+\newblock {WordNet}: A lexical database for {E}nglish.
+\newblock \emph{Communications of the ACM}, 38\penalty0 (11):\penalty0 39--41,
+  1995.
+\newblock \doi{10.1145/219717.219748}.
+
+\bibitem[Mu and Viswanath(2018)]{mu2018}
+Jiaqi Mu and Pramod Viswanath.
+\newblock All-but-the-top: Simple and effective postprocessing for word
+  representations.
+\newblock In \emph{International Conference on Learning Representations
+  (ICLR)}, 2018.
+\newblock URL \url{https://arxiv.org/abs/1702.01417}.
+
+\bibitem[{NLLB Team} et~al.(2022){NLLB Team}, Costa-juss{\`a}, Cross,
+  {\c{C}}elebi, Elbayad, Heafield, Heffernan, Kalbassi, Lam, Licht, Maillard,
+  Sun, Wang, Wenzek, Youngblood, Akula, Baez-Yates, Barber, Buj, Buzber,
+  Chaudhary, et~al.]{nllbteam2022}
+{NLLB Team}, Marta~R. Costa-juss{\`a}, James Cross, Onur {\c{C}}elebi, Maha
+  Elbayad, Kenneth Heafield, Kevin Heffernan, Elahe Kalbassi, Janice Lam,
+  Daniel Licht, Jean Maillard, Anna Sun, Skyler Wang, Guillaume Wenzek,
+  Al~Youngblood, Bapi Akula, Loic Baez-Yates, Gabriel Barber, David Buj,
+  Christophe Buzber, Vishrav Chaudhary, et~al.
+\newblock No language left behind: Scaling human-centered machine translation.
+\newblock \emph{arXiv preprint arXiv:2207.04672}, 2022.
+\newblock \doi{10.48550/arXiv.2207.04672}.
+
+\bibitem[Pires et~al.(2019)Pires, Schlinger, and Garrette]{pires2019}
+Telmo Pires, Eva Schlinger, and Dan Garrette.
+\newblock How multilingual is multilingual {BERT}?
+\newblock In \emph{Proceedings of the 57th Annual Meeting of the Association
+  for Computational Linguistics (ACL)}, pages 4996--5001. Association for
+  Computational Linguistics, 2019.
+\newblock \doi{10.18653/v1/P19-1493}.
+
+\bibitem[Rajaee and Pilehvar(2022)]{rajaee2022}
+Sara Rajaee and Mohammad~Taher Pilehvar.
+\newblock An isotropy analysis in the multilingual {BERT} embedding space.
+\newblock In \emph{Findings of the Association for Computational Linguistics:
+  ACL 2022}, pages 1309--1316. Association for Computational Linguistics, 2022.
+\newblock \doi{10.18653/v1/2022.findings-acl.103}.
+
+\bibitem[Rzymski et~al.(2020)Rzymski, Tresoldi, Greenhill, Wu, Schweikhard,
+  Finley, Cysouw, Forkel, and List]{rzymski2020}
+Christoph Rzymski, Tiago Tresoldi, Simon~J. Greenhill, Mei-Shin Wu,
+  Nathanael~E. Schweikhard, Maria Finley, Michael Cysouw, Robert Forkel, and
+  Johann-Mattis List.
+\newblock The database of cross-linguistic colexifications, reproducible
+  analysis of cross-linguistic polysemies.
+\newblock \emph{Scientific Data}, 7:\penalty0 13, 2020.
+\newblock \doi{10.1038/s41597-019-0341-x}.
+
+\bibitem[Swadesh(1952)]{swadesh1952}
+Morris Swadesh.
+\newblock Lexicostatistic dating of prehistoric ethnic contacts.
+\newblock \emph{Proceedings of the American Philosophical Society}, 96\penalty0
+  (4):\penalty0 452--463, 1952.
+
+\bibitem[Tenney et~al.(2019)Tenney, Das, and Pavlick]{tenney2019}
+Ian Tenney, Dipanjan Das, and Ellie Pavlick.
+\newblock {BERT} rediscovers the classical {NLP} pipeline.
+\newblock In \emph{Proceedings of the 57th Annual Meeting of the Association
+  for Computational Linguistics (ACL)}, pages 4593--4601. Association for
+  Computational Linguistics, 2019.
+\newblock \doi{10.18653/v1/P19-1452}.
+
+\bibitem[Thierry and Wu(2007)]{thierry2007}
+Guillaume Thierry and Yan~Jing Wu.
+\newblock Brain potentials reveal unconscious translation during
+  foreign-language comprehension.
+\newblock \emph{Proceedings of the National Academy of Sciences}, 104\penalty0
+  (30):\penalty0 12530--12535, 2007.
+\newblock \doi{10.1073/pnas.0609927104}.
+
+\bibitem[Vaswani et~al.(2017)Vaswani, Shazeer, Parmar, Uszkoreit, Jones, Gomez,
+  Kaiser, and Polosukhin]{vaswani2017}
+Ashish Vaswani, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones,
+  Aidan~N. Gomez, {\L}ukasz Kaiser, and Illia Polosukhin.
+\newblock Attention is all you need.
+\newblock \emph{Advances in Neural Information Processing Systems}, 30, 2017.
+\newblock \doi{10.48550/arXiv.1706.03762}.
+
+\bibitem[Voita et~al.(2019)Voita, Talbot, Moiseev, Sennrich, and
+  Titov]{voita2019}
+Elena Voita, David Talbot, Fedor Moiseev, Rico Sennrich, and Ivan Titov.
+\newblock Analyzing multi-head self-attention: Specialized heads do the heavy
+  lifting, the rest can be pruned.
+\newblock In \emph{Proceedings of the 57th Annual Meeting of the Association
+  for Computational Linguistics (ACL)}, pages 5797--5808. Association for
+  Computational Linguistics, 2019.
+\newblock \doi{10.18653/v1/P19-1580}.
+
+\bibitem[Vuli{\'c} et~al.(2020)Vuli{\'c}, Baker, Ponti, Peti-Stanti{\'c},
+  Reichart, and Korhonen]{vulic2020}
+Ivan Vuli{\'c}, Simon Baker, Edoardo~Maria Ponti, Anita Peti-Stanti{\'c}, Roi
+  Reichart, and Anna Korhonen.
+\newblock {Multi-SimLex}: A large-scale evaluation of multilingual and
+  crosslingual lexical semantic similarity.
+\newblock \emph{Computational Linguistics}, 46\penalty0 (4):\penalty0 847--897,
+  2020.
+\newblock \doi{10.1162/coli_a_00376}.
+
+\end{thebibliography}

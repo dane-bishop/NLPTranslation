@@ -1,0 +1,183 @@
+---
+pid: 41017
+cwd: /Users/kylemathewson/InterpretCognates/backend
+last_command: cd /Users/kylemathewson/InterpretCognates/backend && source venv/bin/activate && python -m app.scripts.precompute
+last_exit_code: 0
+---
+sklearn/utils/extmath.py:335: RuntimeWarning: invalid value encountered in matmul
+  Q, _ = normalizer(A @ Q)
+/Users/kylemathewson/InterpretCognates/backend/venv/lib/python3.9/site-packages/sklearn/utils/extmath.py:336: RuntimeWarning: divide by zero encountered in matmul
+  Q, _ = normalizer(A.T @ Q)
+/Users/kylemathewson/InterpretCognates/backend/venv/lib/python3.9/site-packages/sklearn/utils/extmath.py:336: RuntimeWarning: overflow encountered in matmul
+  Q, _ = normalizer(A.T @ Q)
+/Users/kylemathewson/InterpretCognates/backend/venv/lib/python3.9/site-packages/sklearn/utils/extmath.py:336: RuntimeWarning: invalid value encountered in matmul
+  Q, _ = normalizer(A.T @ Q)
+/Users/kylemathewson/InterpretCognates/backend/venv/lib/python3.9/site-packages/sklearn/utils/extmath.py:340: RuntimeWarning: divide by zero encountered in matmul
+  Q, _ = qr_normalizer(A @ Q)
+/Users/kylemathewson/InterpretCognates/backend/venv/lib/python3.9/site-packages/sklearn/utils/extmath.py:340: RuntimeWarning: overflow encountered in matmul
+  Q, _ = qr_normalizer(A @ Q)
+/Users/kylemathewson/InterpretCognates/backend/venv/lib/python3.9/site-packages/sklearn/utils/extmath.py:340: RuntimeWarning: invalid value encountered in matmul
+  Q, _ = qr_normalizer(A @ Q)
+/Users/kylemathewson/InterpretCognates/backend/venv/lib/python3.9/site-packages/sklearn/utils/extmath.py:533: RuntimeWarning: divide by zero encountered in matmul
+  B = Q.T @ M
+/Users/kylemathewson/InterpretCognates/backend/venv/lib/python3.9/site-packages/sklearn/utils/extmath.py:533: RuntimeWarning: overflow encountered in matmul
+  B = Q.T @ M
+/Users/kylemathewson/InterpretCognates/backend/venv/lib/python3.9/site-packages/sklearn/utils/extmath.py:533: RuntimeWarning: invalid value encountered in matmul
+  B = Q.T @ M
+/Users/kylemathewson/InterpretCognates/backend/venv/lib/python3.9/site-packages/sklearn/utils/extmath.py:547: RuntimeWarning: divide by zero encountered in matmul
+  U = Q @ Uhat
+/Users/kylemathewson/InterpretCognates/backend/venv/lib/python3.9/site-packages/sklearn/utils/extmath.py:547: RuntimeWarning: overflow encountered in matmul
+  U = Q @ Uhat
+/Users/kylemathewson/InterpretCognates/backend/venv/lib/python3.9/site-packages/sklearn/utils/extmath.py:547: RuntimeWarning: invalid value encountered in matmul
+  U = Q @ Uhat
+  -> Saved color_circle.json (33.7 KB)
+  Elapsed: 57.0s
+
+============================================================
+  8/8  Sample Concept Analysis ('water' across 142 languages)
+============================================================
+/Users/kylemathewson/InterpretCognates/backend/venv/lib/python3.9/site-packages/sklearn/utils/extmath.py:335: RuntimeWarning: divide by zero encountered in matmul
+  Q, _ = normalizer(A @ Q)
+/Users/kylemathewson/InterpretCognates/backend/venv/lib/python3.9/site-packages/sklearn/utils/extmath.py:335: RuntimeWarning: overflow encountered in matmul
+  Q, _ = normalizer(A @ Q)
+/Users/kylemathewson/InterpretCognates/backend/venv/lib/python3.9/site-packages/sklearn/utils/extmath.py:335: RuntimeWarning: invalid value encountered in matmul
+  Q, _ = normalizer(A @ Q)
+/Users/kylemathewson/InterpretCognates/backend/venv/lib/python3.9/site-packages/sklearn/utils/extmath.py:336: RuntimeWarning: divide by zero encountered in matmul
+  Q, _ = normalizer(A.T @ Q)
+/Users/kylemathewson/InterpretCognates/backend/venv/lib/python3.9/site-packages/sklearn/utils/extmath.py:336: RuntimeWarning: overflow encountered in matmul
+  Q, _ = normalizer(A.T @ Q)
+/Users/kylemathewson/InterpretCognates/backend/venv/lib/python3.9/site-packages/sklearn/utils/extmath.py:336: RuntimeWarning: invalid value encountered in matmul
+  Q, _ = normalizer(A.T @ Q)
+/Users/kylemathewson/InterpretCognates/backend/venv/lib/python3.9/site-packages/sklearn/utils/extmath.py:340: RuntimeWarning: divide by zero encountered in matmul
+  Q, _ = qr_normalizer(A @ Q)
+/Users/kylemathewson/InterpretCognates/backend/venv/lib/python3.9/site-packages/sklearn/utils/extmath.py:340: RuntimeWarning: overflow encountered in matmul
+  Q, _ = qr_normalizer(A @ Q)
+/Users/kylemathewson/InterpretCognates/backend/venv/lib/python3.9/site-packages/sklearn/utils/extmath.py:340: RuntimeWarning: invalid value encountered in matmul
+  Q, _ = qr_normalizer(A @ Q)
+/Users/kylemathewson/InterpretCognates/backend/venv/lib/python3.9/site-packages/sklearn/utils/extmath.py:533: RuntimeWarning: divide by zero encountered in matmul
+  B = Q.T @ M
+/Users/kylemathewson/InterpretCognates/backend/venv/lib/python3.9/site-packages/sklearn/utils/extmath.py:533: RuntimeWarning: overflow encountered in matmul
+  B = Q.T @ M
+/Users/kylemathewson/InterpretCognates/backend/venv/lib/python3.9/site-packages/sklearn/utils/extmath.py:533: RuntimeWarning: invalid value encountered in matmul
+  B = Q.T @ M
+/Users/kylemathewson/InterpretCognates/backend/venv/lib/python3.9/site-packages/sklearn/utils/extmath.py:547: RuntimeWarning: divide by zero encountered in matmul
+  U = Q @ Uhat
+/Users/kylemathewson/InterpretCognates/backend/venv/lib/python3.9/site-packages/sklearn/utils/extmath.py:547: RuntimeWarning: overflow encountered in matmul
+  U = Q @ Uhat
+/Users/kylemathewson/InterpretCognates/backend/venv/lib/python3.9/site-packages/sklearn/utils/extmath.py:547: RuntimeWarning: invalid value encountered in matmul
+  U = Q @ Uhat
+/Users/kylemathewson/InterpretCognates/backend/venv/lib/python3.9/site-packages/sklearn/utils/extmath.py:335: RuntimeWarning: divide by zero encountered in matmul
+  Q, _ = normalizer(A @ Q)
+/Users/kylemathewson/InterpretCognates/backend/venv/lib/python3.9/site-packages/sklearn/utils/extmath.py:335: RuntimeWarning: overflow encountered in matmul
+  Q, _ = normalizer(A @ Q)
+/Users/kylemathewson/InterpretCognates/backend/venv/lib/python3.9/site-packages/sklearn/utils/extmath.py:335: RuntimeWarning: invalid value encountered in matmul
+  Q, _ = normalizer(A @ Q)
+/Users/kylemathewson/InterpretCognates/backend/venv/lib/python3.9/site-packages/sklearn/utils/extmath.py:336: RuntimeWarning: divide by zero encountered in matmul
+  Q, _ = normalizer(A.T @ Q)
+/Users/kylemathewson/InterpretCognates/backend/venv/lib/python3.9/site-packages/sklearn/utils/extmath.py:336: RuntimeWarning: overflow encountered in matmul
+  Q, _ = normalizer(A.T @ Q)
+/Users/kylemathewson/InterpretCognates/backend/venv/lib/python3.9/site-packages/sklearn/utils/extmath.py:336: RuntimeWarning: invalid value encountered in matmul
+  Q, _ = normalizer(A.T @ Q)
+/Users/kylemathewson/InterpretCognates/backend/venv/lib/python3.9/site-packages/sklearn/utils/extmath.py:340: RuntimeWarning: divide by zero encountered in matmul
+  Q, _ = qr_normalizer(A @ Q)
+/Users/kylemathewson/InterpretCognates/backend/venv/lib/python3.9/site-packages/sklearn/utils/extmath.py:340: RuntimeWarning: overflow encountered in matmul
+  Q, _ = qr_normalizer(A @ Q)
+/Users/kylemathewson/InterpretCognates/backend/venv/lib/python3.9/site-packages/sklearn/utils/extmath.py:340: RuntimeWarning: invalid value encountered in matmul
+  Q, _ = qr_normalizer(A @ Q)
+/Users/kylemathewson/InterpretCognates/backend/venv/lib/python3.9/site-packages/sklearn/utils/extmath.py:533: RuntimeWarning: divide by zero encountered in matmul
+  B = Q.T @ M
+/Users/kylemathewson/InterpretCognates/backend/venv/lib/python3.9/site-packages/sklearn/utils/extmath.py:533: RuntimeWarning: overflow encountered in matmul
+  B = Q.T @ M
+/Users/kylemathewson/InterpretCognates/backend/venv/lib/python3.9/site-packages/sklearn/utils/extmath.py:533: RuntimeWarning: invalid value encountered in matmul
+  B = Q.T @ M
+/Users/kylemathewson/InterpretCognates/backend/venv/lib/python3.9/site-packages/sklearn/utils/extmath.py:547: RuntimeWarning: divide by zero encountered in matmul
+  U = Q @ Uhat
+/Users/kylemathewson/InterpretCognates/backend/venv/lib/python3.9/site-packages/sklearn/utils/extmath.py:547: RuntimeWarning: overflow encountered in matmul
+  U = Q @ Uhat
+/Users/kylemathewson/InterpretCognates/backend/venv/lib/python3.9/site-packages/sklearn/utils/extmath.py:547: RuntimeWarning: invalid value encountered in matmul
+  U = Q @ Uhat
+/Users/kylemathewson/InterpretCognates/backend/venv/lib/python3.9/site-packages/sklearn/utils/extmath.py:335: RuntimeWarning: divide by zero encountered in matmul
+  Q, _ = normalizer(A @ Q)
+/Users/kylemathewson/InterpretCognates/backend/venv/lib/python3.9/site-packages/sklearn/utils/extmath.py:335: RuntimeWarning: overflow encountered in matmul
+  Q, _ = normalizer(A @ Q)
+/Users/kylemathewson/InterpretCognates/backend/venv/lib/python3.9/site-packages/sklearn/utils/extmath.py:335: RuntimeWarning: invalid value encountered in matmul
+  Q, _ = normalizer(A @ Q)
+/Users/kylemathewson/InterpretCognates/backend/venv/lib/python3.9/site-packages/sklearn/utils/extmath.py:336: RuntimeWarning: divide by zero encountered in matmul
+  Q, _ = normalizer(A.T @ Q)
+/Users/kylemathewson/InterpretCognates/backend/venv/lib/python3.9/site-packages/sklearn/utils/extmath.py:336: RuntimeWarning: overflow encountered in matmul
+  Q, _ = normalizer(A.T @ Q)
+/Users/kylemathewson/InterpretCognates/backend/venv/lib/python3.9/site-packages/sklearn/utils/extmath.py:336: RuntimeWarning: invalid value encountered in matmul
+  Q, _ = normalizer(A.T @ Q)
+/Users/kylemathewson/InterpretCognates/backend/venv/lib/python3.9/site-packages/sklearn/utils/extmath.py:340: RuntimeWarning: divide by zero encountered in matmul
+  Q, _ = qr_normalizer(A @ Q)
+/Users/kylemathewson/InterpretCognates/backend/venv/lib/python3.9/site-packages/sklearn/utils/extmath.py:340: RuntimeWarning: overflow encountered in matmul
+  Q, _ = qr_normalizer(A @ Q)
+/Users/kylemathewson/InterpretCognates/backend/venv/lib/python3.9/site-packages/sklearn/utils/extmath.py:340: RuntimeWarning: invalid value encountered in matmul
+  Q, _ = qr_normalizer(A @ Q)
+/Users/kylemathewson/InterpretCognates/backend/venv/lib/python3.9/site-packages/sklearn/utils/extmath.py:533: RuntimeWarning: divide by zero encountered in matmul
+  B = Q.T @ M
+/Users/kylemathewson/InterpretCognates/backend/venv/lib/python3.9/site-packages/sklearn/utils/extmath.py:533: RuntimeWarning: overflow encountered in matmul
+  B = Q.T @ M
+/Users/kylemathewson/InterpretCognates/backend/venv/lib/python3.9/site-packages/sklearn/utils/extmath.py:533: RuntimeWarning: invalid value encountered in matmul
+  B = Q.T @ M
+/Users/kylemathewson/InterpretCognates/backend/venv/lib/python3.9/site-packages/sklearn/utils/extmath.py:547: RuntimeWarning: divide by zero encountered in matmul
+  U = Q @ Uhat
+/Users/kylemathewson/InterpretCognates/backend/venv/lib/python3.9/site-packages/sklearn/utils/extmath.py:547: RuntimeWarning: overflow encountered in matmul
+  U = Q @ Uhat
+/Users/kylemathewson/InterpretCognates/backend/venv/lib/python3.9/site-packages/sklearn/utils/extmath.py:547: RuntimeWarning: invalid value encountered in matmul
+  U = Q @ Uhat
+/Users/kylemathewson/InterpretCognates/backend/app/modeling.py:228: RuntimeWarning: divide by zero encountered in matmul
+  matrix = normalized @ normalized.T
+/Users/kylemathewson/InterpretCognates/backend/app/modeling.py:228: RuntimeWarning: overflow encountered in matmul
+  matrix = normalized @ normalized.T
+/Users/kylemathewson/InterpretCognates/backend/app/modeling.py:228: RuntimeWarning: invalid value encountered in matmul
+  matrix = normalized @ normalized.T
+/Users/kylemathewson/InterpretCognates/backend/venv/lib/python3.9/site-packages/sklearn/utils/extmath.py:335: RuntimeWarning: divide by zero encountered in matmul
+  Q, _ = normalizer(A @ Q)
+/Users/kylemathewson/InterpretCognates/backend/venv/lib/python3.9/site-packages/sklearn/utils/extmath.py:335: RuntimeWarning: overflow encountered in matmul
+  Q, _ = normalizer(A @ Q)
+/Users/kylemathewson/InterpretCognates/backend/venv/lib/python3.9/site-packages/sklearn/utils/extmath.py:335: RuntimeWarning: invalid value encountered in matmul
+  Q, _ = normalizer(A @ Q)
+/Users/kylemathewson/InterpretCognates/backend/venv/lib/python3.9/site-packages/sklearn/utils/extmath.py:336: RuntimeWarning: divide by zero encountered in matmul
+  Q, _ = normalizer(A.T @ Q)
+/Users/kylemathewson/InterpretCognates/backend/venv/lib/python3.9/site-packages/sklearn/utils/extmath.py:336: RuntimeWarning: overflow encountered in matmul
+  Q, _ = normalizer(A.T @ Q)
+/Users/kylemathewson/InterpretCognates/backend/venv/lib/python3.9/site-packages/sklearn/utils/extmath.py:336: RuntimeWarning: invalid value encountered in matmul
+  Q, _ = normalizer(A.T @ Q)
+/Users/kylemathewson/InterpretCognates/backend/venv/lib/python3.9/site-packages/sklearn/utils/extmath.py:340: RuntimeWarning: divide by zero encountered in matmul
+  Q, _ = qr_normalizer(A @ Q)
+/Users/kylemathewson/InterpretCognates/backend/venv/lib/python3.9/site-packages/sklearn/utils/extmath.py:340: RuntimeWarning: overflow encountered in matmul
+  Q, _ = qr_normalizer(A @ Q)
+/Users/kylemathewson/InterpretCognates/backend/venv/lib/python3.9/site-packages/sklearn/utils/extmath.py:340: RuntimeWarning: invalid value encountered in matmul
+  Q, _ = qr_normalizer(A @ Q)
+/Users/kylemathewson/InterpretCognates/backend/venv/lib/python3.9/site-packages/sklearn/utils/extmath.py:533: RuntimeWarning: divide by zero encountered in matmul
+  B = Q.T @ M
+/Users/kylemathewson/InterpretCognates/backend/venv/lib/python3.9/site-packages/sklearn/utils/extmath.py:533: RuntimeWarning: overflow encountered in matmul
+  B = Q.T @ M
+/Users/kylemathewson/InterpretCognates/backend/venv/lib/python3.9/site-packages/sklearn/utils/extmath.py:533: RuntimeWarning: invalid value encountered in matmul
+  B = Q.T @ M
+/Users/kylemathewson/InterpretCognates/backend/venv/lib/python3.9/site-packages/sklearn/utils/extmath.py:547: RuntimeWarning: divide by zero encountered in matmul
+  U = Q @ Uhat
+/Users/kylemathewson/InterpretCognates/backend/venv/lib/python3.9/site-packages/sklearn/utils/extmath.py:547: RuntimeWarning: overflow encountered in matmul
+  U = Q @ Uhat
+/Users/kylemathewson/InterpretCognates/backend/venv/lib/python3.9/site-packages/sklearn/utils/extmath.py:547: RuntimeWarning: invalid value encountered in matmul
+  U = Q @ Uhat
+/Users/kylemathewson/InterpretCognates/backend/app/modeling.py:312: RuntimeWarning: divide by zero encountered in matmul
+  array = array - (array @ component[:, None]) * component[None, :]
+/Users/kylemathewson/InterpretCognates/backend/app/modeling.py:312: RuntimeWarning: overflow encountered in matmul
+  array = array - (array @ component[:, None]) * component[None, :]
+/Users/kylemathewson/InterpretCognates/backend/app/modeling.py:312: RuntimeWarning: invalid value encountered in matmul
+  array = array - (array @ component[:, None]) * component[None, :]
+/Users/kylemathewson/InterpretCognates/backend/app/modeling.py:228: RuntimeWarning: divide by zero encountered in matmul
+  matrix = normalized @ normalized.T
+/Users/kylemathewson/InterpretCognates/backend/app/modeling.py:228: RuntimeWarning: overflow encountered in matmul
+  matrix = normalized @ normalized.T
+/Users/kylemathewson/InterpretCognates/backend/app/modeling.py:228: RuntimeWarning: invalid value encountered in matmul
+  matrix = normalized @ normalized.T
+  -> Saved sample_concept.json (1120.2 KB)
+  Elapsed: 0.0s
+
+============================================================
+  All experiments complete in 20.9 minutes
+============================================================
+(venv) kylemathewson@mac backend %
