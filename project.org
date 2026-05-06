@@ -8,7 +8,8 @@ The goal of the project was to investigate how different languages are embedded 
 
 ** Circle Visulization
 
-:callie: The [[file:ui/nllb_circle_visualization.py][circle visualization ui]] aims to allow detailed investigation into specific languages of interest. One langauge at a time can be selected. The visualization is a circle graph displaying a selected number of similar languages. The selected language is displayed as a node at the top of the graph. The width and the color of the edges represent the relative similarity of the connected language.
+:callie: 
+The [[file:ui/nllb_circle_visualization.py][circle visualization ui]] aims to allow detailed investigation into specific languages of interest. One langauge at a time can be selected. The visualization is a circle graph displaying a selected number of similar languages. The selected language is displayed as a node at the top of the graph. The width and the color of the edges represent the relative similarity of the connected language.
 
 [[file:project_images/spanish_graph.png][Spanish Graph]]
 
@@ -38,4 +39,5 @@ Some related languages to English are expected, like Esperanto, French and Dutch
 
 * Conclusions
 
-:callie: From the circle visualization, one conclusion is that NLLB-200 the known linguistic influences for a language, like lanaugage family and geographic location are represented to some extent by the embeddings of the languages in the models. Although the inner workings of neural net models are largely a black box, it is interesting to consider that its embedding and interpreting of information is not entirely dissimilar to our own.  
+:callie: 
+From the circle visualization, one conclusion is that NLLB-200 the known linguistic influences for a language, like lanaugage family and geographic location are represented to some extent by the embeddings of the languages in the models. Although the inner workings of neural net models are largely a black box, it is interesting to consider that its embedding and interpreting of information is not entirely dissimilar to our own.  
