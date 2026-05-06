@@ -1,0 +1,40 @@
+* Introduction
+
+:callie: The goal of the project was to investigate how different languages are embedded during the process of machine translation. The outcome is a series of experiments and visualizations that provide insight into hows sentences of certain languages and languages as a whole are embedded. Several models were investigated, including NLLB-200 created by a team at meta and the bert model. The resulting project is a streamlit app, which displays experiments involving language embeddings, sentence embeddings, sparse autoencoders, idioms, map visualizations and circle graph visualizations.
+
+* Experiments
+
+
+** Circle Visulization
+
+:callie: The [[file:ui/nllb_circle_visualization.py][circle visualization ui]] aims to allow detailed investigation into specific languages of interest. One langauge at a time can be selected. The visualization is a circle graph displaying a selected number of similar languages. The selected language is displayed as a node at the top of the graph. The width and the color of the edges represent the relative similarity of the connected language.
+
+[[file:project_images/spanish_graph.png][Spanish Graph]]
+
+Above, the Spanish graph can be used to illustrate the UI and some findings from these experiments. In this example, Spanish is the selected language with the ten most similar languages displayed. Here, Galician is the top most similar language. In the interactive UI, the similarity score between Galician and Spanish is 98.72%. Galician is a low resource language spoken in Galicia, which is an autonomous community in Spain. Similarly, Catalan is spoken in Eastern autonomous communities in Spain, as well as some bordering French and Italian communities. Asturian is spoken in  autonomous communities in northern Spain. The similarity score of Asturian in the embeddings is 97.55%.
+
+Featured on the graph, Sardinian is the tenth most similar language with a similarity score of 95%. Portuguese also has a high similarity score with Spanish, 97%.
+
+As an example, this Spanish graph displays languages in the Romance family. In addition, the languages that are similarly embedded are geographically close to Spain as a country. Galician, Catalan, and Asturian are all additional languages spoken within the autonomous communities in Spain. These findings show that in models, the embedding and interpreting of languages is not random. The known linguistic influences for a language, like lanaugage family and geographic location are represented to some extent by the embeddings of the languages in the models.
+
+This visualization specifically displays the language similarity at a single layer for a single model. In this case,  layer 2 is displayed in the NLLB-200 model. NLLB-200 was chosen due to its high number of represented languages. An early layer, layer 2 in this case, was chosen due to the findings of the previous experiments. Previous experiments found that in earlier layers, the embeddings cluster more by language, and later layers cluster more by semantics. This lends itself to the idea that the model must first understand what is being said before processing the meaning.
+
+The next step is to process text from each language. Sentences are embedded from each language represented in the NLLB-200. The token level activations are pooled using max pooling to acquire one feature vector per sentence. Then, for each language, a new feature vector is calculated using the average of each of the sentences. Those feature vectors are created and exported in [[file:sae/export_language_embeddings.py][export_langauge_embeddings.py]].
+
+Finally, [[file:ui/circle_visualization/nllb_geo_chord.py][nllb_geo_chord.py]] computes the cosine distance between each pair of languages. The similarity score is similarity = 1 - normalized_distance.
+
+For a few additional expamples, the graphs for Japanese and English are included.
+
+[[file:project_images/japanese_graph.png][Japanese Graph]]
+
+Japan is highly similar to Simplified Chinese, Korean, and traditional Chinese. The similarity score there is 92%, which is lower than the Spanish language similarity even for the tenth most similar language. This could reflect that the geographic distance is greater. 
+
+[[file:project_images/english_graph.png][English Graph]]
+
+English is actually a bit of an exception in this experiment. The NLLB languages are represented by processed sentences that are part of a machine translation dataset. Each language pair, besides English, is represented by a translation from itself to English. The English dataset is represented as a translation from itself to German, which is notably different.
+
+Some related languages to English are expected, like Esperanto, French and Dutch, however there are also languages that are surprising, such as Asturian and Central Kanuri. Further investigation could be done here. One potential apporach would be to find an English to English (paraphrasing) dataset. Another potential approach would be to investigate the roots of the more unexpected language and consider alternatives, such as global influence or content of the datasets used in NLLB-200. 
+
+* Conclusions
+
+:callie: From the circle visualization, one conclusion is that NLLB-200 the known linguistic influences for a language, like lanaugage family and geographic location are represented to some extent by the embeddings of the languages in the models. Although the inner workings of neural net models are largely a black box, it is interesting to consider that its embedding and interpreting of information is not entirely dissimilar to our own.  
