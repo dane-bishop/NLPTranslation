@@ -1,6 +1,7 @@
 * Introduction
 
-:callie: The goal of the project was to investigate how different languages are embedded during the process of machine translation. The outcome is a series of experiments and visualizations that provide insight into hows sentences of certain languages and languages as a whole are embedded. Several models were investigated, including NLLB-200 created by a team at meta and the bert model. The resulting project is a streamlit app, which displays experiments involving language embeddings, sentence embeddings, sparse autoencoders, idioms, map visualizations and circle graph visualizations.
+:callie: 
+The goal of the project was to investigate how different languages are embedded during the process of machine translation. The outcome is a series of experiments and visualizations that provide insight into hows sentences of certain languages and languages as a whole are embedded. Several models were investigated, including NLLB-200 created by a team at meta and the bert model. The resulting project is a streamlit app, which displays experiments involving language embeddings, sentence embeddings, sparse autoencoders, idioms, map visualizations and circle graph visualizations.
 
 * Experiments
 
