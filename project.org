@@ -37,6 +37,8 @@ English is actually a bit of an exception in this experiment. The NLLB languages
 
 Some related languages to English are expected, like Esperanto, French and Dutch, however there are also languages that are surprising, such as Asturian and Central Kanuri. Further investigation could be done here. One potential apporach would be to find an English to English (paraphrasing) dataset. Another potential approach would be to investigate the roots of the more unexpected language and consider alternatives, such as global influence or content of the datasets used in NLLB-200. 
 
+** Idioms
+
 * Conclusions
 
 :callie: 
