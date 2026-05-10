@@ -66,7 +66,7 @@ Finally, the script generates summary CSV files containing:
 
 [[file:idiom_analysis_least_transferable.csv][the least transferable idioms]]
 
-and optional retrieval evaluation results.
+and [[file:idiom_retrieval.png][optional retrieval evaluation results]]
 
 When analyzing the average similarity to English, German and French produced the highest similarity scores, with Spanish not far behind. Chinese and Japanese showed lower average similarities of 0.5365 and 0.5028 respectively. These scores can be interpreted as a measure of how semantically aligned the translated idioms were with their English counterparts within the multilingual embedding space. Overall, the results suggest that German and French idioms tend to preserve meanings more similarly to English idioms than those in Chinese or Japanese.
 
