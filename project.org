@@ -55,7 +55,7 @@ The script also performs a multilingual retrieval evaluation. For each translate
 
 Finally, the script generates summary CSV files containing:
 
-[[file:idioms_analysis_raw_metrics.csv][raw per-idiom metrics]]
+[[file:idiom_analysis_raw_metrics.csv][raw per-idiom metrics]]
 
 [[file:idiom_analysis_language_summary.csv][average language similarities]]
 
