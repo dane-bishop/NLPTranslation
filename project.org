@@ -81,7 +81,7 @@ Broadly, these findings align with linguistic expectations. English, German, Fre
 * Conclusions
 
 :callie: 
-From the circle visualization, one conclusion is that NLLB-200 the known linguistic influences for a language, like lanaugage family and geographic location are represented to some extent by the embeddings of the languages in the models. Although the inner workings of neural net models are largely a black box, it is interesting to consider that its embedding and interpreting of information is not entirely dissimilar to our own.  
+From the circle visualization, one conclusion is that NLLB-200 the known linguistic influences for a language, like lanaugage family and geographic location are represented to some extent by the embeddings of the languages in the models. Although the inner workings of neural net models are largely a black box, it is interesting to consider that its embedding and interpreting of information is not entirely dissimilar to our own.
 
 
 :chris:
