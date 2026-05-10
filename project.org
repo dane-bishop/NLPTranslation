@@ -54,6 +54,7 @@ Consistency: the average pairwise similarity between all non-English translation
 The script also performs a multilingual retrieval evaluation. For each translated idiom, its embedding is compared against embeddings of every English idiom in the dataset. The system ranks the English idioms by cosine similarity and checks whether the correct English idiom appears at rank 1 or within the top 5 results. This produces Top-1 and Top-5 retrieval accuracies, which evaluate how well the embedding space preserves cross-lingual idiomatic meaning.
 
 Finally, the script generates summary CSV files containing:
+
 [[file:idioms_analysis_raw_metrics.csv][raw per-idiom metrics]]
 
 [[file:idiom_analysis_language_summary.csv][average language similarities]]
