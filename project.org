@@ -85,4 +85,5 @@ From the circle visualization, one conclusion is that NLLB-200 the known linguis
 
 
 :chris:
+
 The idiom analysis showed that through laser embeddings, insightful cross-lingual relationships were uncovered. The results showed that  while idioms are unique due to the evolution of language and societal influences, traces of common human experiences are present in each language. Particularly, similarities in Indo-European languages are strong compared to English. While the Chinese and Japanese idioms are not as closely similar to English idioms, certain idioms transcend languages and are well-expressed cross-lingually. 
