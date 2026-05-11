@@ -77,6 +77,21 @@ In the multilingual-to-English retrieval evaluation, German achieved the stronge
 
 Broadly, these findings align with linguistic expectations. English, German, French, and Spanish all belong to the [[https://en.wikipedia.org/wiki/Indo-European_languages][Indo-European language]] family, with English and German sharing particularly strong Germanic roots. In contrast, Chinese and Japanese are genetically unrelated to the Indo-European languages and differ significantly in syntax, writing systems, and cultural expression. These structural and cultural differences may help explain why English idioms transfer less effectively into Chinese and Japanese.
 
+** Globe Translation Graph
+:dane:
+
+Despite our world having over 7,000 actively spoken currently in the world, many languages share quite a few things in common. Many languages have similar conceptual ideas, but have different ways of portraying that. Some lanuages portray and communicate those shared concepts much more similarly than other languages. This globe graph demonstrates and shows how similar different languages are when it comes to a set of core conceptual concepts.
+
+In the graph, each node has a language code, a display name, a language family, and a latitude and longitude value. These attributes can be found in [[file:DANE-globe_graph/GlobeGraphTranslation/graph_data.json.csv][Globe Graph Data]]
+
+In the graph, you will see that each of these nodes has multiple lines connecting to it. Each of these lines connect one language to another language that is close to it in the precomputed embedding distance matrix. Originally, the overall distance between languages was computed (a smaller distance meaning more similar languages). This distance is used in [[file:DANE-globe_graph/GlobeGraphTranslation/generate_globe_graph.py][Generate Globe Graph]]. We use the embedding distances to display a higher opacity connection for stronger connected languages while displaying a lighter line for less connected languages.
+
+This graph has multiple UI filtering options. One of them is an option to filter via top-k nearest neighbors. This shows each language's top-ranked closest languages. Another filtering option is mutual nearest neighbors, which basically only shows language pairs where both languages consider each other highly similar.
+
+Other filtering options include a language family filter, a top-k slider, and a minimum similarity slider. All in all, these filters help you visualize and filter what kinds of languages and relationships you would like to see.
+
+This interface allows users to filter relationships by nearest-neighbor strength, language family, same-family versus cross-family links, mutual nearest-neighbor relationships, and minimum similarity threshold. This allows the user to explore both expected genealogical clusters and unexpectd cross-family similarities in the learned language representation space.
+
 
 * Conclusions
 
