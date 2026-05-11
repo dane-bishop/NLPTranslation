@@ -1,5 +1,22 @@
+import importlib.util
 import torch
+
+
+_original_find_spec = importlib.util.find_spec
+
+
+def _patched_find_spec(name: str, package=None):
+    # This app only uses text models. Hiding torchvision prevents
+    # transformers from importing its vision stack, which is broken in the
+    # current environment due to a torch/torchvision mismatch.
+    if name == "torchvision" or name.startswith("torchvision."):
+        return None
+    return _original_find_spec(name, package)
+
+
+importlib.util.find_spec = _patched_find_spec
 from transformers import AutoModel, AutoTokenizer
+importlib.util.find_spec = _original_find_spec
 
 
 class MLLMBackbone:

@@ -83,7 +83,8 @@ def get_sentence_activations(backbone, sae, dataloader, num_sentences, conf):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("config_path")
+    parser.add_argument("config_path", nargs="?")
+    parser.add_argument("--config_path", dest="config_path_flag")
     parser.add_argument("--output_dir",    default="./cached_embeddings")
     parser.add_argument("--num_sentences", type=int, default=500,
                         help="Sentences per language")
@@ -91,7 +92,11 @@ def main():
     parser.add_argument("--threshold_scale", type=float, default=5e-1, help="Cuttoff for feature activations by mean, larger is more restrictive")
     args = parser.parse_args()
 
-    with open(args.config_path) as stream:
+    config_path = args.config_path_flag or args.config_path
+    if not config_path:
+        parser.error("Provide a config path either positionally or with --config_path.")
+
+    with open(config_path) as stream:
         cfg = json.load(stream)
         conf = TrainingConf(**cfg)
 

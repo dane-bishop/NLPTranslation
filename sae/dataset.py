@@ -1,3 +1,4 @@
+from collections.abc import Iterator
 from torch.utils.data import IterableDataset
 from datasets import load_dataset
 import random

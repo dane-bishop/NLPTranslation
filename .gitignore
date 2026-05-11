@@ -2,3 +2,6 @@ __pycache__/
 *.pt
 .codex
 venv
+*.joblib
+*.npy
+*.npz

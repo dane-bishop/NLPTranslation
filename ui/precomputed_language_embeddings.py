@@ -36,6 +36,19 @@ def display_language(lang_code: str) -> str:
     return LANGUAGE_LABELS.get(lang_code, lang_code)
 
 
+def display_backbone_name(backbone_name: str) -> str:
+    normalized = backbone_name.strip().lower()
+    if "mdeberta" in normalized:
+        return "mDeBERTa"
+    if "nllb" in normalized:
+        return "NLLB"
+    return backbone_name
+
+
+def get_file_cache_token(path: Path) -> int:
+    return path.stat().st_mtime_ns
+
+
 @st.cache_data
 def load_precomputed_registry():
     with open(REGISTRY_PATH, "r") as stream:
@@ -43,31 +56,36 @@ def load_precomputed_registry():
 
 
 @st.cache_data
-def load_precomputed_config(config_path: str):
+def load_precomputed_config(config_path: str, cache_token: int):
     with open(config_path, "r") as stream:
         return json.load(stream)
 
 
 @st.cache_data
-def load_precomputed_metadata(metadata_path: str):
+def load_precomputed_metadata(metadata_path: str, cache_token: int):
     with open(metadata_path, "r") as stream:
         return json.load(stream)
 
 
 @st.cache_data
-def load_precomputed_artifact(artifact_path: str):
+def load_precomputed_artifact(artifact_path: str, cache_token: int):
     data = np.load(artifact_path, allow_pickle=True)
+    layer_indices = [int(layer_idx) for layer_idx in data["layer_indices"].tolist()]
     return {
         "texts": data["texts"].tolist(),
         "langs": data["langs"].tolist(),
-        "layer_indices": data["layer_indices"].tolist(),
+        "layer_indices": layer_indices,
         "counts_by_lang": {
             str(lang): int(count)
             for lang, count in zip(data["counts_langs"].tolist(), data["counts_values"].tolist())
         },
         "coords_by_layer": {
-            int(layer_idx): data[f"coords_layer_{int(layer_idx)}"]
-            for layer_idx in data["layer_indices"].tolist()
+            layer_idx: (
+                data[f"tsne_coords_layer_{layer_idx}"].astype(np.float32)
+                if f"tsne_coords_layer_{layer_idx}" in data
+                else data[f"coords_layer_{layer_idx}"].astype(np.float32)
+            )
+            for layer_idx in layer_indices
         },
     }
 
@@ -110,7 +128,9 @@ def build_centroid_distance_frame(df: pd.DataFrame) -> pd.DataFrame:
     return pd.DataFrame(rows).sort_values("distance")
 
 
-def build_scatter_figure(df: pd.DataFrame, layer_idx: int, projection_label: str):
+def build_scatter_figure(
+    df: pd.DataFrame, backbone_name: str, layer_idx: int, projection_label: str
+):
     fig = px.scatter(
         df,
         x="x",
@@ -125,7 +145,7 @@ def build_scatter_figure(df: pd.DataFrame, layer_idx: int, projection_label: str
         hovertemplate="<b>%{customdata[0]}</b><br>%{customdata[1]}<extra></extra>",
     )
     fig.update_layout(
-        title=f"Precomputed Multilingual Sentence Embeddings — Layer {layer_idx}",
+        title=f"{display_backbone_name(backbone_name)} - Layer {layer_idx}",
         xaxis_title=f"{projection_label} 1",
         yaxis_title=f"{projection_label} 2",
         legend_title_text="Language",
@@ -151,7 +171,8 @@ selected_key = st.selectbox(
 )
 
 selected_entry = artifact_entries[selected_key]
-config = load_precomputed_config(str(ROOT_DIR / selected_entry["config_path"]))
+config_path = ROOT_DIR / selected_entry["config_path"]
+config = load_precomputed_config(str(config_path), get_file_cache_token(config_path))
 artifact_path = ROOT_DIR / config["output_path"]
 metadata_path = artifact_path.with_suffix(".json")
 
@@ -163,9 +184,15 @@ if not artifact_path.exists():
     )
     st.stop()
 
-artifact = load_precomputed_artifact(str(artifact_path))
-metadata = load_precomputed_metadata(str(metadata_path)) if metadata_path.exists() else {}
-projection_label = str(metadata.get("projection_method", "Projection")).upper()
+artifact = load_precomputed_artifact(str(artifact_path), get_file_cache_token(artifact_path))
+metadata = (
+    load_precomputed_metadata(str(metadata_path), get_file_cache_token(metadata_path))
+    if metadata_path.exists()
+    else {}
+)
+projection_label = str(
+    metadata.get("browse_projection_method", metadata.get("projection_method", "Projection"))
+).upper()
 
 available_layers = [int(layer_idx) for layer_idx in artifact["layer_indices"]]
 available_langs = list(dict.fromkeys(artifact["langs"]))
@@ -209,7 +236,15 @@ metric_a.metric("Points", len(filtered_df))
 metric_b.metric("Languages", len(selected_langs))
 metric_c.metric("Layer", selected_layer)
 
-st.plotly_chart(build_scatter_figure(filtered_df, selected_layer, projection_label), use_container_width=True)
+st.plotly_chart(
+    build_scatter_figure(
+        filtered_df,
+        backbone_name=config["backbone_name"],
+        layer_idx=selected_layer,
+        projection_label=projection_label,
+    ),
+    use_container_width=True,
+)
 
 tab_counts, tab_distances, tab_samples, tab_config = st.tabs(
     ["Counts", "Centroid Distances", "Sample Sentences", "Artifact Config"]

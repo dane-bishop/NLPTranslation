@@ -56,6 +56,10 @@ def resolve_repo_path(path_str: str) -> Path:
     return ROOT_DIR / path
 
 
+def get_file_cache_token(path: Path) -> int:
+    return path.stat().st_mtime_ns
+
+
 @st.cache_data
 def load_precomputed_registry():
     with open(REGISTRY_PATH, "r") as stream:
@@ -63,13 +67,13 @@ def load_precomputed_registry():
 
 
 @st.cache_data
-def load_json(path_str: str):
+def load_json(path_str: str, cache_token: int):
     with open(path_str, "r") as stream:
         return json.load(stream)
 
 
 @st.cache_data
-def load_precomputed_artifact(artifact_path: str):
+def load_precomputed_artifact(artifact_path: str, cache_token: int):
     data = np.load(artifact_path, allow_pickle=True)
     layer_indices = [int(layer_idx) for layer_idx in data["layer_indices"].tolist()]
     artifact = {
@@ -81,7 +85,11 @@ def load_precomputed_artifact(artifact_path: str):
             for lang, count in zip(data["counts_langs"].tolist(), data["counts_values"].tolist())
         },
         "coords_by_layer": {
-            layer_idx: data[f"coords_layer_{layer_idx}"].astype(np.float32)
+            layer_idx: (
+                data[f"umap_coords_layer_{layer_idx}"].astype(np.float32)
+                if f"umap_coords_layer_{layer_idx}" in data
+                else data[f"coords_layer_{layer_idx}"].astype(np.float32)
+            )
             for layer_idx in layer_indices
         },
         "embeddings_by_layer": {},
@@ -102,7 +110,7 @@ def load_backbone(model_name: str) -> MLLMBackbone:
 
 
 @st.cache_resource
-def load_reducer(reducer_path: str):
+def load_reducer(reducer_path: str, cache_token: int):
     import joblib
 
     return joblib.load(reducer_path)
@@ -147,6 +155,38 @@ def build_color_map(languages: list[str]) -> dict[str, str]:
         language: palette[idx % len(palette)]
         for idx, language in enumerate(unique_languages)
     }
+
+
+def explain_backbone_load_error(exc: Exception) -> str:
+    message = str(exc)
+
+    if "BitGenerator module" in message or "known BitGenerator" in message:
+        return (
+            "The saved UMAP reducer is incompatible with the current NumPy/joblib stack. "
+            "Re-run precompute in the current environment to regenerate the `.umap.joblib` files."
+        )
+
+    if "torchvision" in message:
+        return (
+            "The text model load is failing because the current environment has an incompatible "
+            "`torch`/`torchvision` pair. This app does not need torchvision, but a broken "
+            "torchvision install can still break `transformers` imports."
+        )
+
+    if "upgrade torch to at least v2.6" in message or "CVE-2025-32434" in message:
+        return (
+            "The installed `transformers` version is refusing to load PyTorch `.bin` weights with "
+            "the current `torch` version. Use a repo-supported `transformers<5` build, or upgrade "
+            "`torch` to a compatible newer version and keep `torchvision` matched to it."
+        )
+
+    if "Temporary failure in name resolution" in message:
+        return (
+            "The model loader tried to reach Hugging Face but network access was unavailable. "
+            "This usually means the model weights are not fully cached locally in the expected format."
+        )
+
+    return f"Backbone load failed: {message}"
 
 
 def build_sentence_figure(
@@ -268,7 +308,7 @@ selected_key = st.selectbox(
 
 selected_entry = artifact_entries[selected_key]
 config_path = resolve_repo_path(selected_entry["config_path"])
-config = load_json(str(config_path))
+config = load_json(str(config_path), get_file_cache_token(config_path))
 artifact_path = resolve_repo_path(config["output_path"])
 metadata_path = artifact_path.with_suffix(".json")
 
@@ -282,9 +322,11 @@ if not metadata_path.exists():
     st.code(f"python mllm/precompute_language_embeddings.py {selected_entry['config_path']}")
     st.stop()
 
-metadata = load_json(str(metadata_path))
-artifact = load_precomputed_artifact(str(artifact_path))
-projection_label = str(metadata.get("projection_method", "Projection")).upper()
+metadata = load_json(str(metadata_path), get_file_cache_token(metadata_path))
+artifact = load_precomputed_artifact(str(artifact_path), get_file_cache_token(artifact_path))
+projection_label = str(
+    metadata.get("query_projection_method", metadata.get("projection_method", "Projection"))
+).upper()
 
 if not artifact["embeddings_by_layer"]:
     st.error("This artifact does not include per-layer embedding matrices. Re-run precompute with the updated script.")
@@ -375,17 +417,24 @@ if embedding_matrix is None:
 display_indices = filtered_df["source_idx"].to_numpy()
 filtered_embeddings = embedding_matrix[display_indices]
 
-with st.spinner("Embedding query text and projecting it with the saved reducer..."):
-    backbone = load_backbone(config["backbone_name"])
-    reducer = load_reducer(str(reducer_path))
-    query_embedding, valid_token_count = embed_query_text(
-        backbone=backbone,
-        text=query_text.strip(),
-        layer_idx=selected_layer,
-        max_length=int(config["max_length"]),
-        encoder_only=bool(config["encoder_only"]),
+try:
+    with st.spinner("Embedding query text and projecting it with the saved reducer..."):
+        backbone = load_backbone(config["backbone_name"])
+        reducer = load_reducer(str(reducer_path), get_file_cache_token(reducer_path))
+        query_embedding, valid_token_count = embed_query_text(
+            backbone=backbone,
+            text=query_text.strip(),
+            layer_idx=selected_layer,
+            max_length=int(config["max_length"]),
+            encoder_only=bool(config["encoder_only"]),
+        )
+        query_coord = reducer.transform(query_embedding)[0].astype(np.float32)
+except Exception as exc:
+    st.error(explain_backbone_load_error(exc))
+    st.code(
+        f"python mllm/precompute_language_embeddings.py {selected_entry['config_path']}"
     )
-    query_coord = reducer.transform(query_embedding)[0].astype(np.float32)
+    st.stop()
 
 cosines = filtered_embeddings @ query_embedding[0]
 effective_top_k = min(top_k, len(filtered_df))

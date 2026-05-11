@@ -470,7 +470,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "--cache_dir",
-        default="../artifacts/sae_features/",
+        default="artifacts/sae_features/",
         help="Root directory containing one sub-folder per model "
              "(e.g. root/nllb, root/mmbert).  "
              "Falls back to treating this path as a direct cache dir if no "

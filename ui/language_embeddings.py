@@ -121,6 +121,15 @@ def display_language(lang_code: str) -> str:
     return LANGUAGE_LABELS.get(lang_code, lang_code)
 
 
+def display_backbone_name(backbone_name: str) -> str:
+    normalized = backbone_name.strip().lower()
+    if "mdeberta" in normalized:
+        return "mDeBERTa"
+    if "nllb" in normalized:
+        return "NLLB"
+    return backbone_name
+
+
 def build_lang_pair_map(conf: ClusterConf) -> dict[str, str]:
     return {lang: pair for lang, pair in zip(conf.langs, conf.pairs)}
 
@@ -173,7 +182,7 @@ def build_centroid_distance_frame(coords: np.ndarray, langs: list[str]) -> pd.Da
     return pd.DataFrame(rows).sort_values("distance")
 
 
-def build_scatter_figure(df: pd.DataFrame):
+def build_scatter_figure(df: pd.DataFrame, backbone_name: str, layer_idx: int):
     fig = px.scatter(
         df,
         x="tsne_1",
@@ -188,7 +197,7 @@ def build_scatter_figure(df: pd.DataFrame):
         hovertemplate="<b>%{customdata[0]}</b><br>%{customdata[1]}<extra></extra>",
     )
     fig.update_layout(
-        title="Multilingual Sentence Embeddings",
+        title=f"{display_backbone_name(backbone_name)} - Layer {layer_idx}",
         xaxis_title="t-SNE 1",
         yaxis_title="t-SNE 2",
         legend_title_text="Language",
@@ -302,7 +311,11 @@ counts_by_lang = results["counts_by_lang"]
 scatter_df = build_scatter_frame(coords, langs, texts)
 counts_df = build_counts_frame(counts_by_lang, active_conf.langs)
 centroid_df = build_centroid_distance_frame(coords, langs)
-figure = build_scatter_figure(scatter_df)
+figure = build_scatter_figure(
+    scatter_df,
+    backbone_name=active_conf.backbone_name,
+    layer_idx=active_conf.layer_idx,
+)
 
 metric_a, metric_b, metric_c = st.columns(3)
 metric_a.metric("Points", len(scatter_df))

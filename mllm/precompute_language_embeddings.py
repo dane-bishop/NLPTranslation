@@ -21,7 +21,7 @@ from torch.utils.data import DataLoader
 from tqdm import tqdm
 
 from backbone import MLLMBackbone
-from cluster import collate_records
+from cluster import collate_records, run_tsne
 from dataset import BalancedNLLBDataset
 from train import masked_mean_pool
 
@@ -185,7 +185,7 @@ def main():
 
     for layer_idx in conf.layer_indices:
         print(f"Computing coordinates for layer {layer_idx}")
-        embedding_matrix, coords, reducer = compute_layer_artifacts(
+        embedding_matrix, umap_coords, reducer = compute_layer_artifacts(
             backbone=backbone,
             texts=texts,
             batch_size=conf.batch_size,
@@ -198,7 +198,10 @@ def main():
             umap_metric=conf.umap_metric,
             umap_n_components=conf.umap_n_components,
         )
-        save_arrays[f"coords_layer_{layer_idx}"] = coords
+        tsne_coords = run_tsne(embedding_matrix, random_state=conf.random_seed).astype(np.float32)
+        save_arrays[f"coords_layer_{layer_idx}"] = umap_coords
+        save_arrays[f"umap_coords_layer_{layer_idx}"] = umap_coords
+        save_arrays[f"tsne_coords_layer_{layer_idx}"] = tsne_coords
         save_arrays[f"embeddings_layer_{layer_idx}"] = embedding_matrix.astype(np.float16)
 
         reducer_path = output_path.parent / f"{output_path.stem}_layer_{layer_idx}.umap.joblib"
@@ -210,6 +213,8 @@ def main():
     metadata_path = output_path.with_suffix(".json")
     metadata = asdict(conf)
     metadata["projection_method"] = "umap"
+    metadata["browse_projection_method"] = "tsne"
+    metadata["query_projection_method"] = "umap"
     metadata["umap_paths_by_layer"] = umap_paths_by_layer
     with open(metadata_path, "w") as stream:
         json.dump(metadata, stream, indent=2)
