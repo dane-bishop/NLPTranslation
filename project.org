@@ -1,3 +1,5 @@
+#+STARTUP: latexpreview
+
 * Introduction
 
 :callie: 
@@ -92,6 +94,51 @@ Other filtering options include a language family filter, a top-k slider, and a 
 
 This interface allows users to filter relationships by nearest-neighbor strength, language family, same-family versus cross-family links, mutual nearest-neighbor relationships, and minimum similarity threshold. This allows the user to explore both expected genealogical clusters and unexpectd cross-family similarities in the learned language representation space.
 
+** Sparse Autoencoders
+:trevor:
+Language model features are notoriously hard to interpret; individual neurons in a transformer model's multi-layer preceptron (MLP) layers may attend to many diverse concepts, the relation of which may not be easily reasoned about. To directly reason about a language model's concept space, we employ sparse autoencoders (SAEs).
+
+SAEs are wide, shallow MLP with an encoder and a decoder layer, whose feature dimensions are typically set to some integer multiple of the feature dimension within the language model in question.
+
+In our experiments, we investigated two [[file:./sae/sae.py][SAE architectures]]:
+  - The standard sparse autoencoder, which is trained with loss $||x-\hat x||^2_2 + ||z||_1$, with $x$ being the input feature vector from the LM layer under study, and $z$ being the feature vector output of the SAE encoder. The second term helps to encourage sparsity,
+
+  - The gated SAE architecture, which adds a thresholding and scaling step in order to more discretely keep only active features and estimate their magnitudes. It requires an additional loss term which is computed from a reconstructed $x$ using a frozen copy of the decoder and the non-thresholded feature path: $||x-\hat x_{frozen}||_2^2$
+
+We trained SAEs for several different multi-lingual LMs, with the intent of investigating language model feature spaces across different languages for models which were deliberately trained on balanced language data.
+
+Each trained SAE has a corresponding config describing hyperparameter settings for [[file:./sae/train.py][training]]:
+  - We displayed results for several SAEs trained from NLLB-600m:
+
+    - [[file:./sae/configs/nllb/larger_l1_latent.json][Our standard settings]]
+
+    - [[file:./sae/configs/nllb/8k_feats.json][Larger latent dimension]]
+
+    - [[file:./sae/configs/nllb/high_sparsity.json][Higher sparsity coeficient]]
+
+  - mDeBERTa-v3-base:
+
+    - [[file:./sae/configs/big_latent_mdeberta.json][Standard]]
+
+    - [[file:./sae/configs/mdeberta/high_sparsity.json][Higher sparsity]]
+
+  - mmBERT-base:
+
+    - [[file:./sae/configs/mmbert/big_latent_mmbert.json][Standard]]
+
+Once trained, we [[file:./sae/precompute_embeddings.py][computed embeddings]] for 1000 sentences from the FLORES-200 dataset.
+
+In order to [[file:./ui/sparse_autoencoders.py][visualize]] these embeddings in a 2D space, we took the feature vector for each sentence's top-activating token position as a representation of the sentence, and projected the resulting matrix down to 2D via umap $S, F \rightarrow S, 2$
+
+Additionally, we projected the transposed matrix down to 2D to recover a per-feature 2D representation, $F, S \rightarrow F, 2$
+
+Apart from the visual analysis, we also provide a [[file:./sae/analyze.py][script]] which, when provided with the training config for the trained SAE to analyze, computes feature representations and prints out the top activating features and their top activating sentences.
+
+Upon inspection, we see that these sparse autoencoders are learning feature representations which activate strongly with regard to related concepts which we can easily reason about; some common examples across different LMs include features for attending to specific countries or continents (i.e. a Europe feature which activates on mentions of the EU and of Europe, and on the word european in different languages), and features for attending to the concept of academia (including a feature which activates strongly on the word University, and a feature which activates strongly on the word professor)
+
+While these features occupy a space without obvious clusters for the most part, related features are still distributed with regards to spatial distances; the university features all lie close together in 2D space, and the country features also lie close together. The country features also border features attending to political concepts, and the feature which attends to the concept of war in the standard NLLB-600m case.
+
+Additionally, viewing the 2D sentence projections reveals strong clusters with regard to semantic meaning; senteces often form tight clusters with their direct translations, and these clusters lie close to other sentences dealing with similar subject matter.
 
 * Conclusions
 
@@ -103,3 +150,6 @@ From the circle visualization, one conclusion is that NLLB-200 the known linguis
 
 :dane:
  From the globe graph visualization, we can see relationships between local and more regional languages, but also languages that might be unexpectantly related. We can easily filter through different language families and see the strenght of the similarities between different languages. All of these features help the user better understand and visualize the correlations and connections between different languages.
+
+:trevor:
+From the feature representations we were able to build using sparse autoencoders, we can strongly motivate that multi-lingual language models learn internal feature representations which are less biased to a single language than those of a LLM trained on primarily English, such as the LLama line of models. These sparse-autoencoders are able to recover features for language agnostic concepts, which often activate strongest on non-English examples. Additionally, we show that the feature space recovered by these SAEs clusters with regard to meaning before language; particularly in the case of NLLB-600m, sentences form tight clusters with their direct translations, and with sentences which deal with related concepts, while the 2D feature representations lie spatially closer to features which activate strongly on related concepts. These models are building latent spaces in which semantic meaning corresponds to mathematical similarity.
