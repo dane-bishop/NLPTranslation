@@ -101,9 +101,13 @@ Language model features are notoriously hard to interpret; individual neurons in
 SAEs are wide, shallow MLP with an encoder and a decoder layer, whose feature dimensions are typically set to some integer multiple of the feature dimension within the language model in question.
 
 In our experiments, we investigated two [[file:./sae/sae.py][SAE architectures]]:
-  - The standard sparse autoencoder, which is trained with loss $||x-\hat x||^2_2 + ||z||_1$, with $x$ being the input feature vector from the LM layer under study, and $z$ being the feature vector output of the SAE encoder. The second term helps to encourage sparsity,
+  - The standard sparse autoencoder, which is trained with loss 
+$$\|x-\hat x\|^2_2+\|z\|_1$$
 
-  - The gated SAE architecture, which adds a thresholding and scaling step in order to more discretely keep only active features and estimate their magnitudes. It requires an additional loss term which is computed from a reconstructed $x$ using a frozen copy of the decoder and the non-thresholded feature path: $||x-\hat x_{frozen}||_2^2$
+$x$ being the input feature vector from the LM layer under study, and $z$ being the feature vector output of the SAE encoder. The second term helps to encourage sparsity.
+
+  - The gated SAE architecture, which adds a thresholding and scaling step in order to more discretely keep only active features and estimate their magnitudes. It requires an additional loss term which is computed from a reconstructed $x$ using a frozen copy of the decoder and the non-thresholded feature path 
+$$\|x-\hat x_{f} \|_2^2$$
 
 We trained SAEs for several different multi-lingual LMs, with the intent of investigating language model feature spaces across different languages for models which were deliberately trained on balanced language data.
 
