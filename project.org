@@ -144,10 +144,32 @@ While these features occupy a space without obvious clusters for the most part, 
 
 Additionally, viewing the 2D sentence projections reveals strong clusters with regard to semantic meaning; senteces often form tight clusters with their direct translations, and these clusters lie close to other sentences dealing with similar subject matter.
 
+** Language Embeddings
+:logan:
+
+To assess how multilingual large language models (MLLMs) capture relationships between languages within their internal representations, we [[file:ui/language_embeddings.py][visualized 2D projections of sentence embeddings]] from several languages across multiple model layers. In our experiments, we captured sentence embeddings from two pretrained MLLMs: an encoder-decoder mDeBERTa-v3 model and an encoder-only NLLB-200 model. Speifically, we extracted embeddings from 12 consecutive layers for both models, corresponding to 6 encoder layers and 6 decoder layers for the mDeBERTa model, and 12 encoder layers for the NLLB-200 model. 
+
+To compute a model's embedding for a given sentence, we first pass the sentence through the model and extract its per-token embeddings at a specified layer. We then average pool the token embeddings into a single sentence embedding, excluding special tokens (e.g., padding or CLS tokens). For our visualizations, we first obtained 1000 sentence embeddings at each model layer for the 10 languages being evaluated (English, Swedish, Italian, Dutch, Spanish, Polish, Czech, Portuguese, French, and German). We then produced 2D t-SNE projections for each layer, coloring points based on their source language.
+
+Both the mDeBERTa and NLLB models separate language embeddings very well at the first layer, with all sentence embeddings nicely clustering by language. The only slight exceptions are the English and French embeddings, which show some overlap due to the fact they use the same sentence pairs. This suggests that the MLLMs form an initial language-specific representation of the text before further processing, orienting the model before forming higher level semantic representations.
+
+[[file:project_images/embeddings/mdeberta_layer0.png][mDeBERTa - Layer 1]]
+[[file:project_images/embeddings/nllb_layer0.png][NLLB - Layer 1]]
+
+By the sixth layer, both models begin to mix embeddings as they incorporate additional semantic context. mDeBERTa particularly begins blending embeddings at this stage, forming high-level representations of the text before transitioning to decoding. Similar languages begin to cluster together, such as Spanish and Portuguese or Dutch and German. It appears that the models begin to form higher level representations of languages at these middle layers, positioning related languages closely together in feature space.
+
+[[file:project_images/embeddings/mdeberta_layer6.png][mDeBERTa - Layer 6]]
+[[file:project_images/embeddings/nllb_layer6.png][NLLB - Layer 6]]
+
+At the deepest layer, mDeBERTa embeddings appear to be completely blended together, as the model has fully incorporated both language-specific features and high-level semantic content. As a result, even the French-English embeddings become fully separated, despite originating from the same sentence pairs. On the other hand, NLLB embeddings remain somewhat grouped by language, with related pairs such as Spanish and Portuguese or Czech and Polish still clustering within the same regions. We find that the last-layer NLLB embeddings project similarly to the mid-layer mDeBERTa embeddings, suggesting that the encoder-only NLLB model forms similar latent representations of multilingual sentences as the mDeBERTa encoder, despite their architectural differences.
+
+[[file:project_images/embeddings/mdeberta_layer12.png][mDeBERTa - Layer 12]]
+[[file:project_images/embeddings/nllb_layer12.png][NLLB - Layer 12]]
+
 * Conclusions
 
 :callie: 
-From the circle visualization, one conclusion is that NLLB-200 the known linguistic influences for a language, like lanaugage family and geographic location are represented to some extent by the embeddings of the languages in the models. Although the inner workings of neural net models are largely a black box, it is interesting to consider that its embedding and interpreting of information is not entirely dissimilar to our own. 
+From the circle visualization, one conclusion is that NLLB-200 the known linguistic influences for a language, like language family and geographic location are represented to some extent by the embeddings of the languages in the models. Although the inner workings of neural net models are largely a black box, it is interesting to consider that its embedding and interpreting of information is not entirely dissimilar to our own. 
 
 :chris:
  The idiom analysis showed that through laser embeddings, insightful cross-lingual relationships were uncovered. The results showed that  while idioms are unique due to the evolution of language and societal influences, traces of common human experiences are present in each language. Particularly, similarities in Indo-European languages are strong compared to English. While the Chinese and Japanese idioms are not as closely similar to English idioms, certain idioms transcend languages and are well-expressed cross-lingually.  
@@ -157,3 +179,6 @@ From the circle visualization, one conclusion is that NLLB-200 the known linguis
 
 :trevor:
 From the feature representations we were able to build using sparse autoencoders, we can strongly motivate that multi-lingual language models learn internal feature representations which are less biased to a single language than those of a LLM trained on primarily English, such as the LLama line of models. These sparse-autoencoders are able to recover features for language agnostic concepts, which often activate strongest on non-English examples. Additionally, we show that the feature space recovered by these SAEs clusters with regard to meaning before language; particularly in the case of NLLB-600m, sentences form tight clusters with their direct translations, and with sentences which deal with related concepts, while the 2D feature representations lie spatially closer to features which activate strongly on related concepts. These models are building latent spaces in which semantic meaning corresponds to mathematical similarity.
+
+:logan:
+The 2D sentence embedding projections provide a qualitative visualization of how multilingual sentences are processed throughout MLLMs. For both models tested, we found that languages are cleanly separable at early layers, suggesting that MLLMs possess a discriminative low-level understanding of a variety of languages, even closely related pairs like Spanish and Portuguese. In addition, we found that the models appear to incorporate more of the language-agnostic content of the text at deeper layers, blending language embeddings together as the layers shift from encoding to decoding.
